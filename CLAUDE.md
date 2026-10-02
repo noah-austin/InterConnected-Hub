@@ -32,5 +32,19 @@ Connector rule: BD (Sonny) sessions get Gmail read/draft, never send. Drafts are
 - Do **not** add a `CNAME` file to `/docs/` until cutover day. The domain is still bound to the old account's Pages; a CNAME here causes a conflict. The cutover steps are logged in `/company/direction.md`.
 - `/docs/` holds only the site: `index.html`, `og-image.png`, `favicon.svg`, `favicon.ico`, `apple-touch-icon.png`. Nothing else lives there.
 
+## Repo map
+```
+/docs/        the site (forward copy; Pages source). Nothing else lives here.
+/company/     direction.md (steering) · overview.md · brand-guidelines.md (June's v1, verbatim canon) · decisions.md · reference/ (original source docs)
+/roles/       sonny.md, dex.md (active) · june.md, mack.md (dormant) · ada.md, pearl.md, gus.md (never stood up)
+/pipeline/    tracker.md · objections.md · pricing-reactions.md · referrals.md
+/skills/      deploy-checklist · meeting-prep · debrief · pricing-three-questions · cold-email-template
+/work/        outputs by lane: bd/ (outbox/ = drafts for Noah) · product/ (staging/ = builds awaiting "deploy") · marketing/ · it/
+/logs/        one file per run: YYYY-MM-DD-<role>-<topic>.md
+```
+
+## Product facts every session must get right
+Every number in the demo is sample data. What the demo shows versus what is roadmap is defined by `work/product/Dex_Demo_Inventory_for_Sonny.md`; never claim more than it lists as shown. "Every insight is aggregate except one, quiet-member care signals, and that one uses activity dates only, never content." Prices are a hypothesis under field validation.
+
 ## Growth rules
 Two active roles only (Sonny — BD, Dex — Product). Add a role only after the current ones run ~2 weeks with few outputs needing major rewrites. No inter-agent messaging, orchestration dashboards, manager agents, databases, or send-automation. Markdown files are the database. If a step feels like infrastructure for infrastructure's sake, stop and ask Noah.
