@@ -1,6 +1,6 @@
 # Direction
 
-> **The steering file.** Noah and Buford edit it; every role reads it first. To steer the company, change this file. The next session picks it up.
+> **The steering file.** Every role reads it first. Noah steers by telling any session what he wants; the session updates this file for him (see "Steering by conversation" in `CLAUDE.md`). Noah doesn't edit it by hand.
 > Seeded Oct 2, 2026 from the build instructions' addendum + the four Sep 24 handoffs. **Phase 2 reconciliation done Oct 2:** the inbox shows no change since Sep 24 (no replies, no sends, no bounces), so the priorities below reflect what's actually live. Pipeline: `pipeline/tracker.md`.
 
 ## Do now (in order)

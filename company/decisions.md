@@ -88,3 +88,8 @@
 | Never toggle the Pages custom domain / Enforce HTTPS while a cert is provisioning. | Mack |
 | Deploy filename is `index.html` exactly (the `.html.html` trap). Contents are Dex's; deployment is mechanical. | Mack / Dex |
 | The future product stack belongs to the eventual technical co-founder. | Noah |
+
+## Added after the build
+| Date | Decision | Owner |
+|---|---|---|
+| 2026-10-02 | Noah steers by telling any session in plain words; the session updates `direction.md` (plus `decisions.md` and role files as needed), commits, and logs. Noah never edits files by hand. | Noah |
