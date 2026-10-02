@@ -8,9 +8,18 @@
 **Founder & CEO:** Noah Austin · noah@joininterconnected.com · South Austin / Buda area.
 
 ## What it is
-A private, invitation-only community platform sold to individual churches. Each congregation gets one network, fully siloed, joined through church-distributed codes. Members discover each other's skills, gifts, and needs during the week. When someone needs a roofer, a tutor, or babysitting help, the first thought becomes someone at church instead of Google.
+**The one app for a member's whole church life.** It's a private, invitation-only platform sold to individual churches. Each congregation gets one network, fully siloed, joined through church-distributed codes. It holds both relationships a member has with their church (positioning confirmed by Noah, Oct 2, 2026):
 
-Church software serves the staff. This serves the body.
+- **Member ↔ member:** needs connected to the people who can meet them (when someone needs a roofer, a tutor, or babysitting help, the first thought becomes someone at church instead of Google) · finding people by skill, job or name · belonging to groups · private messages.
+- **Member ↔ church:** a home for every group, official ministries and unofficial member-started groups alike, with their files, events and conversations · the church schedule and calendar with RSVP · announcements · reaching staff and leadership directly · church resources, service times, visit and contact info · giving via the church's existing provider.
+
+Needs-and-help is one part of the product, not the whole of it. Today a member's church life is scattered across a group text, a shared drive, the bulletin, the church website and a dozen email lists. Interconnected brings it into one place, for one church.
+
+Church software serves the staff. This serves the body, meaning every member and their connection to the church itself.
+
+## The problem
+- **Members:** a member's church life is fragmented. Groups run on group texts and shared drives. The schedule lives in the bulletin and on the website. Announcements get lost. Reaching the right staff person is guesswork. And even in a congregation of a thousand, members don't know each other's skills, gifts or needs, so practical help gets hired from strangers.
+- **The church:** church software overwhelmingly serves staff administration. Nothing serves the member's week, member to member or member to church. Pastors shepherd a congregation they can't see: no tool shows the gifts the body contains, where newcomers stall, or who has quietly drifted.
 
 ## The two-sided value proposition (the spine of every message)
 - **Members join for community.** Needs met, gifts discovered, Sunday relationships becoming weekday family.
@@ -21,7 +30,9 @@ Privacy, stated precisely: every insight is aggregate except one. Quiet-member c
 ## The product vision test: member-complete, not staff-complete
 Interconnected aims to be the one app a church member needs during the week. That means the congregation's front door, built on a connection layer nobody else has. If a member needs it during their week, it belongs. If it is a staff workflow (volunteer scheduling, check-ins, giving administration, kids registration), it stays with existing church management software until the member is won. We complement Planning Center, Subsplash and Breeze; we do not replace them.
 
-What a member does in the app: find or offer help (feed) · find people (search) · belong to something smaller (groups) · talk privately (messages) · know what's happening (church page: announcements, events, calendar) · know who leads (leadership directory).
+What a member does in the app: find or offer help (feed) · find people (search) · belong to something smaller, official or unofficial (groups as headquarters) · talk privately (messages) · know what's happening (church page: announcements, schedule, calendar) · know who leads and reach them (leadership directory, message the office/staff).
+
+The line stays where it was: **everything the member touches** belongs; the **staff back office** (volunteer scheduling, check-ins, giving administration, kids registration) does not.
 
 ## The deliberate no's (the product's identity, and part of the moat)
 No reputation scores or gamification · no algorithmic feed · no pressure mechanics · no transactional mentor-matching · member-led groups with admin oversight only · aggregate-only insights · community moderation rather than AI moderation. Full list with owners: `decisions.md`.

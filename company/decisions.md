@@ -15,6 +15,7 @@
 | 2026-10-02 | Interim deploy rule: live deploys go to the old repo, done manually by Noah. `/docs/` here is the forward copy. CNAME held out of the repo until cutover. | Noah |
 | 2026-10-02 | BD drafts are staged in the repo (`work/bd/outbox/`), not in Gmail drafts. | Noah |
 | 2026-10-02 | Noah steers by telling any session in plain words; the session updates `direction.md` (plus `decisions.md` and role files as needed), commits, and logs. Noah never edits files by hand. | Noah |
+| 2026-10-02 | **Positioning: the whole-app solution.** Interconnected is the one app for a member's whole church life, covering both member↔member (needs and help, people, groups, messages) and member↔church (a home for official and unofficial groups, schedule, announcements, reaching staff, church resources). Needs-and-help is one part, not the headline. The staff back office stays out (member-complete, not staff-complete). | Noah |
 | standing | Feedback governance: collect for a week, act on patterns of 3+, treat single opinions as taste unless strategically compelling. Noah's wife is the visual taste check ("premium, not busy"). | Noah |
 | standing | Detailed financial projections are deferred until field pricing and dev quotes exist. Nothing produced is legal or investment advice. | Noah |
 

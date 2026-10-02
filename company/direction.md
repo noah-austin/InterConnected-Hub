@@ -30,6 +30,11 @@ Open, recommended soon:
 - Opening new threads into churches that already have one (one thread per church).
 - Letting scheduled follow-ups lapse silently. If a date can't be kept, say so in the tracker.
 
+## Follow-ups from the Oct 2 positioning update (whole-app solution)
+- `company/overview.md`, `decisions.md` and `roles/sonny.md` are updated. The cold-email paragraph already matches and stays verbatim.
+- **Not yet updated, on purpose:** the Brand Guidelines' "What we are" and the Plan v5.1 executive summary still lead with skills-and-needs. Both are canon and owned (June, and the plan). Update them in the next marketing pass or plan revision; until then, `overview.md` is the current positioning.
+- Dex: check that the landing-page hero and FAQ read as the whole-app solution, not mainly needs-matching. Propose copy; don't ship without Noah's go.
+
 ## Parked (dormant lanes and infra — activate per growth rules or on Noah's go)
 - **Domain cutover** (runbook below). Waiting on Noah's go.
 - **Form service for pilot requests.** Mack creates the account, Dex wires one edit. Recommended next infra win.
