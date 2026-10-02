@@ -14,6 +14,7 @@
 | 2026-10-02 | Phase -1 resolved: the brain and the site's future home live in a new repo on the Claude-connected account (`noah-austin/InterConnected-Hub`, public, used as-is rather than renamed). The old repo `noahaustin15/interconnected-demo` keeps serving the live site until a separate domain-cutover day. No GitHub ownership transfer. Mack's Org recommendation stays on file as a future option. | Noah |
 | 2026-10-02 | Interim deploy rule: live deploys go to the old repo, done manually by Noah. `/docs/` here is the forward copy. CNAME held out of the repo until cutover. | Noah |
 | 2026-10-02 | BD drafts are staged in the repo (`work/bd/outbox/`), not in Gmail drafts. | Noah |
+| 2026-10-02 | Noah steers by telling any session in plain words; the session updates `direction.md` (plus `decisions.md` and role files as needed), commits, and logs. Noah never edits files by hand. | Noah |
 | standing | Feedback governance: collect for a week, act on patterns of 3+, treat single opinions as taste unless strategically compelling. Noah's wife is the visual taste check ("premium, not busy"). | Noah |
 | standing | Detailed financial projections are deferred until field pricing and dev quotes exist. Nothing produced is legal or investment advice. | Noah |
 
@@ -88,8 +89,3 @@
 | Never toggle the Pages custom domain / Enforce HTTPS while a cert is provisioning. | Mack |
 | Deploy filename is `index.html` exactly (the `.html.html` trap). Contents are Dex's; deployment is mechanical. | Mack / Dex |
 | The future product stack belongs to the eventual technical co-founder. | Noah |
-
-## Added after the build
-| Date | Decision | Owner |
-|---|---|---|
-| 2026-10-02 | Noah steers by telling any session in plain words; the session updates `direction.md` (plus `decisions.md` and role files as needed), commits, and logs. Noah never edits files by hand. | Noah |

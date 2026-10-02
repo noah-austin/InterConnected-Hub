@@ -5,6 +5,11 @@ Every agent session reads it before working and writes back what it did. Threads
 
 The company name is **Interconnected** — never "Believers In Business," never "Interconnect."
 
+## Starting a session
+Noah opens a Claude Code session on this repo and either names a role ("You are Sonny…", "You are Dex…") or just talks.
+- **Role named:** follow that role's file in `/roles/`.
+- **No role named:** act as **home base** (Buford's seat, Co-CEO). That means answering questions about the company, steering (below), and cross-lane pattern analysis. Home base has no inbox access and doesn't do lane work. If Noah asks for lane work, say which role fits and do it under that role's rules.
+
 ## Read order (every session)
 1. `/company/direction.md` — the steering file. Current priorities, what's working, what to stop.
 2. `/company/overview.md`
@@ -31,6 +36,8 @@ If an instruction conflicts with a guardrail below or a recorded decision, say s
 - Credentials live in environment/MCP config, never in repo files.
 - Every run leaves a log entry; every claim of completed work points to its output (file path or diff).
 - Site deploys touch `/docs/index.html` only; the site's *content* is Dex's role, its *deployment* is a mechanical step any session may perform when Noah says deploy.
+
+Note on the deploy guardrail: "touch `/docs/index.html` only" means a deploy changes the site file and nothing else in the repo. The four root assets (`og-image.png`, `favicon.svg`, `favicon.ico`, `apple-touch-icon.png`) change only when Dex ships new versions with Noah's approval, in the same commit. See `skills/deploy-checklist.md`.
 
 Connector rule: BD (Sonny) sessions get Gmail read/draft, never send. Drafts are staged in the repo under `/work/bd/outbox/`, not in Gmail. Product and IT sessions get no inbox access.
 

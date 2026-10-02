@@ -12,16 +12,18 @@
 6. **The month-old taste check.** `og-image.png` + `apple-touch-icon.png`, Noah + wife. A veto is a cheap re-export by Dex. Send her exact words.
 7. **OG client-preview checklist** (Mack §2a), five minutes with Noah's phone: fresh iMessage thread, WhatsApp, Slack, Facebook Sharing Debugger, LinkedIn Post Inspector. Log results.
 
-## Decisions waiting on Noah (deferred by Noah Oct 2, "later")
+## Decisions waiting on Noah
+Deferred by Noah on Oct 2 ("later"):
 - Who is **Kevin** at Austin Stone (tracker row 9)? No touch until answered.
 - **Austin Ridge** status (Noah's personal lane, Engine 1). A pastor flagged the credibility gap unprompted (`pipeline/objections.md`).
 - **Five warm-path names** from Noah's network (tracker row 21). The highest-yield unworked asset in BD.
+Open, recommended soon:
 - **Fate of the 25 silent threads:** one final touch each, or park them all as Dormant until Q4. Don't leave them in limbo, and don't send a new cold wave before the existing 27 are bumped once.
 
 ## What's working
 - Template v3.1 and its construction rules (`skills/cold-email-template.md`). Too few sends to judge, but it fixed the "read as selling" failure.
 - Multipliers: the only live conversation (Rick Randall) came from a multiplier coffee ask.
-- The demo itself: verified live, sample-data honest, and the overclaim list is current.
+- The demo itself: verified live by Dex and Mack on Sep 24, sample-data honest, and the overclaim list is current.
 
 ## What to stop
 - Treating cold email volume as the path to the first LOI. 27 single-touch sends produced one live conversation. Warm, referral and multiplier paths first; bump existing threads before adding new cold names.

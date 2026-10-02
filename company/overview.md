@@ -70,11 +70,11 @@ Annual B2B SaaS licensed to churches, priced by congregation size. **Members alw
 Detailed financial projections are deliberately deferred until field pricing and development quotes exist.
 
 ## Team and operating structure
-Noah is the only human. The company runs as AI role lanes working out of this repo (see `CLAUDE.md` and `/roles/`).
+Noah is the only human. The company runs as AI roles working out of this repo (see `CLAUDE.md` and `/roles/`). Noah steers by telling any session what he wants; it updates `direction.md` for him.
 
 | Role | Lane | State |
 |---|---|---|
-| Buford | Co-CEO, home base: coordination, pattern analysis, steering with Noah | Home base |
+| Buford | Co-CEO, home base: coordination, pattern analysis, steering with Noah | Any session where no role is named (see `CLAUDE.md`) |
 | Sonny | Business Development | **Active** |
 | Dex | Product Development | **Active** |
 | June | Marketing Director | Dormant |
