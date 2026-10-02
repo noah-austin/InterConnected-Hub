@@ -1,13 +1,13 @@
 # Pipeline Tracker
 
-> **Baseline: Sonny's Sep 24, 2026 handoff** (inbox-verified that day). Phase 2 reconciliation re-verifies from Sep 24 forward; see the log.
+> **Baseline: Sonny's Sep 24, 2026 handoff** (inbox-verified that day). **Re-verified against the inbox Oct 2, 2026 (Phase 2): no change on any row.** See `logs/2026-10-02-sonny-phase-2-reconciliation.md`.
 > Owner: Sonny. One row per church/org. **Noah sends everything.** Rule: bump ~5 days → final touch a week later → park Dormant (revisit quarterly). One thread per church.
 > Status values: Researching · Contact needed · Drafted (unsent) · Sent (awaiting reply) · Replied · Meeting booked · Met (debrief logged) · LOI in discussion · LOI signed · Dormant · Declined · Hold.
 > Template versions: v2 (Aug 24) · v3.1 (Aug 26). Detail on any row: `work/bd/Sonny_BD_Lane_Handoff_2026-09-24.md` §2.
 
-**Last verified:** Sep 24, 2026 (Sonny, Gmail).
+**Last verified:** Oct 2, 2026 (Phase 2 reconciliation, Gmail read-only). No pastor replies, no sends, and no bounces since Aug 27 apart from the Rick Randall thread (last message Sep 8).
 
-## Scoreboard (as of Sep 24)
+## Scoreboard (as of Oct 2; unchanged since Sep 24)
 | Metric | Count |
 |---|---|
 | Outreach emails sent (Aug 24 + Aug 26) | 27 |
@@ -20,8 +20,8 @@
 ## A. Live and urgent
 | # | Church / org | Contact | Status | Last touch | Next action | Next date |
 |---|---|---|---|---|---|---|
-| 37 | Christ Together Greater Austin (multiplier) | Rick Randall, Executive Director · rickr@christtogethergreateraustin.com · 512-423-0053 | Replied; meeting offered, then rescheduled by Noah Sep 8 | Sep 8 (Rick's reply) | **Reschedule the coffee.** Noah promised to "reach back out soon." Rick proposed Red Horn at Parmer & 1431, after noon. | Immediately |
-| 4 | Fellowship Church at Plum Creek, Kyle | Chris Smith, Lead Pastor & Elder · chris@f-pc.org · 512-268-7044 · exec asst Rebecca, rebecca@f-pc.org | Replied Jul 22, then silent | Aug 24 (Noah's scheduling email; offered Sep 1/8, both now past) | **Re-open via Rebecca** with fresh dates, owning the gap briefly. Prep: `work/bd/Sonny_Prep_Chris_Smith_FPC.md` | Overdue (was Aug 28) |
+| 37 | Christ Together Greater Austin (multiplier) | Rick Randall, Executive Director · rickr@christtogethergreateraustin.com · 512-423-0053 | Replied; meeting offered, then rescheduled by Noah Sep 8 | Sep 8 (Rick's reply: "I will be praying for a safe delivery. Congratulations!") | **Reschedule the coffee.** Noah promised Sep 8 to "reach back out soon" (24 days ago as of Oct 2). Reply in the existing thread, **to rickr@** (his first reply came via info@; his Sep 8 reply came from rickr@). Rick proposed Red Horn at Parmer & 1431, after noon. | Immediately |
+| 4 | Fellowship Church at Plum Creek, Kyle | Chris Smith, Lead Pastor & Elder · chris@f-pc.org · 512-268-7044 · exec asst Rebecca, rebecca@f-pc.org | Replied Jul 22, then silent (39 days since Aug 24 as of Oct 2) | Aug 24 (Noah's scheduling email; offered Sep 1/8, both now past) | **Re-open via Rebecca** with fresh dates, owning the gap briefly. Prep: `work/bd/Sonny_Prep_Chris_Smith_FPC.md` | Overdue (was Aug 28) |
 | 6 | Gateway Church Austin, South campus | Eric Bryant, South Campus Pastor · form ericbryant.org/consultation · info@ericbryant.org · eric@gatewaychurch.com (pattern, fallback day 5) | Never contacted | — | **Submit the consultation form**, text rewritten to v3.1 | Overdue (was Aug 25) |
 | 21 | Warm path — Noah's own network | 5 names, not yet supplied | Open, empty since Aug 24 | — | Noah lists five business owners; Sonny drafts intro asks. **Noah has deferred this ("later," Oct 2).** | When Noah supplies |
 

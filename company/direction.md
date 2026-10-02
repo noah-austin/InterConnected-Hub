@@ -1,13 +1,13 @@
 # Direction
 
 > **The steering file.** Noah and Buford edit it; every role reads it first. To steer the company, change this file. The next session picks it up.
-> Seeded Oct 2, 2026 from the build instructions' addendum + the four Sep 24 handoffs. Pipeline state as of the Phase 2 reconciliation: see `pipeline/tracker.md`.
+> Seeded Oct 2, 2026 from the build instructions' addendum + the four Sep 24 handoffs. **Phase 2 reconciliation done Oct 2:** the inbox shows no change since Sep 24 (no replies, no sends, no bounces), so the priorities below reflect what's actually live. Pipeline: `pipeline/tracker.md`.
 
 ## Do now (in order)
 1. **DMARC record.** Noah, from a desktop (the TXT field truncates on phones), **before** the recovery sends below. Squarespace: account.squarespace.com → Domains → joininterconnected.com → DNS → DNS Settings → Custom records → Add record → Host `_dmarc` · Type `TXT` · Data `v=DMARC1; p=none; rua=mailto:noah@joininterconnected.com; fo=1` → Save. Touch nothing else on that page. Verify at mxtoolbox.com/dmarc.aspx after ~1 hour. (Mack §6.1)
-2. **Rick Randall re-schedule.** Noah promised Sep 8 to "reach back out soon." Draft: `work/bd/outbox/`.
-3. **Chris Smith, via Rebecca** (rebecca@f-pc.org), with fresh dates and the gap owned in one sentence. Draft: `work/bd/outbox/`.
-4. **Eric Bryant consultation form** (ericbryant.org/consultation), text rewritten to v3.1. Draft: `work/bd/outbox/`.
+2. **Rick Randall re-schedule.** Noah promised Sep 8 to "reach back out soon." First Sonny session stages the draft in `work/bd/outbox/`.
+3. **Chris Smith, via Rebecca** (rebecca@f-pc.org), with fresh dates and the gap owned in one sentence. First Sonny session stages the draft in `work/bd/outbox/`.
+4. **Eric Bryant consultation form** (ericbryant.org/consultation), text rewritten to v3.1. First Sonny session stages the text in `work/bd/outbox/`.
 5. **2FA + recovery codes confirmed** on Google and GitHub. GitHub → Settings → Password and authentication; Google → myaccount.google.com → Security → 2-Step Verification. Both `noahaustin15` and `noah-austin` GitHub accounts now matter. Log the end state (no codes in the repo, ever).
 6. **The month-old taste check.** `og-image.png` + `apple-touch-icon.png`, Noah + wife. A veto is a cheap re-export by Dex. Send her exact words.
 7. **OG client-preview checklist** (Mack §2a), five minutes with Noah's phone: fresh iMessage thread, WhatsApp, Slack, Facebook Sharing Debugger, LinkedIn Post Inspector. Log results.
@@ -36,7 +36,7 @@
 - **Analytics.** Paused by Noah; Dex holds the spec.
 - **June's site copy pass** and the **Launch Sunday kit**. Marketing lane dormant. Also: June's Plan v5 review queue item (v5.1 now exists with two overclaim fixes; confirm that closes it), the testimonial pipeline, and the "committed pilot churches" deck slide (waits on the first LOI).
 - **interconnecteddemo.com closure.** No DNS then or now; close as "not owned" on Noah's one-line Namecheap check.
-- **Auto-renew + expiry dates** for the domain and Workspace billing (Mack §6.3).
+- **Auto-renew + expiry dates** for the domain and Workspace billing (Mack §6.3). Partial evidence Oct 2: Workspace charged $8.95 on Oct 1 ("Payment received") and issued an invoice due Oct 30, so Workspace billing is live. Domain auto-renew and expiry are still unconfirmed.
 - **Ada:** trademark knockout on "Interconnected" (backlog, before major brand spend) · LOI lawyer review (not a gate on conversations).
 - **Pearl:** co-founder search, fundraising, accelerator applications.
 - **Gus:** pricing validation once `pipeline/pricing-reactions.md` has rows · storage cost model.
