@@ -5,9 +5,10 @@
 
 ## Do now (in order)
 1. **DMARC record.** Noah, from a desktop (the TXT field truncates on phones), **before** the recovery sends below. Squarespace: account.squarespace.com → Domains → joininterconnected.com → DNS → DNS Settings → Custom records → Add record → Host `_dmarc` · Type `TXT` · Data `v=DMARC1; p=none; rua=mailto:noah@joininterconnected.com; fo=1` → Save. Touch nothing else on that page. Verify at mxtoolbox.com/dmarc.aspx after ~1 hour. (Mack §6.1)
-2. **Rick Randall re-schedule.** Noah promised Sep 8 to "reach back out soon." First Sonny session stages the draft in `work/bd/outbox/`.
-3. **Chris Smith, via Rebecca** (rebecca@f-pc.org), with fresh dates and the gap owned in one sentence. First Sonny session stages the draft in `work/bd/outbox/`.
-4. **Eric Bryant consultation form** (ericbryant.org/consultation), text rewritten to v3.1. First Sonny session stages the text in `work/bd/outbox/`.
+2. **Rick Randall re-schedule.** Noah promised Sep 8 to "reach back out soon." **Drafted Oct 3:** `work/bd/outbox/2026-10-03-rick-randall-reschedule.md`. Send first (DMARC not needed for a reply in an existing thread).
+3. **Chris Smith, via Rebecca** (rebecca@f-pc.org), with fresh dates and the gap owned in one sentence. **Drafted Oct 3:** `work/bd/outbox/2026-10-03-fellowship-plum-creek-via-rebecca.md`.
+4. **Eric Bryant consultation form** (ericbryant.org/consultation), text rewritten to v3.1. **Ready Oct 3:** `work/bd/outbox/2026-10-03-eric-bryant-consultation-form.md`.
+4b. **Re-approach the 21 silent threads**, one honest note each, about 7 a day after DMARC is live: `work/bd/outbox/2026-10-03-silent-threads-reapproach.md`. Each note ends with a referral ask for anyone who can't meet now.
 5. **2FA + recovery codes confirmed** on Google and GitHub. GitHub → Settings → Password and authentication; Google → myaccount.google.com → Security → 2-Step Verification. Both `noahaustin15` and `noah-austin` GitHub accounts now matter. Log the end state (no codes in the repo, ever).
 6. **The month-old taste check.** `og-image.png` + `apple-touch-icon.png`, Noah + wife. A veto is a cheap re-export by Dex. Send her exact words.
 7. **OG client-preview checklist** (Mack §2a), five minutes with Noah's phone: fresh iMessage thread, WhatsApp, Slack, Facebook Sharing Debugger, LinkedIn Post Inspector. Log results.
@@ -17,8 +18,10 @@ Deferred by Noah on Oct 2 ("later"):
 - Who is **Kevin** at Austin Stone (tracker row 9)? No touch until answered.
 - **Austin Ridge** status (Noah's personal lane, Engine 1). A pastor flagged the credibility gap unprompted (`pipeline/objections.md`).
 - **Five warm-path names** from Noah's network (tracker row 21). The highest-yield unworked asset in BD.
-Open, recommended soon:
-- **Fate of the 25 silent threads:** one final touch each, or park them all as Dormant until Q4. Don't leave them in limbo, and don't send a new cold wave before the existing 27 are bumped once.
+Decided Oct 3 (Noah approved Sonny's plan): the silent threads each get one re-approach (item 4b); Walt Lengel (row 5) goes Dormant (one Austin Stone thread); Kevin (row 9) and Austin Ridge (row 11) stay untouched.
+
+## Standing operations
+- **Sonny daily run:** a scheduled routine, weekdays at 6:47am Central, starts a fresh Sonny session. It checks the inbox, updates the tracker, stages drafts and adds one new get-in-the-room play. It never sends. (Routine "Sonny daily BD run", created Oct 3.)
 
 ## What's working
 - Template v3.1 and its construction rules (`skills/cold-email-template.md`). Too few sends to judge, but it fixed the "read as selling" failure.
