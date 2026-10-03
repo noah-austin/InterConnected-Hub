@@ -81,6 +81,7 @@
 | BD captures pricing reactions; it never changes prices (Gus owns pricing). | Noah |
 | Kill rule: a channel with near-zero replies over 20 touches gets replaced, not repeated. | Sonny |
 | **Oct 3, 2026:** the 21 silent cold threads get one honest re-approach each, closing with a referral ask, sent about 7 a day after DMARC. No reply in 7 days means Dormant. Walt Lengel (Austin Stone Downtown) goes Dormant so Austin Stone keeps one thread (Ryan Perenchio). | Noah / Sonny |
+| **Oct 3, 2026:** BD drafts go into Gmail Drafts (in-thread where possible), with a copy in `work/bd/outbox/`. Replaces "drafts in the repo, not Gmail." Still never send. | Noah |
 | **Oct 3, 2026:** Sonny runs daily on a schedule (weekdays 6:47am Central, fresh session, read-and-draft only). | Noah |
 | **Oct 3, 2026:** BD mandate from Noah: "Be creative. Your job is to get me in front of people." Sonny proposes new room-getting plays every day, inside the guardrails. | Noah |
 

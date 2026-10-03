@@ -4,6 +4,8 @@
 
 **How:** Reply in the existing thread "Could I get your wisdom on something?" (Gmail, last message from Rick, Sep 8). Change the To line to **rickr@christtogethergreateraustin.com** (the thread defaults to info@).
 
+**In Gmail Drafts (Oct 3).** In-thread, To set to rickr@. The Clara line reads: "Clara arrived in September and everyone is healthy." Edit it in Drafts if you'd say it differently.
+
 **To:** rickr@christtogethergreateraustin.com
 **Subject:** Re: Could I get your wisdom on something?
 
@@ -11,7 +13,7 @@
 
 Hey Rick,
 
-Thank you for the prayers. Clara arrived in September and everyone is healthy. [Noah: adjust or cut this line as you like.]
+Thank you for the prayers. Clara arrived in September and everyone is healthy.
 
 I'd still love that coffee. Would one of these work at Red Horn, after noon?
 

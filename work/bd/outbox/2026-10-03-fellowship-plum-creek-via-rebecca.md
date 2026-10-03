@@ -4,6 +4,8 @@
 
 **How:** New email to Rebecca, cc Chris, so he sees it and it reads as scheduling rather than a cold pitch.
 
+**In Gmail Drafts (Oct 3).**
+
 **To:** rebecca@f-pc.org
 **Cc:** chris@f-pc.org
 **Subject:** Finding 20 minutes with Pastor Chris on a Tuesday afternoon

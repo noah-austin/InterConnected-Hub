@@ -2,6 +2,8 @@
 
 **Why now:** 27 cold emails went out Aug 24–26 and none of them was ever followed up. Most cold replies come from the follow-up, so this sequence was never actually run. At five-plus weeks of silence, the decision on record is a **re-approach, not a bump**: one short, honest note in the same thread that owns the gap and has real news. These people have already seen your name once, so a second note to them costs less than any new cold address.
 
+**In Gmail Drafts now (Oct 3):** all 21 are in Drafts as in-thread replies with the original quoted underneath. Open Drafts and press send, batch by batch. Greetings match the August emails. Ryan and Aaron say "this summer," since they were first written in July. Aaron and Adam Comeaux get "over coffee here in Buda." The Cypress Creek note asks the office to pass it to the groups pastor and has no referral line.
+
 **Send plan:** send these only after the DMARC record is live, and spread them out, **about 7 a day over three weekdays**. Twenty-one emails at once from a young domain is how they end up in spam. Use **reply-all in the original Gmail thread** (search the To address; each was sent Aug 24 or Aug 26) so the first email is quoted below. Keep the subject as it is.
 
 **After a thread gets this note:** if there's no reply in 7 days, I mark the row Dormant and revisit it in Q1. That is the final touch.
@@ -14,7 +16,7 @@
 >
 > I wrote you in August asking for your read on a project for churches, and then my wife and I had a baby girl in September, so I never followed up. That's on me.
 >
-> The ask still stands, and it's a small one: 20 minutes and a coffee, I'd show you the prototype on my phone and mostly listen. I'm still not selling anything. [Optional line.]
+> The ask still stands, and it's a small one: 20 minutes over coffee. I'd show you the prototype on my phone and mostly listen. I'm still not selling anything. [Optional line.]
 >
 > And if this isn't the season for it, I'd be just as grateful for one name: a pastor whose honest opinion you'd trust.
 >
@@ -48,7 +50,7 @@
 | 29 | info@FoundationDS.com | Pastor Peter | — (office inbox; keep the original subject, which already names him) |
 | 33 | info@bethanyaustin.com | Pastor Danner | — |
 | 16 | nick@pointaustin.org | Nick | — (he's also Plant Austin's networking director; he's one of the most valuable names in the pipeline) |
-| 3 | aaron@hayshills.com | Aaron | "We're neighbors; I'm in Buda too." (only if that's true for you) |
+| 3 | aaron@hayshills.com | Aaron | "over coffee here in Buda" |
 | 1 | ryan.perenchio@austinstone.org | Ryan | — (**the one Austin Stone thread we keep**, see below) |
 
 ## Batch 3

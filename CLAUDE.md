@@ -39,7 +39,7 @@ If an instruction conflicts with a guardrail below or a recorded decision, say s
 
 Note on the deploy guardrail: "touch `/docs/index.html` only" means a deploy changes the site file and nothing else in the repo. The four root assets (`og-image.png`, `favicon.svg`, `favicon.ico`, `apple-touch-icon.png`) change only when Dex ships new versions with Noah's approval, in the same commit. See `skills/deploy-checklist.md`.
 
-Connector rule: BD (Sonny) sessions get Gmail read/draft, never send. Drafts are staged in the repo under `/work/bd/outbox/`, not in Gmail. Product and IT sessions get no inbox access.
+Connector rule: BD (Sonny) sessions get Gmail read/draft, never send. Drafts go into Noah's Gmail Drafts folder (as in-thread replies where a thread exists), ready for him to send, with a copy in `/work/bd/outbox/` as the record (Noah, Oct 3, 2026). Product and IT sessions get no inbox access.
 
 ## Interim deploy rule (until the domain cutover)
 - The **live** site at www.joininterconnected.com is still served by the OLD repo, `noahaustin15/interconnected-demo`. Live deploys go there — Noah, manually, old workflow.
