@@ -15,4 +15,4 @@
 
 **Files changed:** `pipeline/tracker.md` (verification stamp, rows 37/4/6 point to their drafts, silent rows marked by batch, row 5 Dormant) · `company/direction.md` (do-now items 2–4b, the silent-thread decision, "Standing operations") · `company/decisions.md` (three Oct 3 lines) · `roles/sonny.md` (mandate and daily run).
 
-**Pending:** the get-in-the-room plays file (event research running).
+- `work/bd/2026-10-03-get-in-the-room-plays.md`: 8 ranked plays (warm-path text, FaithTech at Gateway Oct 13, XPastor multiplier, October association meetings, office calls, Austin Seminary Nov 6–7, Texas Baptists Nov 15–17, Christian business rooms). Event dates came from search summaries; unverified ones are marked.
