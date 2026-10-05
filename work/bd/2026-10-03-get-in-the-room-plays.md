@@ -44,6 +44,10 @@ The exhibitor deadline has passed, so you'd attend as a guest and walk the hall 
 ## 8. Christian business-owner rooms (C12 Central Texas; Christian Business Leaders Group, Cedar Park)
 Elders and deacons in business. They're the thesis users ("needs a roofer"), and each one has a pastor. C12's 2026 dates aren't posted; CBLG meets weekly in Cedar Park, but listings disagree on the day. **Low priority, but it fits play 1:** every owner you meet is another "introduce me to your pastor."
 
+## 9. (Oct 5) David Fletcher, XPastor: ask drafted, contact path still unverified
+Austin-based. He founded XPastor in 2003 and runs an annual XP-Seminar for executive pastors. xpastor.org is blocked from the sandbox, so neither his email nor the 2026 seminar date is verified.
+**Move:** use the contact form or a call to get his email, then send `work/bd/outbox/2026-10-05-david-fletcher-xpastor-coffee-ask.md`. While you're there, check the XP-Seminar date and city. If it's local, that's a room full of executive pastors, and attending is your own call.
+
 ## Already in motion (these are plays too)
 - **Every reply and meeting ends with the referral ask.** The re-approach notes now end with one too: "If this isn't the season, I'd be just as grateful for one name."
 - **Eric Bryant meeting → Gateway Buda** (Kurt Foster or Ricky Echeona).

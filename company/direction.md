@@ -21,7 +21,7 @@ Deferred by Noah on Oct 2 ("later"):
 Decided Oct 3 (Noah approved Sonny's plan): the silent threads each get one re-approach (item 4b); Walt Lengel (row 5) goes Dormant (one Austin Stone thread); Kevin (row 9) and Austin Ridge (row 11) stay untouched.
 
 ## Standing operations
-- **Sonny daily run:** a scheduled routine, weekdays at 6:47am Central, starts a fresh Sonny session. It checks the inbox, updates the tracker, stages drafts and adds one new get-in-the-room play. It never sends. (Routine "Sonny daily BD run", created Oct 3.)
+- **Sonny daily run:** a scheduled routine, weekdays at 6:47am Central, runs in the original Sonny session (`session_01RpYqGgViyotN6xTacN72hs`), which has Gmail and repo push. It checks the inbox, updates the tracker, stages drafts and adds one new get-in-the-room play. It never sends. (Routine "Sonny daily BD run (this session)", Oct 5. The Oct 3 fresh-session routine is disabled: its sessions had no Gmail and no repo push access.)
 
 ## What's working
 - Template v3.1 and its construction rules (`skills/cold-email-template.md`). Too few sends to judge, but it fixed the "read as selling" failure.

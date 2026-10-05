@@ -6,6 +6,7 @@
 > Template versions: v2 (Aug 24) · v3.1 (Aug 26). Detail on any row: `work/bd/Sonny_BD_Lane_Handoff_2026-09-24.md` §2.
 
 **Last verified:** Oct 3, 2026 (Sonny pipeline check, Gmail read-only). Nothing new since Oct 2: only Google Workspace billing mail. No pastor replies, no sends, no bounces since the Rick Randall thread (last message Sep 8).
+**Oct 5 (Sonny, Gmail read-only):** nothing new since Oct 3. No replies, no bounces, nothing sent; all 23 Gmail drafts are still unsent. Rick's Thu Oct 8 slot needs his draft sent by Oct 6. Row 34 (Dripping Springs Methodist) revisit is due; leadership transition, so no draft.
 **Oct 3: drafts staged in `work/bd/outbox/`** for rows 37, 4, 6 and a one-note re-approach for 21 silent threads (`2026-10-03-silent-threads-reapproach.md`). Rows show "Drafted (unsent)" until the inbox confirms Noah sent them.
 
 ## Scoreboard (as of Oct 2; unchanged since Sep 24)
