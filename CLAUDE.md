@@ -21,6 +21,7 @@ Noah opens a Claude Code session on this repo and either names a role ("You are 
 - Update the files you changed.
 - Append one entry to `/logs/` (date, role, what was done, what changed).
 - Update `/company/decisions.md` if anything was decided.
+- If you changed `direction.md`, the tracker, the outbox or the logs, refresh the dashboard (`skills/dashboard-refresh.md`). If you can't publish, the scheduled refresh will.
 
 ## Steering by conversation
 Noah steers the company by telling any session what he wants, in plain words. He never edits files by hand. When he gives a steering instruction ("make X the top priority," "park Y," "stop doing Z," "we decided W"), whatever role the session is playing:
@@ -54,7 +55,9 @@ Connector rule: BD (Sonny) sessions get Gmail read/draft, never send. Drafts go 
 /company/     direction.md (steering) · overview.md · brand-guidelines.md (June's v1, verbatim canon) · decisions.md · reference/ (original source docs)
 /roles/       sonny.md, dex.md (active) · june.md, mack.md (dormant) · ada.md, pearl.md, gus.md (never stood up)
 /pipeline/    tracker.md · objections.md · pricing-reactions.md · referrals.md
-/skills/      deploy-checklist · meeting-prep · debrief · pricing-three-questions · cold-email-template
+/skills/      deploy-checklist · meeting-prep · debrief · pricing-three-questions · cold-email-template · dashboard-refresh
+/tools/       dashboard.py (builds the dashboard)
+/dashboard/   index.html (generated; never edit by hand)
 /work/        outputs by lane: bd/ (outbox/ = drafts for Noah) · product/ (staging/ = builds awaiting "deploy") · marketing/ · it/
 /logs/        one file per run: YYYY-MM-DD-<role>-<topic>.md
 ```
@@ -63,4 +66,4 @@ Connector rule: BD (Sonny) sessions get Gmail read/draft, never send. Drafts go 
 Every number in the demo is sample data. What the demo shows versus what is roadmap is defined by `work/product/Dex_Demo_Inventory_for_Sonny.md`; never claim more than it lists as shown. "Every insight is aggregate except one, quiet-member care signals, and that one uses activity dates only, never content." Prices are a hypothesis under field validation.
 
 ## Growth rules
-Two active roles only (Sonny — BD, Dex — Product). Add a role only after the current ones run ~2 weeks with few outputs needing major rewrites. No inter-agent messaging, orchestration dashboards, manager agents, databases, or send-automation. Markdown files are the database. If a step feels like infrastructure for infrastructure's sake, stop and ask Noah.
+Two active roles only (Sonny — BD, Dex — Product). Add a role only after the current ones run ~2 weeks with few outputs needing major rewrites. No inter-agent messaging, orchestration dashboards (the one exception is Noah's company dashboard, Oct 5), manager agents, databases, or send-automation. Markdown files are the database. If a step feels like infrastructure for infrastructure's sake, stop and ask Noah.

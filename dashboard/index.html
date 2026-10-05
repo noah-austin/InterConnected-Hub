@@ -1,0 +1,177 @@
+<title>Interconnected HQ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one column on phones, a two-column board on desktop. Summary (standings) first, then your moves, then the pipeline detail. */
+:root {
+  --bg: #F6F8FC; --surface: #FFFFFF; --ink: #1F2937; --muted: #5B6474; --line: #E3E8F1;
+  --brand: #2563EB; --brand-soft: #DBEAFE; --navy: #0F1B33;
+  --hot: #059669; --ready: #2563EB; --waiting: #B45309; --hold: #7C3AED; --closed: #94A0B4;
+  --hot-bg: #E7F6F0; --ready-bg: #E6EEFD; --waiting-bg: #FDF1E3; --hold-bg: #F1EBFD; --closed-bg: #EEF1F6;
+  --font-ui: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0B1426; --surface: #111D35; --ink: #E6ECF7; --muted: #9AA8C1; --line: #22304D;
+  --brand: #6B9BFF; --brand-soft: #1B2B4F; --navy: #0F1B33;
+  --hot: #34D399; --ready: #6B9BFF; --waiting: #F5B661; --hold: #B69CFF; --closed: #7C89A3;
+  --hot-bg: #10352B; --ready-bg: #182A50; --waiting-bg: #3A2A12; --hold-bg: #2A2150; --closed-bg: #1A2640;
+  color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #0B1426; --surface: #111D35; --ink: #E6ECF7; --muted: #9AA8C1; --line: #22304D;
+  --brand: #6B9BFF; --brand-soft: #1B2B4F; --navy: #0F1B33;
+  --hot: #34D399; --ready: #6B9BFF; --waiting: #F5B661; --hold: #B69CFF; --closed: #7C89A3;
+  --hot-bg: #10352B; --ready-bg: #182A50; --waiting-bg: #3A2A12; --hold-bg: #2A2150; --closed-bg: #1A2640;
+  color-scheme: dark; }
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-ui); font-size: 15px; line-height: 1.5; padding-inline: 16px; padding-block: 20px 48px; }
+.wrap { max-width: 1120px; margin: 0 auto; display: grid; gap: 20px; }
+header.top { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 8px 24px; }
+.brand { display: flex; align-items: center; gap: 10px; }
+.brand svg { width: 26px; height: 32px; flex: none; }
+h1 { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.01em; margin: 0; }
+.stamp { color: var(--muted); font-size: 0.82rem; margin: 0; }
+.stamp code { font-family: var(--font-mono); font-size: 0.78rem; }
+.headline { font-size: 1.05rem; font-weight: 500; margin: 0; max-width: 60ch; text-wrap: balance; }
+.label { text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; font-weight: 700; color: var(--muted); margin: 0 0 10px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px; min-width: 0; }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; }
+.tile { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px; }
+.tile .v { font-size: 2rem; font-weight: 800; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; line-height: 1.1; }
+.tile .k { font-weight: 600; font-size: 0.85rem; }
+.tile .note { color: var(--muted); font-size: 0.78rem; }
+.tile.zero .v { color: var(--muted); }
+.bar { display: flex; height: 14px; border-radius: 7px; overflow: hidden; gap: 2px; background: var(--line); }
+.seg { display: block; min-width: 6px; }
+.seg-hot { background: var(--hot); } .seg-ready { background: var(--ready); } .seg-waiting { background: var(--waiting); }
+.seg-hold { background: var(--hold); } .seg-closed { background: var(--closed); }
+.legend { list-style: none; padding: 0; margin: 14px 0 0; display: grid; gap: 6px; }
+.legend li { display: grid; grid-template-columns: 12px minmax(0, 9.5rem) 2.2rem minmax(0, 1fr); align-items: baseline; gap: 10px; font-size: 0.88rem; }
+.dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+.lg-name { font-weight: 600; } .lg-n { font-variant-numeric: tabular-nums; font-weight: 700; text-align: right; } .lg-note { color: var(--muted); font-size: 0.8rem; }
+.board { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 20px; align-items: start; }
+.col { display: grid; gap: 20px; min-width: 0; }
+ul.clean { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+ul.clean > li { padding-block: 12px; border-top: 1px solid var(--line); min-width: 0; }
+ul.clean > li:first-child { border-top: 0; padding-top: 0; }
+.todo { display: grid; grid-template-columns: 2rem minmax(0, 1fr) auto; gap: 10px; align-items: start; }
+.num { font-family: var(--font-mono); font-size: 0.8rem; color: var(--brand); background: var(--brand-soft); border-radius: 6px; text-align: center; padding: 2px 0; }
+.todo-title { font-weight: 600; margin: 0; }
+.todo-detail { margin: 2px 0 0; color: var(--muted); font-size: 0.86rem; overflow-wrap: anywhere; }
+.todo.done .todo-title { text-decoration: line-through; color: var(--muted); }
+.pill { display: inline-block; font-size: 0.72rem; font-weight: 600; border-radius: 999px; padding: 2px 9px; white-space: nowrap; }
+.pill-open { background: var(--waiting-bg); color: var(--waiting); } .pill-done { background: var(--hot-bg); color: var(--hot); }
+.pill-hot { background: var(--hot-bg); color: var(--hot); } .pill-ready { background: var(--ready-bg); color: var(--ready); }
+.pill-waiting { background: var(--waiting-bg); color: var(--waiting); } .pill-hold { background: var(--hold-bg); color: var(--hold); }
+.pill-closed { background: var(--closed-bg); color: var(--closed); }
+td .pill { white-space: normal; }
+.ob-head, .lead-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+.ob-title, .lead-name { font-weight: 600; margin: 0; min-width: 0; }
+.ob-why, .lead-contact, .lead-action { margin: 4px 0 0; font-size: 0.86rem; }
+.ob-why, .lead-contact { color: var(--muted); }
+.date { font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); white-space: nowrap; }
+code, .path { font-family: var(--font-mono); font-size: 0.78em; overflow-wrap: anywhere; }
+.path { display: inline-block; margin-top: 6px; color: var(--muted); }
+ul.bullets { margin: 0; padding-left: 1.1rem; display: grid; gap: 8px; font-size: 0.9rem; }
+.aside { color: var(--muted); font-size: 0.84rem; margin: 12px 0 0; }
+.activity li { display: grid; grid-template-columns: 3.2rem minmax(0, 1fr); gap: 10px; font-size: 0.88rem; }
+details.pipe summary { cursor: pointer; font-weight: 600; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+details.pipe summary::-webkit-details-marker { display: none; }
+details.pipe summary::after { content: "Show"; color: var(--brand); font-size: 0.85rem; }
+details.pipe[open] summary::after { content: "Hide"; }
+details.pipe summary:focus-visible, a:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; border-radius: 4px; }
+.tablewrap { overflow-x: auto; margin-top: 14px; }
+table { border-collapse: collapse; width: 100%; min-width: 640px; font-size: 0.85rem; }
+th { text-align: left; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); padding: 6px 8px; border-bottom: 1px solid var(--line); }
+td { padding: 9px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+td.n { font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--muted); }
+.sub { display: block; color: var(--muted); font-size: 0.8rem; }
+footer { color: var(--muted); font-size: 0.8rem; max-width: 70ch; }
+@media (max-width: 820px) { .board { grid-template-columns: minmax(0, 1fr); } .legend li { grid-template-columns: 12px minmax(0, 1fr) 2.2rem; } .lg-note { display: none; } }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div>
+      <div class="brand">
+        <svg viewBox="0 0 26 32" aria-hidden="true"><g fill="var(--brand)">
+          <circle cx="13" cy="3" r="2.3"/><circle cx="13" cy="9" r="2.3"/><circle cx="7" cy="12" r="2.1"/><circle cx="19" cy="12" r="2.1"/>
+          <circle cx="2.5" cy="12" r="1.8" opacity=".7"/><circle cx="23.5" cy="12" r="1.8" opacity=".7"/><circle cx="13" cy="15" r="2.3"/>
+          <circle cx="13" cy="21" r="2.3"/><circle cx="13" cy="27" r="2.3"/><circle cx="13" cy="31" r="1" opacity=".6"/></g></svg>
+        <h1>Interconnected HQ</h1>
+      </div>
+      <p class="stamp">Updated Mon Oct 5, 1:20 PM Central · built from the repo at <code>4210a27</code></p>
+    </div>
+    <p class="headline">8 things on your list, 23 conversations drafted and waiting on you to press send.</p>
+  </header>
+
+  <section aria-labelledby="standings">
+    <p class="label" id="standings">Standings · as of Oct 2; unchanged since Sep 24</p>
+    <div class="tiles">
+      <div class="tile"><div class="v">27</div><div class="k">Emails sent</div><div class="note">since Aug 24</div></div><div class="tile"><div class="v">2</div><div class="k">Replies</div><div class="note">Rick Randall; Harlie Raethel, a decline</div></div><div class="tile zero"><div class="v">0</div><div class="k">Meetings held</div><div class="note">1 offered</div></div><div class="tile zero"><div class="v">0</div><div class="k">LOIs signed</div><div class="note">0 in discussion</div></div><div class="tile zero"><div class="v">0</div><div class="k">Referrals</div><div class="note">collected</div></div><div class="tile zero"><div class="v">0</div><div class="k">Pricing reads</div><div class="note">three-question captures</div></div>
+    </div>
+  </section>
+
+  <section class="panel" aria-labelledby="pipe-label">
+    <p class="label" id="pipe-label">Pipeline · 39 churches and multipliers</p>
+    <div class="bar" role="img" aria-label="Pipeline by stage"><span class="seg seg-hot" style="flex:2" title="In conversation: 2"></span><span class="seg seg-ready" style="flex:23" title="Ready to send: 23"></span><span class="seg seg-hold" style="flex:9" title="On hold / research: 9"></span><span class="seg seg-closed" style="flex:5" title="Closed or dormant: 5"></span></div>
+    <ul class="legend"><li><span class="dot seg-hot"></span><span class="lg-name">In conversation</span><span class="lg-n">2</span><span class="lg-note">Replied, meeting, or LOI</span></li><li><span class="dot seg-ready"></span><span class="lg-name">Ready to send</span><span class="lg-n">23</span><span class="lg-note">Drafted; waiting on Noah to press send</span></li><li><span class="dot seg-waiting"></span><span class="lg-name">Sent, no reply</span><span class="lg-n">0</span><span class="lg-note">Out in the field, nothing drafted</span></li><li><span class="dot seg-hold"></span><span class="lg-name">On hold / research</span><span class="lg-n">9</span><span class="lg-note">Sequenced, needs a contact, or Noah&#x27;s lane</span></li><li><span class="dot seg-closed"></span><span class="lg-name">Closed or dormant</span><span class="lg-n">5</span><span class="lg-note">Declined, parked, or merged into another row</span></li></ul>
+  </section>
+
+  <div class="board">
+    <div class="col">
+      <section class="panel" aria-labelledby="todo-label">
+        <p class="label" id="todo-label">Your moves, in order</p>
+        <ul class="clean"><li class="todo"><span class="num">1</span><div><p class="todo-title">DMARC record</p><p class="todo-detail">Noah, from a desktop (the TXT field truncates on phones), <strong>before</strong> the recovery sends below.</p></div><span class="pill pill-open">Open</span></li><li class="todo"><span class="num">2</span><div><p class="todo-title">Rick Randall re-schedule</p><p class="todo-detail">Noah promised Sep 8 to "reach back out soon." <strong>Drafted Oct 3:</strong> <code>work/bd/outbox/2026-10-03-rick-randall-reschedule.md</code>.</p></div><span class="pill pill-open">Open</span></li><li class="todo"><span class="num">3</span><div><p class="todo-title">Chris Smith, via Rebecca</p><p class="todo-detail">(rebecca@f-pc.org), with fresh dates and the gap owned in one sentence.</p></div><span class="pill pill-open">Open</span></li><li class="todo"><span class="num">4</span><div><p class="todo-title">Eric Bryant consultation form</p><p class="todo-detail">(ericbryant.org/consultation), text rewritten to v3.1.</p></div><span class="pill pill-open">Open</span></li><li class="todo"><span class="num">4b</span><div><p class="todo-title">Re-approach the 21 silent threads</p><p class="todo-detail">, one honest note each, about 7 a day after DMARC is live: <code>work/bd/outbox/2026-10-03-silent-threads-reapproach.md</code>.</p></div><span class="pill pill-open">Open</span></li><li class="todo"><span class="num">5</span><div><p class="todo-title">2FA + recovery codes confirmed</p><p class="todo-detail">on Google and GitHub.</p></div><span class="pill pill-open">Open</span></li><li class="todo"><span class="num">6</span><div><p class="todo-title">The month-old taste check</p><p class="todo-detail"><code>og-image.png</code> + <code>apple-touch-icon.png</code>, Noah + wife.</p></div><span class="pill pill-open">Open</span></li><li class="todo"><span class="num">7</span><div><p class="todo-title">OG client-preview checklist</p><p class="todo-detail">(Mack §2a), five minutes with Noah's phone: fresh iMessage thread, WhatsApp, Slack, Facebook Sharing Debugger, LinkedIn Post Inspector.</p></div><span class="pill pill-open">Open</span></li></ul>
+      </section>
+      <section class="panel" aria-labelledby="ob-label">
+        <p class="label" id="ob-label">Drafts ready to send · in Gmail Drafts</p>
+        <ul class="clean"><li><div class="ob-head"><p class="ob-title">David Fletcher (XPastor): multiplier coffee ask</p><span class="date">10/05</span></div><p class="ob-why">XPastor is the national network of executive pastors.</p><code class="path">work/bd/outbox/2026-10-05-david-fletcher-xpastor-coffee-ask.md</code></li><li><div class="ob-head"><p class="ob-title">Eric Bryant (Gateway Church Austin, South campus): consultation form</p><span class="date">10/03</span></div><p class="ob-why">He's been the #1 row since Aug 24 and has never been contacted.</p><code class="path">work/bd/outbox/2026-10-03-eric-bryant-consultation-form.md</code></li><li><div class="ob-head"><p class="ob-title">Chris Smith (Fellowship Church at Plum Creek, Kyle): re-open through Rebecca</p><span class="date">10/03</span></div><p class="ob-why">Chris replied warmly in July ("That sounds like a cool idea") and asked for a Tuesday afternoon.</p><code class="path">work/bd/outbox/2026-10-03-fellowship-plum-creek-via-rebecca.md</code></li><li><div class="ob-head"><p class="ob-title">Rick Randall (Christ Together Greater Austin): reschedule the coffee</p><span class="date">10/03</span></div><p class="ob-why">On Sep 8 you told him "I'll reach back out soon." That was 25 days ago, and he replied warmly ("I will be praying for a safe delivery").</p><code class="path">work/bd/outbox/2026-10-03-rick-randall-reschedule.md</code></li><li><div class="ob-head"><p class="ob-title">Silent threads: one honest re-approach each (21 threads)</p><span class="date">10/03</span></div><p class="ob-why">27 cold emails went out Aug 24–26 and none of them was ever followed up.</p><code class="path">work/bd/outbox/2026-10-03-silent-threads-reapproach.md</code></li></ul>
+      </section>
+    </div>
+    <div class="col">
+      <section class="panel" aria-labelledby="lead-label">
+        <p class="label" id="lead-label">Warmest leads</p>
+        <ul class="clean"><li><div class="lead-head"><p class="lead-name">Christ Together Greater Austin (multiplier)</p><span class="pill pill-hot">In conversation</span></div><p class="lead-contact">Rick Randall, Executive Director</p><p class="lead-action">Reschedule the coffee.</p></li><li><div class="lead-head"><p class="lead-name">Fellowship Church at Plum Creek, Kyle</p><span class="pill pill-hot">In conversation</span></div><p class="lead-contact">Chris Smith, Lead Pastor &amp; Elder</p><p class="lead-action">Re-open via Rebecca with fresh dates, owning the gap briefly.</p></li><li><div class="lead-head"><p class="lead-name">Gateway Church Austin, South campus</p><span class="pill pill-ready">Ready to send</span></div><p class="lead-contact">Eric Bryant, South Campus Pastor</p><p class="lead-action">Submit the consultation form, text rewritten to v3.1: work/bd/outbox/2026-10-03-eric-bryant-consultation-form.md</p></li><li><div class="lead-head"><p class="lead-name">Warm path — Noah's own network</p><span class="pill pill-hold">On hold / research</span></div><p class="lead-contact">5 names, not yet supplied</p><p class="lead-action">Noah lists five business owners; Sonny drafts intro asks.</p></li></ul>
+      </section>
+      <section class="panel" aria-labelledby="wait-label">
+        <p class="label" id="wait-label">Waiting on your answer</p>
+        <ul class="bullets"><li>Who is <strong>Kevin</strong> at Austin Stone (tracker row 9)? No touch until answered.</li><li><strong>Austin Ridge</strong> status (Noah's personal lane, Engine 1). A pastor flagged the credibility gap unprompted (<code>pipeline/objections.md</code>).</li><li><strong>Five warm-path names</strong> from Noah's network (tracker row 21). The highest-yield unworked asset in BD.</li></ul>
+        <p class="aside">Decided Oct 3 (Noah approved Sonny's plan): the silent threads each get one re-approach (item 4b); Walt Lengel (row 5) goes Dormant (one Austin Stone thread); Kevin (row 9) and Austin Ridge (row 11) stay untouched.</p>
+      </section>
+      <section class="panel activity" aria-labelledby="log-label">
+        <p class="label" id="log-label">Recent activity</p>
+        <ul class="clean"><li><span class="date">10/05</span><span>Sonny: scheduled run failure, recovery, routine fix</span></li><li><span class="date">10/05</span><span>Home base: check that Sonny's work landed on main</span></li><li><span class="date">10/05</span><span>Home base: company dashboard (Interconnected HQ)</span></li><li><span class="date">10/03</span><span>Sonny, first run: recovery drafts, silent-thread plan, daily routine</span></li><li><span class="date">10/02</span><span>Steering by conversation</span></li><li><span class="date">10/02</span><span>Sonny role, Phase 2 state reconciliation</span></li><li><span class="date">10/02</span><span>Positioning update: the whole-app solution</span></li><li><span class="date">10/02</span><span>Cleanup pass</span></li></ul>
+      </section>
+    </div>
+  </div>
+
+  <section class="panel">
+    <details class="pipe" id="pipeline">
+      <summary>Every row in the pipeline (39)</summary>
+      <div class="tablewrap"><table>
+        <thead><tr><th>#</th><th>Church / contact</th><th>Status</th><th>Last touch</th><th>Next action</th></tr></thead>
+        <tbody><tr><td class="n">37</td><td>Christ Together Greater Austin (multiplier)<span class="sub">Rick Randall, Executive Director</span></td><td><span class="pill pill-hot">Replied; meeting offered, then rescheduled by Noah Sep 8</span></td><td class="n">Sep 8 (Rick's reply: "I will be praying for a safe delivery. Congratulations!")</td><td>Reschedule the coffee.</td></tr><tr><td class="n">4</td><td>Fellowship Church at Plum Creek, Kyle<span class="sub">Chris Smith, Lead Pastor &amp; Elder</span></td><td><span class="pill pill-hot">Replied Jul 22, then silent (39 days since Aug 24 as of Oct 2)</span></td><td class="n">Aug 24 (Noah's scheduling email; offered Sep 1/8, both now past)</td><td>Re-open via Rebecca with fresh dates, owning the gap briefly.</td></tr><tr><td class="n">6</td><td>Gateway Church Austin, South campus<span class="sub">Eric Bryant, South Campus Pastor</span></td><td><span class="pill pill-ready">Never contacted</span></td><td class="n">—</td><td>Submit the consultation form, text rewritten to v3.1: work/bd/outbox/2026-10-03-eric-bryant-consultation-form.md</td></tr><tr><td class="n">1</td><td>Austin Stone South<span class="sub">Ryan Perenchio, Groups Director</span></td><td><span class="pill pill-ready">Sent, silent</span></td><td class="n">Aug 24</td><td>Re-approach drafted (outbox, batch 2); 7 days after it's sent with no reply → Dormant</td></tr><tr><td class="n">3</td><td>Hays Hills Baptist, Buda<span class="sub">"Aaron", Lead Pastor (last name unconfirmed)</span></td><td><span class="pill pill-ready">Sent, silent</span></td><td class="n">Aug 24</td><td>Re-approach drafted (outbox, batch 2); 7 days after it's sent with no reply → Dormant</td></tr><tr><td class="n">12</td><td>Vertical Chapel, Kyle<span class="sub">Shawn Cooper, Lead Pastor</span></td><td><span class="pill pill-ready">Sent, silent</span></td><td class="n">Aug 24</td><td>Re-approach drafted (outbox, batch 3); 7 days after it's sent with no reply → Dormant</td></tr><tr><td class="n">14</td><td>Impact Family Church, S. Austin<span class="sub">John Larkam, Senior Pastor</span></td><td><span class="pill pill-ready">Sent, silent</span></td><td class="n">Aug 24</td><td>Re-approach drafted (outbox, batch 3); 7 days after it's sent with no reply → Dormant</td></tr><tr><td class="n">16</td><td>Point Community Church, Manchaca<span class="sub">Nick Shock, Teaching Elder (also Plant Austin, Dir. of Innovation &amp; Networking)</span></td><td><span class="pill pill-ready">Sent, silent</span></td><td class="n">Aug 24</td><td>Re-approach drafted (outbox, batch 2); 7 days after it's sent with no reply → Dormant</td></tr><tr><td class="n">17</td><td>Austin New Church, S. Lamar<span class="sub">Jason Morriss, Lead Pastor</span></td><td><span class="pill pill-ready">Sent, silent</span></td><td class="n">Aug 24</td><td>Re-approach drafted (outbox, batch 3); 7 days after it's sent with no reply → Dormant</td></tr><tr><td class="n">18</td><td>Southern Hills Church of Christ, Buda<span class="sub">Adam Comeaux, Pulpit Minister</span></td><td><span class="pill pill-ready">Sent, silent</span></td><td class="n">Aug 24</td><td>Re-approach drafted (outbox, batch 3); 7 days after it's sent with no reply → Dormant</td></tr><tr><td class="n">8</td><td>The Connection Church, Buda/San Marcos<span class="sub">Dr. Cole Phillips, Founding &amp; Lead Pastor</span></td><td><span class="pill pill-ready">Sent, silent</span></td><td class="n">Aug 24</td><td>Re-approach drafted (outbox, batch 3); 7 days after it's sent with no reply → Dormant</td></tr><tr><td class="n">22</td><td>Austin Oaks Church, SW Austin<span class="sub">Chad McCartney, Discipleship Pastor</span></td><td><span class="pill pill-ready">Sent, silent</span></td><td class="n">Aug 26</td><td>Re-approach drafted (outbox, batch 1); 7 days after it's sent with no reply → Dormant</td></tr><tr><td class="n">23</td><td>Oak Hill UMC<span class="sub">Vicki Matustik, Dir. of Connections and Service</span></td><td><span class="pill pill-ready">Sent, silent</span></td><td class="n">Aug 26</td><td>Re-approach drafted (outbox, batch 1); 7 days after it's sent with no reply → Dormant</td></tr><tr><td class="n">24</td><td>First Baptist Wimberley<span class="sub">Mike Gibbons, Executive Pastor</span></td><td><span class="pill pill-ready">Sent, silent</span></td><td class="n">Aug 26</td><td>Re-approach drafted (outbox, batch 1); 7 days after it's sent with no reply → Dormant</td></tr><tr><td class="n">25</td><td>Manchaca UMC<span class="sub">Kim Carroll, Dir. of Christian Education</span></td><td><span class="pill pill-ready">Sent, silent</span></td><td class="n">Aug 26</td><td>Re-approach drafted (outbox, batch 1); 7 days after it's sent with no reply → Dormant</td></tr><tr><td class="n">26</td><td>First UMC San Marcos<span class="sub">Rev. Adam Knapp, Senior Pastor</span></td><td><span class="pill pill-ready">Sent, silent</span></td><td class="n">Aug 26</td><td>Re-approach drafted (outbox, batch 2); 7 days after it's sent with no reply → Dormant</td></tr><tr><td class="n">27</td><td>First Lockhart Baptist<span class="sub">David Peyton, Senior Pastor</span></td><td><span class="pill pill-ready">Sent, silent</span></td><td class="n">Aug 26</td><td>Re-approach drafted (outbox, batch 2); 7 days after it's sent with no reply → Dormant</td></tr><tr><td class="n">28</td><td>Redeemer Dripping Springs<span class="sub">Jamie Trussell, Lead Pastor</span></td><td><span class="pill pill-ready">Sent, silent</span></td><td class="n">Aug 26</td><td>Re-approach drafted (outbox, batch 1); 7 days after it's sent with no reply → Dormant</td></tr><tr><td class="n">29</td><td>Foundation Church, Dripping Springs<span class="sub">Peter Jackson, Lead Pastor</span></td><td><span class="pill pill-ready">Sent, silent</span></td><td class="n">Aug 26</td><td>Re-approach drafted (outbox, batch 2); 7 days after it's sent with no reply → Dormant</td></tr><tr><td class="n">30</td><td>PromiseLand San Marcos (1,500+, multi-site)<span class="sub">Chris DelMark, Discipleship Executive Pastor</span></td><td><span class="pill pill-ready">Sent, silent</span></td><td class="n">Aug 26</td><td>Re-approach drafted (outbox, batch 3); 7 days after it's sent with no reply → Dormant</td></tr><tr><td class="n">31</td><td>Cypress Creek Church, Wimberley<span class="sub">Community Groups pastor (name unknown)</span></td><td><span class="pill pill-ready">Sent, silent</span></td><td class="n">Aug 26</td><td>Re-approach drafted (outbox, batch 3); 7 days after it's sent with no reply → Dormant</td></tr><tr><td class="n">32</td><td>Sunset Canyon Baptist (Canyon Church), Dripping Springs<span class="sub">Russell Dixon, Senior Pastor</span></td><td><span class="pill pill-ready">Sent, silent</span></td><td class="n">Aug 26</td><td>Re-approach drafted (outbox, batch 1); 7 days after it's sent with no reply → Dormant</td></tr><tr><td class="n">33</td><td>Bethany Lutheran (LCMS), Circle C<span class="sub">Rev. Martin Danner, Senior Pastor</span></td><td><span class="pill pill-ready">Sent, silent</span></td><td class="n">Aug 26</td><td>Re-approach drafted (outbox, batch 2); 7 days after it's sent with no reply → Dormant</td></tr><tr><td class="n">38</td><td>Austin Baptist Association (multiplier)<span class="sub">Dr. David W. Smith, Executive Director</span></td><td><span class="pill pill-ready">Sent, silent</span></td><td class="n">Aug 26</td><td>Re-approach drafted (outbox, batch 1); 7 days after it's sent with no reply → Dormant</td></tr><tr><td class="n">36</td><td>Bluebonnet Baptist Association (multiplier)<span class="sub">Dr. Robby Partain, Executive Director</span></td><td><span class="pill pill-ready">Never contacted</span></td><td class="n">—</td><td>Coffee ask by phone or form.</td></tr><tr><td class="n">21</td><td>Warm path — Noah's own network<span class="sub">5 names, not yet supplied</span></td><td><span class="pill pill-hold">Open, empty since Aug 24</span></td><td class="n">—</td><td>Noah lists five business owners; Sonny drafts intro asks.</td></tr><tr><td class="n">9</td><td>The Austin Stone<span class="sub">"Kevin"</span></td><td><span class="pill pill-hold">Sent, silent</span></td><td class="n">Aug 24</td><td>No touch until Noah says who Kevin is (deferred by Noah, Oct 2)</td></tr><tr><td class="n">11</td><td>Austin Ridge Bible Church, Southwest<span class="sub">Jeff Rutter, Groups Pastor</span></td><td><span class="pill pill-hold">Sent, silent</span></td><td class="n">Aug 24</td><td>Do not touch.</td></tr><tr><td class="n">7</td><td>Gateway Church, Buda campus<span class="sub">Kurt Foster, Groups &amp; Connections Dir.</span></td><td><span class="pill pill-hold">Hold (sequenced after Eric Bryant)</span></td><td class="n">—</td><td>Ask Eric for the intro; Kurt is the better first contact</td></tr><tr><td class="n">20</td><td>Austin Stone South<span class="sub">Peter McNamee, South groups contact</span></td><td><span class="pill pill-hold">Hold (three Austin Stone threads already open)</span></td><td class="n">—</td><td>Do not open a fourth thread</td></tr><tr><td class="n">34</td><td>Dripping Springs Methodist<span class="sub">Rev. P.J. Sámano, Interim Senior Pastor</span></td><td><span class="pill pill-hold">Hold (leadership transition)</span></td><td class="n">—</td><td>Revisit October</td></tr><tr><td class="n">13</td><td>Abundant CTX (Lockhart + Kyle)<span class="sub">Brandon Hollar, Lead Pastor</span></td><td><span class="pill pill-hold">Contact needed</span></td><td class="n">—</td><td>Phone or Facebook; low priority</td></tr><tr><td class="n">35</td><td>Hill Country Bible Church, Dripping Springs<span class="sub">Jason McNutt, Lead Pastor</span></td><td><span class="pill pill-hold">Contact needed</span></td><td class="n">—</td><td>Office call</td></tr><tr><td class="n">19</td><td>LifeFamily (ex-LifeAustin), ~3,500, 8 campuses<span class="sub">Mark Tennant, Exec Pastor</span></td><td><span class="pill pill-hold">Researching</span></td><td class="n">—</td><td>Referral path only.</td></tr><tr><td class="n">5</td><td>Austin Stone Downtown<span class="sub">Walt Lengel, Assoc. Pastor over Groups</span></td><td><span class="pill pill-closed">Dormant (one Austin Stone thread kept: row 1)</span></td><td class="n">Aug 24</td><td>Revisit Q1 2027</td></tr><tr><td class="n">2</td><td>Bannockburn Church, Buda-Kyle<span class="sub">Harlie Raethel, Campus Pastor</span></td><td><span class="pill pill-closed"><strong>Declined</strong> (kind, clear no; closed out Aug 26)</span></td><td class="n">Aug 26</td><td>Revisit no earlier than Nov 2026</td></tr><tr><td class="n">10</td><td>Bannockburn Church<span class="sub">Craig Turnbull, Senior Pastor</span></td><td><span class="pill pill-closed">Closed (out-of-office Jul 20, redirected to Harlie)</span></td><td class="n">Jul 20</td><td>None; Bannockburn closed (row 2)</td></tr><tr><td class="n">15</td><td>Bannockburn South Austin<span class="sub">Kacy Benson, Campus Pastor</span></td><td><span class="pill pill-closed">Dormant (deliberately not contacted; church mid-project)</span></td><td class="n">—</td><td>Revisit Nov 2026</td></tr><tr><td class="n">39</td><td>Plant Austin / AHCC (multiplier)<span class="sub">Nick Shock (same as row 16)</span></td><td><span class="pill pill-closed">See row 16</span></td><td class="n">Aug 24</td><td>Already asked as Point Community's pastor; correct ask</td></tr></tbody>
+      </table></div>
+    </details>
+  </section>
+
+  <div class="board">
+    <section class="panel" aria-labelledby="park-label">
+      <p class="label" id="park-label">Parked</p>
+      <ul class="bullets"><li><strong>Domain cutover</strong> (runbook below).</li><li><strong>Form service for pilot requests</strong> Mack creates the account, Dex wires one edit.</li><li><strong>Uptime monitor</strong> (UptimeRobot-class free tier).</li><li><strong>hello@ alias</strong> (Admin → Directory → Users → Noah → Add alternate email).</li><li><strong>Analytics</strong> Paused by Noah; Dex holds the spec.</li><li><strong>June's site copy pass</strong> and the <strong>Launch Sunday kit</strong>.</li><li><strong>interconnecteddemo.com closure</strong> No DNS then or now; close as "not owned" on Noah's one-line Namecheap check.</li><li><strong>Auto-renew + expiry dates</strong> for the domain and Workspace billing (Mack §6.3).</li><li><strong>Ada</strong> trademark knockout on "Interconnected" (backlog, before major brand spend) · LOI lawyer review (not a gate on conversations).</li><li><strong>Pearl</strong> co-founder search, fundraising, accelerator applications.</li><li><strong>Gus</strong> pricing validation once <code>pipeline/pricing-reactions.md</code> has rows · storage cost model.</li><li><strong>Mack's GitHub Org recommendation</strong> On file as a future option for the connected account.</li></ul>
+    </section>
+    <section class="panel" aria-labelledby="ops-label">
+      <p class="label" id="ops-label">Standing operations</p>
+      <ul class="bullets"><li><strong>Company dashboard:</strong> https://claude.ai/artifact/9H74hgAVxvCa6VqW6cwYcu. It rebuilds from this file, the tracker, the outbox and the logs, weekdays at 7:27am, 12:27pm and 5:27pm Central (routine <code>trig_019BdXbuz6TTfAQQ4LqyXKgX</code>, fires into session <code>session_01DeSJtB5vfZZxrV7NHb3cab</code>). How: <code>skills/dashboard-refresh.md</code>.</li><li><strong>Sonny daily run:</strong> a scheduled routine, weekdays at 6:47am Central, runs in the original Sonny session (<code>session_01RpYqGgViyotN6xTacN72hs</code>), which has Gmail and repo push. It checks the inbox, updates the tracker, stages drafts and adds one new get-in-the-room play. It never sends. (Routine "Sonny daily BD run (this session)", Oct 5. The Oct 3 fresh-session routine is disabled: its sessions had no Gmail and no repo push access.)</li></ul>
+      <p class="aside">Inbox last verified: Oct 3, 2026 (Sonny pipeline check, Gmail read-only). Nothing new since Oct 2: only Google Workspace billing mail. No pastor replies, no sends, no bounces since the Rick Randall thread (last message Sep 8).</p>
+    </section>
+  </div>
+
+  <footer>
+    This page is generated from the company repo (<code>company/direction.md</code>, <code>pipeline/tracker.md</code>,
+    <code>work/bd/outbox/</code>, <code>logs/</code>) by <code>tools/dashboard.py</code>. It refreshes after Sonny's weekday
+    morning run and at the end of any session that changes those files. To change what it says, tell any session; never edit the page.
+  </footer>
+</div>

@@ -21,6 +21,7 @@ Deferred by Noah on Oct 2 ("later"):
 Decided Oct 3 (Noah approved Sonny's plan): the silent threads each get one re-approach (item 4b); Walt Lengel (row 5) goes Dormant (one Austin Stone thread); Kevin (row 9) and Austin Ridge (row 11) stay untouched.
 
 ## Standing operations
+- **Company dashboard:** https://claude.ai/artifact/9H74hgAVxvCa6VqW6cwYcu. It rebuilds from this file, the tracker, the outbox and the logs, weekdays at 7:27am, 12:27pm and 5:27pm Central (routine `trig_019BdXbuz6TTfAQQ4LqyXKgX`, fires into session `session_01DeSJtB5vfZZxrV7NHb3cab`). How: `skills/dashboard-refresh.md`.
 - **Sonny daily run:** a scheduled routine, weekdays at 6:47am Central, runs in the original Sonny session (`session_01RpYqGgViyotN6xTacN72hs`), which has Gmail and repo push. It checks the inbox, updates the tracker, stages drafts and adds one new get-in-the-room play. It never sends. (Routine "Sonny daily BD run (this session)", Oct 5. The Oct 3 fresh-session routine is disabled: its sessions had no Gmail and no repo push access.)
 
 ## What's working
