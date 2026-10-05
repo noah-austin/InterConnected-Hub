@@ -12,3 +12,4 @@
 **Routine fix:** disabled `trig_011S8K8Uo4m1aVKzCwKtdrtX` (fresh session each run). Created `trig_01CcQMh3zeU7CuKBNAXnb5Nw`, same schedule (weekdays 6:47am Central), which fires into this session (`session_01RpYqGgViyotN6xTacN72hs`) so it has both Gmail and push. It reports by push notification.
 
 **Files changed:** `pipeline/tracker.md` (Oct 5 note) · `company/direction.md` · `roles/sonny.md` (routine description) · the two work files above · this log.
+- Later Oct 5: Noah asked to push Rick's dates off Oct 8. Updated Gmail draft r-331887844937395280 (in-thread, unsent) to Tue Oct 13 / Wed Oct 14 / Thu Oct 15; repo copy and tracker updated. Draft body is now plain text with the Sep 8 exchange quoted.
