@@ -17,6 +17,7 @@ Noah opens a Claude Code session on this repo and either names a role ("You are 
 4. The files your task touches.
 
 ## End of every session
+- **Land your work on `main`.** Cloud sessions often start on their own branch (`claude/...`). Before you finish, merge your commits into `main` and push `main`: `git fetch origin main && git checkout main && git pull origin main && git merge --no-edit <your-branch> && git push origin main`. If the merge conflicts, stop and tell Noah. The brain is only what's on `main`; work left on a side branch is invisible to the next session.
 - Update the files you changed.
 - Append one entry to `/logs/` (date, role, what was done, what changed).
 - Update `/company/decisions.md` if anything was decided.

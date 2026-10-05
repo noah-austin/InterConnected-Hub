@@ -9,11 +9,11 @@
 | 2026-08-24 | Name is **Interconnected**. Never "Believers In Business," never "Interconnect." The rename was considered and closed; it reopens only from Noah. | Noah |
 | 2026-08-24 | The Aug 24 domain scout found joininterconnect.com taken by a live product and interconnect.com unbuyable. The keep decision is vindicated, not just preferred. The trademark knockout on "Interconnected" stays parked backlog (Ada). | Noah / Mack |
 | 2026-09-24 | The company runs from one public repo with ALL company information included, pipeline and contact data too. Buford recommended private; Noah overrode with full knowledge of the tradeoff. Settled. | Noah |
-| 2026-09-24 | Growth rules: two active roles (Sonny, Dex). Add a role only after ~2 weeks of clean runs. No inter-agent messaging, orchestration dashboards, manager agents, databases, send-automation, or cron until a routine has run manually for two weeks. | Noah |
+| 2026-09-24 | Growth rules: two active roles (Sonny, Dex). Add a role only after ~2 weeks of clean runs. No inter-agent messaging, orchestration dashboards, manager agents, databases, send-automation, or cron until a routine has run manually for two weeks. *(The cron clause was overridden by Noah on Oct 3 for Sonny's daily run, see the BD section.)* | Noah |
 | 2026-09-24 | Least-privilege connectors: BD sessions get Gmail read/draft, never send. Product and IT sessions get no inbox access. No session that reads inbound email may send anything externally. | Noah / Buford |
 | 2026-10-02 | Phase -1 resolved: the brain and the site's future home live in a new repo on the Claude-connected account (`noah-austin/InterConnected-Hub`, public, used as-is rather than renamed). The old repo `noahaustin15/interconnected-demo` keeps serving the live site until a separate domain-cutover day. No GitHub ownership transfer. Mack's Org recommendation stays on file as a future option. | Noah |
 | 2026-10-02 | Interim deploy rule: live deploys go to the old repo, done manually by Noah. `/docs/` here is the forward copy. CNAME held out of the repo until cutover. | Noah |
-| 2026-10-02 | BD drafts are staged in the repo (`work/bd/outbox/`), not in Gmail drafts. | Noah |
+| 2026-10-02 | ~~BD drafts are staged in the repo, not in Gmail drafts.~~ Superseded Oct 3: drafts go to Gmail Drafts with a repo copy (BD section). | Noah |
 | 2026-10-02 | Noah steers by telling any session in plain words; the session updates `direction.md` (plus `decisions.md` and role files as needed), commits, and logs. Noah never edits files by hand. | Noah |
 | 2026-10-02 | **Positioning: the whole-app solution.** Interconnected is the one app for a member's whole church life, covering both member↔member (needs and help, people, groups, messages) and member↔church (a home for official and unofficial groups, schedule, announcements, reaching staff, church resources). Needs-and-help is one part, not the headline. The staff back office stays out (member-complete, not staff-complete). | Noah |
 | standing | Feedback governance: collect for a week, act on patterns of 3+, treat single opinions as taste unless strategically compelling. Noah's wife is the visual taste check ("premium, not busy"). | Noah |
@@ -82,7 +82,7 @@
 | Kill rule: a channel with near-zero replies over 20 touches gets replaced, not repeated. | Sonny |
 | **Oct 3, 2026:** the 21 silent cold threads get one honest re-approach each, closing with a referral ask, sent about 7 a day after DMARC. No reply in 7 days means Dormant. Walt Lengel (Austin Stone Downtown) goes Dormant so Austin Stone keeps one thread (Ryan Perenchio). | Noah / Sonny |
 | **Oct 3, 2026:** BD drafts go into Gmail Drafts (in-thread where possible), with a copy in `work/bd/outbox/`. Replaces "drafts in the repo, not Gmail." Still never send. | Noah |
-| **Oct 3, 2026:** Sonny runs daily on a schedule (weekdays 6:47am Central, fresh session, read-and-draft only). | Noah |
+| **Oct 3, 2026:** Sonny runs daily on a schedule (weekdays 6:47am Central, read-and-draft only). Overrides the two-weeks-manual growth rule. *(Oct 5: moved from a fresh session each run to firing into the original Sonny session, which has Gmail and push; see direction.md.)* | Noah |
 | **Oct 3, 2026:** BD mandate from Noah: "Be creative. Your job is to get me in front of people." Sonny proposes new room-getting plays every day, inside the guardrails. | Noah |
 
 ## IT (Mack, on record Sep 24)
