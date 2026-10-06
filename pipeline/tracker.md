@@ -6,6 +6,7 @@
 > Template versions: v2 (Aug 24) · v3.1 (Aug 26). Detail on any row: `work/bd/Sonny_BD_Lane_Handoff_2026-09-24.md` §2.
 
 **Last verified:** Oct 3, 2026 (Sonny pipeline check, Gmail read-only). Nothing new since Oct 2: only Google Workspace billing mail. No pastor replies, no sends, no bounces since the Rick Randall thread (last message Sep 8).
+**Oct 6 (Sonny daily):** still nothing new. No replies, no bounces, nothing sent; 23 drafts waiting. New play #10: Bluebonnet Baptist Association annual meeting Mon Oct 12 (RSVP by Oct 8) touches row 36.
 **Oct 5 (Sonny, Gmail read-only):** nothing new since Oct 3. No replies, no bounces, nothing sent; all 23 Gmail drafts are still unsent. Rick's draft now offers Tue Oct 13 / Wed Oct 14 / Thu Oct 15 (Noah moved it off Oct 8). Row 34 (Dripping Springs Methodist) revisit is due; leadership transition, so no draft.
 **Oct 3: drafts staged in `work/bd/outbox/`** for rows 37, 4, 6 and a one-note re-approach for 21 silent threads (`2026-10-03-silent-threads-reapproach.md`). Rows show "Drafted (unsent)" until the inbox confirms Noah sent them.
 
@@ -71,7 +72,7 @@
 | 13 | Abundant CTX (Lockhart + Kyle) | Brandon Hollar, Lead Pastor · no email published · 512-398-4642 (unverified) | Contact needed | — | Phone or Facebook; low priority | — |
 | 35 | Hill Country Bible Church, Dripping Springs | Jason McNutt, Lead Pastor · no email published · 512-843-0035 | Contact needed | — | Office call | — |
 | 19 | LifeFamily (ex-LifeAustin), ~3,500, 8 campuses | Mark Tennant, Exec Pastor · Jordan Cranfield, Chief Ministries Pastor · hello@life.family · 512-220-6383 | Researching | — | **Referral path only.** Do not cold email | — |
-| 36 | Bluebonnet Baptist Association (multiplier) | Dr. Robby Partain, Executive Director · no email published · 830-629-7674 · contact form text in `work/bd/Sonny_Send_List_2026-08-26.md` | Never contacted | — | Coffee ask by phone or form. (Sept 14 gathering has passed) | — |
+| 36 | Bluebonnet Baptist Association (multiplier) | Dr. Robby Partain, Executive Director · no email published · 830-629-7674 · contact form text in `work/bd/Sonny_Send_List_2026-08-26.md` | Never contacted | — | Coffee ask by phone. **Annual meeting Mon Oct 12, McQueeney; RSVP by Oct 8 (play #10).** Call the office by Thursday | Oct 8 |
 | 39 | Plant Austin / AHCC (multiplier) | Nick Shock (same as row 16) · info@plantaustin.com | See row 16 | Aug 24 | Already asked as Point Community's pastor; correct ask | — |
 
 ## Verified email patterns

@@ -48,6 +48,11 @@ Elders and deacons in business. They're the thesis users ("needs a roofer"), and
 Austin-based. He founded XPastor in 2003 and runs an annual XP-Seminar for executive pastors. xpastor.org is blocked from the sandbox, so neither his email nor the 2026 seminar date is verified.
 **Move:** use the contact form or a call to get his email, then send `work/bd/outbox/2026-10-05-david-fletcher-xpastor-coffee-ask.md`. While you're there, check the XP-Seminar date and city. If it's local, that's a room full of executive pastors, and attending is your own call.
 
+## 10. (Oct 6) Bluebonnet Baptist Association annual meeting, Mon Oct 12, McQueeney. RSVP by Thu Oct 8.
+**What I found:** the 168th annual meeting is Monday Oct 12, 2026, at McQueeney Baptist Church (201 Schumann Rd, McQueeney, about 50 minutes from Buda), and RSVPs are requested by Thursday Oct 8. Source: a search summary of bluebonnetbaptist.org. I couldn't load the page itself, so confirm it on the call. The room is pastors and church representatives from the association's churches across the New Braunfels, Seguin and San Marcos area, the densest pastor room on our calendar this month.
+**Move (5 minutes, by Thursday):** call the association office at 830-629-7674: "Hi, this is Noah Austin from Buda. I saw the annual meeting is on the 12th. Are visitors welcome, and how do I RSVP?" Going is your own call (rule 9 allows it). If the answer is yes, ask in the same call for 20 minutes with Dr. Robby Partain sometime this month (tracker row 36, never contacted). That's a separate ask: coffee with him, not access to anything. **Time check:** Monday the 12th doesn't collide with Rick (Oct 13–15) or Chris (Tuesdays).
+**At the meeting:** listen first. Bring the phone demo but don't lead with it. Collect names and churches, and tell me who you talked to so I can draft the follow-ups the same night.
+
 ## Already in motion (these are plays too)
 - **Every reply and meeting ends with the referral ask.** The re-approach notes now end with one too: "If this isn't the season, I'd be just as grateful for one name."
 - **Eric Bryant meeting → Gateway Buda** (Kurt Foster or Ricky Echeona).
