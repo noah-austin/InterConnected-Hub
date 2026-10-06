@@ -21,7 +21,7 @@ Noah opens a Claude Code session on this repo and either names a role ("You are 
 - Update the files you changed.
 - Append one entry to `/logs/` (date, role, what was done, what changed).
 - Update `/company/decisions.md` if anything was decided.
-- If you changed `direction.md`, the tracker, the outbox or the logs, refresh the dashboard (`skills/dashboard-refresh.md`). If you can't publish, the scheduled refresh will.
+- The dashboard (https://interconnected-hq.up.railway.app) rebuilds itself when your work lands on `main`. Nothing to publish (`skills/dashboard-refresh.md`).
 
 ## Steering by conversation
 Noah steers the company by telling any session what he wants, in plain words. He never edits files by hand. When he gives a steering instruction ("make X the top priority," "park Y," "stop doing Z," "we decided W"), whatever role the session is playing:
@@ -57,7 +57,7 @@ Connector rule: BD (Sonny) sessions get Gmail read/draft, never send. Drafts go 
 /pipeline/    tracker.md · objections.md · pricing-reactions.md · referrals.md
 /skills/      deploy-checklist · meeting-prep · debrief · pricing-three-questions · cold-email-template · dashboard-refresh
 /tools/       dashboard.py (builds the dashboard)
-/dashboard/   index.html (generated; never edit by hand)
+/dashboard/   Dockerfile (Railway builds the dashboard; the generated index.html is not committed)
 /work/        outputs by lane: bd/ (outbox/ = drafts for Noah) · product/ (staging/ = builds awaiting "deploy") · marketing/ · it/
 /logs/        one file per run: YYYY-MM-DD-<role>-<topic>.md
 ```
