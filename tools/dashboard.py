@@ -2,18 +2,26 @@
 """Build the company dashboard from the brain's own files.
 
 Reads company/direction.md, pipeline/tracker.md, work/bd/outbox/ and logs/,
-writes dashboard/index.html (the published page). Never edit that file by hand;
-change the source files and re-run:  python3 tools/dashboard.py
+writes dashboard/index.html. Railway runs this on every push to main (see
+dashboard/Dockerfile), so the live page always matches the repo. The output is
+not committed. To preview locally:  python3 tools/dashboard.py
 """
 import html
 import os
 import re
 import subprocess
 from datetime import datetime, timezone, timedelta
+try:
+    from zoneinfo import ZoneInfo
+except ImportError:  # pragma: no cover
+    ZoneInfo = None
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "dashboard", "index.html")
-CENTRAL = timezone(timedelta(hours=-5))  # CDT; close enough for a "last updated" stamp
+try:
+    CENTRAL = ZoneInfo("America/Chicago")
+except Exception:
+    CENTRAL = timezone(timedelta(hours=-5))
 
 
 def read(rel):
@@ -183,10 +191,12 @@ for name in sorted(os.listdir(os.path.join(ROOT, "logs")), reverse=True):
     logs.append((name[:10], t))
 logs = logs[:8]
 
-try:
-    commit = subprocess.run(["git", "-C", ROOT, "log", "-1", "--format=%h"], capture_output=True, text=True).stdout.strip()
-except Exception:
-    commit = ""
+commit = os.environ.get("RAILWAY_GIT_COMMIT_SHA", "")[:7]
+if not commit:
+    try:
+        commit = subprocess.run(["git", "-C", ROOT, "log", "-1", "--format=%h"], capture_output=True, text=True).stdout.strip()
+    except Exception:
+        commit = ""
 now = datetime.now(CENTRAL)
 stamp = now.strftime("%a %b %-d, %-I:%M %p") + " Central"
 
@@ -286,7 +296,15 @@ headline = (
     if ready_n else f"{open_todos} things on your list."
 )
 
-page = f"""<title>Interconnected HQ</title>
+page = f"""<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#F6F8FC">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 32'%3E%3Cg fill='%232563EB'%3E%3Ccircle cx='13' cy='4' r='3'/%3E%3Ccircle cx='13' cy='11' r='3'/%3E%3Ccircle cx='6' cy='13' r='2.6'/%3E%3Ccircle cx='20' cy='13' r='2.6'/%3E%3Ccircle cx='13' cy='18' r='3'/%3E%3Ccircle cx='13' cy='25' r='3'/%3E%3C/g%3E%3C/svg%3E">
+<title>Interconnected HQ</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
@@ -313,7 +331,8 @@ page = f"""<title>Interconnected HQ</title>
   --hot-bg: #10352B; --ready-bg: #182A50; --waiting-bg: #3A2A12; --hold-bg: #2A2150; --closed-bg: #1A2640;
   color-scheme: dark; }}
 * {{ box-sizing: border-box; }}
-body {{ background: var(--bg); color: var(--ink); font-family: var(--font-ui); font-size: 15px; line-height: 1.5; padding-inline: 16px; padding-block: 20px 48px; }}
+html {{ -webkit-text-size-adjust: 100%; }}
+body {{ margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font-ui); font-size: 15px; line-height: 1.5; padding-inline: 16px; padding-block: 20px 48px; }}
 .wrap {{ max-width: 1120px; margin: 0 auto; display: grid; gap: 20px; }}
 header.top {{ display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 8px 24px; }}
 .brand {{ display: flex; align-items: center; gap: 10px; }}
@@ -379,6 +398,8 @@ footer {{ color: var(--muted); font-size: 0.8rem; max-width: 70ch; }}
 @media (max-width: 820px) {{ .board {{ grid-template-columns: minmax(0, 1fr); }} .legend li {{ grid-template-columns: 12px minmax(0, 1fr) 2.2rem; }} .lg-note {{ display: none; }} }}
 </style>
 
+</head>
+<body>
 <div class="wrap">
   <header class="top">
     <div>
@@ -459,10 +480,12 @@ footer {{ color: var(--muted); font-size: 0.8rem; max-width: 70ch; }}
 
   <footer>
     This page is generated from the company repo (<code>company/direction.md</code>, <code>pipeline/tracker.md</code>,
-    <code>work/bd/outbox/</code>, <code>logs/</code>) by <code>tools/dashboard.py</code>. It refreshes after Sonny's weekday
-    morning run and at the end of any session that changes those files. To change what it says, tell any session; never edit the page.
+    <code>work/bd/outbox/</code>, <code>logs/</code>) by <code>tools/dashboard.py</code>. It rebuilds automatically
+    every time a change lands on the repo's main branch. To change what it says, tell any session; never edit the page.
   </footer>
 </div>
+</body>
+</html>
 """
 
 os.makedirs(os.path.dirname(OUT), exist_ok=True)
