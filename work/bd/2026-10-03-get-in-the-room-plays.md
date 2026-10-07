@@ -53,6 +53,12 @@ Austin-based. He founded XPastor in 2003 and runs an annual XP-Seminar for execu
 **Move (5 minutes, by Thursday):** call the association office at 830-629-7674: "Hi, this is Noah Austin from Buda. I saw the annual meeting is on the 12th. Are visitors welcome, and how do I RSVP?" Going is your own call (rule 9 allows it). If the answer is yes, ask in the same call for 20 minutes with Dr. Robby Partain sometime this month (tracker row 36, never contacted). That's a separate ask: coffee with him, not access to anything. **Time check:** Monday the 12th doesn't collide with Rick (Oct 13–15) or Chris (Tuesdays).
 **At the meeting:** listen first. Bring the phone demo but don't lead with it. Collect names and churches, and tell me who you talked to so I can draft the follow-ups the same night.
 
+## 11. (Oct 7) Campus ministers at Texas State: multipliers in San Marcos
+**Why:** a campus minister sends hundreds of students into local churches every fall and knows which San Marcos and Kyle pastors are good with newcomers, which is exactly our new-member integration story. Campus ministers are rarely pitched, so a feedback coffee is a welcome ask.
+**Who:** Wayne Dillen, listed as campus contact for the Texas State Baptist Student Ministry (518 N LBJ Dr, San Marcos; texasstatebsm.com). Katie Barnes is the Associate Director. Texas State's Dean of Students office also lists an Interfaith Alliance of campus ministries (dos.txst.edu, campus ministries page), which is the directory for a second name if this one lands. **Source:** search summaries of txbsm.org and texasstatebsm.com. No email is verified yet.
+**Move:** find his email on texasstatebsm.com (contact page) or call the BSM, then send the v3.1 multiplier variant. The ask is coffee with Wayne only. Closing line: "You see where students land on Sunday. Which pastors around here are best at helping new people belong?" That's a referral ask, not access. Tell me the address and I'll put the draft in Gmail.
+**Fit with the pipeline:** FUMC San Marcos (row 26) and PromiseLand (row 30) are both near campus. A name from Wayne could warm either thread.
+
 ## Already in motion (these are plays too)
 - **Every reply and meeting ends with the referral ask.** The re-approach notes now end with one too: "If this isn't the season, I'd be just as grateful for one name."
 - **Eric Bryant meeting → Gateway Buda** (Kurt Foster or Ricky Echeona).
