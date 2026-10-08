@@ -59,6 +59,14 @@ Austin-based. He founded XPastor in 2003 and runs an annual XP-Seminar for execu
 **Move:** find his email on texasstatebsm.com (contact page) or call the BSM, then send the v3.1 multiplier variant. The ask is coffee with Wayne only. Closing line: "You see where students land on Sunday. Which pastors around here are best at helping new people belong?" That's a referral ask, not access. Tell me the address and I'll put the draft in Gmail.
 **Fit with the pipeline:** FUMC San Marcos (row 26) and PromiseLand (row 30) are both near campus. A name from Wayne could warm either thread.
 
+## 12. (Oct 8) Make Eric Bryant's form unmissable: one podcast episode first
+**Why:** Eric (row 6) is the top-priority row and still has zero touches. His form text has an optional personal line that we only use when it's real. Twenty minutes of his own podcast makes it real, and a host notices when someone has actually listened.
+**Episodes that fit** (Innovative Church Leaders podcast; dates from search listings):
+- "The 5-3-2 Disciple-Making Framework with David Putman" (about Apr 28, 2026). Groups and discipleship, closest to what we build.
+- Daniel Yang, Churches of Welcome (about May 2026). Belonging and welcome, which matches our new-member integration story.
+**Move:** listen to one, then add one honest sentence to the form's optional line, e.g. "Your conversation with David Putman about [the thing that stuck] is part of why I'm asking you." Then submit the form (`work/bd/outbox/2026-10-03-eric-bryant-consultation-form.md`).
+**Check first (30 seconds):** a January 2026 podcast interview has him talking about "scaling down a church campus." Gateway South still shows 9:15 and 11:15 services (6800 West Gate Blvd) and fall classes, so the campus is active, but glance at gatewaychurch.com staff to confirm he's still South Campus Pastor before you write "South campus" anywhere. Note: search results mix Gateway Church Austin with the unrelated Gateway Church in Southlake; ignore anything about Southlake.
+
 ## Already in motion (these are plays too)
 - **Every reply and meeting ends with the referral ask.** The re-approach notes now end with one too: "If this isn't the season, I'd be just as grateful for one name."
 - **Eric Bryant meeting → Gateway Buda** (Kurt Foster or Ricky Echeona).
