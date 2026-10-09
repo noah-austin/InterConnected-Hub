@@ -6,6 +6,7 @@
 > Template versions: v2 (Aug 24) · v3.1 (Aug 26). Detail on any row: `work/bd/Sonny_BD_Lane_Handoff_2026-09-24.md` §2.
 
 **Last verified:** Oct 3, 2026 (Sonny pipeline check, Gmail read-only). Nothing new since Oct 2: only Google Workspace billing mail. No pastor replies, no sends, no bounces since the Rick Randall thread (last message Sep 8).
+**Oct 9 (Sonny daily):** no change: no replies, no bounces, nothing sent; 23 drafts waiting (7 days). Bluebonnet RSVP deadline (Oct 8) passed; outcome unknown. **If Rick and Chris are still unsent Monday, I re-date both to the week of Oct 19.**
 **Oct 8 (Sonny daily):** no change: no replies, no bounces, nothing sent; 23 drafts waiting (6 days). **Rick's and Chris's earliest offered date is Tue Oct 13. Send by Fri Oct 9, or I re-date them Monday.** Bluebonnet RSVP is due today. Play #12: Eric Bryant podcast prep.
 **Oct 7 (Sonny daily):** no change: no replies, no bounces, nothing sent; 23 drafts still waiting (5 days now). Play #11: Texas State campus ministers (BSM).
 **Oct 6 (Sonny daily):** still nothing new. No replies, no bounces, nothing sent; 23 drafts waiting. New play #10: Bluebonnet Baptist Association annual meeting Mon Oct 12 (RSVP by Oct 8) touches row 36.

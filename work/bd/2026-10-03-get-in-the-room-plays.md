@@ -67,6 +67,11 @@ Austin-based. He founded XPastor in 2003 and runs an annual XP-Seminar for execu
 **Move:** listen to one, then add one honest sentence to the form's optional line, e.g. "Your conversation with David Putman about [the thing that stuck] is part of why I'm asking you." Then submit the form (`work/bd/outbox/2026-10-03-eric-bryant-consultation-form.md`).
 **Check first (30 seconds):** a January 2026 podcast interview has him talking about "scaling down a church campus." Gateway South still shows 9:15 and 11:15 services (6800 West Gate Blvd) and fall classes, so the campus is active, but glance at gatewaychurch.com staff to confirm he's still South Campus Pastor before you write "South campus" anywhere. Note: search results mix Gateway Church Austin with the unrelated Gateway Church in Southlake; ignore anything about Southlake.
 
+## 13. (Oct 9) Small one: walk into Rick's coffee knowing what Christ Together cares about
+Not a new path; it sharpens the one meeting that's closest. Christ Together's own site leads with "Healthy pastors equal healthy churches," and its Pastors in Covenant groups meet monthly. Their last luncheon I can find was June 25 (Gen Z Gospel Movement); no fall date is posted.
+**Use in the room:** open with Rick's world, not ours: "What wears pastors out here?" Then the referral ask: "Which pastor in your groups is most stretched trying to connect a big congregation?" If Rick offers a Pastors in Covenant visit or a luncheon seat, say yes. Don't ask for one (rule 9).
+**Honest note:** the bottleneck right now isn't ideas, it's sends. Thirteen plays are on this list and none has been run yet. Tomorrow's best play is still Rick's draft.
+
 ## Already in motion (these are plays too)
 - **Every reply and meeting ends with the referral ask.** The re-approach notes now end with one too: "If this isn't the season, I'd be just as grateful for one name."
 - **Eric Bryant meeting → Gateway Buda** (Kurt Foster or Ricky Echeona).
