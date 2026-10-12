@@ -72,6 +72,9 @@ Not a new path; it sharpens the one meeting that's closest. Christ Together's ow
 **Use in the room:** open with Rick's world, not ours: "What wears pastors out here?" Then the referral ask: "Which pastor in your groups is most stretched trying to connect a big congregation?" If Rick offers a Pastors in Covenant visit or a luncheon seat, say yes. Don't ask for one (rule 9).
 **Honest note:** the bottleneck right now isn't ideas, it's sends. Thirteen plays are on this list and none has been run yet. Tomorrow's best play is still Rick's draft.
 
+## 14. (Oct 12) No new play today, on purpose
+Thirteen plays, none run yet. Adding a fourteenth would be noise. The live one is **#2: FaithTech Austin, tomorrow (Tue Oct 13), 6:30pm**, Gateway Church Education Building, 9431 Jollyville Rd. It's free; register on faithtech.com or Eventbrite. Rick's and Chris's new dates (Oct 20 onward) leave Tuesday the 13th open for it.
+
 ## Already in motion (these are plays too)
 - **Every reply and meeting ends with the referral ask.** The re-approach notes now end with one too: "If this isn't the season, I'd be just as grateful for one name."
 - **Eric Bryant meeting → Gateway Buda** (Kurt Foster or Ricky Echeona).
