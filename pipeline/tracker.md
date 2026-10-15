@@ -6,6 +6,7 @@
 > Template versions: v2 (Aug 24) · v3.1 (Aug 26). Detail on any row: `work/bd/Sonny_BD_Lane_Handoff_2026-09-24.md` §2.
 
 **Last verified:** Oct 3, 2026 (Sonny pipeline check, Gmail read-only). Nothing new since Oct 2: only Google Workspace billing mail. No pastor replies, no sends, no bounces since the Rick Randall thread (last message Sep 8).
+**Oct 15 (Sonny daily):** no change: no pastor mail (only a Google Workspace admin notice), nothing sent; 23 drafts waiting. Rick's and Chris's earliest date is Tue Oct 20, so send by Fri Oct 16 to keep it.
 **Oct 14 (Sonny daily):** no change: no replies, no bounces, nothing sent; 23 drafts waiting.
 **Oct 13 (Sonny daily):** no change: no replies, no bounces, nothing sent; 23 drafts waiting (Rick and Chris re-dated to Oct 20+). FaithTech (play #2) is tonight, 6:30pm.
 **Oct 12 (Sonny daily):** no change: no replies, no bounces, nothing sent; 23 drafts waiting (10 days). Re-dated as promised: Rick → Tue Oct 20 / Wed 21 / Thu 22; Chris via Rebecca → Tue Oct 20 / 27 / Nov 3. FaithTech (play #2) is tomorrow.
