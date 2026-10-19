@@ -6,6 +6,7 @@
 > Template versions: v2 (Aug 24) · v3.1 (Aug 26). Detail on any row: `work/bd/Sonny_BD_Lane_Handoff_2026-09-24.md` §2.
 
 **Last verified:** Oct 3, 2026 (Sonny pipeline check, Gmail read-only). Nothing new since Oct 2: only Google Workspace billing mail. No pastor replies, no sends, no bounces since the Rick Randall thread (last message Sep 8).
+**Oct 19 (Sonny daily):** no change: no replies, nothing sent; 23 drafts waiting (17 days). Re-dated again: Rick → Oct 27/28/29; Chris → Oct 27, Nov 3, Nov 10.
 **Oct 16 (Sonny daily):** no change: no replies, nothing sent; 23 drafts waiting (2 weeks). If Rick and Chris are still unsent Monday, I re-date to the week of Oct 26.
 **Oct 15 (Sonny daily):** no change: no pastor mail (only a Google Workspace admin notice), nothing sent; 23 drafts waiting. Rick's and Chris's earliest date is Tue Oct 20, so send by Fri Oct 16 to keep it.
 **Oct 14 (Sonny daily):** no change: no replies, no bounces, nothing sent; 23 drafts waiting.

@@ -4,7 +4,7 @@
 
 **How:** New email to Rebecca, cc Chris, so he sees it and it reads as scheduling rather than a cold pitch.
 
-**In Gmail Drafts (Oct 3; re-dated Oct 12 to Tue Oct 20 / Oct 27 / Nov 3 because it was still unsent).**
+**In Gmail Drafts (Oct 3; re-dated Oct 12 to Oct 20/27/Nov 3 and Oct 19 to Tue Oct 27 / Nov 3 / Nov 10, each time because it was still unsent).**
 
 **To:** rebecca@f-pc.org
 **Cc:** chris@f-pc.org
@@ -18,9 +18,9 @@ I'm Noah Austin. Pastor Chris and I traded emails this summer about a project I'
 
 Could you help me find 20 to 30 minutes? I'll come to the church in Kyle. Any of these, after 2:
 
-Tuesday, October 20
 Tuesday, October 27
 Tuesday, November 3
+Tuesday, November 10
 
 If another afternoon is easier, I'll make it work. I'll show him a prototype on my phone and mostly listen.
 
