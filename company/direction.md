@@ -10,6 +10,7 @@
 4. **Eric Bryant consultation form** (ericbryant.org/consultation), text rewritten to v3.1. **Ready Oct 3:** `work/bd/outbox/2026-10-03-eric-bryant-consultation-form.md`.
 4b. **Re-approach the 21 silent threads**, one honest note each, about 7 a day after DMARC is live: `work/bd/outbox/2026-10-03-silent-threads-reapproach.md`. Each note ends with a referral ask for anyone who can't meet now.
 4c. **Andy Tryba advice coffee.** Bible-study friend, co-founder of Ionic Partners (Austin software private equity). Ask in person or by text; an advice coffee, not a pitch. Prep and ask text: `work/bd/prep-2026-10-24-andy-tryba-ionic.md`.
+4d. **Men's Precepts demo for Bryan Bailey (Austin Ridge), due the weekend of Oct 31–Nov 1.** Noah promised Bryan a demo after class. Dex builds a clickable version for the ministry: announcements, group feed, prayer chain, schedule. Plan: `work/product/plan-2026-10-24-mens-precepts-demo.md` (waiting on Noah's OK and three quick answers).
 5. **2FA + recovery codes confirmed** on Google and GitHub. GitHub → Settings → Password and authentication; Google → myaccount.google.com → Security → 2-Step Verification. Both `noahaustin15` and `noah-austin` GitHub accounts now matter. Log the end state (no codes in the repo, ever).
 6. **The month-old taste check.** `og-image.png` + `apple-touch-icon.png`, Noah + wife. A veto is a cheap re-export by Dex. Send her exact words.
 7. **OG client-preview checklist** (Mack §2a), five minutes with Noah's phone: fresh iMessage thread, WhatsApp, Slack, Facebook Sharing Debugger, LinkedIn Post Inspector. Log results.
@@ -17,7 +18,7 @@
 ## Decisions waiting on Noah
 Deferred by Noah on Oct 2 ("later"):
 - Who is **Kevin** at Austin Stone (tracker row 9)? No touch until answered.
-- **Austin Ridge** status (Noah's personal lane, Engine 1). A pastor flagged the credibility gap unprompted (`pipeline/objections.md`).
+- **Austin Ridge** status (Noah's personal lane, Engine 1). **Update Oct 24:** Noah is a member of Austin Ridge Men's Precepts (about a dozen Thursday/Saturday groups, run by email) and is demoing a version for leader Bryan Bailey (item 4d). A pastor had flagged this credibility gap unprompted (`pipeline/objections.md`).
 - **Five warm-path names** from Noah's network (tracker row 21). The highest-yield unworked asset in BD.
 Decided Oct 3 (Noah approved Sonny's plan): the silent threads each get one re-approach (item 4b); Walt Lengel (row 5) goes Dormant (one Austin Stone thread); Kevin (row 9) and Austin Ridge (row 11) stay untouched.
 
