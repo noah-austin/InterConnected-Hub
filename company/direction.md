@@ -9,6 +9,7 @@
 3. **Chris Smith, via Rebecca** (rebecca@f-pc.org), with fresh dates and the gap owned in one sentence. **Drafted Oct 3:** `work/bd/outbox/2026-10-03-fellowship-plum-creek-via-rebecca.md`.
 4. **Eric Bryant consultation form** (ericbryant.org/consultation), text rewritten to v3.1. **Ready Oct 3:** `work/bd/outbox/2026-10-03-eric-bryant-consultation-form.md`.
 4b. **Re-approach the 21 silent threads**, one honest note each, about 7 a day after DMARC is live: `work/bd/outbox/2026-10-03-silent-threads-reapproach.md`. Each note ends with a referral ask for anyone who can't meet now.
+4c. **Andy Tryba advice coffee.** Bible-study friend, co-founder of Ionic Partners (Austin software private equity). Ask in person or by text; an advice coffee, not a pitch. Prep and ask text: `work/bd/prep-2026-10-24-andy-tryba-ionic.md`.
 5. **2FA + recovery codes confirmed** on Google and GitHub. GitHub → Settings → Password and authentication; Google → myaccount.google.com → Security → 2-Step Verification. Both `noahaustin15` and `noah-austin` GitHub accounts now matter. Log the end state (no codes in the repo, ever).
 6. **The month-old taste check.** `og-image.png` + `apple-touch-icon.png`, Noah + wife. A veto is a cheap re-export by Dex. Send her exact words.
 7. **OG client-preview checklist** (Mack §2a), five minutes with Noah's phone: fresh iMessage thread, WhatsApp, Slack, Facebook Sharing Debugger, LinkedIn Post Inspector. Log results.
