@@ -65,3 +65,6 @@ The first real build: logins, saved posts, notifications, on Railway with a data
 - **Leader Prayer Chain:** "Send this week's pairs" texts each man his partner's name and number. Later: new pairs go out automatically every Saturday morning.
 - **Flow (member):** sign in by emailed link → confirm name, cell, group (first time only) → This Week (lesson, meeting, latest update, your partner with Call, this week's files) → Updates → Group Chat → Prayer Chain → Files. Private messages stay behind the chat icon at the top.
 - Sample phone numbers are fictional (555-01xx).
+
+## Revision 3 (Oct 25, Noah) — My Group, in the middle
+Group Chat was too much like a group text. **My Group** is now a casual feed: a short "share something or ask the guys" box at the top with an **Ask for help** toggle; posts show newest first with short, chat-style replies underneath; Reply opens a one-line reply box inline. Asks carry an "Asking for help" tag and an amber edge until the asker marks them "Taken care of." No separate screens.

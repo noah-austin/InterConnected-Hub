@@ -101,29 +101,37 @@ input, textarea, select { font: inherit; color: var(--ink); }
 .av { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; font-size: .8rem; color: #fff; flex: none; }
 .av.lg { width: 56px; height: 56px; font-size: 1.1rem; margin: 0 auto 10px; }
 
-/* group chat */
-.chat { display: grid; gap: 6px; }
-.daysep { text-align: center; font-size: .72rem; color: var(--muted); font-weight: 600; margin: 8px 0 2px; }
-.msg { display: flex; gap: 8px; align-items: flex-end; max-width: 88%; }
-.msg.mine { margin-left: auto; flex-direction: row-reverse; }
-.msg .av { width: 28px; height: 28px; font-size: .62rem; }
-.msg .b { background: #fff; border: 1px solid var(--line); border-radius: 16px 16px 16px 4px; padding: 8px 12px; min-width: 0; }
-.msg.mine .b { background: var(--blue); border-color: var(--blue); color: #fff; border-radius: 16px 16px 4px 16px; }
-.msg .who { font-size: .72rem; font-weight: 700; color: var(--muted); margin-bottom: 1px; }
-.msg .txt { white-space: pre-wrap; overflow-wrap: anywhere; }
-.msg .tm { font-size: .66rem; opacity: .65; margin-top: 2px; }
-.msg.ask .b { background: var(--amber-soft); border-color: #F3D9B8; color: var(--ink); }
-.msg.ask.done .b { background: #fff; border-color: var(--line); }
-.asklabel { display: inline-flex; align-items: center; gap: 4px; font-size: .68rem; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; color: var(--amber); margin-bottom: 2px; }
-.msg.done .asklabel { color: var(--green); }
-.linkbtn { font-size: .74rem; font-weight: 700; color: var(--amber); text-decoration: underline; margin-top: 4px; }
-.chatbar { flex: none; display: flex; gap: 8px; align-items: center; padding: 8px 12px; background: #fff; border-top: 1px solid var(--line); }
-.chatbar input { flex: 1; min-width: 0; border: 1px solid var(--line); border-radius: 999px; padding: 10px 14px; background: var(--bg); outline: none; }
-.chatbar input:focus { border-color: var(--blue); }
-.askchip { flex: none; border: 1px solid var(--line); border-radius: 999px; padding: 8px 11px; font-size: .8rem; font-weight: 700; color: var(--muted); background: #fff; }
+/* group feed: casual posts with short replies */
+.composer { display: grid; gap: 8px; }
+.composer .crow { display: flex; gap: 10px; align-items: flex-start; }
+.composer textarea { flex: 1; min-width: 0; border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; background: var(--bg); resize: none; height: 66px; outline: none; font: inherit; }
+.composer textarea:focus { border-color: var(--blue); background: #fff; }
+.composer .cfoot { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding-left: 46px; }
+.askchip { border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; font-size: .8rem; font-weight: 700; color: var(--muted); background: #fff; }
 .askchip.on { background: var(--amber-soft); border-color: #F3D9B8; color: var(--amber); }
-.openasks { background: var(--amber-soft); border: 1px solid #F3D9B8; border-radius: 12px; padding: 10px 12px; font-size: .84rem; margin-bottom: 8px; }
-.openasks strong { color: var(--amber); }
+.postbtn { background: var(--blue); color: #fff; border-radius: 999px; padding: 7px 16px; font-weight: 700; font-size: .85rem; }
+.post { padding: 12px 14px; }
+.post.ask { border-color: #F3D9B8; box-shadow: inset 3px 0 0 #F0B46A; }
+.post.ask.done { box-shadow: none; border-color: var(--line); }
+.post .head { display: flex; gap: 10px; align-items: center; }
+.post .av { width: 32px; height: 32px; font-size: .7rem; }
+.post .who { font-weight: 700; font-size: .9rem; }
+.post .when { font-size: .74rem; color: var(--muted); }
+.post .body { margin: 6px 0 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.asktag { display: inline-flex; align-items: center; gap: 4px; font-size: .7rem; font-weight: 700; border-radius: 999px; padding: 2px 8px; background: var(--amber-soft); color: var(--amber); }
+.asktag.done { background: var(--green-soft); color: var(--green); }
+.replies { margin-top: 10px; display: grid; gap: 6px; }
+.rep { display: flex; gap: 8px; align-items: flex-start; }
+.rep .av { width: 24px; height: 24px; font-size: .58rem; margin-top: 2px; }
+.rep .rb { background: var(--bg); border-radius: 12px; padding: 6px 10px; font-size: .88rem; min-width: 0; overflow-wrap: anywhere; }
+.rep .rb strong { font-size: .8rem; }
+.postacts { display: flex; gap: 14px; align-items: center; margin-top: 8px; }
+.postacts button { font-size: .8rem; font-weight: 700; color: var(--blue); }
+.postacts button.amber { color: var(--amber); }
+.replyform { display: flex; gap: 6px; margin-top: 8px; }
+.replyform input { flex: 1; min-width: 0; border: 1px solid var(--line); border-radius: 999px; padding: 7px 12px; background: var(--bg); outline: none; font-size: .88rem; }
+.replyform input:focus { border-color: var(--blue); background: #fff; }
+.replyform button { color: var(--blue); font-weight: 700; font-size: .85rem; padding: 0 6px; }
 
 /* prayer chain */
 .phone { font-size: 1.15rem; font-weight: 700; letter-spacing: .01em; margin-top: 6px; font-variant-numeric: tabular-nums; }
@@ -199,7 +207,6 @@ input, textarea, select { font: inherit; color: var(--ink); }
   <header class="top" id="top"></header>
   <div class="leaderbar" id="leaderbar" hidden></div>
   <main class="screen" id="screen"></main>
-  <form class="chatbar" id="chatbar" data-form="chat" hidden></form>
   <nav class="tabs" id="tabs"></nav>
   <section class="sheet" id="sheet" aria-hidden="true"></section>
   <div class="signin" id="signin"></div>
@@ -269,7 +276,7 @@ const LESSONS = [
 ];
 const CURRENT = 7;
 
-let annId = 10, chatId = 20, fileId = 20;
+let annId = 10, postId = 20, fileId = 20;
 const S = {
   me: NOAH, mode: 'member', tab: 'week', ltab: 'announce', signedIn: false, signinStep: 0,
   announcements: [
@@ -278,19 +285,25 @@ const S = {
     { id: 3, from: BRYAN, aud: 'sat', title: 'Coffee and donuts this Saturday', body: 'Doors open at 7:40. Come early, grab a coffee and meet the two new guys joining us.', time: 'Oct 21', pinned: false },
     { id: 4, from: BRYAN, aud: 'thu', title: 'Zoom link is the same as last week', body: 'Same link as always. Tap "Join on Zoom" from the This Week screen.', time: 'Oct 20', pinned: false },
   ],
-  chat: [
-    { id: 1, group: 'sat', author: 'jimwhitaker', body: 'Anybody else find Day 3 tough this week?', day: 'Yesterday', time: '7:42 PM' },
-    { id: 2, group: 'sat', author: 'markellison', body: 'Yes. 6:6 got me. Who am I actually praying to impress?', day: 'Yesterday', time: '7:55 PM' },
-    { id: 3, group: 'sat', author: BRYAN, body: 'Good stuff. Bring that Saturday.', day: 'Yesterday', time: '8:10 PM' },
-    { id: 4, group: 'sat', author: 'tomalvarez', body: 'Thank you all for the meals last week. Recovery is going well.', day: 'Today', time: '6:58 AM' },
-    { id: 5, group: 'sat', author: 'rayholloway', body: 'Anyone know a good mechanic in Buda? Truck is making a noise I can\'t ignore.', day: 'Today', time: '8:20 AM', ask: true, done: false },
-    { id: 6, group: 'sat', author: 'luisromero', body: 'My brother-in-law has a shop on Main. I\'ll text you his number.', day: 'Today', time: '8:31 AM' },
-    { id: 7, group: 'sat', author: 'greglawson', body: 'Need two guys to help move a couch Saturday after class. Pizza on me.', day: 'Today', time: '9:05 AM', ask: true, done: false },
-    { id: 8, group: 'sat', author: 'danmercer', body: 'I\'m in.', day: 'Today', time: '9:11 AM' },
-    { id: 9, group: 'thu', author: 'hectorruiz', body: 'Lesson 7 Day 2 took me longer than usual. Worth every minute.', day: 'Yesterday', time: '9:02 PM' },
-    { id: 10, group: 'thu', author: 'frankosei', body: 'Same here. See you all Thursday.', day: 'Today', time: '7:15 AM' },
+  posts: [
+    { id: 8, group: 'sat', author: 'greglawson', body: 'Need two guys to help move a couch Saturday after class. Pizza on me.', time: '9:05 AM', ask: true, done: false, replies: [
+      { author: 'danmercer', body: 'I\'m in.' },
+    ] },
+    { id: 7, group: 'sat', author: 'rayholloway', body: 'Anyone know a good mechanic in Buda? Truck is making a noise I can\'t ignore.', time: '8:20 AM', ask: true, done: false, replies: [
+      { author: 'luisromero', body: 'My brother-in-law has a shop on Main. I\'ll text you his number.' },
+    ] },
+    { id: 6, group: 'sat', author: 'tomalvarez', body: 'Thank you all for the meals last week. Recovery is going well.', time: '6:58 AM', replies: [
+      { author: 'willcarver', body: 'Great news, Tom.' },
+    ] },
+    { id: 5, group: 'sat', author: 'jimwhitaker', body: 'Anybody else find Day 3 tough this week? 6:6 got me. Who am I actually praying to impress?', time: 'Yesterday', replies: [
+      { author: 'markellison', body: 'Same. Convicting.' },
+      { author: BRYAN, body: 'Good stuff. Bring that Saturday.' },
+    ] },
+    { id: 4, group: 'thu', author: 'hectorruiz', body: 'Lesson 7 Day 2 took me longer than usual. Worth every minute.', time: 'Yesterday', replies: [
+      { author: 'frankosei', body: 'Same here. See you all Thursday.' },
+    ] },
   ],
-  chatAsk: false,
+  postAsk: false, replyOpen: null,
   files: [
     { id: 1, lesson: 7, name: 'Lesson 7 Lecture Notes.pdf', type: 'pdf', size: '1.2 MB', by: BRYAN, date: 'Oct 26', aud: 'all' },
     { id: 2, lesson: 7, name: 'Matthew 6 Observation Worksheet.pdf', type: 'pdf', size: '340 KB', by: BRYAN, date: 'Oct 26', aud: 'all' },
@@ -355,7 +368,7 @@ function renderTop() {
   lb.hidden = S.mode !== 'leader';
   lb.innerHTML = `<span>Leader view · Bryan Bailey</span><button data-act="switch">Member view</button>`;
 }
-const MTABS = [['week', 'home', 'This Week'], ['ann', 'mega', 'Updates'], ['group', 'group', 'Group Chat'], ['prayer', 'pray', 'Prayer Chain'], ['files', 'folder', 'Files']];
+const MTABS = [['week', 'home', 'This Week'], ['ann', 'mega', 'Updates'], ['group', 'group', 'My Group'], ['prayer', 'pray', 'Prayer Chain'], ['files', 'folder', 'Files']];
 const LTABS = [['announce', 'mega', 'Announce'], ['upload', 'upload', 'Upload'], ['chain', 'pray', 'Prayer Chain'], ['roster', 'users', 'Roster']];
 function renderTabs() {
   const leader = S.mode === 'leader', list = leader ? LTABS : MTABS, cur = leader ? S.ltab : S.tab;
@@ -389,17 +402,19 @@ function vAnn() {
     <p class="note">Announcements also go out by email, so nobody misses one.</p>`;
 }
 function vGroup() {
-  const g = myGroup(), list = S.chat.filter(m => m.group === g);
-  const open = list.filter(m => m.ask && !m.done);
-  let lastDay = '';
-  const rows = list.map(m => {
-    const mine = m.author === S.me, day = m.day !== lastDay ? `<div class="daysep">${esc(m.day)}</div>` : '';
-    lastDay = m.day;
-    const label = m.ask ? `<div class="asklabel">${m.done ? ic('check', 12, 2.4) + ' Taken care of' : 'Asking for help'}</div>` : '';
-    const doneBtn = m.ask && !m.done && mine ? `<div><button class="linkbtn" data-act="askdone" data-id="${m.id}">Mark taken care of</button></div>` : '';
-    return `${day}<div class="msg${mine ? ' mine' : ''}${m.ask ? ' ask' : ''}${m.done ? ' done' : ''}">${mine ? '' : av(m.author)}<div class="b">${mine ? '' : `<div class="who">${nm(m.author)}${men[m.author].leader ? ' · Leader' : ''}</div>`}${label}<div class="txt">${esc(m.body)}</div><div class="tm">${esc(m.time)}</div>${doneBtn}</div></div>`;
-  }).join('');
-  return `${open.length ? `<div class="openasks"><strong>${open.length} open ${open.length === 1 ? 'ask' : 'asks'}:</strong> ${open.map(m => esc(men[m.author].name.split(' ')[0]) + ' (' + esc(m.body.slice(0, 38)) + (m.body.length > 38 ? '…' : '') + ')').join(' · ')}</div>` : ''}<div class="chat">${rows}</div>`;
+  const g = myGroup(), list = S.posts.filter(p => p.group === g);
+  const composer = `<form class="card composer" data-form="post"><div class="crow">${av(S.me)}<textarea id="postin" placeholder="${S.postAsk ? 'What do you need a hand with?' : 'Share something or ask the guys…'}" aria-label="New post"></textarea></div>
+    <div class="cfoot"><button type="button" class="askchip${S.postAsk ? ' on' : ''}" data-act="askchip" aria-pressed="${S.postAsk}">${S.postAsk ? 'Asking for help' : 'Ask for help'}</button><button class="postbtn">Post</button></div></form>`;
+  const card = p => {
+    const mine = p.author === S.me;
+    const tag = p.ask ? `<span class="asktag${p.done ? ' done' : ''}">${p.done ? ic('check', 12, 2.4) + ' Taken care of' : 'Asking for help'}</span>` : '';
+    const reps = p.replies.length ? `<div class="replies">${p.replies.map(r => `<div class="rep">${av(r.author)}<div class="rb"><strong>${esc(men[r.author].name.split(' ')[0])}</strong> ${esc(r.body)}</div></div>`).join('')}</div>` : '';
+    const form = S.replyOpen === p.id ? `<form class="replyform" data-form="reply" data-id="${p.id}"><input id="replyin" placeholder="Reply to ${esc(men[p.author].name.split(' ')[0])}…" autocomplete="off"><button>Send</button></form>` : '';
+    return `<article class="card post${p.ask ? ' ask' : ''}${p.done ? ' done' : ''}"><div class="head">${av(p.author)}<div style="flex:1;min-width:0"><div class="who">${nm(p.author)}${men[p.author].leader ? ' <span class="tag green">Leader</span>' : ''}</div><div class="when">${esc(p.time)}</div></div>${tag}</div>
+      <p class="body">${esc(p.body)}</p>${reps}
+      ${form || `<div class="postacts"><button data-act="reply" data-id="${p.id}">Reply</button>${p.ask && !p.done && mine ? `<button class="amber" data-act="askdone" data-id="${p.id}">Mark taken care of</button>` : ''}</div>`}</article>`;
+  };
+  return `${composer}<div class="sec-label">${esc(GROUPS[g].name)}</div><div class="stack">${list.map(card).join('')}</div>`;
 }
 function partnerOf(id) {
   const g = men[id].group === 'both' ? null : men[id].group;
@@ -535,14 +550,8 @@ function render() {
     ? { announce: vAnnounce, upload: vUpload, chain: vChain, roster: vRoster }[S.ltab]()
     : { week: vWeek, ann: vAnn, group: vGroup, prayer: vPrayer, files: vFiles }[S.tab]();
   $('screen').innerHTML = v;
-  const inChat = S.mode === 'member' && S.tab === 'group';
-  $('chatbar').hidden = !inChat;
-  if (inChat) { renderChatbar(); requestAnimationFrame(() => { $('screen').scrollTop = $('screen').scrollHeight; }); }
+
   const fi = $('ufile'); if (fi) fi.onchange = e => { [...e.target.files].forEach(f => S.up.picked.push({ name: f.name, type: ftype(f.name), size: f.size > 1e6 ? (f.size / 1e6).toFixed(1) + ' MB' : Math.max(1, Math.round(f.size / 1e3)) + ' KB' })); render(); };
-}
-function renderChatbar() {
-  const v = $('chatin') ? $('chatin').value : '';
-  $('chatbar').innerHTML = `<button type="button" class="askchip${S.chatAsk ? ' on' : ''}" data-act="askchip" aria-pressed="${S.chatAsk}">${S.chatAsk ? 'Asking' : 'Ask'}</button><input id="chatin" placeholder="${S.chatAsk ? 'What do you need help with?' : 'Message the ' + esc(GROUPS[myGroup()].name) + '…'}" autocomplete="off" value="${esc(v)}"><button class="sendbtn" aria-label="Send">${ic('send', 18)}</button>`;
 }
 const keepDraft = () => { const t = $('atitle'), b = $('abody'), p = $('apin'); if (t) S.draft.title = t.value; if (b) S.draft.body = b.value; if (p) S.draft.pin = p.checked; };
 
@@ -562,8 +571,9 @@ document.addEventListener('click', e => {
     case 'zoom': toast('Opens Zoom (demo)'); break;
     case 'directions': toast('Opens Maps to Austin Ridge (demo)'); break;
     case 'fakeopen': toast('Opens the file on your phone (demo)'); break;
-    case 'askchip': S.chatAsk = !S.chatAsk; renderChatbar(); $('chatin').focus(); break;
-    case 'askdone': { const m = S.chat.find(x => x.id === +t.dataset.id); m.done = true; render(); toast('Marked taken care of'); break; }
+    case 'askchip': { const v = $('postin').value; S.postAsk = !S.postAsk; render(); $('postin').value = v; $('postin').focus(); break; }
+    case 'askdone': { const m = S.posts.find(x => x.id === +t.dataset.id); m.done = true; render(); toast('Marked taken care of'); break; }
+    case 'reply': S.replyOpen = +t.dataset.id; render(); setTimeout(() => $('replyin') && $('replyin').focus(), 0); break;
     case 'daud': keepDraft(); S.draft.aud = t.dataset.v; render(); break;
     case 'postann': { keepDraft(); const d = S.draft; if (!d.title.trim() || !d.body.trim()) { toast('Add a title and a message'); return; }
       if (d.pin) S.announcements.forEach(a => a.pinned = false);
@@ -584,7 +594,8 @@ document.addEventListener('click', e => {
 document.addEventListener('submit', e => {
   const f = e.target.dataset.form; if (!f) return; e.preventDefault();
   if (f === 'signin') { S.signinStep = 1; renderSignin(); }
-  if (f === 'chat') { const v = $('chatin').value.trim(); if (!v) return; S.chat.push({ id: ++chatId, group: myGroup(), author: S.me, body: v, day: 'Today', time: 'Now', ask: S.chatAsk, done: false }); S.chatAsk = false; render(); setTimeout(() => $('chatin') && $('chatin').focus(), 0); }
+  if (f === 'post') { const v = $('postin').value.trim(); if (!v) { toast('Write something first'); return; } S.posts.unshift({ id: ++postId, group: myGroup(), author: S.me, body: v, time: 'Just now', ask: S.postAsk, done: false, replies: [] }); S.postAsk = false; render(); toast(S.posts[0].ask ? 'Posted. The guys will see you need a hand.' : 'Posted to your group'); }
+  if (f === 'reply') { const v = $('replyin').value.trim(); if (!v) return; S.posts.find(p => p.id === +e.target.dataset.id).replies.push({ author: S.me, body: v }); S.replyOpen = null; render(); }
   if (f === 'dm') { const v = $('dmin').value.trim(); if (!v) return; S.convos.find(c => c.with === S.sheet.arg).msgs.push({ from: S.me, body: v, time: 'Now' }); renderSheet(); setTimeout(() => $('dmin') && $('dmin').focus(), 0); }
 });
 render();
