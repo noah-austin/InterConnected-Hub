@@ -57,3 +57,11 @@ The first real build: logins, saved posts, notifications, on Railway with a data
 - **Sign-in screen** shows the no-password emailed-link flow (simulated).
 - **Sample content to confirm with Noah:** the Saturday time (shown as 8:00 AM) and Thursday time (7:00 PM), the lesson titles and dates in Matthew, and every man's name except Noah and Bryan (fictional).
 - **Demo flow:** sign in → This Week → Updates → My Group (reply) → Prayer (Mark, his note, Message Mark) → Files → shield icon → leader view as Bryan: post an announcement, upload files → tap "Member view" → it's on Noah's This Week.
+
+## Revision 2 (Oct 25, Noah) — second pass
+- **Prayer → Prayer Chain.** The intent is that partners *call* each other. Partner card shows name, **cell number, Call and Text buttons**. The sample prayer note is removed. This Week shows the partner with a Call button.
+- **My Group → Group Chat.** It's a casual group text now (bubbles, input at the bottom). An **Ask** toggle marks a message as "Asking for help"; open asks are summarized at the top; the asker can mark it "taken care of." No threads.
+- **Phone numbers:** collected once at sign-up ("Welcome" step: name, cell, group); shared only with your prayer partner and leaders. Leader roster shows numbers.
+- **Leader Prayer Chain:** "Send this week's pairs" texts each man his partner's name and number. Later: new pairs go out automatically every Saturday morning.
+- **Flow (member):** sign in by emailed link → confirm name, cell, group (first time only) → This Week (lesson, meeting, latest update, your partner with Call, this week's files) → Updates → Group Chat → Prayer Chain → Files. Private messages stay behind the chat icon at the top.
+- Sample phone numbers are fictional (555-01xx).

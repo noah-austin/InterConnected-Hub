@@ -85,18 +85,6 @@ input, textarea, select { font: inherit; color: var(--ink); }
 .lessonhead { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin-bottom: 8px; }
 .lessonhead strong { font-size: .95rem; }
 
-/* group feed */
-.composer { display: flex; gap: 10px; align-items: center; }
-.composer .fake { flex: 1; background: var(--bg); border-radius: 999px; padding: 10px 14px; color: var(--muted); text-align: left; }
-.av { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; font-size: .8rem; color: #fff; flex: none; }
-.av.lg { width: 56px; height: 56px; font-size: 1.1rem; }
-.post .who { font-weight: 600; font-size: .9rem; }
-.post .when { font-size: .76rem; color: var(--muted); }
-.post p { margin: 8px 0 0; white-space: pre-wrap; }
-.post .foot { margin-top: 10px; font-size: .82rem; color: var(--blue); font-weight: 600; }
-.reply { display: flex; gap: 10px; padding: 10px 0; border-top: 1px solid var(--line); }
-.reply p { margin: 2px 0 0; }
-
 /* prayer chain */
 .partner { text-align: center; padding: 22px 16px; }
 .partner .av { margin: 0 auto 10px; }
@@ -108,6 +96,42 @@ input, textarea, select { font: inherit; color: var(--ink); }
 .pair .x { color: var(--muted); flex: none; }
 .pair .n { flex: 1; min-width: 0; }
 .pair.me { font-weight: 700; color: var(--blue); }
+
+/* avatars */
+.av { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; font-size: .8rem; color: #fff; flex: none; }
+.av.lg { width: 56px; height: 56px; font-size: 1.1rem; margin: 0 auto 10px; }
+
+/* group chat */
+.chat { display: grid; gap: 6px; }
+.daysep { text-align: center; font-size: .72rem; color: var(--muted); font-weight: 600; margin: 8px 0 2px; }
+.msg { display: flex; gap: 8px; align-items: flex-end; max-width: 88%; }
+.msg.mine { margin-left: auto; flex-direction: row-reverse; }
+.msg .av { width: 28px; height: 28px; font-size: .62rem; }
+.msg .b { background: #fff; border: 1px solid var(--line); border-radius: 16px 16px 16px 4px; padding: 8px 12px; min-width: 0; }
+.msg.mine .b { background: var(--blue); border-color: var(--blue); color: #fff; border-radius: 16px 16px 4px 16px; }
+.msg .who { font-size: .72rem; font-weight: 700; color: var(--muted); margin-bottom: 1px; }
+.msg .txt { white-space: pre-wrap; overflow-wrap: anywhere; }
+.msg .tm { font-size: .66rem; opacity: .65; margin-top: 2px; }
+.msg.ask .b { background: var(--amber-soft); border-color: #F3D9B8; color: var(--ink); }
+.msg.ask.done .b { background: #fff; border-color: var(--line); }
+.asklabel { display: inline-flex; align-items: center; gap: 4px; font-size: .68rem; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; color: var(--amber); margin-bottom: 2px; }
+.msg.done .asklabel { color: var(--green); }
+.linkbtn { font-size: .74rem; font-weight: 700; color: var(--amber); text-decoration: underline; margin-top: 4px; }
+.chatbar { flex: none; display: flex; gap: 8px; align-items: center; padding: 8px 12px; background: #fff; border-top: 1px solid var(--line); }
+.chatbar input { flex: 1; min-width: 0; border: 1px solid var(--line); border-radius: 999px; padding: 10px 14px; background: var(--bg); outline: none; }
+.chatbar input:focus { border-color: var(--blue); }
+.askchip { flex: none; border: 1px solid var(--line); border-radius: 999px; padding: 8px 11px; font-size: .8rem; font-weight: 700; color: var(--muted); background: #fff; }
+.askchip.on { background: var(--amber-soft); border-color: #F3D9B8; color: var(--amber); }
+.openasks { background: var(--amber-soft); border: 1px solid #F3D9B8; border-radius: 12px; padding: 10px 12px; font-size: .84rem; margin-bottom: 8px; }
+.openasks strong { color: var(--amber); }
+
+/* prayer chain */
+.phone { font-size: 1.15rem; font-weight: 700; letter-spacing: .01em; margin-top: 6px; font-variant-numeric: tabular-nums; }
+.callrow { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; }
+.callbtn { display: inline-flex; justify-content: center; align-items: center; gap: 8px; border-radius: 12px; padding: 12px; font-weight: 700; text-decoration: none; background: var(--blue); color: #fff; }
+.callbtn.alt { background: var(--blue-soft); color: var(--blue); }
+.minicall { display: inline-flex; align-items: center; gap: 6px; border-radius: 999px; padding: 8px 12px; font-weight: 700; font-size: .84rem; text-decoration: none; background: var(--blue); color: #fff; flex: none; }
+.ph { font-size: .8rem; color: var(--muted); font-variant-numeric: tabular-nums; flex: none; }
 
 /* tabs */
 .tabs { flex: none; display: grid; grid-template-columns: repeat(5, 1fr); background: #fff; border-top: 1px solid var(--line); padding: 6px 4px calc(env(safe-area-inset-bottom, 0px) + 6px); }
@@ -157,7 +181,8 @@ input, textarea, select { font: inherit; color: var(--ink); }
 .signin { position: absolute; inset: 0; z-index: 40; background: linear-gradient(170deg, var(--navy-2), var(--navy)); color: #fff; display: flex; flex-direction: column; justify-content: center; padding: 32px 28px calc(env(safe-area-inset-bottom, 0px) + 32px); gap: 18px; }
 .signin .big { font-size: 1.8rem; font-weight: 800; letter-spacing: -.02em; margin: 0; }
 .signin p { color: #C9D6EE; margin: 0; }
-.signin input { width: 100%; border: 0; border-radius: 12px; padding: 14px; font-size: 1rem; }
+.signin form input { width: 100%; border: 0; border-radius: 12px; padding: 14px; font-size: 1rem; }
+.signin .mailcard p { color: var(--muted); }
 .signin .powered { font-size: .76rem; color: #8FA3C7; text-align: center; }
 .mailcard { background: #fff; color: var(--ink); border-radius: 14px; padding: 16px; }
 
@@ -174,6 +199,7 @@ input, textarea, select { font: inherit; color: var(--ink); }
   <header class="top" id="top"></header>
   <div class="leaderbar" id="leaderbar" hidden></div>
   <main class="screen" id="screen"></main>
+  <form class="chatbar" id="chatbar" data-form="chat" hidden></form>
   <nav class="tabs" id="tabs"></nav>
   <section class="sheet" id="sheet" aria-hidden="true"></section>
   <div class="signin" id="signin"></div>
@@ -202,6 +228,8 @@ const I = {
   chev: '<path d="m9 5 7 7-7 7"/>',
   mail: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/>',
   cal: '<rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/>',
+  phone: '<path d="M5 3.5h3.2l1.6 4.2-2.1 1.3a11 11 0 0 0 5.3 5.3l1.3-2.1 4.2 1.6V17a2 2 0 0 1-2 2A15.5 15.5 0 0 1 3 5.5a2 2 0 0 1 2-2z"/>',
+  check: '<path d="m5 12.5 4.5 4.5L19 7.5"/>',
   book: '<path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5"/>',
 };
 const ic = (n, s = 22, sw = 1.9) => `<svg viewBox="0 0 24 24" width="${s}" height="${s}" fill="none" stroke="currentColor" stroke-width="${sw}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${I[n]}</svg>`;
@@ -215,7 +243,8 @@ const THU = ['Carl Jensen', 'Hector Ruiz', 'Neil Patterson', 'Frank Osei', 'Gary
 const men = {};
 const addMan = (name, group, leader = false) => {
   const id = name.toLowerCase().replace(/[^a-z]/g, '');
-  men[id] = { id, name, group, leader, initials: name.split(' ').map(w => w[0]).join(''), color: COLORS[Object.keys(men).length % COLORS.length] };
+  const k = Object.keys(men).length;
+  men[id] = { id, name, group, leader, initials: name.split(' ').map(w => w[0]).join(''), color: COLORS[k % COLORS.length], phone: `(512) 555-01${String(k).padStart(2, '0')}` };
   return id;
 };
 addMan('Bryan Bailey', 'both', true);
@@ -240,7 +269,7 @@ const LESSONS = [
 ];
 const CURRENT = 7;
 
-let annId = 10, postId = 10, fileId = 20;
+let annId = 10, chatId = 20, fileId = 20;
 const S = {
   me: NOAH, mode: 'member', tab: 'week', ltab: 'announce', signedIn: false, signinStep: 0,
   announcements: [
@@ -249,17 +278,19 @@ const S = {
     { id: 3, from: BRYAN, aud: 'sat', title: 'Coffee and donuts this Saturday', body: 'Doors open at 7:40. Come early, grab a coffee and meet the two new guys joining us.', time: 'Oct 21', pinned: false },
     { id: 4, from: BRYAN, aud: 'thu', title: 'Zoom link is the same as last week', body: 'Same link as always. Tap "Join on Zoom" from the This Week screen.', time: 'Oct 20', pinned: false },
   ],
-  posts: [
-    { id: 1, group: 'sat', author: 'markellison', body: 'Day 3 question: in 6:6 Jesus says to pray behind a closed door. How are you guys squaring that with praying together as a group on Saturdays?', time: '2h', replies: [
-      { author: 'jimwhitaker', body: 'I read it as being about motive, not location. Who am I trying to impress?', time: '1h' },
-      { author: BRYAN, body: 'Great question. Hold onto it, we\'ll spend time on it Saturday.', time: '40m' },
-    ] },
-    { id: 2, group: 'sat', author: 'rayholloway', body: 'Anyone know a good mechanic in Buda? My truck is making a noise I can\'t ignore anymore.', time: '5h', replies: [
-      { author: 'luisromero', body: 'Call me, my brother-in-law runs a shop on Main. Honest guy.', time: '4h' },
-    ] },
-    { id: 3, group: 'sat', author: 'tomalvarez', body: 'Thank you to everyone who brought meals last week. My wife and I felt carried. Recovery is going well.', time: 'Yesterday', replies: [] },
-    { id: 4, group: 'thu', author: 'hectorruiz', body: 'Lesson 7 Day 2 took me longer than usual. Worth every minute.', time: 'Yesterday', replies: [] },
+  chat: [
+    { id: 1, group: 'sat', author: 'jimwhitaker', body: 'Anybody else find Day 3 tough this week?', day: 'Yesterday', time: '7:42 PM' },
+    { id: 2, group: 'sat', author: 'markellison', body: 'Yes. 6:6 got me. Who am I actually praying to impress?', day: 'Yesterday', time: '7:55 PM' },
+    { id: 3, group: 'sat', author: BRYAN, body: 'Good stuff. Bring that Saturday.', day: 'Yesterday', time: '8:10 PM' },
+    { id: 4, group: 'sat', author: 'tomalvarez', body: 'Thank you all for the meals last week. Recovery is going well.', day: 'Today', time: '6:58 AM' },
+    { id: 5, group: 'sat', author: 'rayholloway', body: 'Anyone know a good mechanic in Buda? Truck is making a noise I can\'t ignore.', day: 'Today', time: '8:20 AM', ask: true, done: false },
+    { id: 6, group: 'sat', author: 'luisromero', body: 'My brother-in-law has a shop on Main. I\'ll text you his number.', day: 'Today', time: '8:31 AM' },
+    { id: 7, group: 'sat', author: 'greglawson', body: 'Need two guys to help move a couch Saturday after class. Pizza on me.', day: 'Today', time: '9:05 AM', ask: true, done: false },
+    { id: 8, group: 'sat', author: 'danmercer', body: 'I\'m in.', day: 'Today', time: '9:11 AM' },
+    { id: 9, group: 'thu', author: 'hectorruiz', body: 'Lesson 7 Day 2 took me longer than usual. Worth every minute.', day: 'Yesterday', time: '9:02 PM' },
+    { id: 10, group: 'thu', author: 'frankosei', body: 'Same here. See you all Thursday.', day: 'Today', time: '7:15 AM' },
   ],
+  chatAsk: false,
   files: [
     { id: 1, lesson: 7, name: 'Lesson 7 Lecture Notes.pdf', type: 'pdf', size: '1.2 MB', by: BRYAN, date: 'Oct 26', aud: 'all' },
     { id: 2, lesson: 7, name: 'Matthew 6 Observation Worksheet.pdf', type: 'pdf', size: '340 KB', by: BRYAN, date: 'Oct 26', aud: 'all' },
@@ -272,11 +303,9 @@ const S = {
   ],
   pairs: { sat: [], thu: [] },
   week: 'Oct 31 – Nov 6',
-  partnerNote: { markellison: 'Pray for my dad\'s heart surgery on Tuesday, and for patience with my teenagers.' },
   convos: [
     { with: 'markellison', unread: true, msgs: [
-      { from: 'markellison', body: 'Hey brother, looks like we\'re prayer partners this week.', time: '9:12 AM' },
-      { from: 'markellison', body: 'Dad\'s surgery is Tuesday morning. Appreciate you.', time: '9:13 AM' },
+      { from: 'markellison', body: 'Hey brother, we\'re partners this week. I\'ll give you a call Tuesday evening if that works.', time: '9:12 AM' },
     ] },
     { with: BRYAN, unread: false, msgs: [
       { from: BRYAN, body: 'Glad you\'re in the Saturday group. Let me know if you need a workbook.', time: 'Oct 18' },
@@ -326,7 +355,7 @@ function renderTop() {
   lb.hidden = S.mode !== 'leader';
   lb.innerHTML = `<span>Leader view · Bryan Bailey</span><button data-act="switch">Member view</button>`;
 }
-const MTABS = [['week', 'home', 'This Week'], ['ann', 'mega', 'Updates'], ['group', 'group', 'My Group'], ['prayer', 'pray', 'Prayer'], ['files', 'folder', 'Files']];
+const MTABS = [['week', 'home', 'This Week'], ['ann', 'mega', 'Updates'], ['group', 'group', 'Group Chat'], ['prayer', 'pray', 'Prayer Chain'], ['files', 'folder', 'Files']];
 const LTABS = [['announce', 'mega', 'Announce'], ['upload', 'upload', 'Upload'], ['chain', 'pray', 'Prayer Chain'], ['roster', 'users', 'Roster']];
 function renderTabs() {
   const leader = S.mode === 'leader', list = leader ? LTABS : MTABS, cur = leader ? S.ltab : S.tab;
@@ -349,7 +378,7 @@ function vWeek() {
       ${g.zoom ? `<button class="pillbtn" data-act="zoom">${ic('video', 16)} Join on Zoom</button>` : `<button class="pillbtn light" data-act="directions">Directions</button>`}</div>
     </div>
     ${latest ? `<div class="sec-label">Latest announcement</div>${annCard(latest)}` : ''}
-    ${partner ? `<div class="sec-label">Your prayer partner this week</div><button class="card row" data-act="tab" data-tab="prayer" style="width:100%;text-align:left">${av(partner)}<div style="flex:1"><div style="font-weight:700">${nm(partner)}</div><div class="small muted">Week of ${esc(S.week)}</div></div><span class="muted">${ic('chev', 18)}</span></button>` : ''}
+    ${partner ? `<div class="sec-label">Your prayer partner this week</div><div class="card row">${av(partner)}<button data-act="tab" data-tab="prayer" style="flex:1;min-width:0;text-align:left"><div style="font-weight:700">${nm(partner)}</div><div class="small muted">${esc(men[partner].phone)}</div></button><a class="minicall" href="tel:${telOf(partner)}">${ic('phone', 16)} Call</a></div>` : ''}
     <div class="sec-label">This week's files</div>
     <div class="card">${files.length ? files.map(fileRow).join('') : '<div class="empty">No files yet this week.</div>'}</div>`;
 }
@@ -360,10 +389,17 @@ function vAnn() {
     <p class="note">Announcements also go out by email, so nobody misses one.</p>`;
 }
 function vGroup() {
-  const g = myGroup(), list = S.posts.filter(p => p.group === g);
-  return `<div class="card composer">${av(S.me)}<button class="fake" data-act="compose">Ask a question or share something…</button></div>
-    <div class="sec-label">${esc(GROUPS[g].name)}</div>
-    <div class="stack">${list.map(p => `<article class="card post"><div class="row">${av(p.author)}<div><div class="who">${nm(p.author)}${men[p.author].leader ? ' <span class="tag green">Leader</span>' : ''}</div><div class="when">${esc(p.time)}</div></div></div><p>${esc(p.body)}</p><button class="foot" data-act="thread" data-id="${p.id}">${p.replies.length ? `${p.replies.length} ${p.replies.length === 1 ? 'reply' : 'replies'}` : 'Reply'}</button></article>`).join('')}</div>`;
+  const g = myGroup(), list = S.chat.filter(m => m.group === g);
+  const open = list.filter(m => m.ask && !m.done);
+  let lastDay = '';
+  const rows = list.map(m => {
+    const mine = m.author === S.me, day = m.day !== lastDay ? `<div class="daysep">${esc(m.day)}</div>` : '';
+    lastDay = m.day;
+    const label = m.ask ? `<div class="asklabel">${m.done ? ic('check', 12, 2.4) + ' Taken care of' : 'Asking for help'}</div>` : '';
+    const doneBtn = m.ask && !m.done && mine ? `<div><button class="linkbtn" data-act="askdone" data-id="${m.id}">Mark taken care of</button></div>` : '';
+    return `${day}<div class="msg${mine ? ' mine' : ''}${m.ask ? ' ask' : ''}${m.done ? ' done' : ''}">${mine ? '' : av(m.author)}<div class="b">${mine ? '' : `<div class="who">${nm(m.author)}${men[m.author].leader ? ' · Leader' : ''}</div>`}${label}<div class="txt">${esc(m.body)}</div><div class="tm">${esc(m.time)}</div>${doneBtn}</div></div>`;
+  }).join('');
+  return `${open.length ? `<div class="openasks"><strong>${open.length} open ${open.length === 1 ? 'ask' : 'asks'}:</strong> ${open.map(m => esc(men[m.author].name.split(' ')[0]) + ' (' + esc(m.body.slice(0, 38)) + (m.body.length > 38 ? '…' : '') + ')').join(' · ')}</div>` : ''}<div class="chat">${rows}</div>`;
 }
 function partnerOf(id) {
   const g = men[id].group === 'both' ? null : men[id].group;
@@ -371,16 +407,18 @@ function partnerOf(id) {
   const p = S.pairs[g].find(x => x.includes(id));
   return p ? p.find(x => x !== id) : null;
 }
+const telOf = id => men[id].phone.replace(/[^0-9]/g, '');
 function vPrayer() {
   const g = myGroup(), partner = partnerOf(S.me), pairs = S.pairs[g];
-  const others = partner ? S.pairs[g].find(x => x.includes(S.me)).filter(x => x !== S.me) : [];
+  const mine = partner ? pairs.find(x => x.includes(S.me)).filter(x => x !== S.me) : [];
   return `<div class="sec-label">Week of ${esc(S.week)}</div>
-    ${partner ? `<div class="card partner"><div class="small muted" style="font-weight:600;margin-bottom:12px">You're praying for</div>${av(partner, 'lg')}<div class="name">${others.map(nm).join(' & ')}</div><div class="small muted">and ${others.length > 1 ? 'they are' : 'he is'} praying for you</div>
-      ${S.partnerNote[partner] ? `<div class="pnote">“${esc(S.partnerNote[partner])}”</div>` : ''}
-      <div class="row" style="justify-content:center;margin-top:14px"><button class="pillbtn" data-act="dm" data-id="${partner}">${ic('msg', 16)} Message ${esc(men[partner].name.split(' ')[0])}</button></div></div>` : ''}
+    ${partner ? `<div class="card partner"><div class="small muted" style="font-weight:600;margin-bottom:12px">This week, call and pray for</div>
+      ${mine.map(id => `<div style="margin-bottom:6px">${av(id, 'lg')}<div class="name">${nm(id)}</div><div class="phone">${esc(men[id].phone)}</div></div>`).join('')}
+      <div class="small muted">${mine.length > 1 ? 'They\'re' : 'He\'s'} calling you this week too.</div>
+      <div class="callrow"><a class="callbtn" href="tel:${telOf(partner)}">${ic('phone', 18)} Call</a><a class="callbtn alt" href="sms:${telOf(partner)}">${ic('msg', 18)} Text</a></div></div>` : ''}
     <div class="sec-label">${esc(GROUPS[g].name)} prayer chain</div>
     <div class="card pairs">${pairs.map(p => `<div class="pair${p.includes(S.me) ? ' me' : ''}"><span class="n">${p.map(nm).join(' <span class="x">&</span> ')}</span></div>`).join('')}</div>
-    <p class="note">Pairs change every week. Each man prays for his partner, one to one.</p>`;
+    <p class="note">New partners every week. Your number is shared only with your partner and your leaders.</p>`;
 }
 function vFiles() {
   const vis = S.files.filter(f => visibleToMe(f.aud));
@@ -422,7 +460,7 @@ function vChain() {
     <div class="stack" style="margin-top:12px">
       <button class="bigbtn secondary" data-act="shuffle">${ic('shuffle', 18)} Make new pairs</button>
       <button class="bigbtn" data-act="publish">Send this week's pairs</button>
-      <p class="note" style="margin:0">Coming later: pairs rotate automatically each week.</p>
+      <p class="note" style="margin:0">Each man gets a text with his partner's name and number. Coming later: new pairs go out automatically every Saturday morning.</p>
     </div>`;
 }
 function vRoster() {
@@ -430,24 +468,17 @@ function vRoster() {
   return `<div class="seg" style="margin-bottom:6px">${['sat', 'thu'].map(k => `<button data-act="lgroup" data-v="${k}" class="${g === k ? 'on' : ''}">${GROUPS[k].name}</button>`).join('')}</div>
     <div class="sec-label">${list.length} men · ${esc(GROUPS[g].when)}</div>
     <div class="card"><div class="field"><label for="invite">Invite a man</label><div class="row"><input id="invite" type="email" placeholder="his email address"><button class="pillbtn" data-act="invite">${ic('plus', 16)} Invite</button></div></div></div>
-    <div class="card" style="margin-top:10px">${list.map(id => `<div class="pair">${av(id)}<span class="n" style="font-weight:600">${nm(id)}</span>${id === 'samokafor' || id === 'ethanmoore' ? '<span class="tag green">New</span>' : ''}</div>`).join('')}</div>`;
+    <div class="card" style="margin-top:10px">${list.map(id => `<div class="pair">${av(id)}<span class="n" style="font-weight:600">${nm(id)}${id === 'samokafor' || id === 'ethanmoore' ? ' <span class="tag green">New</span>' : ''}</span><span class="ph">${esc(men[id].phone)}</span></div>`).join('')}</div>`;
 }
 
-// ---------- sheets (thread, compose, messages) ----------
+// ---------- sheets (messages, files) ----------
 function openSheet(kind, arg) { S.sheet = { kind, arg }; renderSheet(); requestAnimationFrame(() => $('sheet').classList.add('open')); $('sheet').setAttribute('aria-hidden', 'false'); }
 function closeSheet() { if (document.activeElement) document.activeElement.blur(); $('app').scrollLeft = 0; $('sheet').classList.remove('open'); $('sheet').setAttribute('aria-hidden', 'true'); S.sheet = null; render(); }
 function sheetTop(title, sub, back = true) { return `<header class="top">${back ? `<button class="iconbtn" data-act="close" aria-label="Back">${ic('back')}</button>` : ''}<div class="t"><h1>${title}</h1>${sub ? `<p class="sub">${sub}</p>` : ''}</div></header>`; }
 function renderSheet() {
   const sh = $('sheet'); if (!S.sheet) return;
   const { kind, arg } = S.sheet;
-  if (kind === 'thread') {
-    const p = S.posts.find(x => x.id === arg);
-    sh.innerHTML = sheetTop('Conversation', esc(GROUPS[p.group].name)) + `<div class="screen"><article class="card post"><div class="row">${av(p.author)}<div><div class="who">${nm(p.author)}</div><div class="when">${esc(p.time)}</div></div></div><p>${esc(p.body)}</p>
-      <div style="margin-top:12px">${p.replies.map(r => `<div class="reply">${av(r.author)}<div><div class="who" style="font-weight:600;font-size:.88rem">${nm(r.author)} <span class="small muted" style="font-weight:400">${esc(r.time)}</span></div><p>${esc(r.body)}</p></div></div>`).join('')}</div></article></div>
-      <form class="inputbar" data-form="reply"><input id="replyin" placeholder="Write a reply…" autocomplete="off"><button class="sendbtn" aria-label="Send">${ic('send', 18)}</button></form>`;
-  } else if (kind === 'compose') {
-    sh.innerHTML = sheetTop('New post', esc(GROUPS[myGroup()].name)) + `<div class="screen"><div class="card stack"><div class="field"><label for="postin">Share with your group</label><textarea id="postin" placeholder="A question on this week's homework, a need, some encouragement…"></textarea></div><button class="bigbtn" data-act="dopost">Post to ${esc(GROUPS[myGroup()].name)}</button></div></div>`;
-  } else if (kind === 'messages') {
+  if (kind === 'messages') {
     const list = S.convos.filter(c => c.msgs.length || c.with);
     sh.innerHTML = sheetTop('Messages', 'Private, man to man') + `<div class="screen"><div class="card">${list.map(c => { const last = c.msgs[c.msgs.length - 1]; return `<button class="convo" data-act="dm" data-id="${c.with}">${av(c.with)}<div style="flex:1;min-width:0"><div class="cn">${nm(c.with)}</div><div class="cp">${last ? esc((last.from === S.me ? 'You: ' : '') + last.body) : 'Say hello'}</div></div>${c.unread ? '<span class="unread"></span>' : ''}</button>`; }).join('')}</div>
       <p class="note">Leaders can't read private messages.</p></div>`;
@@ -483,8 +514,18 @@ function renderSignin() {
     <div class="powered">Powered by Interconnected · Demo with sample data</div>` : `
     <h2 class="big">Check your email</h2>
     <p>We sent a sign-in link to ${esc($('email') ? $('email').value : 'your email')}.</p>
-    <div class="mailcard"><div class="row small muted">${ic('mail', 18)} Men's Precepts · now</div><div style="font-weight:700;margin-top:8px">Your sign-in link</div><div class="small muted" style="margin:4px 0 12px">Tap below to open Men's Precepts. This link works once.</div><button class="bigbtn" data-act="signedin">Sign in to Men's Precepts</button></div>
+    <div class="mailcard"><div class="row small muted">${ic('mail', 18)} Men's Precepts · now</div><div style="font-weight:700;margin-top:8px">Your sign-in link</div><div class="small muted" style="margin:4px 0 12px">Tap below to open Men's Precepts. This link works once.</div><button class="bigbtn" data-act="tostep2">Sign in to Men's Precepts</button></div>
     <div class="powered">Demo: the email is simulated.</div>`;
+  if (S.signinStep === 2) el.innerHTML = `
+    <h2 class="big">Welcome</h2>
+    <p>One time only. Confirm your info so your prayer partner can reach you.</p>
+    <div class="mailcard stack">
+      <div class="field"><label for="pname">Your name</label><input id="pname" value="Noah Austin"></div>
+      <div class="field"><label for="pphone">Cell number</label><input id="pphone" type="tel" value="${esc(men[NOAH].phone)}"></div>
+      <div class="field"><label for="pgroup">Your group</label><select id="pgroup"><option>Saturday Group (Bryan Bailey)</option><option>Thursday Group on Zoom (Bryan Bailey)</option></select></div>
+      <p class="small muted" style="margin:0">Your number is shared only with your prayer partner and your leaders.</p>
+      <button class="bigbtn" data-act="signedin">Join Men's Precepts</button>
+    </div>`;
 }
 
 // ---------- render ----------
@@ -494,7 +535,14 @@ function render() {
     ? { announce: vAnnounce, upload: vUpload, chain: vChain, roster: vRoster }[S.ltab]()
     : { week: vWeek, ann: vAnn, group: vGroup, prayer: vPrayer, files: vFiles }[S.tab]();
   $('screen').innerHTML = v;
+  const inChat = S.mode === 'member' && S.tab === 'group';
+  $('chatbar').hidden = !inChat;
+  if (inChat) { renderChatbar(); requestAnimationFrame(() => { $('screen').scrollTop = $('screen').scrollHeight; }); }
   const fi = $('ufile'); if (fi) fi.onchange = e => { [...e.target.files].forEach(f => S.up.picked.push({ name: f.name, type: ftype(f.name), size: f.size > 1e6 ? (f.size / 1e6).toFixed(1) + ' MB' : Math.max(1, Math.round(f.size / 1e3)) + ' KB' })); render(); };
+}
+function renderChatbar() {
+  const v = $('chatin') ? $('chatin').value : '';
+  $('chatbar').innerHTML = `<button type="button" class="askchip${S.chatAsk ? ' on' : ''}" data-act="askchip" aria-pressed="${S.chatAsk}">${S.chatAsk ? 'Asking' : 'Ask'}</button><input id="chatin" placeholder="${S.chatAsk ? 'What do you need help with?' : 'Message the ' + esc(GROUPS[myGroup()].name) + '…'}" autocomplete="off" value="${esc(v)}"><button class="sendbtn" aria-label="Send">${ic('send', 18)}</button>`;
 }
 const keepDraft = () => { const t = $('atitle'), b = $('abody'), p = $('apin'); if (t) S.draft.title = t.value; if (b) S.draft.body = b.value; if (p) S.draft.pin = p.checked; };
 
@@ -509,14 +557,13 @@ document.addEventListener('click', e => {
     case 'switch': keepDraft(); S.mode = S.mode === 'leader' ? 'member' : 'leader'; S.me = S.mode === 'leader' ? BRYAN : NOAH; if (S.mode === 'member') S.tab = 'week'; if (S.sheet) closeSheet(); render(); toast(S.mode === 'leader' ? 'Leader view: Bryan Bailey' : 'Back to Noah\'s view'); break;
     case 'messages': openSheet('messages'); break;
     case 'dm': openSheet('dm', t.dataset.id); break;
-    case 'thread': openSheet('thread', +t.dataset.id); break;
-    case 'compose': openSheet('compose'); break;
     case 'openfile': openSheet('file', +t.dataset.id); break;
     case 'close': closeSheet(); break;
     case 'zoom': toast('Opens Zoom (demo)'); break;
     case 'directions': toast('Opens Maps to Austin Ridge (demo)'); break;
     case 'fakeopen': toast('Opens the file on your phone (demo)'); break;
-    case 'dopost': { const v = $('postin').value.trim(); if (!v) { toast('Write something first'); return; } S.posts.unshift({ id: ++postId, group: myGroup(), author: S.me, body: v, time: 'Just now', replies: [] }); closeSheet(); S.tab = 'group'; render(); toast('Posted to your group'); break; }
+    case 'askchip': S.chatAsk = !S.chatAsk; renderChatbar(); $('chatin').focus(); break;
+    case 'askdone': { const m = S.chat.find(x => x.id === +t.dataset.id); m.done = true; render(); toast('Marked taken care of'); break; }
     case 'daud': keepDraft(); S.draft.aud = t.dataset.v; render(); break;
     case 'postann': { keepDraft(); const d = S.draft; if (!d.title.trim() || !d.body.trim()) { toast('Add a title and a message'); return; }
       if (d.pin) S.announcements.forEach(a => a.pinned = false);
@@ -528,15 +575,16 @@ document.addEventListener('click', e => {
     case 'doupload': { if (!S.up.picked.length) return; S.up.lesson = +$('ulesson').value; const n = S.up.picked.length; S.up.picked.forEach(p => S.files.unshift({ id: ++fileId, lesson: S.up.lesson, name: p.name, type: p.type, size: p.size, by: BRYAN, date: 'Today', aud: S.up.aud })); S.up.picked = []; render(); toast(`${n} ${n === 1 ? 'file' : 'files'} added to Lesson ${S.up.lesson}`); break; }
     case 'lgroup': S.lgroup = t.dataset.v; render(); break;
     case 'shuffle': S.pairs[S.lgroup] = makePairs(groupIds(S.lgroup)); render(); toast('New pairs ready. Send when you\'re happy.'); break;
-    case 'publish': toast(`Pairs sent to the ${GROUPS[S.lgroup].name}`); break;
+    case 'publish': toast(`Texted each man in the ${GROUPS[S.lgroup].name} his partner`); break;
     case 'invite': { const v = ($('invite').value || '').trim(); if (!/^\S+@\S+\.\S+$/.test(v)) { toast('Enter an email address'); return; } $('invite').value = ''; toast('Invite ready. In the real app it emails a sign-in link.'); break; }
+    case 'tostep2': S.signinStep = 2; renderSignin(); break;
     case 'signedin': S.signedIn = true; render(); toast('Welcome, Noah'); break;
   }
 });
 document.addEventListener('submit', e => {
   const f = e.target.dataset.form; if (!f) return; e.preventDefault();
   if (f === 'signin') { S.signinStep = 1; renderSignin(); }
-  if (f === 'reply') { const v = $('replyin').value.trim(); if (!v) return; S.posts.find(p => p.id === S.sheet.arg).replies.push({ author: S.me, body: v, time: 'Just now' }); renderSheet(); }
+  if (f === 'chat') { const v = $('chatin').value.trim(); if (!v) return; S.chat.push({ id: ++chatId, group: myGroup(), author: S.me, body: v, day: 'Today', time: 'Now', ask: S.chatAsk, done: false }); S.chatAsk = false; render(); setTimeout(() => $('chatin') && $('chatin').focus(), 0); }
   if (f === 'dm') { const v = $('dmin').value.trim(); if (!v) return; S.convos.find(c => c.with === S.sheet.arg).msgs.push({ from: S.me, body: v, time: 'Now' }); renderSheet(); setTimeout(() => $('dmin') && $('dmin').focus(), 0); }
 });
 render();
