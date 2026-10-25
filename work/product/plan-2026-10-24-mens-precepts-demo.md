@@ -1,7 +1,7 @@
 # Plan — Men's Precepts demo (Austin Ridge)
 
 **Owner:** this session (Noah, Oct 24: "we'll just do everything from here"). **Asked for by:** Noah, Oct 24, 2026. **Due:** shown to Bryan Bailey after class the weekend of Oct 31–Nov 1. Draft to Noah by Wed Oct 28.
-**Status:** archetype agreed in conversation Oct 24; **do not build yet** (Noah). Answers: Noah is in Bryan's **Saturday** group; current study is **Matthew**; Bryan's real name OK in the demo.
+**Status:** **built Oct 25** (Noah: "Build it"). Live demo: https://mens-precepts.up.railway.app · source `work/product/precepts-demo/index.html`. Answers: Noah is in Bryan's **Saturday** group; current study is **Matthew**; Bryan's real name OK in the demo.
 
 ## The situation
 - **Men's Precepts at Austin Ridge:** an inductive Bible study ministry, about a dozen leader-led groups meeting **Thursday** and **Saturday**, some on **Zoom**. Bryan Bailey leads a Thursday (Zoom) and a Saturday group. Noah is a member, not a leader. Noah's estimate is two groups of about 25 men each in his part of it.
@@ -47,3 +47,13 @@ A standalone file in `work/product/precepts-demo/`, kept off the public site (`/
 
 ## After the demo (only if Bryan says yes)
 The first real build: logins, saved posts, notifications, on Railway with a database. Estimate 2–3 weeks to a version the men can trust. Scope set with Bryan; no date promised before he's seen the demo.
+
+## Revision (Oct 25, Noah) — what was built
+- **Removed:** homework check-off · submitting prayer requests · men directory.
+- **Added:** weekly files that a leader or admin uploads; the men open them (members don't submit anything).
+- **Prayer chain:** one-to-one pairs, mutual, changing weekly (an odd man out makes one group of three). The leader makes new pairs and sends them by hand for now; **automatic weekly rotation comes later.**
+- **Private messages:** kept, behind the message icon in the header.
+- **Tabs (member):** This Week · Updates (announcements) · My Group · Prayer · Files. **Leader view (Bryan):** Announce · Upload · Prayer Chain · Roster.
+- **Sign-in screen** shows the no-password emailed-link flow (simulated).
+- **Sample content to confirm with Noah:** the Saturday time (shown as 8:00 AM) and Thursday time (7:00 PM), the lesson titles and dates in Matthew, and every man's name except Noah and Bryan (fictional).
+- **Demo flow:** sign in → This Week → Updates → My Group (reply) → Prayer (Mark, his note, Message Mark) → Files → shield icon → leader view as Bryan: post an announcement, upload files → tap "Member view" → it's on Noah's This Week.
