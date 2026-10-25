@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="light only">
+<meta name="theme-color" content="#0F1B33">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Men's Precepts">
+<title>Men's Precepts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+/* Men's Precepts demo, built on Interconnected. Sample data only; nothing is saved. */
+:root {
+  --blue: #2563EB; --blue-soft: #E8EFFD; --navy: #0F1B33; --navy-2: #1B2A4A;
+  --ink: #1F2937; --muted: #6B7280; --line: #E5E7EB; --bg: #F3F4F6; --card: #FFFFFF;
+  --green: #059669; --green-soft: #E3F5EE; --amber: #B45309; --amber-soft: #FDF1E3;
+  --font: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: light only;
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+[hidden] { display: none !important; }
+html, body { height: 100%; }
+body { margin: 0; background: var(--navy); color: var(--ink); font-family: var(--font); font-size: 15px; line-height: 1.45; }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+input, textarea, select { font: inherit; color: var(--ink); }
+.app { max-width: 480px; margin: 0 auto; height: 100%; display: flex; flex-direction: column; background: var(--bg); position: relative; overflow: hidden; overflow: clip; }
+@media (min-width: 520px) { body { padding: 24px 0; } .app { height: calc(100% - 48px); border-radius: 28px; box-shadow: 0 30px 80px rgba(0,0,0,.35); } }
+
+/* header */
+.top { background: var(--navy); color: #fff; padding: calc(env(safe-area-inset-top, 0px) + 14px) 16px 14px; display: flex; align-items: center; gap: 12px; flex: none; }
+.top .mark { width: 34px; height: 34px; border-radius: 9px; background: rgba(255,255,255,.08); display: grid; place-items: center; flex: none; }
+.top .t { flex: 1; min-width: 0; }
+.top h1 { font-size: 1.02rem; font-weight: 700; margin: 0; letter-spacing: -.01em; }
+.top .sub { font-size: .78rem; color: #AFC0DE; margin: 0; }
+.iconbtn { width: 38px; height: 38px; border-radius: 10px; display: grid; place-items: center; position: relative; color: #fff; }
+.iconbtn:hover { background: rgba(255,255,255,.08); }
+.badge { position: absolute; top: 3px; right: 3px; min-width: 17px; height: 17px; border-radius: 9px; background: #EF4444; color: #fff; font-size: .68rem; font-weight: 700; display: grid; place-items: center; padding: 0 4px; }
+.leaderbar { background: var(--amber-soft); color: var(--amber); font-size: .8rem; font-weight: 600; padding: 8px 16px; display: flex; justify-content: space-between; align-items: center; flex: none; }
+.leaderbar button { text-decoration: underline; font-weight: 600; color: var(--amber); }
+
+/* body */
+.screen { flex: 1; overflow-y: auto; padding: 16px 16px 24px; -webkit-overflow-scrolling: touch; }
+.sec-label { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin: 18px 2px 8px; }
+.sec-label:first-child { margin-top: 2px; }
+.card { background: var(--card); border-radius: 14px; padding: 14px; border: 1px solid var(--line); }
+.stack { display: grid; gap: 10px; }
+.h2 { font-size: 1.25rem; font-weight: 800; letter-spacing: -.02em; margin: 0; }
+.muted { color: var(--muted); }
+.small { font-size: .82rem; }
+.row { display: flex; align-items: center; gap: 10px; }
+.spacer { flex: 1; }
+
+/* lesson hero */
+.lesson { background: linear-gradient(160deg, var(--navy-2), var(--navy)); color: #fff; border: 0; padding: 18px; }
+.lesson .eyebrow { font-size: .72rem; text-transform: uppercase; letter-spacing: .1em; color: #93B4F5; font-weight: 700; }
+.lesson .title { font-size: 1.35rem; font-weight: 800; letter-spacing: -.02em; margin: 4px 0 2px; }
+.lesson .passage { color: #C9D6EE; font-weight: 500; }
+.meet { margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,.12); display: flex; gap: 12px; align-items: center; }
+.meet .when { font-weight: 600; }
+.meet .where { color: #C9D6EE; font-size: .85rem; }
+.pillbtn { display: inline-flex; align-items: center; gap: 6px; background: var(--blue); color: #fff; border-radius: 999px; padding: 8px 14px; font-weight: 600; font-size: .85rem; }
+.pillbtn.ghost { background: var(--blue-soft); color: var(--blue); }
+.pillbtn.light { background: rgba(255,255,255,.12); color: #fff; }
+
+/* announcement */
+.ann .meta { font-size: .78rem; color: var(--muted); display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+.ann h3 { font-size: 1rem; margin: 4px 0 4px; }
+.ann p { margin: 0; }
+.tag { font-size: .7rem; font-weight: 700; border-radius: 999px; padding: 2px 8px; background: var(--blue-soft); color: var(--blue); }
+.tag.pin { background: var(--amber-soft); color: var(--amber); }
+.tag.green { background: var(--green-soft); color: var(--green); }
+
+/* files */
+.file { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid var(--line); }
+.file:first-child { border-top: 0; padding-top: 0; }
+.file:last-child { padding-bottom: 0; }
+.ficon { width: 38px; height: 44px; border-radius: 7px; display: grid; place-items: center; font-size: .62rem; font-weight: 800; color: #fff; flex: none; letter-spacing: .03em; }
+.ficon.pdf { background: #DC2626; } .ficon.doc { background: #2563EB; } .ficon.audio { background: #7C3AED; } .ficon.slides { background: #D97706; } .ficon.sheet { background: #059669; }
+.file .fn { font-weight: 600; font-size: .9rem; overflow-wrap: anywhere; }
+.file .fm { font-size: .76rem; color: var(--muted); }
+.lessonhead { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin-bottom: 8px; }
+.lessonhead strong { font-size: .95rem; }
+
+/* group feed */
+.composer { display: flex; gap: 10px; align-items: center; }
+.composer .fake { flex: 1; background: var(--bg); border-radius: 999px; padding: 10px 14px; color: var(--muted); text-align: left; }
+.av { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; font-size: .8rem; color: #fff; flex: none; }
+.av.lg { width: 56px; height: 56px; font-size: 1.1rem; }
+.post .who { font-weight: 600; font-size: .9rem; }
+.post .when { font-size: .76rem; color: var(--muted); }
+.post p { margin: 8px 0 0; white-space: pre-wrap; }
+.post .foot { margin-top: 10px; font-size: .82rem; color: var(--blue); font-weight: 600; }
+.reply { display: flex; gap: 10px; padding: 10px 0; border-top: 1px solid var(--line); }
+.reply p { margin: 2px 0 0; }
+
+/* prayer chain */
+.partner { text-align: center; padding: 22px 16px; }
+.partner .av { margin: 0 auto 10px; }
+.partner .name { font-size: 1.3rem; font-weight: 800; letter-spacing: -.02em; }
+.pnote { margin-top: 14px; background: var(--bg); border-radius: 10px; padding: 10px 12px; font-size: .9rem; text-align: left; color: var(--ink); }
+.pairs { display: grid; gap: 0; }
+.pair { display: flex; align-items: center; gap: 8px; padding: 10px 0; border-top: 1px solid var(--line); font-size: .9rem; }
+.pair:first-child { border-top: 0; padding-top: 0; }
+.pair .x { color: var(--muted); flex: none; }
+.pair .n { flex: 1; min-width: 0; }
+.pair.me { font-weight: 700; color: var(--blue); }
+
+/* tabs */
+.tabs { flex: none; display: grid; grid-template-columns: repeat(5, 1fr); background: #fff; border-top: 1px solid var(--line); padding: 6px 4px calc(env(safe-area-inset-bottom, 0px) + 6px); }
+.tabs.four { grid-template-columns: repeat(4, 1fr); }
+.tab { display: grid; justify-items: center; gap: 2px; padding: 6px 0; font-size: .64rem; min-width: 0; font-weight: 600; color: var(--muted); }
+.tab.on { color: var(--blue); }
+.tab svg { width: 22px; height: 22px; }
+
+/* overlays */
+.sheet { position: absolute; inset: 0; background: var(--bg); display: flex; flex-direction: column; z-index: 20; transform: translateX(100%); visibility: hidden; transition: transform .22s ease, visibility 0s linear .22s; }
+.sheet.open { transform: none; visibility: visible; transition: transform .22s ease; }
+.sheet .top { background: #fff; color: var(--ink); border-bottom: 1px solid var(--line); }
+.sheet .top .iconbtn { color: var(--ink); }
+.sheet .top .iconbtn:hover { background: var(--bg); }
+.sheet .top h1 { font-size: 1rem; }
+.sheet .top .sub { color: var(--muted); }
+.inputbar { flex: none; display: flex; gap: 8px; padding: 10px 12px calc(env(safe-area-inset-bottom, 0px) + 10px); background: #fff; border-top: 1px solid var(--line); }
+.inputbar input { flex: 1; border: 1px solid var(--line); border-radius: 999px; padding: 10px 14px; background: var(--bg); outline: none; }
+.inputbar input:focus { border-color: var(--blue); }
+.sendbtn { width: 42px; height: 42px; border-radius: 50%; background: var(--blue); color: #fff; display: grid; place-items: center; flex: none; }
+.bubbles { display: grid; gap: 8px; }
+.bubble { max-width: 80%; padding: 9px 13px; border-radius: 16px; background: #fff; border: 1px solid var(--line); justify-self: start; }
+.bubble.mine { background: var(--blue); color: #fff; border-color: var(--blue); justify-self: end; }
+.bubble .bt { font-size: .7rem; opacity: .7; margin-top: 2px; }
+.convo { display: flex; gap: 12px; align-items: center; padding: 12px 0; border-top: 1px solid var(--line); width: 100%; text-align: left; }
+.convo:first-child { border-top: 0; padding-top: 0; }
+.convo .cn { font-weight: 600; }
+.convo .cp { font-size: .84rem; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.convo .unread { width: 9px; height: 9px; border-radius: 50%; background: var(--blue); flex: none; }
+
+/* forms */
+.field { display: grid; gap: 6px; }
+.field label { font-size: .8rem; font-weight: 600; color: var(--muted); }
+.field input, .field textarea, .field select { width: 100%; border: 1px solid var(--line); border-radius: 10px; padding: 11px 12px; background: #fff; outline: none; }
+.field input:focus, .field textarea:focus, .field select:focus { border-color: var(--blue); }
+.field textarea { min-height: 110px; resize: vertical; }
+.seg { display: flex; gap: 6px; flex-wrap: wrap; }
+.seg button { border: 1px solid var(--line); background: #fff; border-radius: 999px; padding: 7px 12px; font-size: .84rem; font-weight: 600; }
+.seg button.on { background: var(--blue); border-color: var(--blue); color: #fff; }
+.bigbtn { width: 100%; background: var(--blue); color: #fff; border-radius: 12px; padding: 13px; font-weight: 700; }
+.bigbtn.secondary { background: var(--blue-soft); color: var(--blue); }
+.check { display: flex; gap: 8px; align-items: center; font-size: .9rem; }
+.drop { border: 2px dashed #C7D2E5; border-radius: 12px; padding: 18px; text-align: center; background: #fff; }
+.note { font-size: .78rem; color: var(--muted); text-align: center; margin-top: 4px; }
+
+/* sign in */
+.signin { position: absolute; inset: 0; z-index: 40; background: linear-gradient(170deg, var(--navy-2), var(--navy)); color: #fff; display: flex; flex-direction: column; justify-content: center; padding: 32px 28px calc(env(safe-area-inset-bottom, 0px) + 32px); gap: 18px; }
+.signin .big { font-size: 1.8rem; font-weight: 800; letter-spacing: -.02em; margin: 0; }
+.signin p { color: #C9D6EE; margin: 0; }
+.signin input { width: 100%; border: 0; border-radius: 12px; padding: 14px; font-size: 1rem; }
+.signin .powered { font-size: .76rem; color: #8FA3C7; text-align: center; }
+.mailcard { background: #fff; color: var(--ink); border-radius: 14px; padding: 16px; }
+
+/* toast */
+.toast { position: absolute; left: 50%; bottom: 84px; transform: translateX(-50%) translateY(20px); background: var(--navy); color: #fff; padding: 10px 16px; border-radius: 999px; font-size: .85rem; font-weight: 600; opacity: 0; transition: all .2s; z-index: 60; pointer-events: none; white-space: nowrap; max-width: 92%; overflow: hidden; text-overflow: ellipsis; }
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+.empty { text-align: center; color: var(--muted); padding: 24px 8px; }
+:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { .sheet, .toast { transition: none; } }
+</style>
+</head>
+<body>
+<div class="app" id="app">
+  <header class="top" id="top"></header>
+  <div class="leaderbar" id="leaderbar" hidden></div>
+  <main class="screen" id="screen"></main>
+  <nav class="tabs" id="tabs"></nav>
+  <section class="sheet" id="sheet" aria-hidden="true"></section>
+  <div class="signin" id="signin"></div>
+  <div class="toast" id="toast" role="status"></div>
+</div>
+
+<script>
+// ---------- icons (Feather-style, inline) ----------
+const I = {
+  home: '<path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>',
+  mega: '<path d="M3 11v2a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/>',
+  group: '<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.6 3.3-5.5 6.5-5.5s5.9 1.9 6.5 5.5"/><circle cx="17" cy="9" r="2.6"/><path d="M16.5 14.6c2.6.2 4.4 1.9 5 5.4"/>',
+  pray: '<path d="M12 21s-7-4.5-9-9.5C1.6 7.9 3.8 4.5 7.3 4.5c2 0 3.5 1.1 4.7 2.8 1.2-1.7 2.7-2.8 4.7-2.8 3.5 0 5.7 3.4 4.3 7-2 5-9 9.5-9 9.5z"/>',
+  folder: '<path d="M3 6.5A1.5 1.5 0 0 1 4.5 5H9l2 2.5h8.5A1.5 1.5 0 0 1 21 9v9.5a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 18.5z"/>',
+  msg: '<path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.9A8 8 0 1 1 21 12z"/>',
+  back: '<path d="M15 5l-7 7 7 7"/>',
+  x: '<path d="M6 6l12 12M18 6 6 18"/>',
+  send: '<path d="M4 12 20 4l-6 16-3-7z"/>',
+  video: '<rect x="3" y="6" width="13" height="12" rx="2"/><path d="m16 10 5-3v10l-5-3"/>',
+  pin: '<path d="M9 3h6l-1 6 4 4H6l4-4z"/><path d="M12 13v8"/>',
+  upload: '<path d="M12 16V4"/><path d="m7 9 5-5 5 5"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/>',
+  shuffle: '<path d="M16 3h5v5"/><path d="M4 20 21 3"/><path d="M21 16v5h-5"/><path d="m15 15 6 6"/><path d="M4 4l5 5"/>',
+  users: '<circle cx="12" cy="8" r="3.5"/><path d="M5 20c.7-3.7 3.5-5.6 7-5.6s6.3 1.9 7 5.6"/>',
+  plus: '<path d="M12 5v14M5 12h14"/>',
+  shield: '<path d="M12 3 4.5 6v6c0 4.4 3.2 7.7 7.5 9 4.3-1.3 7.5-4.6 7.5-9V6z"/>',
+  chev: '<path d="m9 5 7 7-7 7"/>',
+  mail: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/>',
+  cal: '<rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/>',
+  book: '<path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5"/>',
+};
+const ic = (n, s = 22, sw = 1.9) => `<svg viewBox="0 0 24 24" width="${s}" height="${s}" fill="none" stroke="currentColor" stroke-width="${sw}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${I[n]}</svg>`;
+const MARK = `<svg viewBox="0 0 26 32" width="20" height="24" aria-hidden="true"><g fill="#93B4F5"><circle cx="13" cy="3.5" r="2.4"/><circle cx="13" cy="10" r="2.4"/><circle cx="6.5" cy="12.5" r="2.2"/><circle cx="19.5" cy="12.5" r="2.2"/><circle cx="1.8" cy="12.5" r="1.6" opacity=".7"/><circle cx="24.2" cy="12.5" r="1.6" opacity=".7"/><circle cx="13" cy="16.5" r="2.4"/><circle cx="13" cy="23" r="2.4"/><circle cx="13" cy="29" r="2"/></g></svg>`;
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+// ---------- sample data ----------
+const COLORS = ['#2563EB', '#059669', '#7C3AED', '#B45309', '#DB2777', '#0891B2', '#4F46E5', '#65A30D', '#9333EA', '#DC2626', '#0F766E', '#C2410C'];
+const SAT = ['Noah Austin', 'Mark Ellison', 'Tom Alvarez', 'Chris Delgado', 'Jim Whitaker', 'Ray Holloway', 'Dan Mercer', 'Luis Romero', 'Steve Park', 'Greg Lawson', 'Matt Kessler', 'Rob Tanner', 'Ben Ashford', 'Will Carver', 'Jeff Nolan', 'Sam Okafor', 'Pete Langley', 'Ken Brady', 'Andre Wallace', 'Joe Castillo', 'Tim Reyes', 'Doug Hensley', 'Paul Whitfield', 'Ethan Moore'];
+const THU = ['Carl Jensen', 'Hector Ruiz', 'Neil Patterson', 'Frank Osei', 'Gary Lindqvist', 'Victor Hale', 'Jon Pruitt', 'Aaron Fields', 'Mike Duarte', 'Scott Rowan', 'Brent Ivers', 'Lance Coleman', 'Rick Sorensen', 'Owen Blake', 'Trevor Haynes', 'Calvin Price', 'Marcus Bell', 'Isaac Nunez'];
+const men = {};
+const addMan = (name, group, leader = false) => {
+  const id = name.toLowerCase().replace(/[^a-z]/g, '');
+  men[id] = { id, name, group, leader, initials: name.split(' ').map(w => w[0]).join(''), color: COLORS[Object.keys(men).length % COLORS.length] };
+  return id;
+};
+addMan('Bryan Bailey', 'both', true);
+SAT.forEach(n => addMan(n, 'sat'));
+THU.forEach(n => addMan(n, 'thu'));
+const NOAH = 'noahaustin', BRYAN = 'bryanbailey';
+
+const GROUPS = {
+  sat: { id: 'sat', name: 'Saturday Group', when: 'Saturdays, 8:00 AM', where: 'Austin Ridge', zoom: false },
+  thu: { id: 'thu', name: 'Thursday Group', when: 'Thursdays, 7:00 PM', where: 'On Zoom', zoom: true },
+};
+
+// Lesson titles and dates are sample content for the demo.
+const LESSONS = [
+  { n: 1, title: 'Behold, Your King', passage: 'Matthew 1–2', date: 'Sep 19' },
+  { n: 2, title: 'Prepare the Way', passage: 'Matthew 3', date: 'Sep 26' },
+  { n: 3, title: 'Tested in the Wilderness', passage: 'Matthew 4:1–11', date: 'Oct 3' },
+  { n: 4, title: 'Follow Me', passage: 'Matthew 4:12–25', date: 'Oct 10' },
+  { n: 5, title: 'The Blessed Life', passage: 'Matthew 5:1–16', date: 'Oct 17' },
+  { n: 6, title: 'Fulfilling the Law', passage: 'Matthew 5:17–48', date: 'Oct 24' },
+  { n: 7, title: 'Righteousness in Secret', passage: 'Matthew 6:1–18', date: 'Oct 31' },
+];
+const CURRENT = 7;
+
+let annId = 10, postId = 10, fileId = 20;
+const S = {
+  me: NOAH, mode: 'member', tab: 'week', ltab: 'announce', signedIn: false, signinStep: 0,
+  announcements: [
+    { id: 1, from: BRYAN, aud: 'all', title: 'Lesson 7 starts this week', body: 'Lesson 7 covers Matthew 6:1–18: giving, prayer and fasting done for an audience of One. Lecture notes and the observation worksheet are in Files.', time: 'Mon', pinned: true },
+    { id: 2, from: BRYAN, aud: 'all', title: 'No class Thanksgiving weekend', body: 'No Thursday or Saturday groups the week of Nov 26. Enjoy your families. We pick back up with Lesson 10 on Dec 3 and Dec 5.', time: 'Oct 22', pinned: false },
+    { id: 3, from: BRYAN, aud: 'sat', title: 'Coffee and donuts this Saturday', body: 'Doors open at 7:40. Come early, grab a coffee and meet the two new guys joining us.', time: 'Oct 21', pinned: false },
+    { id: 4, from: BRYAN, aud: 'thu', title: 'Zoom link is the same as last week', body: 'Same link as always. Tap "Join on Zoom" from the This Week screen.', time: 'Oct 20', pinned: false },
+  ],
+  posts: [
+    { id: 1, group: 'sat', author: 'markellison', body: 'Day 3 question: in 6:6 Jesus says to pray behind a closed door. How are you guys squaring that with praying together as a group on Saturdays?', time: '2h', replies: [
+      { author: 'jimwhitaker', body: 'I read it as being about motive, not location. Who am I trying to impress?', time: '1h' },
+      { author: BRYAN, body: 'Great question. Hold onto it, we\'ll spend time on it Saturday.', time: '40m' },
+    ] },
+    { id: 2, group: 'sat', author: 'rayholloway', body: 'Anyone know a good mechanic in Buda? My truck is making a noise I can\'t ignore anymore.', time: '5h', replies: [
+      { author: 'luisromero', body: 'Call me, my brother-in-law runs a shop on Main. Honest guy.', time: '4h' },
+    ] },
+    { id: 3, group: 'sat', author: 'tomalvarez', body: 'Thank you to everyone who brought meals last week. My wife and I felt carried. Recovery is going well.', time: 'Yesterday', replies: [] },
+    { id: 4, group: 'thu', author: 'hectorruiz', body: 'Lesson 7 Day 2 took me longer than usual. Worth every minute.', time: 'Yesterday', replies: [] },
+  ],
+  files: [
+    { id: 1, lesson: 7, name: 'Lesson 7 Lecture Notes.pdf', type: 'pdf', size: '1.2 MB', by: BRYAN, date: 'Oct 26', aud: 'all' },
+    { id: 2, lesson: 7, name: 'Matthew 6 Observation Worksheet.pdf', type: 'pdf', size: '340 KB', by: BRYAN, date: 'Oct 26', aud: 'all' },
+    { id: 3, lesson: 7, name: 'Discussion Questions, Saturday.docx', type: 'doc', size: '48 KB', by: BRYAN, date: 'Oct 27', aud: 'sat' },
+    { id: 4, lesson: 6, name: 'Lesson 6 Lecture Notes.pdf', type: 'pdf', size: '1.1 MB', by: BRYAN, date: 'Oct 19', aud: 'all' },
+    { id: 5, lesson: 6, name: 'Lesson 6 Lecture Audio.mp3', type: 'audio', size: '38 MB', by: BRYAN, date: 'Oct 25', aud: 'all' },
+    { id: 6, lesson: 5, name: 'Lesson 5 Lecture Notes.pdf', type: 'pdf', size: '980 KB', by: BRYAN, date: 'Oct 12', aud: 'all' },
+    { id: 7, lesson: 5, name: 'Beatitudes Chart.pdf', type: 'pdf', size: '210 KB', by: BRYAN, date: 'Oct 12', aud: 'all' },
+    { id: 8, lesson: 1, name: 'Fall Schedule, Matthew Part 1.pdf', type: 'pdf', size: '120 KB', by: BRYAN, date: 'Sep 14', aud: 'all' },
+  ],
+  pairs: { sat: [], thu: [] },
+  week: 'Oct 31 – Nov 6',
+  partnerNote: { markellison: 'Pray for my dad\'s heart surgery on Tuesday, and for patience with my teenagers.' },
+  convos: [
+    { with: 'markellison', unread: true, msgs: [
+      { from: 'markellison', body: 'Hey brother, looks like we\'re prayer partners this week.', time: '9:12 AM' },
+      { from: 'markellison', body: 'Dad\'s surgery is Tuesday morning. Appreciate you.', time: '9:13 AM' },
+    ] },
+    { with: BRYAN, unread: false, msgs: [
+      { from: BRYAN, body: 'Glad you\'re in the Saturday group. Let me know if you need a workbook.', time: 'Oct 18' },
+      { from: NOAH, body: 'Thanks Bryan, I picked one up. See you Saturday.', time: 'Oct 18' },
+    ] },
+  ],
+  sheet: null, draft: { aud: 'all', pin: false, title: '', body: '' }, up: { lesson: CURRENT, aud: 'all', picked: [] }, lgroup: 'sat',
+};
+
+// pairings: one-to-one, mutual; an odd man out makes one group of three
+function makePairs(ids, seedFirst) {
+  const a = ids.slice();
+  for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
+  if (seedFirst) { // keep the demo story: Noah with Mark
+    a.splice(a.indexOf(seedFirst[0]), 1); a.splice(a.indexOf(seedFirst[1]), 1); a.unshift(seedFirst[0], seedFirst[1]);
+  }
+  const out = [];
+  for (let i = 0; i < a.length; i += 2) out.push(a.slice(i, i + 2));
+  if (out.length > 1 && out[out.length - 1].length === 1) out[out.length - 2].push(out.pop()[0]);
+  return out;
+}
+const groupIds = g => Object.values(men).filter(m => m.group === g).map(m => m.id);
+S.pairs.sat = makePairs(groupIds('sat'), [NOAH, 'markellison']);
+S.pairs.thu = makePairs(groupIds('thu'));
+
+// ---------- helpers ----------
+const $ = id => document.getElementById(id);
+const av = (id, cls = '') => { const m = men[id]; return `<span class="av ${cls}" style="background:${m.color}">${esc(m.initials)}</span>`; };
+const nm = id => esc(men[id].name);
+const myGroup = () => (S.me === BRYAN ? 'sat' : men[S.me].group);
+const audLabel = a => a === 'all' ? 'All groups' : GROUPS[a].name;
+const visibleToMe = aud => S.me === BRYAN || aud === 'all' || aud === myGroup();
+function toast(t) { const el = $('toast'); el.textContent = t; el.classList.add('show'); clearTimeout(toast.t); toast.t = setTimeout(() => el.classList.remove('show'), 2200); }
+const ftype = name => { const e = name.split('.').pop().toLowerCase(); return e === 'pdf' ? 'pdf' : ['mp3', 'm4a', 'wav'].includes(e) ? 'audio' : ['ppt', 'pptx', 'key'].includes(e) ? 'slides' : ['xls', 'xlsx', 'csv'].includes(e) ? 'sheet' : 'doc'; };
+const fiLabel = { pdf: 'PDF', doc: 'DOC', audio: 'MP3', slides: 'PPT', sheet: 'XLS' };
+const fileRow = f => `<button class="file" data-act="openfile" data-id="${f.id}" style="width:100%;text-align:left"><span class="ficon ${f.type}">${fiLabel[f.type]}</span><span style="min-width:0;flex:1"><span class="fn" style="display:block">${esc(f.name)}</span><span class="fm">${esc(f.size)} · ${f.aud === 'all' ? 'All groups' : esc(GROUPS[f.aud].name)} · ${esc(f.date)}</span></span></button>`;
+const lessonOf = n => LESSONS.find(l => l.n === n);
+const unreadCount = () => S.convos.filter(c => c.unread && c.msgs.some(m => m.from !== S.me)).length;
+
+// ---------- header + tabs ----------
+function renderTop() {
+  const g = GROUPS[myGroup()];
+  $('top').innerHTML = `<span class="mark">${MARK}</span><div class="t"><h1>Men's Precepts</h1><p class="sub">${S.mode === 'leader' ? 'Leader tools · Bryan Bailey' : esc(g.name) + ' · Austin Ridge'}</p></div>
+    <button class="iconbtn" data-act="messages" aria-label="Messages">${ic('msg')}${unreadCount() && S.mode === 'member' ? `<span class="badge">${unreadCount()}</span>` : ''}</button>
+    <button class="iconbtn" data-act="switch" aria-label="${S.mode === 'leader' ? 'Back to member view' : 'Leader tools'}">${ic(S.mode === 'leader' ? 'users' : 'shield')}</button>`;
+  const lb = $('leaderbar');
+  lb.hidden = S.mode !== 'leader';
+  lb.innerHTML = `<span>Leader view · Bryan Bailey</span><button data-act="switch">Member view</button>`;
+}
+const MTABS = [['week', 'home', 'This Week'], ['ann', 'mega', 'Updates'], ['group', 'group', 'My Group'], ['prayer', 'pray', 'Prayer'], ['files', 'folder', 'Files']];
+const LTABS = [['announce', 'mega', 'Announce'], ['upload', 'upload', 'Upload'], ['chain', 'pray', 'Prayer Chain'], ['roster', 'users', 'Roster']];
+function renderTabs() {
+  const leader = S.mode === 'leader', list = leader ? LTABS : MTABS, cur = leader ? S.ltab : S.tab;
+  $('tabs').className = 'tabs' + (leader ? ' four' : '');
+  $('tabs').innerHTML = list.map(([k, i, l]) => `<button class="tab${k === cur ? ' on' : ''}" data-tab="${k}" aria-current="${k === cur}">${ic(i)}<span>${l}</span></button>`).join('');
+}
+
+// ---------- member screens ----------
+function vWeek() {
+  const g = GROUPS[myGroup()], L = lessonOf(CURRENT);
+  const ann = S.announcements.filter(a => visibleToMe(a.aud));
+  const latest = ann.find(a => a.pinned) || ann[0];
+  const files = S.files.filter(f => f.lesson === CURRENT && visibleToMe(f.aud));
+  const partner = partnerOf(S.me);
+  return `<div class="card lesson">
+      <div class="eyebrow">This week · Matthew</div>
+      <div class="title">Lesson ${L.n}: ${esc(L.title)}</div>
+      <div class="passage">${esc(L.passage)}</div>
+      <div class="meet"><span style="color:#93B4F5">${ic('cal', 22)}</span><div style="flex:1;min-width:0"><div class="when">${esc(g.when)}</div><div class="where">${esc(g.where)}</div></div>
+      ${g.zoom ? `<button class="pillbtn" data-act="zoom">${ic('video', 16)} Join on Zoom</button>` : `<button class="pillbtn light" data-act="directions">Directions</button>`}</div>
+    </div>
+    ${latest ? `<div class="sec-label">Latest announcement</div>${annCard(latest)}` : ''}
+    ${partner ? `<div class="sec-label">Your prayer partner this week</div><button class="card row" data-act="tab" data-tab="prayer" style="width:100%;text-align:left">${av(partner)}<div style="flex:1"><div style="font-weight:700">${nm(partner)}</div><div class="small muted">Week of ${esc(S.week)}</div></div><span class="muted">${ic('chev', 18)}</span></button>` : ''}
+    <div class="sec-label">This week's files</div>
+    <div class="card">${files.length ? files.map(fileRow).join('') : '<div class="empty">No files yet this week.</div>'}</div>`;
+}
+const annCard = a => `<article class="card ann"><div class="meta">${a.pinned ? `<span class="tag pin">Pinned</span>` : ''}<span class="tag">${esc(audLabel(a.aud))}</span><span>${nm(a.from)} · ${esc(a.time)}</span></div><h3>${esc(a.title)}</h3><p>${esc(a.body)}</p></article>`;
+function vAnn() {
+  const list = S.announcements.filter(a => visibleToMe(a.aud)).sort((x, y) => (y.pinned - x.pinned));
+  return `<div class="sec-label">Announcements from your leaders</div><div class="stack">${list.map(annCard).join('')}</div>
+    <p class="note">Announcements also go out by email, so nobody misses one.</p>`;
+}
+function vGroup() {
+  const g = myGroup(), list = S.posts.filter(p => p.group === g);
+  return `<div class="card composer">${av(S.me)}<button class="fake" data-act="compose">Ask a question or share something…</button></div>
+    <div class="sec-label">${esc(GROUPS[g].name)}</div>
+    <div class="stack">${list.map(p => `<article class="card post"><div class="row">${av(p.author)}<div><div class="who">${nm(p.author)}${men[p.author].leader ? ' <span class="tag green">Leader</span>' : ''}</div><div class="when">${esc(p.time)}</div></div></div><p>${esc(p.body)}</p><button class="foot" data-act="thread" data-id="${p.id}">${p.replies.length ? `${p.replies.length} ${p.replies.length === 1 ? 'reply' : 'replies'}` : 'Reply'}</button></article>`).join('')}</div>`;
+}
+function partnerOf(id) {
+  const g = men[id].group === 'both' ? null : men[id].group;
+  if (!g) return null;
+  const p = S.pairs[g].find(x => x.includes(id));
+  return p ? p.find(x => x !== id) : null;
+}
+function vPrayer() {
+  const g = myGroup(), partner = partnerOf(S.me), pairs = S.pairs[g];
+  const others = partner ? S.pairs[g].find(x => x.includes(S.me)).filter(x => x !== S.me) : [];
+  return `<div class="sec-label">Week of ${esc(S.week)}</div>
+    ${partner ? `<div class="card partner"><div class="small muted" style="font-weight:600;margin-bottom:12px">You're praying for</div>${av(partner, 'lg')}<div class="name">${others.map(nm).join(' & ')}</div><div class="small muted">and ${others.length > 1 ? 'they are' : 'he is'} praying for you</div>
+      ${S.partnerNote[partner] ? `<div class="pnote">“${esc(S.partnerNote[partner])}”</div>` : ''}
+      <div class="row" style="justify-content:center;margin-top:14px"><button class="pillbtn" data-act="dm" data-id="${partner}">${ic('msg', 16)} Message ${esc(men[partner].name.split(' ')[0])}</button></div></div>` : ''}
+    <div class="sec-label">${esc(GROUPS[g].name)} prayer chain</div>
+    <div class="card pairs">${pairs.map(p => `<div class="pair${p.includes(S.me) ? ' me' : ''}"><span class="n">${p.map(nm).join(' <span class="x">&</span> ')}</span></div>`).join('')}</div>
+    <p class="note">Pairs change every week. Each man prays for his partner, one to one.</p>`;
+}
+function vFiles() {
+  const vis = S.files.filter(f => visibleToMe(f.aud));
+  const lessons = [...new Set(vis.map(f => f.lesson))].sort((a, b) => b - a);
+  return lessons.map(n => { const L = lessonOf(n); return `<div class="sec-label">${n === CURRENT ? 'This week · ' : ''}Lesson ${n}</div><div class="card"><div class="lessonhead"><strong>${esc(L.title)}</strong><span class="small muted">${esc(L.passage)}</span></div>${vis.filter(f => f.lesson === n).map(fileRow).join('')}</div>`; }).join('');
+}
+
+// ---------- leader screens ----------
+function vAnnounce() {
+  const d = S.draft;
+  return `<div class="sec-label">New announcement</div>
+  <div class="card stack">
+    <div class="field"><label>Who sees it</label><div class="seg">${['all', 'sat', 'thu'].map(a => `<button data-act="daud" data-v="${a}" class="${d.aud === a ? 'on' : ''}">${audLabel(a)}</button>`).join('')}</div></div>
+    <div class="field"><label for="atitle">Title</label><input id="atitle" value="${esc(d.title)}" placeholder="e.g. Bring your workbook Saturday"></div>
+    <div class="field"><label for="abody">Message</label><textarea id="abody" placeholder="What do the men need to know?">${esc(d.body)}</textarea></div>
+    <label class="check"><input type="checkbox" id="apin" ${d.pin ? 'checked' : ''}> Pin to the top</label>
+    <button class="bigbtn" data-act="postann">Post announcement</button>
+    <p class="note" style="margin:0">It shows up in the app right away and goes out by email too.</p>
+  </div>
+  <div class="sec-label">Recent</div><div class="stack">${S.announcements.slice(0, 3).map(annCard).join('')}</div>`;
+}
+function vUpload() {
+  const u = S.up;
+  return `<div class="sec-label">Upload this week's files</div>
+  <div class="card stack">
+    <div class="field"><label for="ulesson">Lesson</label><select id="ulesson">${LESSONS.slice().reverse().map(L => `<option value="${L.n}" ${L.n === u.lesson ? 'selected' : ''}>Lesson ${L.n}: ${esc(L.title)}</option>`).join('')}</select></div>
+    <div class="field"><label>Who gets them</label><div class="seg">${['all', 'sat', 'thu'].map(a => `<button data-act="uaud" data-v="${a}" class="${u.aud === a ? 'on' : ''}">${audLabel(a)}</button>`).join('')}</div></div>
+    <label class="drop" for="ufile">${ic('upload', 26)}<div style="font-weight:700;margin-top:6px">Choose files</div><div class="small muted">PDFs, notes, slides, audio</div><input type="file" id="ufile" multiple hidden></label>
+    <button class="bigbtn secondary" data-act="samplefile">Or add a sample file</button>
+    ${u.picked.length ? `<div>${u.picked.map((p, i) => `<div class="file"><span class="ficon ${p.type}">${fiLabel[p.type]}</span><span style="flex:1;min-width:0"><span class="fn" style="display:block">${esc(p.name)}</span><span class="fm">${esc(p.size)}</span></span><button data-act="unpick" data-i="${i}" aria-label="Remove">${ic('x', 18)}</button></div>`).join('')}</div>` : ''}
+    <button class="bigbtn" data-act="doupload" ${u.picked.length ? '' : 'disabled style="opacity:.5"'}>Upload ${u.picked.length || ''} ${u.picked.length === 1 ? 'file' : 'files'}</button>
+  </div>`;
+}
+function vChain() {
+  const g = S.lgroup;
+  return `<div class="seg" style="margin-bottom:6px">${['sat', 'thu'].map(k => `<button data-act="lgroup" data-v="${k}" class="${g === k ? 'on' : ''}">${GROUPS[k].name}</button>`).join('')}</div>
+    <div class="sec-label">Week of ${esc(S.week)} · ${S.pairs[g].length} pairs</div>
+    <div class="card pairs">${S.pairs[g].map(p => `<div class="pair"><span class="n">${p.map(nm).join(' <span class="x">&</span> ')}</span></div>`).join('')}</div>
+    <div class="stack" style="margin-top:12px">
+      <button class="bigbtn secondary" data-act="shuffle">${ic('shuffle', 18)} Make new pairs</button>
+      <button class="bigbtn" data-act="publish">Send this week's pairs</button>
+      <p class="note" style="margin:0">Coming later: pairs rotate automatically each week.</p>
+    </div>`;
+}
+function vRoster() {
+  const g = S.lgroup, list = groupIds(g);
+  return `<div class="seg" style="margin-bottom:6px">${['sat', 'thu'].map(k => `<button data-act="lgroup" data-v="${k}" class="${g === k ? 'on' : ''}">${GROUPS[k].name}</button>`).join('')}</div>
+    <div class="sec-label">${list.length} men · ${esc(GROUPS[g].when)}</div>
+    <div class="card"><div class="field"><label for="invite">Invite a man</label><div class="row"><input id="invite" type="email" placeholder="his email address"><button class="pillbtn" data-act="invite">${ic('plus', 16)} Invite</button></div></div></div>
+    <div class="card" style="margin-top:10px">${list.map(id => `<div class="pair">${av(id)}<span class="n" style="font-weight:600">${nm(id)}</span>${id === 'samokafor' || id === 'ethanmoore' ? '<span class="tag green">New</span>' : ''}</div>`).join('')}</div>`;
+}
+
+// ---------- sheets (thread, compose, messages) ----------
+function openSheet(kind, arg) { S.sheet = { kind, arg }; renderSheet(); requestAnimationFrame(() => $('sheet').classList.add('open')); $('sheet').setAttribute('aria-hidden', 'false'); }
+function closeSheet() { if (document.activeElement) document.activeElement.blur(); $('app').scrollLeft = 0; $('sheet').classList.remove('open'); $('sheet').setAttribute('aria-hidden', 'true'); S.sheet = null; render(); }
+function sheetTop(title, sub, back = true) { return `<header class="top">${back ? `<button class="iconbtn" data-act="close" aria-label="Back">${ic('back')}</button>` : ''}<div class="t"><h1>${title}</h1>${sub ? `<p class="sub">${sub}</p>` : ''}</div></header>`; }
+function renderSheet() {
+  const sh = $('sheet'); if (!S.sheet) return;
+  const { kind, arg } = S.sheet;
+  if (kind === 'thread') {
+    const p = S.posts.find(x => x.id === arg);
+    sh.innerHTML = sheetTop('Conversation', esc(GROUPS[p.group].name)) + `<div class="screen"><article class="card post"><div class="row">${av(p.author)}<div><div class="who">${nm(p.author)}</div><div class="when">${esc(p.time)}</div></div></div><p>${esc(p.body)}</p>
+      <div style="margin-top:12px">${p.replies.map(r => `<div class="reply">${av(r.author)}<div><div class="who" style="font-weight:600;font-size:.88rem">${nm(r.author)} <span class="small muted" style="font-weight:400">${esc(r.time)}</span></div><p>${esc(r.body)}</p></div></div>`).join('')}</div></article></div>
+      <form class="inputbar" data-form="reply"><input id="replyin" placeholder="Write a reply…" autocomplete="off"><button class="sendbtn" aria-label="Send">${ic('send', 18)}</button></form>`;
+  } else if (kind === 'compose') {
+    sh.innerHTML = sheetTop('New post', esc(GROUPS[myGroup()].name)) + `<div class="screen"><div class="card stack"><div class="field"><label for="postin">Share with your group</label><textarea id="postin" placeholder="A question on this week's homework, a need, some encouragement…"></textarea></div><button class="bigbtn" data-act="dopost">Post to ${esc(GROUPS[myGroup()].name)}</button></div></div>`;
+  } else if (kind === 'messages') {
+    const list = S.convos.filter(c => c.msgs.length || c.with);
+    sh.innerHTML = sheetTop('Messages', 'Private, man to man') + `<div class="screen"><div class="card">${list.map(c => { const last = c.msgs[c.msgs.length - 1]; return `<button class="convo" data-act="dm" data-id="${c.with}">${av(c.with)}<div style="flex:1;min-width:0"><div class="cn">${nm(c.with)}</div><div class="cp">${last ? esc((last.from === S.me ? 'You: ' : '') + last.body) : 'Say hello'}</div></div>${c.unread ? '<span class="unread"></span>' : ''}</button>`; }).join('')}</div>
+      <p class="note">Leaders can't read private messages.</p></div>`;
+  } else if (kind === 'dm') {
+    let c = S.convos.find(x => x.with === arg);
+    if (!c) { c = { with: arg, unread: false, msgs: [] }; S.convos.unshift(c); }
+    c.unread = false;
+    sh.innerHTML = sheetTop(nm(arg), men[arg].group === 'both' ? 'Group leader' : esc(GROUPS[men[arg].group].name)) + `<div class="screen" id="dmscroll"><div class="bubbles">${c.msgs.map(m => `<div class="bubble${m.from === S.me ? ' mine' : ''}">${esc(m.body)}<div class="bt">${esc(m.time)}</div></div>`).join('') || '<div class="empty">No messages yet.</div>'}</div></div>
+      <form class="inputbar" data-form="dm"><input id="dmin" placeholder="Message ${esc(men[arg].name.split(' ')[0])}…" autocomplete="off"><button class="sendbtn" aria-label="Send">${ic('send', 18)}</button></form>`;
+    requestAnimationFrame(() => { const s = $('dmscroll'); if (s) s.scrollTop = s.scrollHeight; });
+  } else if (kind === 'file') {
+    const f = S.files.find(x => x.id === arg), L = lessonOf(f.lesson);
+    sh.innerHTML = sheetTop('File', `Lesson ${f.lesson} · ${esc(L.title)}`) + `<div class="screen"><div class="card" style="text-align:center;padding:28px 16px"><span class="ficon ${f.type}" style="width:64px;height:76px;margin:0 auto;font-size:.9rem">${fiLabel[f.type]}</span><div style="font-weight:700;font-size:1.05rem;margin-top:14px;overflow-wrap:anywhere">${esc(f.name)}</div><div class="small muted" style="margin-top:4px">${esc(f.size)} · Shared by ${nm(f.by)} · ${esc(f.date)}</div>
+      <div class="stack" style="margin-top:18px"><button class="bigbtn" data-act="fakeopen">Open</button><button class="bigbtn secondary" data-act="fakeopen">Save to phone</button></div></div>
+      <p class="note">In the demo, files are names only. In the real app they open on your phone.</p></div>`;
+  }
+}
+
+// ---------- sign in ----------
+function renderSignin() {
+  const el = $('signin');
+  if (S.signedIn) { el.hidden = true; return; }
+  el.hidden = false;
+  el.innerHTML = S.signinStep === 0 ? `
+    <div>${MARK.replace('width="20" height="24"', 'width="40" height="48"')}</div>
+    <h2 class="big">Men's Precepts</h2>
+    <p>Austin Ridge · Thursday and Saturday groups</p>
+    <form data-form="signin" class="stack" style="gap:12px">
+      <input id="email" type="email" value="noah@joininterconnected.com" aria-label="Email address">
+      <button class="bigbtn">Email me a sign-in link</button>
+      <p class="small" style="color:#AFC0DE;margin:0">No password to remember. We email you a link and you're in.</p>
+    </form>
+    <div class="powered">Powered by Interconnected · Demo with sample data</div>` : `
+    <h2 class="big">Check your email</h2>
+    <p>We sent a sign-in link to ${esc($('email') ? $('email').value : 'your email')}.</p>
+    <div class="mailcard"><div class="row small muted">${ic('mail', 18)} Men's Precepts · now</div><div style="font-weight:700;margin-top:8px">Your sign-in link</div><div class="small muted" style="margin:4px 0 12px">Tap below to open Men's Precepts. This link works once.</div><button class="bigbtn" data-act="signedin">Sign in to Men's Precepts</button></div>
+    <div class="powered">Demo: the email is simulated.</div>`;
+}
+
+// ---------- render ----------
+function render() {
+  renderTop(); renderTabs(); renderSignin();
+  const v = S.mode === 'leader'
+    ? { announce: vAnnounce, upload: vUpload, chain: vChain, roster: vRoster }[S.ltab]()
+    : { week: vWeek, ann: vAnn, group: vGroup, prayer: vPrayer, files: vFiles }[S.tab]();
+  $('screen').innerHTML = v;
+  const fi = $('ufile'); if (fi) fi.onchange = e => { [...e.target.files].forEach(f => S.up.picked.push({ name: f.name, type: ftype(f.name), size: f.size > 1e6 ? (f.size / 1e6).toFixed(1) + ' MB' : Math.max(1, Math.round(f.size / 1e3)) + ' KB' })); render(); };
+}
+const keepDraft = () => { const t = $('atitle'), b = $('abody'), p = $('apin'); if (t) S.draft.title = t.value; if (b) S.draft.body = b.value; if (p) S.draft.pin = p.checked; };
+
+document.addEventListener('click', e => {
+  const t = e.target.closest('[data-act],[data-tab]'); if (!t) return;
+  const act = t.dataset.act, tab = t.dataset.tab;
+  if (tab && (!act || act === 'tab')) {
+    if (S.mode === 'leader' && !act) { keepDraft(); S.ltab = tab; } else { S.tab = tab; }
+    $('screen').scrollTop = 0; render(); return;
+  }
+  switch (act) {
+    case 'switch': keepDraft(); S.mode = S.mode === 'leader' ? 'member' : 'leader'; S.me = S.mode === 'leader' ? BRYAN : NOAH; if (S.mode === 'member') S.tab = 'week'; if (S.sheet) closeSheet(); render(); toast(S.mode === 'leader' ? 'Leader view: Bryan Bailey' : 'Back to Noah\'s view'); break;
+    case 'messages': openSheet('messages'); break;
+    case 'dm': openSheet('dm', t.dataset.id); break;
+    case 'thread': openSheet('thread', +t.dataset.id); break;
+    case 'compose': openSheet('compose'); break;
+    case 'openfile': openSheet('file', +t.dataset.id); break;
+    case 'close': closeSheet(); break;
+    case 'zoom': toast('Opens Zoom (demo)'); break;
+    case 'directions': toast('Opens Maps to Austin Ridge (demo)'); break;
+    case 'fakeopen': toast('Opens the file on your phone (demo)'); break;
+    case 'dopost': { const v = $('postin').value.trim(); if (!v) { toast('Write something first'); return; } S.posts.unshift({ id: ++postId, group: myGroup(), author: S.me, body: v, time: 'Just now', replies: [] }); closeSheet(); S.tab = 'group'; render(); toast('Posted to your group'); break; }
+    case 'daud': keepDraft(); S.draft.aud = t.dataset.v; render(); break;
+    case 'postann': { keepDraft(); const d = S.draft; if (!d.title.trim() || !d.body.trim()) { toast('Add a title and a message'); return; }
+      if (d.pin) S.announcements.forEach(a => a.pinned = false);
+      S.announcements.unshift({ id: ++annId, from: BRYAN, aud: d.aud, title: d.title.trim(), body: d.body.trim(), time: 'Just now', pinned: d.pin });
+      S.draft = { aud: 'all', pin: false, title: '', body: '' }; render(); toast(`Posted to ${audLabel(d.aud)}, and emailed`); break; }
+    case 'uaud': S.up.aud = t.dataset.v; S.up.lesson = +$('ulesson').value; render(); break;
+    case 'samplefile': { S.up.lesson = +$('ulesson').value; const L = lessonOf(S.up.lesson); const opts = [`Lesson ${L.n} Discussion Guide.pdf`, `Lesson ${L.n} Lecture Slides.pptx`, `${L.passage.split(':')[0]} Cross References.docx`]; const name = opts[S.up.picked.length % opts.length]; S.up.picked.push({ name, type: ftype(name), size: ['220 KB', '4.8 MB', '64 KB'][S.up.picked.length % 3] }); render(); break; }
+    case 'unpick': S.up.picked.splice(+t.dataset.i, 1); render(); break;
+    case 'doupload': { if (!S.up.picked.length) return; S.up.lesson = +$('ulesson').value; const n = S.up.picked.length; S.up.picked.forEach(p => S.files.unshift({ id: ++fileId, lesson: S.up.lesson, name: p.name, type: p.type, size: p.size, by: BRYAN, date: 'Today', aud: S.up.aud })); S.up.picked = []; render(); toast(`${n} ${n === 1 ? 'file' : 'files'} added to Lesson ${S.up.lesson}`); break; }
+    case 'lgroup': S.lgroup = t.dataset.v; render(); break;
+    case 'shuffle': S.pairs[S.lgroup] = makePairs(groupIds(S.lgroup)); render(); toast('New pairs ready. Send when you\'re happy.'); break;
+    case 'publish': toast(`Pairs sent to the ${GROUPS[S.lgroup].name}`); break;
+    case 'invite': { const v = ($('invite').value || '').trim(); if (!/^\S+@\S+\.\S+$/.test(v)) { toast('Enter an email address'); return; } $('invite').value = ''; toast('Invite ready. In the real app it emails a sign-in link.'); break; }
+    case 'signedin': S.signedIn = true; render(); toast('Welcome, Noah'); break;
+  }
+});
+document.addEventListener('submit', e => {
+  const f = e.target.dataset.form; if (!f) return; e.preventDefault();
+  if (f === 'signin') { S.signinStep = 1; renderSignin(); }
+  if (f === 'reply') { const v = $('replyin').value.trim(); if (!v) return; S.posts.find(p => p.id === S.sheet.arg).replies.push({ author: S.me, body: v, time: 'Just now' }); renderSheet(); }
+  if (f === 'dm') { const v = $('dmin').value.trim(); if (!v) return; S.convos.find(c => c.with === S.sheet.arg).msgs.push({ from: S.me, body: v, time: 'Now' }); renderSheet(); setTimeout(() => $('dmin') && $('dmin').focus(), 0); }
+});
+render();
+</script>
+</body>
+</html>
