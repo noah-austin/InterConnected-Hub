@@ -68,3 +68,6 @@ The first real build: logins, saved posts, notifications, on Railway with a data
 
 ## Revision 3 (Oct 25, Noah) — My Group, in the middle
 Group Chat was too much like a group text. **My Group** is now a casual feed: a short "share something or ask the guys" box at the top with an **Ask for help** toggle; posts show newest first with short, chat-style replies underneath; Reply opens a one-line reply box inline. Asks carry an "Asking for help" tag and an amber edge until the asker marks them "Taken care of." No separate screens.
+
+## Revision 4 (Oct 25, Noah)
+Removed "Ask for help" from My Group (the toggle, the tags, "taken care of"). My Group is a plain casual feed: post box, posts newest first, short replies, inline Reply. Men can still ask for things in an ordinary post.

@@ -106,20 +106,14 @@ input, textarea, select { font: inherit; color: var(--ink); }
 .composer .crow { display: flex; gap: 10px; align-items: flex-start; }
 .composer textarea { flex: 1; min-width: 0; border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; background: var(--bg); resize: none; height: 66px; outline: none; font: inherit; }
 .composer textarea:focus { border-color: var(--blue); background: #fff; }
-.composer .cfoot { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding-left: 46px; }
-.askchip { border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; font-size: .8rem; font-weight: 700; color: var(--muted); background: #fff; }
-.askchip.on { background: var(--amber-soft); border-color: #F3D9B8; color: var(--amber); }
+.composer .cfoot { display: flex; justify-content: flex-end; align-items: center; gap: 8px; padding-left: 46px; }
 .postbtn { background: var(--blue); color: #fff; border-radius: 999px; padding: 7px 16px; font-weight: 700; font-size: .85rem; }
 .post { padding: 12px 14px; }
-.post.ask { border-color: #F3D9B8; box-shadow: inset 3px 0 0 #F0B46A; }
-.post.ask.done { box-shadow: none; border-color: var(--line); }
 .post .head { display: flex; gap: 10px; align-items: center; }
 .post .av { width: 32px; height: 32px; font-size: .7rem; }
 .post .who { font-weight: 700; font-size: .9rem; }
 .post .when { font-size: .74rem; color: var(--muted); }
 .post .body { margin: 6px 0 0; white-space: pre-wrap; overflow-wrap: anywhere; }
-.asktag { display: inline-flex; align-items: center; gap: 4px; font-size: .7rem; font-weight: 700; border-radius: 999px; padding: 2px 8px; background: var(--amber-soft); color: var(--amber); }
-.asktag.done { background: var(--green-soft); color: var(--green); }
 .replies { margin-top: 10px; display: grid; gap: 6px; }
 .rep { display: flex; gap: 8px; align-items: flex-start; }
 .rep .av { width: 24px; height: 24px; font-size: .58rem; margin-top: 2px; }
@@ -127,7 +121,6 @@ input, textarea, select { font: inherit; color: var(--ink); }
 .rep .rb strong { font-size: .8rem; }
 .postacts { display: flex; gap: 14px; align-items: center; margin-top: 8px; }
 .postacts button { font-size: .8rem; font-weight: 700; color: var(--blue); }
-.postacts button.amber { color: var(--amber); }
 .replyform { display: flex; gap: 6px; margin-top: 8px; }
 .replyform input { flex: 1; min-width: 0; border: 1px solid var(--line); border-radius: 999px; padding: 7px 12px; background: var(--bg); outline: none; font-size: .88rem; }
 .replyform input:focus { border-color: var(--blue); background: #fff; }
@@ -286,10 +279,10 @@ const S = {
     { id: 4, from: BRYAN, aud: 'thu', title: 'Zoom link is the same as last week', body: 'Same link as always. Tap "Join on Zoom" from the This Week screen.', time: 'Oct 20', pinned: false },
   ],
   posts: [
-    { id: 8, group: 'sat', author: 'greglawson', body: 'Need two guys to help move a couch Saturday after class. Pizza on me.', time: '9:05 AM', ask: true, done: false, replies: [
+    { id: 8, group: 'sat', author: 'greglawson', body: 'Need two guys to help move a couch Saturday after class. Pizza on me.', time: '9:05 AM', replies: [
       { author: 'danmercer', body: 'I\'m in.' },
     ] },
-    { id: 7, group: 'sat', author: 'rayholloway', body: 'Anyone know a good mechanic in Buda? Truck is making a noise I can\'t ignore.', time: '8:20 AM', ask: true, done: false, replies: [
+    { id: 7, group: 'sat', author: 'rayholloway', body: 'Anyone know a good mechanic in Buda? Truck is making a noise I can\'t ignore.', time: '8:20 AM', replies: [
       { author: 'luisromero', body: 'My brother-in-law has a shop on Main. I\'ll text you his number.' },
     ] },
     { id: 6, group: 'sat', author: 'tomalvarez', body: 'Thank you all for the meals last week. Recovery is going well.', time: '6:58 AM', replies: [
@@ -303,7 +296,7 @@ const S = {
       { author: 'frankosei', body: 'Same here. See you all Thursday.' },
     ] },
   ],
-  postAsk: false, replyOpen: null,
+  replyOpen: null,
   files: [
     { id: 1, lesson: 7, name: 'Lesson 7 Lecture Notes.pdf', type: 'pdf', size: '1.2 MB', by: BRYAN, date: 'Oct 26', aud: 'all' },
     { id: 2, lesson: 7, name: 'Matthew 6 Observation Worksheet.pdf', type: 'pdf', size: '340 KB', by: BRYAN, date: 'Oct 26', aud: 'all' },
@@ -403,16 +396,14 @@ function vAnn() {
 }
 function vGroup() {
   const g = myGroup(), list = S.posts.filter(p => p.group === g);
-  const composer = `<form class="card composer" data-form="post"><div class="crow">${av(S.me)}<textarea id="postin" placeholder="${S.postAsk ? 'What do you need a hand with?' : 'Share something or ask the guys…'}" aria-label="New post"></textarea></div>
-    <div class="cfoot"><button type="button" class="askchip${S.postAsk ? ' on' : ''}" data-act="askchip" aria-pressed="${S.postAsk}">${S.postAsk ? 'Asking for help' : 'Ask for help'}</button><button class="postbtn">Post</button></div></form>`;
+  const composer = `<form class="card composer" data-form="post"><div class="crow">${av(S.me)}<textarea id="postin" placeholder="Share something or ask the guys…" aria-label="New post"></textarea></div>
+    <div class="cfoot"><button class="postbtn">Post</button></div></form>`;
   const card = p => {
-    const mine = p.author === S.me;
-    const tag = p.ask ? `<span class="asktag${p.done ? ' done' : ''}">${p.done ? ic('check', 12, 2.4) + ' Taken care of' : 'Asking for help'}</span>` : '';
     const reps = p.replies.length ? `<div class="replies">${p.replies.map(r => `<div class="rep">${av(r.author)}<div class="rb"><strong>${esc(men[r.author].name.split(' ')[0])}</strong> ${esc(r.body)}</div></div>`).join('')}</div>` : '';
     const form = S.replyOpen === p.id ? `<form class="replyform" data-form="reply" data-id="${p.id}"><input id="replyin" placeholder="Reply to ${esc(men[p.author].name.split(' ')[0])}…" autocomplete="off"><button>Send</button></form>` : '';
-    return `<article class="card post${p.ask ? ' ask' : ''}${p.done ? ' done' : ''}"><div class="head">${av(p.author)}<div style="flex:1;min-width:0"><div class="who">${nm(p.author)}${men[p.author].leader ? ' <span class="tag green">Leader</span>' : ''}</div><div class="when">${esc(p.time)}</div></div>${tag}</div>
+    return `<article class="card post"><div class="head">${av(p.author)}<div style="flex:1;min-width:0"><div class="who">${nm(p.author)}${men[p.author].leader ? ' <span class="tag green">Leader</span>' : ''}</div><div class="when">${esc(p.time)}</div></div></div>
       <p class="body">${esc(p.body)}</p>${reps}
-      ${form || `<div class="postacts"><button data-act="reply" data-id="${p.id}">Reply</button>${p.ask && !p.done && mine ? `<button class="amber" data-act="askdone" data-id="${p.id}">Mark taken care of</button>` : ''}</div>`}</article>`;
+      ${form || `<div class="postacts"><button data-act="reply" data-id="${p.id}">Reply</button></div>`}</article>`;
   };
   return `${composer}<div class="sec-label">${esc(GROUPS[g].name)}</div><div class="stack">${list.map(card).join('')}</div>`;
 }
@@ -571,8 +562,6 @@ document.addEventListener('click', e => {
     case 'zoom': toast('Opens Zoom (demo)'); break;
     case 'directions': toast('Opens Maps to Austin Ridge (demo)'); break;
     case 'fakeopen': toast('Opens the file on your phone (demo)'); break;
-    case 'askchip': { const v = $('postin').value; S.postAsk = !S.postAsk; render(); $('postin').value = v; $('postin').focus(); break; }
-    case 'askdone': { const m = S.posts.find(x => x.id === +t.dataset.id); m.done = true; render(); toast('Marked taken care of'); break; }
     case 'reply': S.replyOpen = +t.dataset.id; render(); setTimeout(() => $('replyin') && $('replyin').focus(), 0); break;
     case 'daud': keepDraft(); S.draft.aud = t.dataset.v; render(); break;
     case 'postann': { keepDraft(); const d = S.draft; if (!d.title.trim() || !d.body.trim()) { toast('Add a title and a message'); return; }
@@ -594,7 +583,7 @@ document.addEventListener('click', e => {
 document.addEventListener('submit', e => {
   const f = e.target.dataset.form; if (!f) return; e.preventDefault();
   if (f === 'signin') { S.signinStep = 1; renderSignin(); }
-  if (f === 'post') { const v = $('postin').value.trim(); if (!v) { toast('Write something first'); return; } S.posts.unshift({ id: ++postId, group: myGroup(), author: S.me, body: v, time: 'Just now', ask: S.postAsk, done: false, replies: [] }); S.postAsk = false; render(); toast(S.posts[0].ask ? 'Posted. The guys will see you need a hand.' : 'Posted to your group'); }
+  if (f === 'post') { const v = $('postin').value.trim(); if (!v) { toast('Write something first'); return; } S.posts.unshift({ id: ++postId, group: myGroup(), author: S.me, body: v, time: 'Just now', replies: [] }); render(); toast('Posted to your group'); }
   if (f === 'reply') { const v = $('replyin').value.trim(); if (!v) return; S.posts.find(p => p.id === +e.target.dataset.id).replies.push({ author: S.me, body: v }); S.replyOpen = null; render(); }
   if (f === 'dm') { const v = $('dmin').value.trim(); if (!v) return; S.convos.find(c => c.with === S.sheet.arg).msgs.push({ from: S.me, body: v, time: 'Now' }); renderSheet(); setTimeout(() => $('dmin') && $('dmin').focus(), 0); }
 });
