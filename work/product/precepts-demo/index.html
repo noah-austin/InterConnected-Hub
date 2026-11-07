@@ -259,56 +259,87 @@ const GROUPS = {
 
 // Lesson titles and dates are sample content for the demo.
 const LESSONS = [
-  { n: 1, title: 'Behold, Your King', passage: 'Matthew 1–2', date: 'Sep 19' },
-  { n: 2, title: 'Prepare the Way', passage: 'Matthew 3', date: 'Sep 26' },
-  { n: 3, title: 'Tested in the Wilderness', passage: 'Matthew 4:1–11', date: 'Oct 3' },
-  { n: 4, title: 'Follow Me', passage: 'Matthew 4:12–25', date: 'Oct 10' },
-  { n: 5, title: 'The Blessed Life', passage: 'Matthew 5:1–16', date: 'Oct 17' },
-  { n: 6, title: 'Fulfilling the Law', passage: 'Matthew 5:17–48', date: 'Oct 24' },
-  { n: 7, title: 'Righteousness in Secret', passage: 'Matthew 6:1–18', date: 'Oct 31' },
+  { n: 1, title: 'Behold, Your King', passage: 'Matthew 1–2', date: 'Sep 26' },
+  { n: 2, title: 'Prepare the Way', passage: 'Matthew 3', date: 'Oct 3' },
+  { n: 3, title: 'Tested in the Wilderness', passage: 'Matthew 4:1–11', date: 'Oct 10' },
+  { n: 4, title: 'Follow Me', passage: 'Matthew 4:12–25', date: 'Oct 17' },
+  { n: 5, title: 'The Blessed Life', passage: 'Matthew 5:1–16', date: 'Oct 24' },
+  { n: 6, title: 'Fulfilling the Law', passage: 'Matthew 5:17–48', date: 'Oct 31' },
+  { n: 7, title: 'Righteousness in Secret', passage: 'Matthew 6:1–18', date: 'Nov 7' },
+  { n: 8, title: 'Treasure and Worry', passage: 'Matthew 6:19–34', date: 'Nov 14' },
 ];
 const CURRENT = 7;
 
-let annId = 10, postId = 20, fileId = 20;
+let annId = 20, postId = 40, fileId = 40;
 const S = {
   me: NOAH, mode: 'member', tab: 'week', ltab: 'announce', signedIn: false, signinStep: 0,
   announcements: [
-    { id: 1, from: BRYAN, aud: 'all', title: 'Lesson 7 starts this week', body: 'Lesson 7 covers Matthew 6:1–18: giving, prayer and fasting done for an audience of One. Lecture notes and the observation worksheet are in Files.', time: 'Mon', pinned: true },
-    { id: 2, from: BRYAN, aud: 'all', title: 'No class Thanksgiving weekend', body: 'No Thursday or Saturday groups the week of Nov 26. Enjoy your families. We pick back up with Lesson 10 on Dec 3 and Dec 5.', time: 'Oct 22', pinned: false },
-    { id: 3, from: BRYAN, aud: 'sat', title: 'Coffee and donuts this Saturday', body: 'Doors open at 7:40. Come early, grab a coffee and meet the two new guys joining us.', time: 'Oct 21', pinned: false },
-    { id: 4, from: BRYAN, aud: 'thu', title: 'Zoom link is the same as last week', body: 'Same link as always. Tap "Join on Zoom" from the This Week screen.', time: 'Oct 20', pinned: false },
+    { id: 1, from: BRYAN, aud: 'all', title: 'Lesson 7 this week: Matthew 6:1–18', body: 'Giving, prayer and fasting done for an audience of One. Work through Days 1–5 before we meet. Lecture notes and the observation worksheet are in Files.', time: 'Mon', pinned: true },
+    { id: 2, from: BRYAN, aud: 'sat', title: 'Coffee and donuts this Saturday', body: 'Doors open at 7:40. Come early, grab a coffee and welcome Sam and Ethan, our two newest guys.', time: 'Tue', pinned: false },
+    { id: 3, from: BRYAN, aud: 'all', title: 'Men\'s breakfast, Saturday Nov 21', body: 'All Precepts groups, 7:30 AM in the fellowship hall. Bring a friend who\'s never been to a study. Sign-up sheet is in Files.', time: 'Nov 2', pinned: false },
+    { id: 4, from: BRYAN, aud: 'all', title: 'No class Thanksgiving weekend', body: 'No Thursday or Saturday groups the week of Nov 26. Enjoy your families. We pick back up with Lesson 10 on Dec 3 and Dec 5.', time: 'Oct 29', pinned: false },
+    { id: 5, from: BRYAN, aud: 'thu', title: 'Thursday Zoom link is the same', body: 'Same link as always. Tap "Join on Zoom" from This Week a few minutes early.', time: 'Oct 28', pinned: false },
+    { id: 6, from: BRYAN, aud: 'all', title: 'Workbooks for latecomers', body: 'If you joined after Lesson 3 and still need a Matthew Part 1 workbook, message me and I\'ll bring one Saturday.', time: 'Oct 20', pinned: false },
+    { id: 7, from: BRYAN, aud: 'all', title: 'Serve day at the food pantry', body: 'Six spots open Saturday Nov 14, 11 AM to 1 PM, right after class. Reply in My Group if you\'re in.', time: 'Oct 15', pinned: false },
   ],
   posts: [
-    { id: 8, group: 'sat', author: 'greglawson', body: 'Need two guys to help move a couch Saturday after class. Pizza on me.', time: '9:05 AM', replies: [
+    { id: 30, group: 'sat', author: 'greglawson', body: 'Need two guys to help move a couch Saturday after class. Pizza on me.', time: '9:05 AM', replies: [
       { author: 'danmercer', body: 'I\'m in.' },
+      { author: 'benashford', body: 'Count me in too. I\'ve got a dolly.' },
     ] },
-    { id: 7, group: 'sat', author: 'rayholloway', body: 'Anyone know a good mechanic in Buda? Truck is making a noise I can\'t ignore.', time: '8:20 AM', replies: [
+    { id: 29, group: 'sat', author: 'rayholloway', body: 'Anyone know a good mechanic in Buda? Truck is making a noise I can\'t ignore.', time: '8:20 AM', replies: [
       { author: 'luisromero', body: 'My brother-in-law has a shop on Main. I\'ll text you his number.' },
+      { author: 'rayholloway', body: 'Appreciate it, Luis.' },
     ] },
-    { id: 6, group: 'sat', author: 'tomalvarez', body: 'Thank you all for the meals last week. Recovery is going well.', time: '6:58 AM', replies: [
+    { id: 28, group: 'sat', author: 'tomalvarez', body: 'Thank you all for the meals last week. Recovery is going well. Hoping to be back in person Saturday.', time: '6:58 AM', replies: [
       { author: 'willcarver', body: 'Great news, Tom.' },
+      { author: BRYAN, body: 'We\'ll save you a seat and a donut.' },
     ] },
-    { id: 5, group: 'sat', author: 'jimwhitaker', body: 'Anybody else find Day 3 tough this week? 6:6 got me. Who am I actually praying to impress?', time: 'Yesterday', replies: [
+    { id: 27, group: 'sat', author: 'jimwhitaker', body: 'Anybody else find Day 3 tough this week? 6:6 got me. Who am I actually praying to impress?', time: 'Yesterday', replies: [
       { author: 'markellison', body: 'Same. Convicting.' },
+      { author: 'stevepark', body: 'Day 4 on fasting was the one that got me.' },
       { author: BRYAN, body: 'Good stuff. Bring that Saturday.' },
     ] },
-    { id: 4, group: 'thu', author: 'hectorruiz', body: 'Lesson 7 Day 2 took me longer than usual. Worth every minute.', time: 'Yesterday', replies: [
+    { id: 26, group: 'sat', author: 'samokafor', body: 'First week with the group. Thanks for the welcome, men. Still figuring out the workbook, but I\'m glad I came.', time: 'Yesterday', replies: [
+      { author: 'jeffnolan', body: 'Glad you\'re here, Sam. Sit with me Saturday and I\'ll show you how I mark up the text.' },
+    ] },
+    { id: 25, group: 'sat', author: 'robtanner', body: 'Saw a great sunrise at the Ridge this morning. Thankful for this group.', time: 'Wed', replies: [] },
+    { id: 24, group: 'sat', author: 'kenbrady', body: 'Who\'s in for the food pantry serve day on the 14th? Bryan says six spots.', time: 'Tue', replies: [
+      { author: 'andrewallace', body: 'In.' },
+      { author: 'joecastillo', body: 'In, bringing my son.' },
+      { author: 'mattkessler', body: 'Put me down.' },
+    ] },
+    { id: 23, group: 'sat', author: 'petelangley', body: 'Does anyone have a good commentary on Matthew they\'d recommend? Something readable.', time: 'Mon', replies: [
+      { author: 'paulwhitfield', body: 'Matthew for Everyone by N.T. Wright. Short chapters, easy to read.' },
+      { author: BRYAN, body: 'Do the homework first, then the commentary. Let the text talk before anyone else does.' },
+    ] },
+    { id: 22, group: 'thu', author: 'hectorruiz', body: 'Lesson 7 Day 2 took me longer than usual. Worth every minute.', time: 'Yesterday', replies: [
       { author: 'frankosei', body: 'Same here. See you all Thursday.' },
     ] },
+    { id: 21, group: 'thu', author: 'neilpatterson', body: 'I\'ll be traveling next Thursday but can join from the hotel on Zoom.', time: 'Tue', replies: [
+      { author: BRYAN, body: 'Perfect. Safe travels, Neil.' },
+    ] },
   ],
-  replyOpen: null,
   files: [
-    { id: 1, lesson: 7, name: 'Lesson 7 Lecture Notes.pdf', type: 'pdf', size: '1.2 MB', by: BRYAN, date: 'Oct 26', aud: 'all' },
-    { id: 2, lesson: 7, name: 'Matthew 6 Observation Worksheet.pdf', type: 'pdf', size: '340 KB', by: BRYAN, date: 'Oct 26', aud: 'all' },
-    { id: 3, lesson: 7, name: 'Discussion Questions, Saturday.docx', type: 'doc', size: '48 KB', by: BRYAN, date: 'Oct 27', aud: 'sat' },
-    { id: 4, lesson: 6, name: 'Lesson 6 Lecture Notes.pdf', type: 'pdf', size: '1.1 MB', by: BRYAN, date: 'Oct 19', aud: 'all' },
-    { id: 5, lesson: 6, name: 'Lesson 6 Lecture Audio.mp3', type: 'audio', size: '38 MB', by: BRYAN, date: 'Oct 25', aud: 'all' },
-    { id: 6, lesson: 5, name: 'Lesson 5 Lecture Notes.pdf', type: 'pdf', size: '980 KB', by: BRYAN, date: 'Oct 12', aud: 'all' },
-    { id: 7, lesson: 5, name: 'Beatitudes Chart.pdf', type: 'pdf', size: '210 KB', by: BRYAN, date: 'Oct 12', aud: 'all' },
-    { id: 8, lesson: 1, name: 'Fall Schedule, Matthew Part 1.pdf', type: 'pdf', size: '120 KB', by: BRYAN, date: 'Sep 14', aud: 'all' },
+    { id: 1, lesson: 7, name: 'Lesson 7 Lecture Notes.pdf', type: 'pdf', size: '1.2 MB', by: BRYAN, date: 'Nov 2', aud: 'all' },
+    { id: 2, lesson: 7, name: 'Matthew 6 Observation Worksheet.pdf', type: 'pdf', size: '340 KB', by: BRYAN, date: 'Nov 2', aud: 'all' },
+    { id: 3, lesson: 7, name: 'Discussion Questions, Saturday.docx', type: 'doc', size: '48 KB', by: BRYAN, date: 'Nov 3', aud: 'sat' },
+    { id: 4, lesson: 7, name: 'Men\'s Breakfast Sign-up.xlsx', type: 'sheet', size: '22 KB', by: BRYAN, date: 'Nov 2', aud: 'all' },
+    { id: 5, lesson: 6, name: 'Lesson 6 Lecture Notes.pdf', type: 'pdf', size: '1.1 MB', by: BRYAN, date: 'Oct 26', aud: 'all' },
+    { id: 6, lesson: 6, name: 'Lesson 6 Lecture Audio.mp3', type: 'audio', size: '38 MB', by: BRYAN, date: 'Oct 31', aud: 'all' },
+    { id: 7, lesson: 6, name: 'You Have Heard It Said Chart.pdf', type: 'pdf', size: '260 KB', by: BRYAN, date: 'Oct 26', aud: 'all' },
+    { id: 8, lesson: 5, name: 'Lesson 5 Lecture Notes.pdf', type: 'pdf', size: '980 KB', by: BRYAN, date: 'Oct 19', aud: 'all' },
+    { id: 9, lesson: 5, name: 'Lesson 5 Lecture Audio.mp3', type: 'audio', size: '36 MB', by: BRYAN, date: 'Oct 24', aud: 'all' },
+    { id: 10, lesson: 5, name: 'Beatitudes Chart.pdf', type: 'pdf', size: '210 KB', by: BRYAN, date: 'Oct 19', aud: 'all' },
+    { id: 11, lesson: 4, name: 'Lesson 4 Lecture Notes.pdf', type: 'pdf', size: '1.0 MB', by: BRYAN, date: 'Oct 12', aud: 'all' },
+    { id: 12, lesson: 4, name: 'Galilee Map.pdf', type: 'pdf', size: '1.6 MB', by: BRYAN, date: 'Oct 12', aud: 'all' },
+    { id: 13, lesson: 3, name: 'Lesson 3 Lecture Notes.pdf', type: 'pdf', size: '940 KB', by: BRYAN, date: 'Oct 5', aud: 'all' },
+    { id: 14, lesson: 2, name: 'Lesson 2 Lecture Notes.pdf', type: 'pdf', size: '900 KB', by: BRYAN, date: 'Sep 28', aud: 'all' },
+    { id: 15, lesson: 1, name: 'How to Do Precept Homework.pdf', type: 'pdf', size: '410 KB', by: BRYAN, date: 'Sep 21', aud: 'all' },
+    { id: 16, lesson: 1, name: 'Fall Schedule, Matthew Part 1.pdf', type: 'pdf', size: '120 KB', by: BRYAN, date: 'Sep 21', aud: 'all' },
   ],
   pairs: { sat: [], thu: [] },
-  week: 'Oct 31 – Nov 6',
+  week: 'Nov 7 – 13',
   convos: [
     { with: 'markellison', unread: true, msgs: [
       { from: 'markellison', body: 'Hey brother, we\'re partners this week. I\'ll give you a call Tuesday evening if that works.', time: '9:12 AM' },
@@ -316,6 +347,10 @@ const S = {
     { with: BRYAN, unread: false, msgs: [
       { from: BRYAN, body: 'Glad you\'re in the Saturday group. Let me know if you need a workbook.', time: 'Oct 18' },
       { from: NOAH, body: 'Thanks Bryan, I picked one up. See you Saturday.', time: 'Oct 18' },
+    ] },
+    { with: 'luisromero', unread: false, msgs: [
+      { from: NOAH, body: 'Luis, good talking Saturday. Still on for lunch next week?', time: 'Nov 1' },
+      { from: 'luisromero', body: 'Yes sir. Thursday at noon works.', time: 'Nov 1' },
     ] },
   ],
   sheet: null, draft: { aud: 'all', pin: false, title: '', body: '' }, up: { lesson: CURRENT, aud: 'all', picked: [] }, lgroup: 'sat',
