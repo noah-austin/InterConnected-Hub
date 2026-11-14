@@ -79,3 +79,9 @@ Removed "Ask for help" from My Group (the toggle, the tags, "taken care of"). My
 **Demo control:** a thin bar, "Demo: you're Noah, a member · Switch to Bryan," exists only in the demo. In the real app people sign in as themselves.
 **Messages** are per person: Bryan's inbox is his own.
 **Open for the Bryan meeting:** keep or cut private messages and the Files tab; who's the ministry coordinator; real meeting times and lesson list; email-to-post for leaders.
+
+## Revision 6 (Nov 14, Noah)
+- **No texting system.** Leader button is now **"Notify everyone of their partner"**: a push notification to each man's phone with his partner's name. (The partner card's Call and Text buttons still open the man's own phone apps; nothing is sent by us.)
+- **Post box** is one tidy row (avatar · "Write to the group…" · Post) that grows as you type.
+- **Bryan is in the Saturday prayer chain.** Leaders can be paired too; a man's partner card shows while he's viewing his own chain's group.
+- **Add files** lives only on the Files tab (removed from This Week).
