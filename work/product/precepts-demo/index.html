@@ -93,13 +93,11 @@ input, textarea, select { font: inherit; font-size: 16px; color: var(--ink); }
 .pnote { margin-top: 14px; background: var(--bg); border-radius: 10px; padding: 10px 12px; font-size: .9rem; text-align: left; color: var(--ink); }
 .pairs { display: grid; gap: 0; }
 .chainlist { list-style: none; margin: 0; padding: 4px 14px; }
-.chainlist .link { display: flex; align-items: center; gap: 10px; padding: 9px 0; border-top: 1px solid var(--line); font-size: .92rem; }
+.chainlist .link { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 8px; padding: 10px 0; border-top: 1px solid var(--line); font-size: .95rem; }
 .chainlist .link:first-child { border-top: 0; }
-.chainlist .num { width: 26px; height: 26px; border-radius: 50%; background: var(--bg); color: var(--muted); font-size: .75rem; font-weight: 700; display: grid; place-items: center; flex: none; font-variant-numeric: tabular-nums; }
-.chainlist .n { flex: 1; min-width: 0; }
-.chainlist .calls { font-size: .74rem; color: var(--muted); flex: none; }
-.chainlist .link.me { color: var(--blue); font-weight: 700; }
-.chainlist .link.me .num { background: var(--blue); color: #fff; }
+.chainlist .who { font-weight: 600; }
+.chainlist .calls { color: var(--muted); font-size: .85rem; }
+.chainlist .link.me .who:first-child, .chainlist .link.tome .who:last-child { color: var(--blue); font-weight: 800; }
 .calledby { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); font-size: .88rem; color: var(--muted); }
 .calledby .av { width: 28px; height: 28px; font-size: .62rem; margin: 0; }
 .pair { display: flex; align-items: center; gap: 8px; padding: 10px 0; border-top: 1px solid var(--line); font-size: .9rem; }
@@ -365,7 +363,7 @@ const S = {
     { id: 16, lesson: 1, name: 'Fall Schedule, Matthew Part 1.pdf', type: 'pdf', size: '120 KB', by: BRYAN, date: 'Sep 21', aud: 'all' },
   ],
   chain: { sat: [], thu: [] },
-  week: 'Nov 7 – 13',
+  week: 'Nov 7 – 13', weeks: ['Nov 7 – 13', 'Nov 14 – 20', 'Nov 21 – 27', 'Nov 28 – Dec 4', 'Dec 5 – 11', 'Dec 12 – 18'], weekIdx: 0,
   convos: [
     { people: [NOAH, 'markellison'], unreadFor: NOAH, msgs: [
       { from: 'markellison', body: 'Hey brother, good to see you Saturday. Still on for coffee Tuesday?', time: '9:12 AM' },
@@ -404,21 +402,34 @@ Object.values(men).forEach(m => { m.inChain = true; m.email = m.id + '@example.c
 ['petelangley', 'doughensley', 'paulwhitfield', 'ethanmoore', 'timreyes', 'garylindqvist', 'brentivers', 'owenblake'].forEach(id => { if (men[id]) men[id].inChain = false; });
 men[NOAH].inChain = false; men[NOAH].email = 'noah@joininterconnected.com';
 const chainIds = g => Object.values(men).filter(m => m.inChain && chainOf(m.id) === g).map(m => m.id);
-// The chain is a circle: each man calls the next man in the order; the last man calls the first.
+// Left column: the chain's order (fixed). Right column: the same list, shifted by S.shift[g].
+// Week 1 is A calls B, B calls C… Each week the right side moves up one and the top name goes to
+// the bottom, so every man calls someone new. Shifting would eventually land on "call yourself";
+// that week is skipped and the cycle starts over.
 S.chain.sat = shuffled(chainIds('sat'));
 S.chain.thu = shuffled(chainIds('thu'));
-// Joining puts a man into this week's order. For the demo story, Noah lands just before Mark, so Noah calls Mark.
+S.shift = { sat: 1, thu: 1 }; // week 1: each man calls the man below him (A calls B, B calls C…)
+const callee = (g, i) => { const C = S.chain[g], n = C.length; return C[(i + S.shift[g]) % n]; };
+const caller = (g, i) => { const C = S.chain[g], n = C.length; return C[((i - S.shift[g]) % n + n) % n]; };
+function fixShift(g) { const n = S.chain[g].length; if (n < 2) { S.shift[g] = 1; return; } S.shift[g] = ((S.shift[g] - 1) % (n - 1) + (n - 1)) % (n - 1) + 1; }
+// Next week: move the right side up one (top name to the bottom), skipping "call yourself".
+function nextWeek(g) { const n = S.chain[g].length; if (n < 2) return; S.shift[g] = S.shift[g] + 1 > n - 1 ? 1 : S.shift[g] + 1; }
+// Joining puts a man into the chain's order.
 function joinChain(id) {
   const C = S.chain[chainOf(id)];
   men[id].inChain = true;
   if (C.includes(id)) return;
+  const g = chainOf(id);
   const m = id === NOAH ? C.indexOf('markellison') : -1;
-  if (m >= 0) C.splice(m, 0, id); else C.push(id);
+  if (m >= 0) C.splice(m, 0, id); else C.push(id); // demo: Noah lands just above Mark, so he calls Mark in week 1
+  fixShift(g);
 }
 function leaveChain(id) {
   const C = S.chain[chainOf(id)];
   men[id].inChain = false;
+  const g = chainOf(id);
   const i = C.indexOf(id); if (i >= 0) C.splice(i, 1);
+  fixShift(g);
 }
 
 // ---------- helpers ----------
@@ -508,15 +519,16 @@ function chainSpot(id) {
   if (chainOf(id) !== myGroup()) return null;
   const C = S.chain[chainOf(id)], i = C.indexOf(id), n = C.length;
   if (i < 0 || n < 2) return null;
-  return { calls: C[(i + 1) % n], calledBy: C[(i - 1 + n) % n], pos: i + 1, n };
+  const g = chainOf(id);
+  return { calls: callee(g, i), calledBy: caller(g, i), pos: i + 1, n };
 }
 function vPrayer() {
   const g = myGroup(), C = S.chain[g], spot = chainSpot(S.me);
   const leaderTools = isLeader() ? `<div class="card stack leadercard">
       <div class="small" style="font-weight:700;color:var(--amber)">Leader</div>
-      <button class="bigbtn secondary" data-act="shuffle">${ic('shuffle', 18)} Make a new order</button>
+      <button class="bigbtn secondary" data-act="shuffle">${ic('shuffle', 18)} Move to next week</button>
       <button class="bigbtn" data-act="publish">Notify everyone who to call</button>
-      <p class="note" style="margin:0">The new order shows in the app right away. "Notify everyone" sends each man a notification on his phone with the name of the man he calls this week. Later, this happens automatically every Saturday morning.</p>
+      <p class="note" style="margin:0">"Move to next week" shifts the right side up one (the top name goes to the bottom), so every man calls someone new. "Notify everyone" sends each man a notification with the name of the man he calls. Later, this happens automatically every Saturday morning.</p>
     </div>` : '';
   const notIn = !men[S.me].inChain && chainOf(S.me) === g ? `<div class="card partner"><div class="name" style="font-size:1.1rem">You're not in the prayer chain</div>
       <p class="small muted" style="margin:8px 0 14px">Each week every man in the chain calls the next man in line and prays with him. Join anytime, and leave anytime from your profile.</p>
@@ -525,11 +537,11 @@ function vPrayer() {
       ${av(spot.calls, 'lg')}<div class="name">${nm(spot.calls)}</div><div class="phone">${esc(men[spot.calls].phone)}</div>
       <div class="callrow"><a class="callbtn" href="tel:${telOf(spot.calls)}">${ic('phone', 18)} Call</a><a class="callbtn alt" href="sms:${telOf(spot.calls)}">${ic('msg', 18)} Text</a></div>
       <div class="calledby">${av(spot.calledBy)}<span><strong>${nm(spot.calledBy)}</strong> will call you</span></div></div>` : '';
-  const list = C.map((id, i) => `<li class="link${id === S.me ? ' me' : ''}"><span class="num">${i + 1}</span><span class="n">${nm(id)}</span><span class="calls">calls ${i + 1 < C.length ? (i + 2) : '1'}</span></li>`).join('');
+  const list = C.map((id, i) => { const to = callee(g, i); return `<li class="link${id === S.me ? ' me' : ''}${to === S.me ? ' tome' : ''}"><span class="who">${nm(id)}</span><span class="calls">calls</span><span class="who">${nm(to)}</span></li>`; }).join('');
   return `${leaderTools}<div class="sec-label">Week of ${esc(S.week)}</div>${notIn}${you}
     <div class="sec-label">${esc(GROUPS[g].name)} prayer chain · ${C.length} men</div>
     <ol class="card chainlist">${list}</ol>
-    <p class="note">Each man calls the next one down; the last man calls the first. New order every week. Your number is shared only with the men next to you in the chain and your leaders.</p>`;
+    <p class="note">Each week the right side moves up one, so every man calls someone new. Your number is shared only with the men next to you in the chain and your leaders.</p>`;
 }
 function vFiles() {
   const vis = S.files.filter(f => visibleToMe(f.aud));
@@ -675,7 +687,7 @@ document.addEventListener('click', e => {
     case 'samplefile': { keepLesson(); const L = lessonOf(S.up.lesson); const opts = [`Lesson ${L.n} Discussion Guide.pdf`, `Lesson ${L.n} Lecture Slides.pptx`, `${L.passage.split(':')[0]} Cross References.docx`]; const name = opts[S.up.picked.length % opts.length]; S.up.picked.push({ name, type: ftype(name), size: ['220 KB', '4.8 MB', '64 KB'][S.up.picked.length % 3] }); renderSheet(); break; }
     case 'unpick': keepLesson(); S.up.picked.splice(+t.dataset.i, 1); renderSheet(); break;
     case 'doupload': { if (!S.up.picked.length) return; keepLesson(); const aud = audOf(S.up.aud), n = S.up.picked.length; S.up.picked.forEach(p => S.files.unshift({ id: ++fileId, lesson: S.up.lesson, name: p.name, type: p.type, size: p.size, by: S.me, date: 'Today', aud })); S.up.picked = []; closeSheet(); toast(`${n} ${n === 1 ? 'file' : 'files'} added to Lesson ${S.up.lesson}`); break; }
-    case 'shuffle': S.chain[myGroup()] = shuffled(S.chain[myGroup()]); render(); toast('New order made. Tap Notify to let everyone know.'); break;
+    case 'shuffle': nextWeek(myGroup()); S.weekIdx = Math.min(S.weekIdx + 1, S.weeks.length - 1); S.week = S.weeks[S.weekIdx]; render(); toast(`Moved to the week of ${S.week}. Tap Notify to let everyone know.`); break;
     case 'publish': toast('Sent every man a notification with who he calls this week'); break;
     case 'invite': { const v = ($('invite').value || '').trim(); if (!/^\S+@\S+\.\S+$/.test(v)) { toast('Enter an email address'); return; } $('invite').value = ''; toast('Invite sent (demo). He gets an email with a sign-in link.'); break; }
     case 'tostep2': S.signinStep = 2; renderSignin(); break;

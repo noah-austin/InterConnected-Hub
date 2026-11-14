@@ -96,3 +96,8 @@ Removed "Ask for help" from My Group (the toggle, the tags, "taken care of"). My
 - The full chain is a numbered list ("1 Jim Whitaker · calls 2"…, the last "calls 1"), with you highlighted.
 - Leader: **Make a new order** (shuffle) and **Notify everyone who to call** (push notification). Later: automatic every Saturday morning.
 - Joining adds a man into the order (demo: Noah lands just before Mark, so Noah calls Mark); leaving removes him and the chain closes up.
+
+## Revision 9 (Nov 14, Noah) — "A calls B" list and weekly rotation
+- **The list reads "A calls B / B calls C / C calls D…"** (the last man calls the first). Your rows are highlighted.
+- **Weekly rotation:** the left column stays fixed; each week the right column moves **up** one (the top name goes to the bottom), so every man calls someone new; over a full cycle every man calls every other man once, then it starts over. *Why up, not down as first asked:* with week 1 as "A calls B," shifting the right side down one would have every man calling himself that week, so the move is upward.
+- **Leader:** "Move to next week" (rotates and advances the week label) and "Notify everyone who to call."
