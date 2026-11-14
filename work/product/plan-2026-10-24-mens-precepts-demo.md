@@ -89,3 +89,10 @@ Removed "Ask for help" from My Group (the toggle, the tags, "taken care of"). My
 ## Revision 7 (Nov 14, Noah) — prayer chain is opt-in; profiles
 - **Prayer chain is opt-in, default No** (Noah). The welcome step asks "Join the weekly prayer chain?" (No preselected). Men who aren't in it see "You're not in the prayer chain" with **Join the prayer chain** on that tab and no partner card on This Week; only men who join are paired. Leaders can add or remove a man from **Manage group** (In prayer chain / Not in chain), and a man can change it in his profile. Joining mid-week pairs him right away (with the odd man out); leaving re-homes his partner into another pair.
 - **My profile:** tap your circle in the top bar. Photo, name, cell, email, group(s) (read-only; ask your leader to change), prayer chain (I'm in / Not now), Save, Sign out. Contact info is shared only with your prayer partner and leaders.
+
+## Revision 8 (Nov 14, Noah) — it's a chain, not pairs
+**Prayer chain = an order, each man calls the next.** A calls B, B calls C, C calls D… and the last man calls the first, so every man makes one call and gets one call. (Loop-back is the working assumption; Noah can flip it.)
+- Each man sees **"This week, you call [name]"** with number, Call and Text, plus **"[name] will call you."** This Week shows "You call [name]" with a Call button.
+- The full chain is a numbered list ("1 Jim Whitaker · calls 2"…, the last "calls 1"), with you highlighted.
+- Leader: **Make a new order** (shuffle) and **Notify everyone who to call** (push notification). Later: automatic every Saturday morning.
+- Joining adds a man into the order (demo: Noah lands just before Mark, so Noah calls Mark); leaving removes him and the chain closes up.

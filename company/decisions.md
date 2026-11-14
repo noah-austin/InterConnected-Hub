@@ -23,6 +23,7 @@
 | 2026-11-14 | **Precepts app: one app for everyone.** Leaders see the same screens as members plus a few in-place buttons (Post an update, Add files, Make new pairs / Text partners, Manage group). No separate leader view. Two leader levels: group leader (his groups) and ministry coordinator (can post to all groups). Men in more than one group switch groups from the header; everyone else never sees a switch. Simplicity is the test for every addition. | Noah |
 | 2026-11-14 | **Precepts app: no texting system.** Partner reminders go out as push notifications, not SMS. Leaders are in the prayer chain too. | Noah |
 | 2026-11-14 | **Precepts app: the prayer chain is opt-in, default No.** Men choose at sign-up and can change anytime in their profile; leaders can also add or remove a man. Every member has a simple profile (photo, name, cell, email, prayer chain); groups are changed only by leaders. | Noah |
+| 2026-11-14 | **Precepts prayer chain is a calling chain, not pairs.** Each week the order is set; each man calls the next man; the last calls the first (working assumption). Corrects the Oct 25 "one to one" pairs build. | Noah |
 | standing | Feedback governance: collect for a week, act on patterns of 3+, treat single opinions as taste unless strategically compelling. Noah's wife is the visual taste check ("premium, not busy"). | Noah |
 | standing | Detailed financial projections are deferred until field pricing and dev quotes exist. Nothing produced is legal or investment advice. | Noah |
 
