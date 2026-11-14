@@ -85,3 +85,7 @@ Removed "Ask for help" from My Group (the toggle, the tags, "taken care of"). My
 - **Post box** is one tidy row (avatar · "Write to the group…" · Post) that grows as you type.
 - **Bryan is in the Saturday prayer chain.** Leaders can be paired too; a man's partner card shows while he's viewing his own chain's group.
 - **Add files** lives only on the Files tab (removed from This Week).
+
+## Revision 7 (Nov 14, Noah) — prayer chain is opt-in; profiles
+- **Prayer chain is opt-in, default No** (Noah). The welcome step asks "Join the weekly prayer chain?" (No preselected). Men who aren't in it see "You're not in the prayer chain" with **Join the prayer chain** on that tab and no partner card on This Week; only men who join are paired. Leaders can add or remove a man from **Manage group** (In prayer chain / Not in chain), and a man can change it in his profile. Joining mid-week pairs him right away (with the odd man out); leaving re-homes his partner into another pair.
+- **My profile:** tap your circle in the top bar. Photo, name, cell, email, group(s) (read-only; ask your leader to change), prayer chain (I'm in / Not now), Save, Sign out. Contact info is shared only with your prayer partner and leaders.

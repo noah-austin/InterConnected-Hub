@@ -1,0 +1,5 @@
+# 2026-11-14 — Precepts demo: opt-in prayer chain + profile editing
+
+**Noah:** some members won't be in the prayer chain; also need profile editing (name, contact, photo). Default for the chain: **No**.
+**Changed (`work/product/precepts-demo/index.html`):** per-man `inChain` (sample: most men in, a few out; Noah starts out); the welcome step asks with No preselected; Prayer Chain shows a "not in the prayer chain" card with Join; pairing uses only men in the chain; join/leave keeps pairs whole; Manage group shows each man's chain status as a tap-to-change button; a new My profile sheet (from your circle in the top bar) with photo, name, cell, email, groups (read-only), prayer chain, Save, Sign out; avatars show a photo when set.
+**Tested:** headless at 390px. The welcome defaults to No; no partner card when out; Join pairs Noah with Mark; photo upload shows on the avatar; a name change shows on new posts; leaving from the profile works and keeps typed fields; Bryan adds Pete to the chain from Manage and Pete appears in pairs; every pair has 2–3 men; sign out returns to sign-in. The earlier leader/group-switch suite still passes. No overflow, no script errors.
