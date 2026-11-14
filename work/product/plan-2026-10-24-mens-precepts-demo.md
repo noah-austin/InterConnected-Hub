@@ -71,3 +71,11 @@ Group Chat was too much like a group text. **My Group** is now a casual feed: a 
 
 ## Revision 4 (Oct 25, Noah)
 Removed "Ask for help" from My Group (the toggle, the tags, "taken care of"). My Group is a plain casual feed: post box, posts newest first, short replies, inline Reply. Men can still ask for things in an ordinary post.
+
+## Revision 5 (Nov 14, Noah) — after showing Bryan
+**Bryan (Nov 8):** liked it; wants to meet to go over it more.
+**Leader side redesigned:** no separate leader view. Same five tabs for everyone; leaders see extra buttons in place: **Post an update** (Updates), **Add files** (This Week and Files), **Make new pairs / Text each man his partner** (Prayer Chain), **Manage group: men and numbers** (bottom of My Group). Posting offers "this group" or "All groups."
+**Group switcher:** a man in more than one group (Bryan) taps the group name in the header to switch; everything in the app follows. A one-group man never sees it.
+**Demo control:** a thin bar, "Demo: you're Noah, a member · Switch to Bryan," exists only in the demo. In the real app people sign in as themselves.
+**Messages** are per person: Bryan's inbox is his own.
+**Open for the Bryan meeting:** keep or cut private messages and the Files tab; who's the ministry coordinator; real meeting times and lesson list; email-to-post for leaders.

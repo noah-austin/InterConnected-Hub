@@ -39,8 +39,9 @@ input, textarea, select { font: inherit; font-size: 16px; color: var(--ink); }
 .iconbtn { width: 38px; height: 38px; border-radius: 10px; display: grid; place-items: center; position: relative; color: #fff; }
 .iconbtn:hover { background: rgba(255,255,255,.08); }
 .badge { position: absolute; top: 3px; right: 3px; min-width: 17px; height: 17px; border-radius: 9px; background: #EF4444; color: #fff; font-size: .68rem; font-weight: 700; display: grid; place-items: center; padding: 0 4px; }
-.leaderbar { background: var(--amber-soft); color: var(--amber); font-size: .8rem; font-weight: 600; padding: 8px 16px; display: flex; justify-content: space-between; align-items: center; flex: none; }
-.leaderbar button { text-decoration: underline; font-weight: 600; color: var(--amber); padding: 6px 0; }
+.leaderbar { background: #E9EEF8; color: var(--navy-2); font-size: .8rem; font-weight: 600; padding: 8px 16px; display: flex; justify-content: space-between; align-items: center; flex: none; }
+.leaderbar button { text-decoration: underline; font-weight: 700; color: var(--blue); padding: 6px 0; text-align: right; }
+.leaderbar { gap: 10px; }
 
 /* body */
 .screen { flex: 1; overflow-y: auto; padding: 16px 16px 24px; -webkit-overflow-scrolling: touch; }
@@ -96,6 +97,13 @@ input, textarea, select { font: inherit; font-size: 16px; color: var(--ink); }
 .pair .x { color: var(--muted); flex: none; }
 .pair .n { flex: 1; min-width: 0; }
 .pair.me { font-weight: 700; color: var(--blue); }
+
+/* leader extras: same screens, a few extra buttons */
+.leaderadd { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; margin: 12px 0 0; padding: 12px; border-radius: 12px; border: 1.5px dashed #E9C38F; background: var(--amber-soft); color: var(--amber); font-weight: 700; }
+.screen > .leaderadd:first-child { margin: 0 0 4px; }
+.leadercard { border-color: #F3D9B8; }
+.groupswitch { display: inline-flex; align-items: center; gap: 4px; color: #fff; font-weight: 600; background: rgba(255,255,255,.12); border-radius: 999px; padding: 2px 10px; margin-top: 2px; font-size: .8rem; }
+.ph { text-decoration: none; }
 
 /* avatars */
 .av { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; font-size: .8rem; color: #fff; flex: none; }
@@ -229,6 +237,7 @@ const I = {
   mail: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/>',
   cal: '<rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/>',
   phone: '<path d="M5 3.5h3.2l1.6 4.2-2.1 1.3a11 11 0 0 0 5.3 5.3l1.3-2.1 4.2 1.6V17a2 2 0 0 1-2 2A15.5 15.5 0 0 1 3 5.5a2 2 0 0 1 2-2z"/>',
+  chevdown: '<path d="m6 9 6 6 6-6"/>',
   check: '<path d="m5 12.5 4.5 4.5L19 7.5"/>',
   book: '<path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5"/>',
 };
@@ -272,7 +281,7 @@ const CURRENT = 7;
 
 let annId = 20, postId = 40, fileId = 40;
 const S = {
-  me: NOAH, mode: 'member', tab: 'week', ltab: 'announce', signedIn: false, signinStep: 0,
+  me: NOAH, tab: 'week', signedIn: false, signinStep: 0,
   announcements: [
     { id: 1, from: BRYAN, aud: 'all', title: 'Lesson 7 this week: Matthew 6:1–18', body: 'Giving, prayer and fasting done for an audience of One. Work through Days 1–5 before we meet. Lecture notes and the observation worksheet are in Files.', time: 'Mon', pinned: true },
     { id: 2, from: BRYAN, aud: 'sat', title: 'Coffee and donuts this Saturday', body: 'Doors open at 7:40. Come early, grab a coffee and welcome Sam and Ethan, our two newest guys.', time: 'Tue', pinned: false },
@@ -341,19 +350,26 @@ const S = {
   pairs: { sat: [], thu: [] },
   week: 'Nov 7 – 13',
   convos: [
-    { with: 'markellison', unread: true, msgs: [
+    { people: [NOAH, 'markellison'], unreadFor: NOAH, msgs: [
       { from: 'markellison', body: 'Hey brother, good to see you Saturday. Still on for coffee Tuesday?', time: '9:12 AM' },
     ] },
-    { with: BRYAN, unread: false, msgs: [
+    { people: [NOAH, BRYAN], unreadFor: null, msgs: [
       { from: BRYAN, body: 'Glad you\'re in the Saturday group. Let me know if you need a workbook.', time: 'Oct 18' },
       { from: NOAH, body: 'Thanks Bryan, I picked one up. See you Saturday.', time: 'Oct 18' },
     ] },
-    { with: 'luisromero', unread: false, msgs: [
+    { people: [NOAH, 'luisromero'], unreadFor: null, msgs: [
       { from: NOAH, body: 'Luis, good talking Saturday. Still on for lunch next week?', time: 'Nov 1' },
       { from: 'luisromero', body: 'Yes sir. Thursday at noon works.', time: 'Nov 1' },
     ] },
+    { people: [BRYAN, 'tomalvarez'], unreadFor: BRYAN, msgs: [
+      { from: 'tomalvarez', body: 'Bryan, I should be back Saturday. Thanks for checking on me.', time: '8:40 AM' },
+    ] },
+    { people: [BRYAN, 'hectorruiz'], unreadFor: null, msgs: [
+      { from: BRYAN, body: 'Hector, can you open the Zoom Thursday? I\'m running late.', time: 'Nov 5' },
+      { from: 'hectorruiz', body: 'Got it.', time: 'Nov 5' },
+    ] },
   ],
-  sheet: null, draft: { aud: 'all', pin: false, title: '', body: '' }, up: { lesson: CURRENT, aud: 'all', picked: [] }, lgroup: 'sat',
+  sheet: null, group: 'sat', draft: { aud: 'group', pin: false, title: '', body: '' }, up: { lesson: CURRENT, aud: 'group', picked: [] },
 };
 
 // pairings: one-to-one, mutual; an odd man out makes one group of three
@@ -376,35 +392,44 @@ S.pairs.thu = makePairs(groupIds('thu'));
 const $ = id => document.getElementById(id);
 const av = (id, cls = '') => { const m = men[id]; return `<span class="av ${cls}" style="background:${m.color}">${esc(m.initials)}</span>`; };
 const nm = id => esc(men[id].name);
-const myGroup = () => (S.me === BRYAN ? 'sat' : men[S.me].group);
+const first = id => esc(men[id].name.split(' ')[0]);
+// Who am I, and which groups am I in? Leaders can be in more than one; everyone else has one.
+const isLeader = () => men[S.me].leader;
+const myGroups = () => men[S.me].group === 'both' ? ['sat', 'thu'] : [men[S.me].group];
+const myGroup = () => S.group;
 const audLabel = a => a === 'all' ? 'All groups' : GROUPS[a].name;
-const visibleToMe = aud => S.me === BRYAN || aud === 'all' || aud === myGroup();
+const audOf = choice => choice === 'all' ? 'all' : myGroup();
+const visibleToMe = aud => aud === 'all' || aud === myGroup();
 function toast(t) { const el = $('toast'); el.textContent = t; el.classList.add('show'); clearTimeout(toast.t); toast.t = setTimeout(() => el.classList.remove('show'), 2200); }
 const ftype = name => { const e = name.split('.').pop().toLowerCase(); return e === 'pdf' ? 'pdf' : ['mp3', 'm4a', 'wav'].includes(e) ? 'audio' : ['ppt', 'pptx', 'key'].includes(e) ? 'slides' : ['xls', 'xlsx', 'csv'].includes(e) ? 'sheet' : 'doc'; };
 const fiLabel = { pdf: 'PDF', doc: 'DOC', audio: 'MP3', slides: 'PPT', sheet: 'XLS' };
 const fileRow = f => `<button class="file" data-act="openfile" data-id="${f.id}" style="width:100%;text-align:left"><span class="ficon ${f.type}">${fiLabel[f.type]}</span><span style="min-width:0;flex:1"><span class="fn" style="display:block">${esc(f.name)}</span><span class="fm">${esc(f.size)} · ${f.aud === 'all' ? 'All groups' : esc(GROUPS[f.aud].name)} · ${esc(f.date)}</span></span></button>`;
 const lessonOf = n => LESSONS.find(l => l.n === n);
-const unreadCount = () => S.convos.filter(c => c.unread && c.msgs.some(m => m.from !== S.me)).length;
+const myConvos = () => S.convos.filter(c => c.people.includes(S.me));
+const other = c => c.people.find(x => x !== S.me);
+const unreadCount = () => myConvos().filter(c => c.unreadFor === S.me).length;
+const telOf = id => men[id].phone.replace(/[^0-9]/g, '');
+const leaderBtn = (act, label, icon = 'plus') => `<button class="leaderadd" data-act="${act}">${ic(icon, 18)} ${label}</button>`;
 
-// ---------- header + tabs ----------
+// ---------- header, demo bar, tabs ----------
 function renderTop() {
-  const g = GROUPS[myGroup()];
-  $('top').innerHTML = `<span class="mark">${MARK}</span><div class="t"><h1>Men's Precepts</h1><p class="sub">${S.mode === 'leader' ? 'Leader tools · Bryan Bailey' : esc(g.name) + ' · Austin Ridge'}</p></div>
-    ${S.mode === 'member' ? `<button class="iconbtn" data-act="messages" aria-label="Messages">${ic('msg')}${unreadCount() ? `<span class="badge">${unreadCount()}</span>` : ''}</button>` : ''}
-    <button class="iconbtn" data-act="switch" aria-label="${S.mode === 'leader' ? 'Back to member view' : 'Leader tools'}">${ic(S.mode === 'leader' ? 'users' : 'shield')}</button>`;
-  const lb = $('leaderbar');
-  lb.hidden = S.mode !== 'leader';
-  lb.innerHTML = `<span>Only leaders see this</span><button data-act="switch">Member view</button>`;
+  const groups = myGroups(), g = GROUPS[myGroup()];
+  const sub = groups.length > 1
+    ? `<button class="groupswitch" data-act="pickgroup" aria-label="Switch group">${esc(g.name)} ${ic('chevdown', 14, 2.4)}</button>`
+    : `${esc(g.name)} · Austin Ridge`;
+  $('top').innerHTML = `<span class="mark">${MARK}</span><div class="t"><h1>Men's Precepts</h1><p class="sub">${sub}</p></div>
+    <button class="iconbtn" data-act="messages" aria-label="Messages">${ic('msg')}${unreadCount() ? `<span class="badge">${unreadCount()}</span>` : ''}</button>`;
+  const bar = $('leaderbar');
+  bar.hidden = !S.signedIn;
+  bar.innerHTML = `<span>Demo: you're <strong>${first(S.me)}</strong>, ${isLeader() ? 'a leader' : 'a member'}</span><button data-act="viewas">Switch to ${S.me === NOAH ? 'Bryan' : 'Noah'}</button>`;
 }
-const MTABS = [['week', 'home', 'This Week'], ['ann', 'mega', 'Updates'], ['group', 'group', 'My Group'], ['prayer', 'pray', 'Prayer Chain'], ['files', 'folder', 'Files']];
-const LTABS = [['announce', 'mega', 'Announce'], ['upload', 'upload', 'Upload'], ['chain', 'pray', 'Prayer Chain'], ['roster', 'users', 'Roster']];
+const TABS = [['week', 'home', 'This Week'], ['ann', 'mega', 'Updates'], ['group', 'group', 'My Group'], ['prayer', 'pray', 'Prayer Chain'], ['files', 'folder', 'Files']];
 function renderTabs() {
-  const leader = S.mode === 'leader', list = leader ? LTABS : MTABS, cur = leader ? S.ltab : S.tab;
-  $('tabs').className = 'tabs' + (leader ? ' four' : '');
-  $('tabs').innerHTML = list.map(([k, i, l]) => `<button class="tab${k === cur ? ' on' : ''}" data-tab="${k}" aria-current="${k === cur}">${ic(i)}<span>${l}</span></button>`).join('');
+  $('tabs').className = 'tabs';
+  $('tabs').innerHTML = TABS.map(([k, i, l]) => `<button class="tab${k === S.tab ? ' on' : ''}" data-tab="${k}" aria-current="${k === S.tab}">${ic(i)}<span>${l}</span></button>`).join('');
 }
 
-// ---------- member screens ----------
+// ---------- screens (the same for everyone; leaders see a few extra buttons) ----------
 function vWeek() {
   const g = GROUPS[myGroup()], L = lessonOf(CURRENT);
   const ann = S.announcements.filter(a => visibleToMe(a.aud));
@@ -421,12 +446,14 @@ function vWeek() {
     ${latest ? `<div class="sec-label">Latest update</div>${annCard(latest)}` : ''}
     ${partner ? `<div class="sec-label">Your prayer partner this week</div><div class="card row">${av(partner)}<button data-act="tab" data-tab="prayer" style="flex:1;min-width:0;text-align:left"><div style="font-weight:700">${nm(partner)}</div><div class="small muted">${esc(men[partner].phone)}</div></button><a class="minicall" href="tel:${telOf(partner)}">${ic('phone', 16)} Call</a></div>` : ''}
     <div class="sec-label">This week's files</div>
-    <div class="card">${files.length ? files.map(fileRow).join('') : '<div class="empty">No files yet this week.</div>'}</div>`;
+    <div class="card">${files.length ? files.map(fileRow).join('') : '<div class="empty">No files yet this week.</div>'}</div>
+    ${isLeader() ? leaderBtn('addfiles', 'Add files') : ''}`;
 }
 const annCard = a => `<article class="card ann"><div class="meta">${a.pinned ? `<span class="tag pin">Pinned</span>` : ''}<span class="tag">${esc(audLabel(a.aud))}</span><span>${nm(a.from)} · ${esc(a.time)}</span></div><h3>${esc(a.title)}</h3><p>${esc(a.body)}</p></article>`;
 function vAnn() {
   const list = S.announcements.filter(a => visibleToMe(a.aud)).sort((x, y) => (y.pinned - x.pinned));
-  return `<div class="sec-label">Updates from your leaders</div><div class="stack">${list.map(annCard).join('')}</div>
+  return `${isLeader() ? leaderBtn('postupdate', 'Post an update') : ''}
+    <div class="sec-label">Updates from your leaders</div><div class="stack">${list.map(annCard).join('')}</div>
     <p class="note">Updates also go out by email, so nobody misses one.</p>`;
 }
 function vGroup() {
@@ -434,25 +461,30 @@ function vGroup() {
   const composer = `<form class="card composer" data-form="post"><div class="crow">${av(S.me)}<textarea id="postin" placeholder="Share something or ask the guys…" aria-label="New post"></textarea></div>
     <div class="cfoot"><button class="postbtn">Post</button></div></form>`;
   const card = p => {
-    const reps = p.replies.length ? `<div class="replies">${p.replies.map(r => `<div class="rep">${av(r.author)}<div class="rb"><strong>${esc(men[r.author].name.split(' ')[0])}</strong> ${esc(r.body)}</div></div>`).join('')}</div>` : '';
-    const form = S.replyOpen === p.id ? `<form class="replyform" data-form="reply" data-id="${p.id}"><input id="replyin" placeholder="Reply to ${esc(men[p.author].name.split(' ')[0])}…" autocomplete="off"><button>Send</button></form>` : '';
+    const reps = p.replies.length ? `<div class="replies">${p.replies.map(r => `<div class="rep">${av(r.author)}<div class="rb"><strong>${first(r.author)}</strong> ${esc(r.body)}</div></div>`).join('')}</div>` : '';
+    const form = S.replyOpen === p.id ? `<form class="replyform" data-form="reply" data-id="${p.id}"><input id="replyin" placeholder="Reply to ${first(p.author)}…" autocomplete="off"><button>Send</button></form>` : '';
     return `<article class="card post"><div class="head">${av(p.author)}<div style="flex:1;min-width:0"><div class="who">${nm(p.author)}${men[p.author].leader ? ' <span class="tag green">Leader</span>' : ''}</div><div class="when">${esc(p.time)}</div></div></div>
       <p class="body">${esc(p.body)}</p>${reps}
       ${form || `<div class="postacts"><button data-act="reply" data-id="${p.id}">Reply</button></div>`}</article>`;
   };
-  return `${composer}<div class="sec-label">${esc(GROUPS[g].name)}</div><div class="stack">${list.map(card).join('')}</div>`;
+  return `${composer}<div class="sec-label">${esc(GROUPS[g].name)}</div><div class="stack">${list.map(card).join('')}</div>
+    ${isLeader() ? leaderBtn('manage', `Manage ${esc(GROUPS[g].name)}: men and numbers`, 'users') : ''}`;
 }
 function partnerOf(id) {
-  const g = men[id].group === 'both' ? null : men[id].group;
-  if (!g) return null;
-  const p = S.pairs[g].find(x => x.includes(id));
+  if (men[id].group === 'both') return null; // leaders run the chain; they aren't paired
+  const p = S.pairs[men[id].group].find(x => x.includes(id));
   return p ? p.find(x => x !== id) : null;
 }
-const telOf = id => men[id].phone.replace(/[^0-9]/g, '');
 function vPrayer() {
   const g = myGroup(), partner = partnerOf(S.me), pairs = S.pairs[g];
   const mine = partner ? pairs.find(x => x.includes(S.me)).filter(x => x !== S.me) : [];
-  return `<div class="sec-label">Week of ${esc(S.week)}</div>
+  const leaderTools = isLeader() ? `<div class="card stack leadercard">
+      <div class="small" style="font-weight:700;color:var(--amber)">Leader</div>
+      <button class="bigbtn secondary" data-act="shuffle">${ic('shuffle', 18)} Make new pairs</button>
+      <button class="bigbtn" data-act="publish">Text each man his partner</button>
+      <p class="note" style="margin:0">Pairs show in the app right away. The text gives each man his partner's name and number. Later, this happens automatically every Saturday morning.</p>
+    </div>` : '';
+  return `${leaderTools}<div class="sec-label">Week of ${esc(S.week)}</div>
     ${partner ? `<div class="card partner"><div class="small muted" style="font-weight:600;margin-bottom:12px">This week, call and pray for</div>
       ${mine.map(id => `<div style="margin-bottom:6px">${av(id, 'lg')}<div class="name">${nm(id)}</div><div class="phone">${esc(men[id].phone)}</div></div>`).join('')}
       <div class="small muted">${mine.length > 1 ? 'They\'re' : 'He\'s'} calling you this week too.</div>
@@ -464,77 +496,60 @@ function vPrayer() {
 function vFiles() {
   const vis = S.files.filter(f => visibleToMe(f.aud));
   const lessons = [...new Set(vis.map(f => f.lesson))].sort((a, b) => b - a);
-  return lessons.map(n => { const L = lessonOf(n); return `<div class="sec-label">${n === CURRENT ? 'This week · ' : ''}Lesson ${n}</div><div class="card"><div class="lessonhead"><strong>${esc(L.title)}</strong><span class="small muted">${esc(L.passage)}</span></div>${vis.filter(f => f.lesson === n).map(fileRow).join('')}</div>`; }).join('');
+  return `${isLeader() ? leaderBtn('addfiles', 'Add files') : ''}` + lessons.map(n => { const L = lessonOf(n); return `<div class="sec-label">${n === CURRENT ? 'This week · ' : ''}Lesson ${n}</div><div class="card"><div class="lessonhead"><strong>${esc(L.title)}</strong><span class="small muted">${esc(L.passage)}</span></div>${vis.filter(f => f.lesson === n).map(fileRow).join('')}</div>`; }).join('');
 }
 
-// ---------- leader screens ----------
-function vAnnounce() {
-  const d = S.draft;
-  return `<div class="sec-label">New update</div>
-  <div class="card stack">
-    <div class="field"><label>Who sees it</label><div class="seg">${['all', 'sat', 'thu'].map(a => `<button data-act="daud" data-v="${a}" class="${d.aud === a ? 'on' : ''}">${audLabel(a)}</button>`).join('')}</div></div>
-    <div class="field"><label for="atitle">Title</label><input id="atitle" value="${esc(d.title)}" placeholder="e.g. Bring your workbook Saturday"></div>
-    <div class="field"><label for="abody">Message</label><textarea id="abody" placeholder="What do the men need to know?">${esc(d.body)}</textarea></div>
-    <label class="check"><input type="checkbox" id="apin" ${d.pin ? 'checked' : ''}> Pin to the top</label>
-    <button class="bigbtn" data-act="postann">Post update</button>
-    <p class="note" style="margin:0">It shows up in the app right away and goes out by email too.</p>
-  </div>
-  <div class="sec-label">Recent</div><div class="stack">${S.announcements.slice(0, 3).map(annCard).join('')}</div>`;
-}
-function vUpload() {
-  const u = S.up;
-  return `<div class="sec-label">Upload this week's files</div>
-  <div class="card stack">
-    <div class="field"><label for="ulesson">Lesson</label><select id="ulesson">${LESSONS.slice().reverse().map(L => `<option value="${L.n}" ${L.n === u.lesson ? 'selected' : ''}>Lesson ${L.n}: ${esc(L.title)}</option>`).join('')}</select></div>
-    <div class="field"><label>Who gets them</label><div class="seg">${['all', 'sat', 'thu'].map(a => `<button data-act="uaud" data-v="${a}" class="${u.aud === a ? 'on' : ''}">${audLabel(a)}</button>`).join('')}</div></div>
-    <label class="drop" for="ufile">${ic('upload', 26)}<div style="font-weight:700;margin-top:6px">Choose files</div><div class="small muted">PDFs, notes, slides, audio</div><input type="file" id="ufile" multiple hidden></label>
-    <button class="bigbtn secondary" data-act="samplefile">Add a sample file (demo)</button>
-    ${u.picked.length ? `<div>${u.picked.map((p, i) => `<div class="file"><span class="ficon ${p.type}">${fiLabel[p.type]}</span><span style="flex:1;min-width:0"><span class="fn" style="display:block">${esc(p.name)}</span><span class="fm">${esc(p.size)}</span></span><button data-act="unpick" data-i="${i}" aria-label="Remove">${ic('x', 18)}</button></div>`).join('')}</div>` : ''}
-    <button class="bigbtn" data-act="doupload" ${u.picked.length ? '' : 'disabled style="opacity:.5"'}>Upload ${u.picked.length || ''} ${u.picked.length === 1 ? 'file' : 'files'}</button>
-  </div>`;
-}
-function vChain() {
-  const g = S.lgroup;
-  return `<div class="seg" style="margin-bottom:6px">${['sat', 'thu'].map(k => `<button data-act="lgroup" data-v="${k}" class="${g === k ? 'on' : ''}">${GROUPS[k].name}</button>`).join('')}</div>
-    <div class="stack" style="margin-top:8px">
-      <button class="bigbtn secondary" data-act="shuffle">${ic('shuffle', 18)} Make new pairs</button>
-      <button class="bigbtn" data-act="publish">Text each man his partner</button>
-      <p class="note" style="margin:0">Pairs show in the app right away. The text gives each man his partner's name and number. Later, new pairs go out automatically every Saturday morning.</p>
-    </div>
-    <div class="sec-label">Week of ${esc(S.week)} · ${S.pairs[g].length} pairs</div>
-    <div class="card pairs">${S.pairs[g].map(p => `<div class="pair"><span class="n">${p.map(nm).join(' <span class="x">&</span> ')}</span></div>`).join('')}</div>`;
-}
-function vRoster() {
-  const g = S.lgroup, list = groupIds(g);
-  return `<div class="seg" style="margin-bottom:6px">${['sat', 'thu'].map(k => `<button data-act="lgroup" data-v="${k}" class="${g === k ? 'on' : ''}">${GROUPS[k].name}</button>`).join('')}</div>
-    <div class="sec-label">${list.length} men · ${esc(GROUPS[g].when)}</div>
-    <div class="card"><div class="field"><label for="invite">Add a man to the group</label><div class="row"><input id="invite" type="email" placeholder="Email address"><button class="pillbtn" data-act="invite">${ic('plus', 16)} Invite</button></div></div></div>
-    <div class="card" style="margin-top:10px">${list.map(id => `<div class="pair">${av(id)}<span class="n" style="font-weight:600">${nm(id)}${id === 'samokafor' || id === 'ethanmoore' ? ' <span class="tag green">New</span>' : ''}</span><span class="ph">${esc(men[id].phone)}</span></div>`).join('')}</div>`;
-}
-
-// ---------- sheets (messages, files) ----------
+// ---------- sheets ----------
 function openSheet(kind, arg) { S.sheet = { kind, arg }; renderSheet(); requestAnimationFrame(() => $('sheet').classList.add('open')); $('sheet').setAttribute('aria-hidden', 'false'); }
 function closeSheet() { if (document.activeElement) document.activeElement.blur(); $('app').scrollLeft = 0; $('sheet').classList.remove('open'); $('sheet').setAttribute('aria-hidden', 'true'); S.sheet = null; render(); }
 function sheetTop(title, sub, back = true) { return `<header class="top">${back ? `<button class="iconbtn" data-act="close" aria-label="Back">${ic('back')}</button>` : ''}<div class="t"><h1>${title}</h1>${sub ? `<p class="sub">${sub}</p>` : ''}</div></header>`; }
+const audPicker = (act, cur) => `<div class="field"><label>Who gets it</label><div class="seg">${['group', 'all'].map(a => `<button data-act="${act}" data-v="${a}" class="${cur === a ? 'on' : ''}">${a === 'all' ? 'All groups' : esc(GROUPS[myGroup()].name)}</button>`).join('')}</div></div>`;
 function renderSheet() {
   const sh = $('sheet'); if (!S.sheet) return;
   const { kind, arg } = S.sheet;
   if (kind === 'messages') {
-    const list = S.convos.filter(c => c.msgs.length || c.with);
-    sh.innerHTML = sheetTop('Messages', 'Private, man to man') + `<div class="screen"><div class="card">${list.map(c => { const last = c.msgs[c.msgs.length - 1]; return `<button class="convo" data-act="dm" data-id="${c.with}">${av(c.with)}<div style="flex:1;min-width:0"><div class="cn">${nm(c.with)}</div><div class="cp">${last ? esc((last.from === S.me ? 'You: ' : '') + last.body) : 'Say hello'}</div></div>${c.unread ? '<span class="unread"></span>' : ''}</button>`; }).join('')}</div>
-      <p class="note">Leaders can't read private messages.</p></div>`;
+    const list = myConvos();
+    sh.innerHTML = sheetTop('Messages', 'Private, man to man') + `<div class="screen"><div class="card">${list.map(c => { const o = other(c), last = c.msgs[c.msgs.length - 1]; return `<button class="convo" data-act="dm" data-id="${o}">${av(o)}<div style="flex:1;min-width:0"><div class="cn">${nm(o)}</div><div class="cp">${last ? esc((last.from === S.me ? 'You: ' : '') + last.body) : 'Say hello'}</div></div>${c.unreadFor === S.me ? '<span class="unread"></span>' : ''}</button>`; }).join('')}</div>
+      <p class="note">Only the two of you can read these. Leaders can't.</p></div>`;
   } else if (kind === 'dm') {
-    let c = S.convos.find(x => x.with === arg);
-    if (!c) { c = { with: arg, unread: false, msgs: [] }; S.convos.unshift(c); }
-    c.unread = false;
+    let c = myConvos().find(x => other(x) === arg);
+    if (!c) { c = { people: [S.me, arg], unreadFor: null, msgs: [] }; S.convos.unshift(c); }
+    if (c.unreadFor === S.me) c.unreadFor = null;
     sh.innerHTML = sheetTop(nm(arg), men[arg].group === 'both' ? 'Group leader' : esc(GROUPS[men[arg].group].name)) + `<div class="screen" id="dmscroll"><div class="bubbles">${c.msgs.map(m => `<div class="bubble${m.from === S.me ? ' mine' : ''}">${esc(m.body)}<div class="bt">${esc(m.time)}</div></div>`).join('') || '<div class="empty">No messages yet.</div>'}</div></div>
-      <form class="inputbar" data-form="dm"><input id="dmin" placeholder="Message ${esc(men[arg].name.split(' ')[0])}…" autocomplete="off"><button class="sendbtn" aria-label="Send">${ic('send', 18)}</button></form>`;
+      <form class="inputbar" data-form="dm"><input id="dmin" placeholder="Message ${first(arg)}…" autocomplete="off"><button class="sendbtn" aria-label="Send">${ic('send', 18)}</button></form>`;
     requestAnimationFrame(() => { const s = $('dmscroll'); if (s) s.scrollTop = s.scrollHeight; });
   } else if (kind === 'file') {
     const f = S.files.find(x => x.id === arg), L = lessonOf(f.lesson);
     sh.innerHTML = sheetTop('File', `Lesson ${f.lesson} · ${esc(L.title)}`) + `<div class="screen"><div class="card" style="text-align:center;padding:28px 16px"><span class="ficon ${f.type}" style="width:64px;height:76px;margin:0 auto;font-size:.9rem">${fiLabel[f.type]}</span><div style="font-weight:700;font-size:1.05rem;margin-top:14px;overflow-wrap:anywhere">${esc(f.name)}</div><div class="small muted" style="margin-top:4px">${esc(f.size)} · Shared by ${nm(f.by)} · ${esc(f.date)}</div>
       <div class="stack" style="margin-top:18px"><button class="bigbtn" data-act="fakeopen">Open</button><button class="bigbtn secondary" data-act="fakeopen">Save to phone</button></div></div>
       <p class="note">In the demo, files are names only. In the real app they open on your phone.</p></div>`;
+  } else if (kind === 'postupdate') {
+    const d = S.draft;
+    sh.innerHTML = sheetTop('Post an update', esc(GROUPS[myGroup()].name)) + `<div class="screen"><div class="card stack">
+      ${audPicker('daud', d.aud)}
+      <div class="field"><label for="atitle">Title</label><input id="atitle" value="${esc(d.title)}" placeholder="e.g. Bring your workbook Saturday"></div>
+      <div class="field"><label for="abody">Message</label><textarea id="abody" placeholder="What do the men need to know?">${esc(d.body)}</textarea></div>
+      <label class="check"><input type="checkbox" id="apin" ${d.pin ? 'checked' : ''}> Pin to the top</label>
+      <button class="bigbtn" data-act="postann">Post update</button>
+      <p class="note" style="margin:0">It shows up in the app right away and goes out by email too.</p></div></div>`;
+  } else if (kind === 'addfiles') {
+    const u = S.up;
+    sh.innerHTML = sheetTop('Add files', esc(GROUPS[myGroup()].name)) + `<div class="screen"><div class="card stack">
+      <div class="field"><label for="ulesson">Lesson</label><select id="ulesson">${LESSONS.slice().reverse().map(L => `<option value="${L.n}" ${L.n === u.lesson ? 'selected' : ''}>Lesson ${L.n}: ${esc(L.title)}</option>`).join('')}</select></div>
+      ${audPicker('uaud', u.aud)}
+      <label class="drop" for="ufile">${ic('upload', 26)}<div style="font-weight:700;margin-top:6px">Choose files</div><div class="small muted">PDFs, notes, slides, audio</div><input type="file" id="ufile" multiple hidden></label>
+      <button class="bigbtn secondary" data-act="samplefile">Add a sample file (demo)</button>
+      ${u.picked.length ? `<div>${u.picked.map((p, i) => `<div class="file"><span class="ficon ${p.type}">${fiLabel[p.type]}</span><span style="flex:1;min-width:0"><span class="fn" style="display:block">${esc(p.name)}</span><span class="fm">${esc(p.size)}</span></span><button data-act="unpick" data-i="${i}" aria-label="Remove">${ic('x', 18)}</button></div>`).join('')}</div>` : ''}
+      <button class="bigbtn" data-act="doupload" ${u.picked.length ? '' : 'disabled style="opacity:.5"'}>Add ${u.picked.length || ''} ${u.picked.length === 1 ? 'file' : 'files'}</button></div></div>`;
+    const fi = $('ufile'); if (fi) fi.onchange = e => { [...e.target.files].forEach(f => S.up.picked.push({ name: f.name, type: ftype(f.name), size: f.size > 1e6 ? (f.size / 1e6).toFixed(1) + ' MB' : Math.max(1, Math.round(f.size / 1e3)) + ' KB' })); renderSheet(); };
+  } else if (kind === 'manage') {
+    const g = myGroup(), list = groupIds(g);
+    sh.innerHTML = sheetTop(`Manage ${esc(GROUPS[g].name)}`, `${list.length} men · ${esc(GROUPS[g].when)}`) + `<div class="screen">
+      <div class="card"><div class="field"><label for="invite">Add a man to the group</label><div class="row"><input id="invite" type="email" placeholder="Email address"><button class="pillbtn" data-act="invite">${ic('plus', 16)} Invite</button></div></div></div>
+      <div class="card" style="margin-top:10px">${list.map(id => `<div class="pair">${av(id)}<span class="n" style="font-weight:600">${nm(id)}${id === 'samokafor' || id === 'ethanmoore' ? ' <span class="tag green">New</span>' : ''}</span><a class="ph" href="tel:${telOf(id)}">${esc(men[id].phone)}</a></div>`).join('')}</div></div>`;
+  } else if (kind === 'pickgroup') {
+    sh.innerHTML = sheetTop('Switch group', 'You lead more than one group') + `<div class="screen"><div class="card">${myGroups().map(k => `<button class="convo" data-act="setgroup" data-v="${k}"><span class="av" style="background:var(--navy)">${ic(GROUPS[k].zoom ? 'video' : 'group', 18)}</span><div style="flex:1;min-width:0"><div class="cn">${esc(GROUPS[k].name)}</div><div class="cp">${esc(GROUPS[k].when)} · ${groupIds(k).length} men</div></div>${k === myGroup() ? `<span style="color:var(--blue)">${ic('check', 20, 2.4)}</span>` : ''}</button>`).join('')}</div>
+      <p class="note">Everything in the app switches to the group you pick.</p></div>`;
   }
 }
 
@@ -572,24 +587,19 @@ function renderSignin() {
 // ---------- render ----------
 function render() {
   renderTop(); renderTabs(); renderSignin();
-  const v = S.mode === 'leader'
-    ? { announce: vAnnounce, upload: vUpload, chain: vChain, roster: vRoster }[S.ltab]()
-    : { week: vWeek, ann: vAnn, group: vGroup, prayer: vPrayer, files: vFiles }[S.tab]();
-  $('screen').innerHTML = v;
-
-  const fi = $('ufile'); if (fi) fi.onchange = e => { [...e.target.files].forEach(f => S.up.picked.push({ name: f.name, type: ftype(f.name), size: f.size > 1e6 ? (f.size / 1e6).toFixed(1) + ' MB' : Math.max(1, Math.round(f.size / 1e3)) + ' KB' })); render(); };
+  $('screen').innerHTML = { week: vWeek, ann: vAnn, group: vGroup, prayer: vPrayer, files: vFiles }[S.tab]();
 }
 const keepDraft = () => { const t = $('atitle'), b = $('abody'), p = $('apin'); if (t) S.draft.title = t.value; if (b) S.draft.body = b.value; if (p) S.draft.pin = p.checked; };
+const keepLesson = () => { const l = $('ulesson'); if (l) S.up.lesson = +l.value; };
 
 document.addEventListener('click', e => {
   const t = e.target.closest('[data-act],[data-tab]'); if (!t) return;
   const act = t.dataset.act, tab = t.dataset.tab;
-  if (tab && (!act || act === 'tab')) {
-    if (S.mode === 'leader' && !act) { keepDraft(); S.ltab = tab; } else { S.tab = tab; }
-    $('screen').scrollTop = 0; render(); return;
-  }
+  if (tab && (!act || act === 'tab')) { S.tab = tab; S.replyOpen = null; $('screen').scrollTop = 0; render(); return; }
   switch (act) {
-    case 'switch': keepDraft(); S.mode = S.mode === 'leader' ? 'member' : 'leader'; S.me = S.mode === 'leader' ? BRYAN : NOAH; if (S.mode === 'member') S.tab = 'week'; if (S.sheet) closeSheet(); $('screen').scrollTop = 0; render(); toast(S.mode === 'leader' ? 'Leader view: Bryan Bailey' : 'Back to Noah\'s view'); break;
+    case 'viewas': S.me = S.me === NOAH ? BRYAN : NOAH; S.group = myGroups()[0]; S.tab = 'week'; S.replyOpen = null; if (S.sheet) closeSheet(); $('screen').scrollTop = 0; render(); toast(S.me === BRYAN ? 'Now viewing as Bryan, a leader' : 'Now viewing as Noah, a member'); break;
+    case 'pickgroup': openSheet('pickgroup'); break;
+    case 'setgroup': S.group = t.dataset.v; S.replyOpen = null; closeSheet(); $('screen').scrollTop = 0; toast(`Now showing the ${GROUPS[S.group].name}`); break;
     case 'messages': openSheet('messages'); break;
     case 'dm': openSheet('dm', t.dataset.id); break;
     case 'openfile': openSheet('file', +t.dataset.id); break;
@@ -598,17 +608,21 @@ document.addEventListener('click', e => {
     case 'directions': toast('Opens Maps to Austin Ridge (demo)'); break;
     case 'fakeopen': toast('Opens the file on your phone (demo)'); break;
     case 'reply': S.replyOpen = +t.dataset.id; render(); setTimeout(() => $('replyin') && $('replyin').focus(), 0); break;
-    case 'daud': keepDraft(); S.draft.aud = t.dataset.v; render(); break;
+    // leader buttons
+    case 'postupdate': openSheet('postupdate'); break;
+    case 'addfiles': openSheet('addfiles'); break;
+    case 'manage': openSheet('manage'); break;
+    case 'daud': keepDraft(); S.draft.aud = t.dataset.v; renderSheet(); break;
     case 'postann': { keepDraft(); const d = S.draft; if (!d.title.trim() || !d.body.trim()) { toast('Add a title and a message'); return; }
+      const aud = audOf(d.aud);
       if (d.pin) S.announcements.forEach(a => a.pinned = false);
-      S.announcements.unshift({ id: ++annId, from: BRYAN, aud: d.aud, title: d.title.trim(), body: d.body.trim(), time: 'Just now', pinned: d.pin });
-      S.draft = { aud: 'all', pin: false, title: '', body: '' }; render(); toast(d.aud === 'all' ? 'Posted to all groups and emailed' : `Posted to the ${audLabel(d.aud)} and emailed`); break; }
-    case 'uaud': S.up.aud = t.dataset.v; S.up.lesson = +$('ulesson').value; render(); break;
-    case 'samplefile': { S.up.lesson = +$('ulesson').value; const L = lessonOf(S.up.lesson); const opts = [`Lesson ${L.n} Discussion Guide.pdf`, `Lesson ${L.n} Lecture Slides.pptx`, `${L.passage.split(':')[0]} Cross References.docx`]; const name = opts[S.up.picked.length % opts.length]; S.up.picked.push({ name, type: ftype(name), size: ['220 KB', '4.8 MB', '64 KB'][S.up.picked.length % 3] }); render(); break; }
-    case 'unpick': S.up.picked.splice(+t.dataset.i, 1); render(); break;
-    case 'doupload': { if (!S.up.picked.length) return; S.up.lesson = +$('ulesson').value; const n = S.up.picked.length; S.up.picked.forEach(p => S.files.unshift({ id: ++fileId, lesson: S.up.lesson, name: p.name, type: p.type, size: p.size, by: BRYAN, date: 'Today', aud: S.up.aud })); S.up.picked = []; render(); toast(`${n} ${n === 1 ? 'file' : 'files'} added to Lesson ${S.up.lesson}`); break; }
-    case 'lgroup': S.lgroup = t.dataset.v; render(); break;
-    case 'shuffle': S.pairs[S.lgroup] = makePairs(groupIds(S.lgroup)); render(); toast('New pairs made. Tap the blue button to text everyone.'); break;
+      S.announcements.unshift({ id: ++annId, from: S.me, aud, title: d.title.trim(), body: d.body.trim(), time: 'Just now', pinned: d.pin });
+      S.draft = { aud: 'group', pin: false, title: '', body: '' }; S.tab = 'ann'; closeSheet(); toast(aud === 'all' ? 'Posted to all groups and emailed' : `Posted to the ${audLabel(aud)} and emailed`); break; }
+    case 'uaud': keepLesson(); S.up.aud = t.dataset.v; renderSheet(); break;
+    case 'samplefile': { keepLesson(); const L = lessonOf(S.up.lesson); const opts = [`Lesson ${L.n} Discussion Guide.pdf`, `Lesson ${L.n} Lecture Slides.pptx`, `${L.passage.split(':')[0]} Cross References.docx`]; const name = opts[S.up.picked.length % opts.length]; S.up.picked.push({ name, type: ftype(name), size: ['220 KB', '4.8 MB', '64 KB'][S.up.picked.length % 3] }); renderSheet(); break; }
+    case 'unpick': keepLesson(); S.up.picked.splice(+t.dataset.i, 1); renderSheet(); break;
+    case 'doupload': { if (!S.up.picked.length) return; keepLesson(); const aud = audOf(S.up.aud), n = S.up.picked.length; S.up.picked.forEach(p => S.files.unshift({ id: ++fileId, lesson: S.up.lesson, name: p.name, type: p.type, size: p.size, by: S.me, date: 'Today', aud })); S.up.picked = []; closeSheet(); toast(`${n} ${n === 1 ? 'file' : 'files'} added to Lesson ${S.up.lesson}`); break; }
+    case 'shuffle': S.pairs[myGroup()] = makePairs(groupIds(myGroup())); render(); toast('New pairs made. Tap the blue button to text everyone.'); break;
     case 'publish': toast('Texted every man his partner for this week'); break;
     case 'invite': { const v = ($('invite').value || '').trim(); if (!/^\S+@\S+\.\S+$/.test(v)) { toast('Enter an email address'); return; } $('invite').value = ''; toast('Invite sent (demo). He gets an email with a sign-in link.'); break; }
     case 'tostep2': S.signinStep = 2; renderSignin(); break;
@@ -618,9 +632,9 @@ document.addEventListener('click', e => {
 document.addEventListener('submit', e => {
   const f = e.target.dataset.form; if (!f) return; e.preventDefault();
   if (f === 'signin') { S.signinStep = 1; renderSignin(); }
-  if (f === 'post') { const v = $('postin').value.trim(); if (!v) { toast('Write something first'); return; } S.posts.unshift({ id: ++postId, group: myGroup(), author: S.me, body: v, time: 'Just now', replies: [] }); render(); toast('Posted to your group'); }
+  if (f === 'post') { const v = $('postin').value.trim(); if (!v) { toast('Write something first'); return; } S.posts.unshift({ id: ++postId, group: myGroup(), author: S.me, body: v, time: 'Just now', replies: [] }); render(); toast(`Posted to the ${GROUPS[myGroup()].name}`); }
   if (f === 'reply') { const v = $('replyin').value.trim(); if (!v) return; S.posts.find(p => p.id === +e.target.dataset.id).replies.push({ author: S.me, body: v }); S.replyOpen = null; render(); }
-  if (f === 'dm') { const v = $('dmin').value.trim(); if (!v) return; S.convos.find(c => c.with === S.sheet.arg).msgs.push({ from: S.me, body: v, time: 'Now' }); renderSheet(); setTimeout(() => $('dmin') && $('dmin').focus(), 0); }
+  if (f === 'dm') { const v = $('dmin').value.trim(); if (!v) return; myConvos().find(c => other(c) === S.sheet.arg).msgs.push({ from: S.me, body: v, time: 'Now' }); renderSheet(); setTimeout(() => $('dmin') && $('dmin').focus(), 0); }
 });
 render();
 </script>
