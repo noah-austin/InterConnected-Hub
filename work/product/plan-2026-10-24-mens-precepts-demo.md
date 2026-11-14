@@ -101,3 +101,10 @@ Removed "Ask for help" from My Group (the toggle, the tags, "taken care of"). My
 - **The list reads "A calls B / B calls C / C calls D…"** (the last man calls the first). Your rows are highlighted.
 - **Weekly rotation:** the left column stays fixed; each week the right column moves **up** one (the top name goes to the bottom), so every man calls someone new; over a full cycle every man calls every other man once, then it starts over. *Why up, not down as first asked:* with week 1 as "A calls B," shifting the right side down one would have every man calling himself that week, so the move is upward.
 - **Leader:** "Move to next week" (rotates and advances the week label) and "Notify everyone who to call."
+
+## Revision 10 (Nov 14): the chain runs itself
+- Joining or leaving never changes the chain right away. A man who joins (at sign-up, from the Prayer Chain tab, in his profile, or added by a leader) sees "You're in, starting Saturday, Nov 14" and is added at the next Saturday-morning move. A man who leaves keeps this week's call and drops off that Saturday.
+- The weekly move is automatic: every Saturday morning the app drops leavers, moves the right side up one, adds joiners, and notifies every man who he calls. The leader "Move to next week" and "Notify everyone" buttons are gone.
+- Manage group chips show In prayer chain / Joins Saturday / Leaves Saturday / Not in chain. The Prayer Chain tab lists upcoming changes ("Saturday, Nov 14: Pete Langley joins").
+- Demo only: a dashed "skip ahead to Saturday morning" button at the bottom of the Prayer Chain tab, so the move can be shown in the meeting.
+- Stress test now joins and leaves through the waiting path: 5,000 steps, chain size 2–30, 0 self-calls, 0 broken weeks.

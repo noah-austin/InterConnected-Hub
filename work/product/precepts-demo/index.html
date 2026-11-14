@@ -200,6 +200,7 @@ input, textarea, select { font: inherit; font-size: 16px; color: var(--ink); }
 .check { display: flex; gap: 8px; align-items: center; font-size: .9rem; }
 .drop { border: 2px dashed #C7D2E5; border-radius: 12px; padding: 18px; text-align: center; background: #fff; }
 .note { font-size: .78rem; color: var(--muted); text-align: center; margin-top: 4px; }
+.demobtn { display: block; width: 100%; margin-top: 14px; padding: 12px; border: 1px dashed var(--line); border-radius: 12px; color: var(--muted); font-size: .85rem; font-weight: 600; background: transparent; }
 
 /* sign in */
 .signin { position: absolute; inset: 0; z-index: 40; background: linear-gradient(170deg, var(--navy-2), var(--navy)); color: #fff; display: flex; flex-direction: column; justify-content: center; padding: 32px 28px calc(env(safe-area-inset-bottom, 0px) + 32px); gap: 18px; }
@@ -363,7 +364,7 @@ const S = {
     { id: 16, lesson: 1, name: 'Fall Schedule, Matthew Part 1.pdf', type: 'pdf', size: '120 KB', by: BRYAN, date: 'Sep 21', aud: 'all' },
   ],
   chain: { sat: [], thu: [] },
-  week: 'Nov 7 – 13', weeks: ['Nov 7 – 13', 'Nov 14 – 20', 'Nov 21 – 27', 'Nov 28 – Dec 4', 'Dec 5 – 11', 'Dec 12 – 18'], weekIdx: 0,
+  week: 'Nov 7 – 13', weekIdx: 0,
   convos: [
     { people: [NOAH, 'markellison'], unreadFor: NOAH, msgs: [
       { from: 'markellison', body: 'Hey brother, good to see you Saturday. Still on for coffee Tuesday?', time: '9:12 AM' },
@@ -423,6 +424,26 @@ function joinChain(id) {
   const m = id === NOAH ? C.indexOf('markellison') : -1;
   if (m >= 0) C.splice(m, 0, id); else C.push(id); // demo: Noah lands just above Mark, so he calls Mark in week 1
   fixShift(g);
+}
+// Men who join or leave wait for the next Saturday morning; the chain only changes then.
+// pending: 'join' | 'leave' | undefined. wantsChain = where he'll be after Saturday.
+const wantsChain = id => men[id].inChain ? men[id].pending !== 'leave' : men[id].pending === 'join';
+function setChainWish(id, yes) {
+  const m = men[id];
+  if (yes) m.pending = m.inChain ? undefined : 'join';
+  else m.pending = m.inChain ? 'leave' : undefined;
+}
+const dayLabel = d => d.toLocaleString('en-US', { month: 'short' }) + ' ' + d.getDate();
+function weekLabel(i) { const a = new Date(2026, 10, 7 + 7 * i), b = new Date(2026, 10, 13 + 7 * i); return a.getMonth() === b.getMonth() ? `${dayLabel(a)} – ${b.getDate()}` : `${dayLabel(a)} – ${dayLabel(b)}`; }
+const nextSat = () => 'Saturday, ' + dayLabel(new Date(2026, 10, 7 + 7 * (S.weekIdx + 1)));
+// Every Saturday morning, automatically: drop men who left, add men who joined, move the right side
+// up one, and send every man a notification with who he calls. No leader button.
+function saturdayMorning() {
+  Object.values(men).forEach(m => { if (m.pending === 'leave') leaveChain(m.id); });
+  ['sat', 'thu'].forEach(g => nextWeek(g));
+  Object.values(men).forEach(m => { if (m.pending === 'join') joinChain(m.id); });
+  Object.values(men).forEach(m => { m.pending = undefined; });
+  S.weekIdx++; S.week = weekLabel(S.weekIdx);
 }
 function leaveChain(id) {
   const C = S.chain[chainOf(id)];
@@ -524,24 +545,27 @@ function chainSpot(id) {
 }
 function vPrayer() {
   const g = myGroup(), C = S.chain[g], spot = chainSpot(S.me);
-  const leaderTools = isLeader() ? `<div class="card stack leadercard">
-      <div class="small" style="font-weight:700;color:var(--amber)">Leader</div>
-      <button class="bigbtn secondary" data-act="shuffle">${ic('shuffle', 18)} Move to next week</button>
-      <button class="bigbtn" data-act="publish">Notify everyone who to call</button>
-      <p class="note" style="margin:0">"Move to next week" shifts the right side up one (the top name goes to the bottom), so every man calls someone new. "Notify everyone" sends each man a notification with the name of the man he calls. Later, this happens automatically every Saturday morning.</p>
-    </div>` : '';
-  const notIn = !men[S.me].inChain && chainOf(S.me) === g ? `<div class="card partner"><div class="name" style="font-size:1.1rem">You're not in the prayer chain</div>
-      <p class="small muted" style="margin:8px 0 14px">Each week every man in the chain calls the next man in line and prays with him. Join anytime, and leave anytime from your profile.</p>
-      <button class="bigbtn" data-act="joinchain">Join the prayer chain</button></div>` : '';
+  const me = men[S.me], mine = chainOf(S.me) === g;
+  const notIn = mine && !me.inChain ? (me.pending === 'join'
+    ? `<div class="card partner"><div class="name" style="font-size:1.1rem">You're in, starting ${nextSat()}</div>
+      <p class="small muted" style="margin:8px 0 0">The chain moves every Saturday morning. That's when you'll be added, and you'll get a notification with the name of the man you call.</p></div>`
+    : `<div class="card partner"><div class="name" style="font-size:1.1rem">You're not in the prayer chain</div>
+      <p class="small muted" style="margin:8px 0 14px">Each week every man in the chain calls one other man and prays with him. Join anytime; you start the next Saturday morning.</p>
+      <button class="bigbtn" data-act="joinchain">Join the prayer chain</button></div>`) : '';
+  const leaving = mine && me.inChain && me.pending === 'leave' ? `<p class="note" style="margin:0 0 10px">You leave the prayer chain ${nextSat()}. Until then, this week's call is still yours.</p>` : '';
+  const ids = Object.values(men).filter(m => m.pending && chainOf(m.id) === g);
+  const joining = ids.filter(m => m.pending === 'join').map(m => esc(m.name)), leavingIds = ids.filter(m => m.pending === 'leave').map(m => esc(m.name));
+  const changes = joining.length || leavingIds.length ? `<p class="note">${nextSat()}: ${[joining.length ? `${joining.join(', ')} ${joining.length > 1 ? 'join' : 'joins'}` : '', leavingIds.length ? `${leavingIds.join(', ')} ${leavingIds.length > 1 ? 'leave' : 'leaves'}` : ''].filter(Boolean).join('; ')}.</p>` : '';
   const you = spot ? `<div class="card partner"><div class="small muted" style="font-weight:600;margin-bottom:12px">This week, you call</div>
       ${av(spot.calls, 'lg')}<div class="name">${nm(spot.calls)}</div><div class="phone">${esc(men[spot.calls].phone)}</div>
       <div class="callrow"><a class="callbtn" href="tel:${telOf(spot.calls)}">${ic('phone', 18)} Call</a><a class="callbtn alt" href="sms:${telOf(spot.calls)}">${ic('msg', 18)} Text</a></div>
       <div class="calledby">${av(spot.calledBy)}<span><strong>${nm(spot.calledBy)}</strong> will call you</span></div></div>` : '';
   const list = C.map((id, i) => { const to = callee(g, i); return `<li class="link${id === S.me ? ' me' : ''}${to === S.me ? ' tome' : ''}"><span class="who">${nm(id)}</span><span class="calls">calls</span><span class="who">${nm(to)}</span></li>`; }).join('');
-  return `${leaderTools}<div class="sec-label">Week of ${esc(S.week)}</div>${notIn}${you}
+  return `<div class="sec-label">Week of ${esc(S.week)}</div>${notIn}${you}${leaving}
     <div class="sec-label">${esc(GROUPS[g].name)} prayer chain · ${C.length} men</div>
     ${C.length >= 2 ? `<ol class="card chainlist">${list}</ol>` : `<div class="card empty">${C.length ? `${nm(C[0])} is the only man in the chain so far. It starts once a second man joins.` : 'Nobody has joined the prayer chain yet.'}</div>`}
-    <p class="note">Each week the right side moves up one, so every man calls someone new. Your number is shared only with the men next to you in the chain and your leaders.</p>`;
+    ${changes}<p class="note">The chain moves on its own every Saturday morning: the right side moves up one, so every man calls someone new, and every man gets a notification with who he calls. Men who join or leave are added or dropped at that moment. Your number is shared only with the men next to you in the chain and your leaders.</p>
+    <button class="demobtn" data-act="nextsat">Demo only: skip ahead to Saturday morning</button>`;
 }
 function vFiles() {
   const vis = S.files.filter(f => visibleToMe(f.aud));
@@ -596,8 +620,8 @@ function renderSheet() {
     const g = myGroup(), list = groupIds(g);
     sh.innerHTML = sheetTop(`Manage ${esc(GROUPS[g].name)}`, `${list.length} men · ${esc(GROUPS[g].when)}`) + `<div class="screen">
       <div class="card"><div class="field"><label for="invite">Add a man to the group</label><div class="row"><input id="invite" type="email" placeholder="Email address"><button class="pillbtn" data-act="invite">${ic('plus', 16)} Invite</button></div></div></div>
-      <div class="card" style="margin-top:10px">${list.map(id => `<div class="pair">${av(id)}<span class="n" style="min-width:0"><span style="font-weight:600">${nm(id)}</span>${id === 'samokafor' || id === 'ethanmoore' ? ' <span class="tag green">New</span>' : ''}<a class="ph" style="display:block" href="tel:${telOf(id)}">${esc(men[id].phone)}</a></span><button class="chainchip${men[id].inChain ? ' on' : ''}" data-act="togglechain" data-id="${id}" aria-pressed="${men[id].inChain}">${men[id].inChain ? 'In prayer chain' : 'Not in chain'}</button></div>`).join('')}</div>
-      <p class="note">Tap a man's prayer chain button to add or remove him. He can also change it himself in his profile.</p></div>`;
+      <div class="card" style="margin-top:10px">${list.map(id => `<div class="pair">${av(id)}<span class="n" style="min-width:0"><span style="font-weight:600">${nm(id)}</span>${id === 'samokafor' || id === 'ethanmoore' ? ' <span class="tag green">New</span>' : ''}<a class="ph" style="display:block" href="tel:${telOf(id)}">${esc(men[id].phone)}</a></span><button class="chainchip${wantsChain(id) ? ' on' : ''}" data-act="togglechain" data-id="${id}" aria-pressed="${wantsChain(id)}">${men[id].pending === 'join' ? 'Joins Saturday' : men[id].pending === 'leave' ? 'Leaves Saturday' : men[id].inChain ? 'In prayer chain' : 'Not in chain'}</button></div>`).join('')}</div>
+      <p class="note">Tap a man's prayer chain button to add or remove him. The change takes effect Saturday morning, when the chain moves. He can also change it himself in his profile.</p></div>`;
   } else if (kind === 'profile') {
     const m = men[S.me], groups = myGroups().map(k => GROUPS[k].name).join(' and ');
     sh.innerHTML = sheetTop('My profile', '') + `<div class="screen"><div class="card stack">
@@ -606,7 +630,7 @@ function renderSheet() {
       <div class="field"><label for="ephone">Cell number</label><input id="ephone" type="tel" value="${esc(m.phone)}"></div>
       <div class="field"><label for="eemail">Email</label><input id="eemail" type="email" value="${esc(m.email)}"></div>
       <div class="field"><label>${myGroups().length > 1 ? 'Your groups' : 'Your group'}</label><div class="readonly">${esc(groups)}</div><span class="small muted">To change groups, ask your leader.</span></div>
-      <div class="field"><label>Prayer chain</label><div class="seg"><button data-act="pchain" data-v="1" class="${m.inChain ? 'on' : ''}">I'm in</button><button data-act="pchain" data-v="0" class="${m.inChain ? '' : 'on'}">Not now</button></div></div>
+      <div class="field"><label>Prayer chain</label><div class="seg"><button data-act="pchain" data-v="1" class="${wantsChain(S.me) ? 'on' : ''}">I'm in</button><button data-act="pchain" data-v="0" class="${wantsChain(S.me) ? '' : 'on'}">Not now</button></div><span class="small muted">Changes take effect Saturday morning, when the chain moves.</span></div>
       <p class="small muted" style="margin:0">Your number and email are shared only with the men next to you in the prayer chain and your leaders.</p>
       <button class="bigbtn" data-act="saveprofile">Save</button>
       <button class="bigbtn secondary" data-act="signout">Sign out</button></div></div>`;
@@ -687,19 +711,18 @@ document.addEventListener('click', e => {
     case 'samplefile': { keepLesson(); const L = lessonOf(S.up.lesson); const opts = [`Lesson ${L.n} Discussion Guide.pdf`, `Lesson ${L.n} Lecture Slides.pptx`, `${L.passage.split(':')[0]} Cross References.docx`]; const name = opts[S.up.picked.length % opts.length]; S.up.picked.push({ name, type: ftype(name), size: ['220 KB', '4.8 MB', '64 KB'][S.up.picked.length % 3] }); renderSheet(); break; }
     case 'unpick': keepLesson(); S.up.picked.splice(+t.dataset.i, 1); renderSheet(); break;
     case 'doupload': { if (!S.up.picked.length) return; keepLesson(); const aud = audOf(S.up.aud), n = S.up.picked.length; S.up.picked.forEach(p => S.files.unshift({ id: ++fileId, lesson: S.up.lesson, name: p.name, type: p.type, size: p.size, by: S.me, date: 'Today', aud })); S.up.picked = []; closeSheet(); toast(`${n} ${n === 1 ? 'file' : 'files'} added to Lesson ${S.up.lesson}`); break; }
-    case 'shuffle': nextWeek(myGroup()); S.weekIdx = Math.min(S.weekIdx + 1, S.weeks.length - 1); S.week = S.weeks[S.weekIdx]; render(); toast(`Moved to the week of ${S.week}. Tap Notify to let everyone know.`); break;
-    case 'publish': toast('Sent every man a notification with who he calls this week'); break;
+    case 'nextsat': saturdayMorning(); render(); toast(`Saturday morning: the chain moved, and every man got a notification with who he calls`); break;
     case 'invite': { const v = ($('invite').value || '').trim(); if (!/^\S+@\S+\.\S+$/.test(v)) { toast('Enter an email address'); return; } $('invite').value = ''; toast('Invite sent (demo). He gets an email with a sign-in link.'); break; }
     case 'tostep2': S.signinStep = 2; renderSignin(); break;
     case 'wchain': S.welcomeChain = t.dataset.v === '1'; renderSignin(); break;
     case 'signedin': { const pn = $('pname'), pp = $('pphone'); if (pn && pn.value.trim()) setName(NOAH, pn.value.trim()); if (pp && pp.value.trim()) men[NOAH].phone = pp.value.trim();
-      if (S.welcomeChain && !men[NOAH].inChain) joinChain(NOAH); S.signedIn = true; render(); toast(`Welcome, ${men[NOAH].name.split(' ')[0]}`); break; }
+      if (S.welcomeChain && !men[NOAH].inChain) setChainWish(NOAH, true); S.signedIn = true; render(); toast(`Welcome, ${men[NOAH].name.split(' ')[0]}`); break; }
     case 'profile': openSheet('profile'); break;
-    case 'pchain': { const want = t.dataset.v === '1'; if (want && !men[S.me].inChain) { joinChain(S.me); toast('You\'re in the prayer chain'); } else if (!want && men[S.me].inChain) { leaveChain(S.me); toast('You\'re out of the prayer chain'); } document.querySelectorAll('[data-act=pchain]').forEach(x => x.classList.toggle('on', (x.dataset.v === '1') === men[S.me].inChain)); render(); break; }
+    case 'pchain': { const want = t.dataset.v === '1'; if (want !== wantsChain(S.me)) { setChainWish(S.me, want); toast(want ? `You're in, starting ${nextSat()}` : (men[S.me].inChain ? `You leave the prayer chain ${nextSat()}` : 'Okay, not now')); } document.querySelectorAll('[data-act=pchain]').forEach(x => x.classList.toggle('on', (x.dataset.v === '1') === wantsChain(S.me))); render(); break; }
     case 'saveprofile': { const n = $('ename').value.trim(), ph = $('ephone').value.trim(), em = $('eemail').value.trim(); if (!n) { toast('Add your name'); return; } setName(S.me, n); if (ph) men[S.me].phone = ph; if (em) men[S.me].email = em; closeSheet(); toast('Profile saved'); break; }
     case 'signout': S.signedIn = false; S.signinStep = 0; S.me = NOAH; S.group = 'sat'; S.tab = 'week'; closeSheet(); break;
-    case 'joinchain': joinChain(S.me); render(); toast('You\'re in. See who you call below.'); break;
-    case 'togglechain': { const id = t.dataset.id; if (men[id].inChain) { leaveChain(id); toast(`${men[id].name.split(' ')[0]} is out of the prayer chain`); } else { joinChain(id); toast(`${men[id].name.split(' ')[0]} is in the prayer chain`); } renderSheet(); break; }
+    case 'joinchain': setChainWish(S.me, true); render(); toast(`You're in, starting ${nextSat()}. You'll get a notification with who to call.`); break;
+    case 'togglechain': { const id = t.dataset.id, f = men[id].name.split(' ')[0]; setChainWish(id, !wantsChain(id)); toast(men[id].pending === 'join' ? `${f} joins the prayer chain Saturday` : men[id].pending === 'leave' ? `${f} leaves the prayer chain Saturday` : `${f} stays ${men[id].inChain ? 'in' : 'out of'} the prayer chain`); renderSheet(); render(); break; }
   }
 });
 document.addEventListener('input', e => { if (e.target.id === 'postin') { e.target.style.height = 'auto'; e.target.style.height = Math.min(e.target.scrollHeight + 2, 140) + 'px'; } });

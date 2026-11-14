@@ -39,9 +39,10 @@ const { chromium } = require('playwright');
     let seed = 12345; const rnd = () => (seed = (seed * 1103515245 + 12345) % 2147483648) / 2147483648;
     for (let step = 0; step < 5000; step++) {
       const r = rnd(), C = S.chain.sat;
-      if (r < 0.3) { const out_ = pool.filter(id => !men[id].inChain); if (out_.length) joinChain(out_[Math.floor(rnd() * out_.length)]); }
-      else if (r < 0.55) { if (C.length > 2) leaveChain(C[Math.floor(rnd() * C.length)]); }
-      else nextWeek('sat');
+      // Men ask to join or leave any day; the change lands at the automated Saturday move.
+      if (r < 0.3) { const out_ = pool.filter(id => !wantsChain(id)); if (out_.length) setChainWish(out_[Math.floor(rnd() * out_.length)], true); }
+      else if (r < 0.55) { const in_ = pool.filter(id => wantsChain(id)); if (in_.length > 2) setChainWish(in_[Math.floor(rnd() * in_.length)], false); }
+      else saturdayMorning();
       const n = S.chain.sat.length; minN = Math.min(minN, n); maxN = Math.max(maxN, n);
       const counts = {};
       for (let i = 0; i < n; i++) { const c = callee('sat', i); if (c === S.chain.sat[i]) churnSelf++; counts[c] = (counts[c] || 0) + 1; }
