@@ -328,7 +328,7 @@ const S = {
     { id: 4, from: BRYAN, aud: 'all', title: 'No class Thanksgiving weekend', body: 'No Thursday or Saturday groups the week of Nov 26. Enjoy your families. We pick back up with Lesson 10 on Dec 3 and Dec 5.', time: 'Oct 29', pinned: false },
     { id: 5, from: BRYAN, aud: 'thu', title: 'Thursday Zoom link is the same', body: 'Same link as always. Tap "Join on Zoom" from This Week a few minutes early.', time: 'Oct 28', pinned: false },
     { id: 6, from: BRYAN, aud: 'all', title: 'Workbooks for latecomers', body: 'If you joined after Lesson 3 and still need a Matthew Part 1 workbook, message me and I\'ll bring one Saturday.', time: 'Oct 20', pinned: false },
-    { id: 7, from: BRYAN, aud: 'all', title: 'Serve day at the food pantry', body: 'Six spots open Saturday Nov 14, 11 AM to 1 PM, right after class. Reply in My Group if you\'re in.', time: 'Oct 15', pinned: false },
+    { id: 7, from: BRYAN, aud: 'all', title: 'Serve day at the food pantry', body: 'Six spots open Saturday Nov 14, 11 AM to 1 PM, right after class. Reply in the Feed if you\'re in.', time: 'Oct 15', pinned: false },
   ],
   posts: [
     { id: 30, group: 'sat', author: 'greglawson', body: 'Need two guys to help move a couch Saturday after class. Pizza on me.', time: '9:05 AM', replies: [
@@ -515,7 +515,7 @@ function renderTop() {
   bar.hidden = !S.signedIn;
   bar.innerHTML = `<span>Demo: you're <strong>${first(S.me)}</strong>, ${isLeader() ? 'a leader' : 'a member'}</span><button data-act="viewas">Switch to ${S.me === NOAH ? 'Bryan' : 'Noah'}</button>`;
 }
-const TABS = [['week', 'home', 'This Week'], ['ann', 'mega', 'Announcements'], ['group', 'group', 'My Group'], ['prayer', 'pray', 'Prayer Chain'], ['files', 'folder', 'Files']];
+const TABS = [['week', 'home', 'This Week'], ['ann', 'mega', 'Announcements'], ['group', 'group', 'Feed'], ['prayer', 'pray', 'Prayer Chain'], ['files', 'folder', 'Files']];
 function renderTabs() {
   $('tabs').className = 'tabs';
   $('tabs').innerHTML = TABS.map(([k, i, l]) => `<button class="tab${k === S.tab ? ' on' : ''}" data-tab="${k}" aria-current="${k === S.tab}">${ic(i)}<span>${l}</span></button>`).join('');
