@@ -27,6 +27,9 @@
 | 2026-11-14 | **Precepts prayer chain runs itself.** The chain moves automatically every Saturday morning and every man is notified who he calls; leaders get no "new order" or "notify" button. Joins and leaves wait for that Saturday move. | Noah |
 | 2026-11-15 | **Precepts lesson schedule.** One schedule for the ministry, owned by the coordinator, under Files. This Week follows it and switches every Saturday morning; a skipped week is handled by moving that lesson's date. We enter it for them at launch. | Noah |
 | 2026-11-15 | **Precepts moderation.** Leaders can delete any post or reply in their group's Feed and remove a man from the group; every man can delete his own. Leaders can't see private messages. A removal is immediate; the prayer-chain gap closes (his caller calls his callee) until Saturday, so every man is always accounted for. | Noah |
+| 2026-11-15 | **Precepts week runs Sunday to Saturday; the switch-over is Sunday morning.** The Thursday group does each lesson before the Saturday group, so This Week and the prayer chain both move Sunday morning (replaces "every Saturday morning"). | Noah |
+| 2026-11-15 | **Precepts notifications fall back to email.** Every man gets his weekly name by push notification, or by email if he hasn't turned notifications on. | Noah |
+| 2026-11-15 | **Precepts leaders can delete** announcements, files and lessons (with a confirm). One pinned announcement per group. A man's number is shown only to the man who calls him that week, and to his leaders. | Noah |
 | standing | Feedback governance: collect for a week, act on patterns of 3+, treat single opinions as taste unless strategically compelling. Noah's wife is the visual taste check ("premium, not busy"). | Noah |
 | standing | Detailed financial projections are deferred until field pricing and dev quotes exist. Nothing produced is legal or investment advice. | Noah |
 

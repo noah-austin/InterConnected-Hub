@@ -16,7 +16,7 @@
 /* Men's Precepts demo, built on Interconnected. Sample data only; nothing is saved. */
 :root {
   --blue: #2563EB; --blue-soft: #E8EFFD; --navy: #0F1B33; --navy-2: #1B2A4A;
-  --ink: #1F2937; --muted: #6B7280; --line: #E5E7EB; --bg: #F3F4F6; --card: #FFFFFF;
+  --ink: #1F2937; --muted: #5B6472; --line: #E5E7EB; --bg: #F3F4F6; --card: #FFFFFF;
   --green: #059669; --green-soft: #E3F5EE; --amber: #B45309; --amber-soft: #FDF1E3;
   --font: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   color-scheme: light only;
@@ -36,11 +36,11 @@ input, textarea, select { font: inherit; font-size: 16px; color: var(--ink); }
 .top .t { flex: 1; min-width: 0; }
 .top h1 { font-size: 1.02rem; font-weight: 700; margin: 0; letter-spacing: -.01em; }
 .top .sub { font-size: .78rem; color: #AFC0DE; margin: 0; }
-.iconbtn { width: 38px; height: 38px; border-radius: 10px; display: grid; place-items: center; position: relative; color: #fff; }
+.iconbtn { width: 40px; height: 40px; border-radius: 10px; display: grid; place-items: center; position: relative; color: #fff; }
 .iconbtn:hover { background: rgba(255,255,255,.08); }
 .badge { position: absolute; top: 3px; right: 3px; min-width: 17px; height: 17px; border-radius: 9px; background: #EF4444; color: #fff; font-size: .68rem; font-weight: 700; display: grid; place-items: center; padding: 0 4px; }
 .leaderbar { background: #E9EEF8; color: var(--navy-2); font-size: .8rem; font-weight: 600; padding: 8px 16px; display: flex; justify-content: space-between; align-items: center; flex: none; }
-.leaderbar button { text-decoration: underline; font-weight: 700; color: var(--blue); padding: 6px 0; text-align: right; }
+.leaderbar button { text-decoration: underline; font-weight: 700; color: var(--blue); padding: 11px 0; text-align: right; }
 .leaderbar { gap: 10px; }
 
 /* body */
@@ -48,7 +48,7 @@ input, textarea, select { font: inherit; font-size: 16px; color: var(--ink); }
 .sec-label { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin: 18px 2px 8px; }
 .sec-label:first-child { margin-top: 2px; }
 .card { background: var(--card); border-radius: 14px; padding: 14px; border: 1px solid var(--line); }
-.stack { display: grid; gap: 10px; }
+.stack { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; }
 .h2 { font-size: 1.25rem; font-weight: 800; letter-spacing: -.02em; margin: 0; }
 .muted { color: var(--muted); }
 .small { font-size: .82rem; }
@@ -63,7 +63,7 @@ input, textarea, select { font: inherit; font-size: 16px; color: var(--ink); }
 .meet { margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,.12); display: flex; gap: 12px; align-items: center; }
 .meet .when { font-weight: 600; }
 .meet .where { color: #C9D6EE; font-size: .85rem; }
-.pillbtn { display: inline-flex; align-items: center; gap: 6px; background: var(--blue); color: #fff; border-radius: 999px; padding: 8px 14px; font-weight: 600; font-size: .85rem; }
+.pillbtn { display: inline-flex; align-items: center; gap: 6px; background: var(--blue); color: #fff; border-radius: 999px; padding: 10px 14px; min-height: 40px; font-weight: 600; font-size: .85rem; }
 .pillbtn.ghost { background: var(--blue-soft); color: var(--blue); }
 .pillbtn.light { background: rgba(255,255,255,.12); color: #fff; }
 
@@ -73,8 +73,9 @@ input, textarea, select { font: inherit; font-size: 16px; color: var(--ink); }
 .ann p { margin: 0; }
 .tag { font-size: .7rem; font-weight: 700; border-radius: 999px; padding: 2px 8px; background: var(--blue-soft); color: var(--blue); }
 .tag.pin { background: var(--amber-soft); color: var(--amber); }
-.anntools { margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--line); }
-.anntools button { font-size: .85rem; font-weight: 700; color: var(--amber); padding: 4px 0; }
+.anntools { margin-top: 10px; padding-top: 2px; border-top: 1px solid var(--line); display: flex; gap: 22px; align-items: center; flex-wrap: wrap; }
+.anntools > button { font-size: .85rem; font-weight: 700; color: var(--amber); padding: 10px 0; }
+.anntools > button.muted { color: var(--muted); font-weight: 600; }
 .tag.green { background: var(--green-soft); color: #047857; }
 
 /* files */
@@ -89,16 +90,14 @@ input, textarea, select { font: inherit; font-size: 16px; color: var(--ink); }
 .lessonhead strong { font-size: .95rem; }
 .schedrow { display: flex; align-items: center; gap: 12px; width: 100%; text-align: left; padding: 12px 0; border-top: 1px solid var(--line); }
 .schedrow:first-child { border-top: 0; }
-.schedrow .sd { flex: none; width: 78px; font-size: .8rem; font-weight: 700; color: var(--blue); }
+.schedrow .sd { flex: none; width: 92px; font-size: .8rem; font-weight: 700; color: var(--blue); }
 .schedrow svg { flex: none; color: var(--muted); }
-.schedgap { padding: 10px 0 10px 90px; border-top: 1px solid var(--line); font-size: .82rem; color: var(--muted); font-style: italic; }
+.schedgap { padding: 10px 0 10px 104px; border-top: 1px solid var(--line); font-size: .82rem; color: var(--muted); font-style: italic; }
 
 /* prayer chain */
 .partner { text-align: center; padding: 22px 16px; }
 .partner .av { margin: 0 auto 10px; }
 .partner .name { font-size: 1.3rem; font-weight: 800; letter-spacing: -.02em; }
-.pnote { margin-top: 14px; background: var(--bg); border-radius: 10px; padding: 10px 12px; font-size: .9rem; text-align: left; color: var(--ink); }
-.pairs { display: grid; gap: 0; }
 .chainlist { list-style: none; margin: 0; padding: 4px 14px; }
 .chainlist .link { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 8px; padding: 10px 0; border-top: 1px solid var(--line); font-size: .95rem; }
 .chainlist .link:first-child { border-top: 0; }
@@ -107,25 +106,25 @@ input, textarea, select { font: inherit; font-size: 16px; color: var(--ink); }
 .chainlist .link.me .who:first-child, .chainlist .link.tome .who:last-child { color: var(--blue); font-weight: 800; }
 .calledby { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); font-size: .88rem; color: var(--muted); }
 .calledby .av { width: 28px; height: 28px; font-size: .62rem; margin: 0; }
-.pair { display: flex; align-items: center; gap: 8px; padding: 10px 0; border-top: 1px solid var(--line); font-size: .9rem; }
+.pair { display: flex; align-items: center; gap: 10px; padding: 12px 0; border-top: 1px solid var(--line); font-size: .9rem; }
 .pair:first-child { border-top: 0; padding-top: 0; }
 .pair .x { color: var(--muted); flex: none; }
 .pair .n { flex: 1; min-width: 0; }
-.pair.me { font-weight: 700; color: var(--blue); }
+.pair .pr { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex: none; }
 
 /* leader extras: same screens, a few extra buttons */
 .leaderadd { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; margin: 12px 0 0; padding: 12px; border-radius: 12px; border: 1.5px dashed #E9C38F; background: var(--amber-soft); color: var(--amber); font-weight: 700; }
 .screen > .leaderadd:first-child { margin: 0 0 4px; }
 .leadercard { border-color: #F3D9B8; }
-.groupswitch { display: inline-flex; align-items: center; gap: 4px; color: #fff; font-weight: 600; background: rgba(255,255,255,.12); border-radius: 999px; padding: 2px 10px; margin-top: 2px; font-size: .8rem; }
+.groupswitch { display: inline-flex; align-items: center; gap: 4px; color: #fff; font-weight: 600; background: rgba(255,255,255,.12); border-radius: 999px; padding: 6px 12px; min-height: 36px; margin-top: 2px; font-size: .8rem; }
 .ph { text-decoration: none; }
 
 /* profile + chain */
-.mebtn { width: 38px; height: 38px; display: grid; place-items: center; border-radius: 50%; }
+.mebtn { width: 40px; height: 40px; display: grid; place-items: center; border-radius: 50%; }
 .mebtn .av { width: 32px; height: 32px; font-size: .7rem; box-shadow: 0 0 0 2px rgba(255,255,255,.35); }
-.linkish { display: inline-block; margin-top: 2px; color: var(--blue); font-weight: 700; font-size: .9rem; cursor: pointer; }
+.linkish { display: inline-block; margin-top: 2px; padding: 10px 6px; color: var(--blue); font-weight: 700; font-size: .9rem; cursor: pointer; }
 .readonly { padding: 11px 12px; border-radius: 10px; background: var(--bg); border: 1px solid var(--line); }
-.chainchip { flex: none; font-size: .74rem; font-weight: 700; border-radius: 999px; padding: 6px 10px; border: 1px solid var(--line); color: var(--muted); background: #fff; }
+.chainchip { flex: none; font-size: .74rem; font-weight: 700; border-radius: 999px; padding: 10px 12px; border: 1px solid var(--line); color: var(--muted); background: #fff; }
 .chainchip.on { background: var(--blue-soft); border-color: var(--blue-soft); color: var(--blue); }
 
 /* avatars */
@@ -135,7 +134,8 @@ input, textarea, select { font: inherit; font-size: 16px; color: var(--ink); }
 /* group feed: casual posts with short replies */
 .composer { display: flex; gap: 10px; align-items: flex-end; padding: 10px 12px; }
 .composer .av { width: 40px; height: 40px; }
-.composer textarea { flex: 1; min-width: 0; border: 1px solid var(--line); border-radius: 20px; padding: 9px 14px; background: var(--bg); resize: none; height: 42px; max-height: 140px; outline: none; font: inherit; font-size: 16px; line-height: 1.4; }
+.composer textarea { flex: 1; min-width: 0; border: 1px solid var(--line); border-radius: 20px; padding: 9px 14px; background: var(--bg); resize: none; height: 42px; max-height: 140px; outline: none; font: inherit; font-size: 16px; line-height: 1.4; padding-top: 10px; }
+@media (max-width: 350px) { .composer .av { display: none; } }
 .composer textarea:focus { border-color: var(--blue); background: #fff; }
 .postbtn { background: var(--blue); color: #fff; border-radius: 999px; height: 42px; padding: 0 18px; font-weight: 700; font-size: .9rem; flex: none; }
 .post { padding: 12px 14px; }
@@ -150,32 +150,36 @@ input, textarea, select { font: inherit; font-size: 16px; color: var(--ink); }
 .rep .rb { text-align: left; display: block; background: var(--bg); border-radius: 12px; padding: 6px 10px; font-size: .88rem; min-width: 0; overflow-wrap: anywhere; }
 .rep .rb strong { font-size: .8rem; }
 .postacts { display: flex; gap: 14px; align-items: center; margin-top: 8px; }
-.postacts button { font-size: .85rem; font-weight: 700; color: var(--blue); padding: 8px 0; min-height: 36px; }
+.postacts button { font-size: .85rem; font-weight: 700; color: var(--blue); padding: 8px 0; min-height: 40px; }
 .postacts button.muted { color: var(--muted); font-weight: 600; }
-.dellink { font-size: .75rem; color: var(--muted); font-weight: 600; padding: 4px 10px; }
 .delask { font-size: .82rem; color: var(--ink, #111); display: flex; gap: 12px; align-items: center; flex-wrap: wrap; padding: 4px 0; }
-.delask button { font-weight: 700; color: var(--muted); padding: 6px 0; }
+.delask button { font-weight: 700; color: var(--muted); padding: 10px 0; }
 .delask button.danger, .rmlink { color: #B42318; }
-.rmlink { display: block; font-size: .78rem; font-weight: 600; padding: 6px 0 0; }
+.rmlink { font-size: .78rem; font-weight: 600; padding: 8px 2px; }
+.textbtn { font-weight: 700; padding: 10px 4px; color: var(--muted); }
+.textbtn.danger { color: #B42318; }
+.leaderrow { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 4px; }
+.leaderrow .leaderadd { margin: 0; }
+.xbtn { width: 40px; height: 40px; display: grid; place-items: center; flex: none; color: var(--muted); }
 .confirm { background: #FEF3F2; border-radius: 10px; padding: 10px 12px; margin: 0 0 10px; font-size: .85rem; display: grid; gap: 8px; }
 .pillbtn.danger { background: #B42318; color: #fff; border-color: #B42318; }
 .pillbtn.light2 { background: #fff; color: var(--navy-2); border: 1px solid var(--line); }
 .replyform { display: flex; gap: 6px; margin-top: 8px; }
 .replyform input { flex: 1; min-width: 0; border: 1px solid var(--line); border-radius: 999px; padding: 7px 12px; background: var(--bg); outline: none; font-size: 16px; }
 .replyform input:focus { border-color: var(--blue); background: #fff; }
-.replyform button { color: var(--blue); font-weight: 700; font-size: .85rem; padding: 0 6px; }
+.replyform button { color: var(--blue); font-weight: 700; font-size: .85rem; padding: 0 6px; min-height: 40px; }
+.replyform button.muted { color: var(--muted); font-weight: 600; }
 
 /* prayer chain */
 .phone { font-size: 1.15rem; font-weight: 700; letter-spacing: .01em; margin-top: 6px; font-variant-numeric: tabular-nums; }
 .callrow { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; }
 .callbtn { display: inline-flex; justify-content: center; align-items: center; gap: 8px; border-radius: 12px; padding: 12px; font-weight: 700; text-decoration: none; background: var(--blue); color: #fff; }
 .callbtn.alt { background: var(--blue-soft); color: var(--blue); }
-.minicall { display: inline-flex; align-items: center; gap: 6px; border-radius: 999px; padding: 8px 12px; font-weight: 700; font-size: .84rem; text-decoration: none; background: var(--blue); color: #fff; flex: none; }
+.minicall { display: inline-flex; align-items: center; gap: 6px; border-radius: 999px; padding: 8px 12px; min-height: 40px; font-weight: 700; font-size: .84rem; text-decoration: none; background: var(--blue); color: #fff; flex: none; }
 .ph { font-size: .8rem; color: var(--muted); font-variant-numeric: tabular-nums; flex: none; }
 
 /* tabs */
 .tabs { flex: none; display: grid; grid-template-columns: repeat(5, auto); justify-content: space-between; column-gap: 2px; background: #fff; border-top: 1px solid var(--line); padding: 6px 4px calc(env(safe-area-inset-bottom, 0px) + 6px); }
-.tabs.four { grid-template-columns: repeat(4, 1fr); }
 .tab { display: grid; justify-items: center; gap: 2px; padding: 6px 4px; white-space: nowrap; font-size: .7rem; min-width: 0; font-weight: 600; color: var(--muted); }
 .tab.on { color: var(--blue); }
 .tab svg { width: 22px; height: 22px; }
@@ -190,7 +194,7 @@ input, textarea, select { font: inherit; font-size: 16px; color: var(--ink); }
 #sheet .top h1 { font-size: 1rem; }
 #sheet .top .sub { color: var(--muted); }
 .inputbar { flex: none; display: flex; gap: 8px; padding: 10px 12px calc(env(safe-area-inset-bottom, 0px) + 10px); background: #fff; border-top: 1px solid var(--line); }
-.inputbar input { flex: 1; border: 1px solid var(--line); border-radius: 999px; padding: 10px 14px; background: var(--bg); outline: none; }
+.inputbar input { flex: 1; min-width: 0; border: 1px solid var(--line); border-radius: 999px; padding: 10px 14px; background: var(--bg); outline: none; }
 .inputbar input:focus { border-color: var(--blue); }
 .sendbtn { width: 42px; height: 42px; border-radius: 50%; background: var(--blue); color: #fff; display: grid; place-items: center; flex: none; }
 .bubbles { display: grid; gap: 8px; }
@@ -214,13 +218,16 @@ input, textarea, select { font: inherit; font-size: 16px; color: var(--ink); }
 .seg button.on { background: var(--blue); border-color: var(--blue); color: #fff; }
 .bigbtn { width: 100%; background: var(--blue); color: #fff; border-radius: 12px; padding: 13px; font-weight: 700; }
 .bigbtn.secondary { background: var(--blue-soft); color: var(--blue); }
-.check { display: flex; gap: 8px; align-items: center; font-size: .9rem; }
+.check { display: flex; gap: 10px; align-items: center; font-size: .9rem; min-height: 40px; }
+.check input { width: 20px; height: 20px; }
 .drop { border: 2px dashed #C7D2E5; border-radius: 12px; padding: 18px; text-align: center; background: #fff; }
 .note { font-size: .78rem; color: var(--muted); text-align: center; margin-top: 4px; }
 .demobtn { display: block; width: 100%; margin-top: 14px; padding: 12px; border: 1px dashed var(--line); border-radius: 12px; color: var(--muted); font-size: .85rem; font-weight: 600; background: transparent; }
 
 /* sign in */
-.signin { position: absolute; inset: 0; z-index: 40; background: linear-gradient(170deg, var(--navy-2), var(--navy)); color: #fff; display: flex; flex-direction: column; justify-content: center; padding: 32px 28px calc(env(safe-area-inset-bottom, 0px) + 32px); gap: 18px; }
+.signin { position: absolute; inset: 0; z-index: 40; background: linear-gradient(170deg, var(--navy-2), var(--navy)); color: #fff; display: flex; flex-direction: column; justify-content: flex-start; overflow-y: auto; padding: 32px 28px calc(env(safe-area-inset-bottom, 0px) + 32px); gap: 18px; }
+.signin > :first-child { margin-top: auto; }
+.signin > :last-child { margin-bottom: auto; }
 .signin .big { font-size: 1.8rem; font-weight: 800; letter-spacing: -.02em; margin: 0; }
 .signin p { color: #C9D6EE; margin: 0; }
 .signin form input { width: 100%; border: 0; border-radius: 12px; padding: 14px; font-size: 1rem; }
@@ -262,10 +269,8 @@ const I = {
   video: '<rect x="3" y="6" width="13" height="12" rx="2"/><path d="m16 10 5-3v10l-5-3"/>',
   pin: '<path d="M9 3h6l-1 6 4 4H6l4-4z"/><path d="M12 13v8"/>',
   upload: '<path d="M12 16V4"/><path d="m7 9 5-5 5 5"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/>',
-  shuffle: '<path d="M16 3h5v5"/><path d="M4 20 21 3"/><path d="M21 16v5h-5"/><path d="m15 15 6 6"/><path d="M4 4l5 5"/>',
   users: '<circle cx="12" cy="8" r="3.5"/><path d="M5 20c.7-3.7 3.5-5.6 7-5.6s6.3 1.9 7 5.6"/>',
   plus: '<path d="M12 5v14M5 12h14"/>',
-  shield: '<path d="M12 3 4.5 6v6c0 4.4 3.2 7.7 7.5 9 4.3-1.3 7.5-4.6 7.5-9V6z"/>',
   chev: '<path d="m9 5 7 7-7 7"/>',
   mail: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/>',
   cal: '<rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/>',
@@ -295,49 +300,63 @@ THU.forEach(n => addMan(n, 'thu'));
 const NOAH = 'noahaustin', BRYAN = 'bryanbailey';
 
 const GROUPS = {
-  sat: { id: 'sat', name: 'Saturday Group', when: 'Saturdays, 8:00 AM', where: 'Austin Ridge', zoom: false },
-  thu: { id: 'thu', name: 'Thursday Group', when: 'Thursdays, 7:00 PM', where: 'On Zoom', zoom: true },
+  sat: { id: 'sat', name: 'Saturday Group', when: 'Saturdays, 8:00 AM', time: '8:00 AM', where: 'Austin Ridge', zoom: false },
+  thu: { id: 'thu', name: 'Thursday Group', when: 'Thursdays, 7:00 PM', time: '7:00 PM', where: 'On Zoom', zoom: true },
 };
 
-// Lesson titles and dates are sample content for the demo.
-// The lesson schedule: entered once at the start of the study (Files > Lesson schedule).
-// Each date is the Saturday that lesson's week starts. This Week shows whichever lesson falls in
-// the current week, and switches on its own every Saturday morning. No date in a week = no class.
-const sat = (m, d) => new Date(2026, m - 1, d);
-const LESSONS = [
-  { n: 1, title: 'Behold, Your King', passage: 'Matthew 1–2', d: sat(9, 26) },
-  { n: 2, title: 'Prepare the Way', passage: 'Matthew 3', d: sat(10, 3) },
-  { n: 3, title: 'Tested in the Wilderness', passage: 'Matthew 4:1–11', d: sat(10, 10) },
-  { n: 4, title: 'Follow Me', passage: 'Matthew 4:12–25', d: sat(10, 17) },
-  { n: 5, title: 'The Blessed Life', passage: 'Matthew 5:1–16', d: sat(10, 24) },
-  { n: 6, title: 'Fulfilling the Law', passage: 'Matthew 5:17–48', d: sat(10, 31) },
-  { n: 7, title: 'Righteousness in Secret', passage: 'Matthew 6:1–18', d: sat(11, 7) },
-  { n: 8, title: 'Treasure and Worry', passage: 'Matthew 6:19–34', d: sat(11, 14) },
-  { n: 9, title: 'Ask, Seek, Knock', passage: 'Matthew 7:1–12', d: sat(11, 21) },
-  { n: 10, title: 'Two Foundations', passage: 'Matthew 7:13–29', d: sat(12, 5) }, // no class Thanksgiving weekend
-  { n: 11, title: 'Authority to Heal', passage: 'Matthew 8:1–17', d: sat(12, 12) },
-];
+// The lesson schedule: entered once at the start of the study (Files > Lesson schedule). Sample content.
+// Each lesson is stored by its Saturday class date; the Thursday group does the same lesson two days
+// earlier. A lesson week runs Sunday to Saturday, and This Week switches on its own every Sunday morning.
+// A week with no lesson is a week with no class.
+const day = (y, m, d) => new Date(y, m - 1, d);
+const addDays = (d, n) => { const x = new Date(d); x.setDate(x.getDate() + n); return x; };
 const DAY = 864e5;
-const today = () => new Date(2026, 10, 7 + 7 * S.weekIdx); // demo clock: the Saturday this week started
+const dn = d => Math.round(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) / DAY); // whole days; daylight-saving safe
+const LESSONS = [
+  { n: 1, title: 'Behold, Your King', passage: 'Matthew 1–2', d: day(2026, 10, 10) },
+  { n: 2, title: 'Prepare the Way', passage: 'Matthew 3', d: day(2026, 10, 17) },
+  { n: 3, title: 'Tested in the Wilderness', passage: 'Matthew 4:1–11', d: day(2026, 10, 24) },
+  { n: 4, title: 'Follow Me', passage: 'Matthew 4:12–25', d: day(2026, 10, 31) },
+  { n: 5, title: 'The Blessed Life', passage: 'Matthew 5:1–16', d: day(2026, 11, 7) },
+  { n: 6, title: 'Fulfilling the Law', passage: 'Matthew 5:17–48', d: day(2026, 11, 14) },
+  { n: 7, title: 'Righteousness in Secret', passage: 'Matthew 6:1–18', d: day(2026, 11, 21) },
+  // no class Thanksgiving week (Nov 26 and 28)
+  { n: 8, title: 'Treasure and Worry', passage: 'Matthew 6:19–34', d: day(2026, 12, 5) },
+  { n: 9, title: 'Ask, Seek, Knock', passage: 'Matthew 7:1–12', d: day(2026, 12, 12) },
+  { n: 10, title: 'Two Foundations', passage: 'Matthew 7:13–29', d: day(2026, 12, 19) },
+  // Christmas break (Dec 24 to Jan 2)
+  { n: 11, title: 'Authority to Heal', passage: 'Matthew 8:1–17', d: day(2027, 1, 9) },
+];
+const weekStart = i => day(2026, 11, 15 + 7 * i); // demo clock: week 0 is Sun Nov 15 to Sat Nov 21 (the week of the meeting with Bryan)
+const today = () => weekStart(S.weekIdx);
 const sortLessons = () => LESSONS.sort((a, b) => a.d - b.d || a.n - b.n);
-const thisLesson = () => LESSONS.find(L => L.d >= today() && L.d - today() < 7 * DAY) || null;
-const nextLesson = () => LESSONS.find(L => L.d > today() && !(L.d - today() < 7 * DAY)) || null;
+const thisLesson = () => { const a = dn(today()); return LESSONS.find(L => dn(L.d) >= a && dn(L.d) <= a + 6) || null; };
+const nextLesson = () => { const a = dn(today()); return LESSONS.find(L => dn(L.d) > a + 6) || null; };
 const lessonForUploads = () => (thisLesson() || nextLesson() || LESSONS[LESSONS.length - 1]).n;
 const isoOf = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
 const dateOf = iso => { const [y, m, d] = iso.split('-').map(Number); return new Date(y, m - 1, d); };
-const satLabel = d => 'Sat, ' + d.toLocaleString('en-US', { month: 'short' }) + ' ' + d.getDate();
+const mon = d => d.toLocaleString('en-US', { month: 'short' });
+const dayLabel = d => mon(d) + ' ' + d.getDate();
+const wd = d => d.toLocaleString('en-US', { weekday: 'short' });
+const toSaturday = d => addDays(d, 6 - d.getDay()); // any day -> the Saturday that ends its week
+const classDate = (g, L) => g === 'thu' ? addDays(L.d, -2) : L.d;
+const classLabel = (g, L) => { const d = classDate(g, L); return `${wd(d)}, ${dayLabel(d)}`; };
+const pairLabel = sat => { const thu = addDays(sat, -2); return mon(thu) === mon(sat) ? `${dayLabel(thu)} & ${sat.getDate()}` : `${dayLabel(thu)} & ${dayLabel(sat)}`; };
+function weekLabel(i) { const a = weekStart(i), b = addDays(a, 6); return mon(a) === mon(b) ? `${dayLabel(a)} – ${b.getDate()}` : `${dayLabel(a)} – ${dayLabel(b)}`; }
+const nextSun = () => 'Sunday, ' + dayLabel(weekStart(S.weekIdx + 1));
+const PRIVACY = 'Your number goes only to the man who calls you each week, and to your leaders.';
 
 let annId = 20, postId = 40, fileId = 40;
 const S = {
   me: NOAH, tab: 'week', signedIn: false, signinStep: 0, welcomeChain: false,
   announcements: [
-    { id: 1, from: BRYAN, aud: 'all', title: 'Lesson 7 this week: Matthew 6:1–18', body: 'Giving, prayer and fasting done for an audience of One. Work through Days 1–5 before we meet. Lecture notes and the observation worksheet are in Files.', time: 'Mon', pinned: true },
-    { id: 2, from: BRYAN, aud: 'sat', title: 'Coffee and donuts this Saturday', body: 'Doors open at 7:40. Come early, grab a coffee and welcome Sam and Ethan, our two newest guys.', time: 'Tue', pinned: false },
-    { id: 3, from: BRYAN, aud: 'all', title: 'Men\'s breakfast, Saturday Nov 21', body: 'All Precepts groups, 7:30 AM in the fellowship hall. Bring a friend who\'s never been to a study. Sign-up sheet is in Files.', time: 'Nov 2', pinned: false },
-    { id: 4, from: BRYAN, aud: 'all', title: 'No class Thanksgiving weekend', body: 'No Thursday or Saturday groups the week of Nov 26. Enjoy your families. We pick back up with Lesson 10 on Dec 3 and Dec 5.', time: 'Oct 29', pinned: false },
-    { id: 5, from: BRYAN, aud: 'thu', title: 'Thursday Zoom link is the same', body: 'Same link as always. Tap "Join on Zoom" from This Week a few minutes early.', time: 'Oct 28', pinned: false },
-    { id: 6, from: BRYAN, aud: 'all', title: 'Workbooks for latecomers', body: 'If you joined after Lesson 3 and still need a Matthew Part 1 workbook, message me and I\'ll bring one Saturday.', time: 'Oct 20', pinned: false },
-    { id: 7, from: BRYAN, aud: 'all', title: 'Serve day at the food pantry', body: 'Six spots open Saturday Nov 14, 11 AM to 1 PM, right after class. Reply in the Feed if you\'re in.', time: 'Oct 15', pinned: false },
+    { id: 1, from: BRYAN, aud: 'all', title: 'Do the homework before you come', body: 'Giving, prayer and fasting done for an audience of One. Work through Days 1–5 before we meet. Lecture notes and this week\'s worksheet are in Files.', time: 'Today', pinnedFor: ['sat', 'thu'] },
+    { id: 2, from: BRYAN, aud: 'sat', title: 'Coffee and donuts this Saturday', body: 'Doors open at 7:40. Come early, grab a coffee and welcome Sam and Ethan, our two newest guys.', time: 'Fri', pinnedFor: [] },
+    { id: 3, from: BRYAN, aud: 'all', title: 'Men\'s breakfast, Saturday Dec 12', body: 'All Precepts groups, 7:00 AM in the fellowship hall, before class. Bring a friend who\'s never been to a study. Sign-up sheet is in Files.', time: 'Nov 9', pinnedFor: [] },
+    { id: 4, from: BRYAN, aud: 'all', title: 'No class Thanksgiving week', body: 'No Thursday or Saturday groups Nov 26 and 28. Enjoy your families. We pick back up with Lesson 8 on Dec 3 and Dec 5.', time: 'Nov 2', pinnedFor: [] },
+    { id: 5, from: BRYAN, aud: 'thu', title: 'Thursday Zoom link is the same', body: 'Same link as always. Tap "Join on Zoom" from This Week a few minutes early.', time: 'Oct 28', pinnedFor: [] },
+    { id: 6, from: BRYAN, aud: 'all', title: 'Workbooks for latecomers', body: 'If you joined after Lesson 3 and still need a Matthew Part 1 workbook, message me and I\'ll bring one to class.', time: 'Oct 20', pinnedFor: [] },
+    { id: 7, from: BRYAN, aud: 'all', title: 'Serve day at the food pantry', body: 'Six spots open Saturday Dec 5, 11 AM to 1 PM, right after class. Reply in the Feed if you\'re in.', time: 'Oct 15', pinnedFor: [] },
   ],
   posts: [
     { id: 30, group: 'sat', author: 'greglawson', body: 'Need two guys to help move a couch Saturday after class. Pizza on me.', time: '9:05 AM', replies: [
@@ -361,7 +380,7 @@ const S = {
       { author: 'jeffnolan', body: 'Glad you\'re here, Sam. Sit with me Saturday and I\'ll show you how I mark up the text.' },
     ] },
     { id: 25, group: 'sat', author: 'robtanner', body: 'Saw a great sunrise at the Ridge this morning. Thankful for this group.', time: 'Wed', replies: [] },
-    { id: 24, group: 'sat', author: 'kenbrady', body: 'Who\'s in for the food pantry serve day on the 14th? Bryan says six spots.', time: 'Tue', replies: [
+    { id: 24, group: 'sat', author: 'kenbrady', body: 'Who\'s in for the food pantry serve day on Dec 5? Bryan says six spots.', time: 'Tue', replies: [
       { author: 'andrewallace', body: 'In.' },
       { author: 'joecastillo', body: 'In, bringing my son.' },
       { author: 'mattkessler', body: 'Put me down.' },
@@ -378,25 +397,25 @@ const S = {
     ] },
   ],
   files: [
-    { id: 1, lesson: 7, name: 'Lesson 7 Lecture Notes.pdf', type: 'pdf', size: '1.2 MB', by: BRYAN, date: 'Nov 2', aud: 'all' },
-    { id: 2, lesson: 7, name: 'Matthew 6 Observation Worksheet.pdf', type: 'pdf', size: '340 KB', by: BRYAN, date: 'Nov 2', aud: 'all' },
-    { id: 3, lesson: 7, name: 'Discussion Questions, Saturday.docx', type: 'doc', size: '48 KB', by: BRYAN, date: 'Nov 3', aud: 'sat' },
-    { id: 4, lesson: 7, name: 'Men\'s Breakfast Sign-up.xlsx', type: 'sheet', size: '22 KB', by: BRYAN, date: 'Nov 2', aud: 'all' },
-    { id: 5, lesson: 6, name: 'Lesson 6 Lecture Notes.pdf', type: 'pdf', size: '1.1 MB', by: BRYAN, date: 'Oct 26', aud: 'all' },
-    { id: 6, lesson: 6, name: 'Lesson 6 Lecture Audio.mp3', type: 'audio', size: '38 MB', by: BRYAN, date: 'Oct 31', aud: 'all' },
-    { id: 7, lesson: 6, name: 'You Have Heard It Said Chart.pdf', type: 'pdf', size: '260 KB', by: BRYAN, date: 'Oct 26', aud: 'all' },
-    { id: 8, lesson: 5, name: 'Lesson 5 Lecture Notes.pdf', type: 'pdf', size: '980 KB', by: BRYAN, date: 'Oct 19', aud: 'all' },
-    { id: 9, lesson: 5, name: 'Lesson 5 Lecture Audio.mp3', type: 'audio', size: '36 MB', by: BRYAN, date: 'Oct 24', aud: 'all' },
-    { id: 10, lesson: 5, name: 'Beatitudes Chart.pdf', type: 'pdf', size: '210 KB', by: BRYAN, date: 'Oct 19', aud: 'all' },
-    { id: 11, lesson: 4, name: 'Lesson 4 Lecture Notes.pdf', type: 'pdf', size: '1.0 MB', by: BRYAN, date: 'Oct 12', aud: 'all' },
-    { id: 12, lesson: 4, name: 'Galilee Map.pdf', type: 'pdf', size: '1.6 MB', by: BRYAN, date: 'Oct 12', aud: 'all' },
-    { id: 13, lesson: 3, name: 'Lesson 3 Lecture Notes.pdf', type: 'pdf', size: '940 KB', by: BRYAN, date: 'Oct 5', aud: 'all' },
-    { id: 14, lesson: 2, name: 'Lesson 2 Lecture Notes.pdf', type: 'pdf', size: '900 KB', by: BRYAN, date: 'Sep 28', aud: 'all' },
-    { id: 15, lesson: 1, name: 'How to Do Precept Homework.pdf', type: 'pdf', size: '410 KB', by: BRYAN, date: 'Sep 21', aud: 'all' },
-    { id: 16, lesson: 1, name: 'Fall Schedule, Matthew Part 1.pdf', type: 'pdf', size: '120 KB', by: BRYAN, date: 'Sep 21', aud: 'all' },
+    { id: 1, lesson: 7, name: 'Lesson 7 Lecture Notes.pdf', type: 'pdf', size: '1.2 MB', by: BRYAN, date: 'Nov 14', aud: 'all' },
+    { id: 2, lesson: 7, name: 'Matthew 6 Observation Worksheet.pdf', type: 'pdf', size: '340 KB', by: BRYAN, date: 'Nov 14', aud: 'all' },
+    { id: 3, lesson: 7, name: 'Discussion Questions, Saturday.docx', type: 'doc', size: '48 KB', by: BRYAN, date: 'Today', aud: 'sat' },
+    { id: 4, lesson: 7, name: 'Men\'s Breakfast Sign-up.xlsx', type: 'sheet', size: '22 KB', by: BRYAN, date: 'Nov 9', aud: 'all' },
+    { id: 5, lesson: 6, name: 'Lesson 6 Lecture Notes.pdf', type: 'pdf', size: '1.1 MB', by: BRYAN, date: 'Nov 8', aud: 'all' },
+    { id: 6, lesson: 6, name: 'Lesson 6 Lecture Audio.mp3', type: 'audio', size: '38 MB', by: BRYAN, date: 'Nov 14', aud: 'all' },
+    { id: 7, lesson: 6, name: 'You Have Heard It Said Chart.pdf', type: 'pdf', size: '260 KB', by: BRYAN, date: 'Nov 8', aud: 'all' },
+    { id: 8, lesson: 5, name: 'Lesson 5 Lecture Notes.pdf', type: 'pdf', size: '980 KB', by: BRYAN, date: 'Nov 1', aud: 'all' },
+    { id: 9, lesson: 5, name: 'Lesson 5 Lecture Audio.mp3', type: 'audio', size: '36 MB', by: BRYAN, date: 'Nov 7', aud: 'all' },
+    { id: 10, lesson: 5, name: 'Beatitudes Chart.pdf', type: 'pdf', size: '210 KB', by: BRYAN, date: 'Nov 1', aud: 'all' },
+    { id: 11, lesson: 4, name: 'Lesson 4 Lecture Notes.pdf', type: 'pdf', size: '1.0 MB', by: BRYAN, date: 'Oct 25', aud: 'all' },
+    { id: 12, lesson: 4, name: 'Galilee Map.pdf', type: 'pdf', size: '1.6 MB', by: BRYAN, date: 'Oct 25', aud: 'all' },
+    { id: 13, lesson: 3, name: 'Lesson 3 Lecture Notes.pdf', type: 'pdf', size: '940 KB', by: BRYAN, date: 'Oct 18', aud: 'all' },
+    { id: 14, lesson: 2, name: 'Lesson 2 Lecture Notes.pdf', type: 'pdf', size: '900 KB', by: BRYAN, date: 'Oct 11', aud: 'all' },
+    { id: 15, lesson: 1, name: 'How to Do Precept Homework.pdf', type: 'pdf', size: '410 KB', by: BRYAN, date: 'Oct 4', aud: 'all' },
+    { id: 16, lesson: 1, name: 'Fall Schedule, Matthew Part 1.pdf', type: 'pdf', size: '120 KB', by: BRYAN, date: 'Oct 4', aud: 'all' },
   ],
   chain: { sat: [], thu: [] },
-  week: 'Nov 7 – 13', weekIdx: 0,
+  week: 'Nov 15 – 21', weekIdx: 0, welcomed: false, postDraft: '',
   convos: [
     { people: [NOAH, 'markellison'], unreadFor: NOAH, msgs: [
       { from: 'markellison', body: 'Hey brother, good to see you Saturday. Still on for coffee Tuesday?', time: '9:12 AM' },
@@ -420,13 +439,13 @@ const S = {
   sheet: null, group: 'sat', draft: { aud: 'group', pin: false, title: '', body: '' }, up: { lesson: 7, aud: 'group', picked: [] }, editN: null,
 };
 
-// pairings: one-to-one, mutual; an odd man out makes one group of three
 function shuffled(ids) {
   const a = ids.slice();
   for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
   return a;
 }
-const groupIds = g => Object.values(men).filter(m => m.group === g && !m.removed).map(m => m.id);
+// Everyone in a group, its leaders included (a leader of both groups shows in both).
+const groupIds = g => Object.values(men).filter(m => (m.group === g || m.group === 'both') && !m.removed).map(m => m.id);
 // Leaders are in a prayer chain too: Bryan prays with the Saturday group.
 men[BRYAN].chain = 'sat';
 const chainOf = id => men[id].chain || men[id].group;
@@ -442,7 +461,7 @@ const chainIds = g => Object.values(men).filter(m => m.inChain && chainOf(m.id) 
 S.chain.sat = shuffled(chainIds('sat'));
 S.chain.thu = shuffled(chainIds('thu'));
 S.shift = { sat: 1, thu: 1 }; // week 1: each man calls the man below him (A calls B, B calls C…)
-// A man removed mid-week stays in the order until Saturday but is skipped: whoever was calling him
+// A man removed mid-week stays in the order until Sunday but is skipped: whoever was calling him
 // calls the man he would have called. Only that one man's name changes; the circle stays whole.
 const gone = id => men[id] && men[id].removed;
 const callee = (g, i) => { const C = S.chain[g], n = C.length, s = S.shift[g]; let j = (i + s) % n, k = 0; while (gone(C[j]) && k++ < n) j = (j + s) % n; return C[j]; };
@@ -452,7 +471,7 @@ function removeFromGroup(id) {
   const g = chainOf(id), C = S.chain[g], i = C.indexOf(id);
   const A = i >= 0 ? caller(g, i) : null, B = i >= 0 ? callee(g, i) : null;
   men[id].removed = true; men[id].pending = i >= 0 ? 'leave' : undefined;
-  if (i < 0) return {};
+  if (i < 0 || C.filter(x => !gone(x)).length < 2) return {}; // fewer than two left: there's no chain to keep
   // If closing the gap would leave a man calling himself (tiny chains), rebuild the chain now instead.
   if (C.some((x, k) => !gone(x) && callee(g, k) === x)) {
     C.filter(gone).forEach(x => { leaveChain(x); men[x].pending = undefined; });
@@ -473,20 +492,18 @@ function joinChain(id) {
   if (m >= 0) C.splice(m, 0, id); else C.push(id); // demo: Noah lands just above Mark, so he calls Mark in week 1
   fixShift(g);
 }
-// Men who join or leave wait for the next Saturday morning; the chain only changes then.
-// pending: 'join' | 'leave' | undefined. wantsChain = where he'll be after Saturday.
+// Men who join or leave wait for the next Sunday morning; the chain only changes then.
+// pending: 'join' | 'leave' | undefined. wantsChain = where he'll be after Sunday.
 const wantsChain = id => men[id].inChain ? men[id].pending !== 'leave' : men[id].pending === 'join';
 function setChainWish(id, yes) {
   const m = men[id];
   if (yes) m.pending = m.inChain ? undefined : 'join';
   else m.pending = m.inChain ? 'leave' : undefined;
 }
-const dayLabel = d => d.toLocaleString('en-US', { month: 'short' }) + ' ' + d.getDate();
-function weekLabel(i) { const a = new Date(2026, 10, 7 + 7 * i), b = new Date(2026, 10, 13 + 7 * i); return a.getMonth() === b.getMonth() ? `${dayLabel(a)} – ${b.getDate()}` : `${dayLabel(a)} – ${dayLabel(b)}`; }
-const nextSat = () => 'Saturday, ' + dayLabel(new Date(2026, 10, 7 + 7 * (S.weekIdx + 1)));
-// Every Saturday morning, automatically: drop men who left, add men who joined, move the right side
-// up one, and send every man a notification with who he calls. No leader button.
-function saturdayMorning() {
+// Every Sunday morning, automatically: This Week moves to the next lesson, men who left drop off,
+// the right side moves up one, men who joined are added, and every man gets his new name
+// (a notification, or an email if he hasn't turned notifications on). No leader button.
+function sundayMorning() {
   Object.values(men).forEach(m => { if (m.pending === 'leave') leaveChain(m.id); });
   ['sat', 'thu'].forEach(g => nextWeek(g));
   Object.values(men).forEach(m => { if (m.pending === 'join') joinChain(m.id); });
@@ -515,7 +532,10 @@ const myGroup = () => S.group;
 const audLabel = a => a === 'all' ? 'All groups' : GROUPS[a].name;
 const audOf = choice => choice === 'all' ? 'all' : myGroup();
 const visibleToMe = aud => aud === 'all' || aud === myGroup();
-function toast(t) { const el = $('toast'); el.textContent = t; el.classList.add('show'); clearTimeout(toast.t); toast.t = setTimeout(() => el.classList.remove('show'), 2200); }
+function toast(t) { const el = $('toast'); el.textContent = t; el.classList.add('show'); clearTimeout(toast.t); toast.t = setTimeout(() => el.classList.remove('show'), Math.min(6500, Math.max(2200, t.length * 55))); }
+// One pinned announcement per group. pinnedFor lists the groups it's pinned for.
+const isPinned = a => a.pinnedFor.includes(myGroup());
+function pinFor(a, groups) { groups.forEach(g => S.announcements.forEach(x => { x.pinnedFor = x.pinnedFor.filter(y => y !== g); })); a.pinnedFor = [...new Set([...a.pinnedFor, ...groups])]; }
 const ftype = name => { const e = name.split('.').pop().toLowerCase(); return e === 'pdf' ? 'pdf' : ['mp3', 'm4a', 'wav'].includes(e) ? 'audio' : ['ppt', 'pptx', 'key'].includes(e) ? 'slides' : ['xls', 'xlsx', 'csv'].includes(e) ? 'sheet' : 'doc'; };
 const fiLabel = { pdf: 'PDF', doc: 'DOC', audio: 'MP3', slides: 'PPT', sheet: 'XLS' };
 const fileRow = f => `<button class="file" data-act="openfile" data-id="${f.id}" style="width:100%;text-align:left"><span class="ficon ${f.type}">${fiLabel[f.type]}</span><span style="min-width:0;flex:1"><span class="fn" style="display:block">${esc(f.name)}</span><span class="fm">${esc(f.size)} · ${f.aud === 'all' ? 'All groups' : esc(GROUPS[f.aud].name)} · ${esc(f.date)}</span></span></button>`;
@@ -526,6 +546,7 @@ const unreadCount = () => myConvos().filter(c => c.unreadFor === S.me).length;
 const setName = (id, n) => { men[id].name = n; men[id].initials = n.split(/\s+/).filter(Boolean).map(w => w[0]).join('').slice(0, 2).toUpperCase(); };
 const telOf = id => men[id].phone.replace(/[^0-9]/g, '');
 const leaderBtn = (act, label, icon = 'plus') => `<button class="leaderadd" data-act="${act}">${ic(icon, 18)} ${label}</button>`;
+const seg = (act, v, on, label) => `<button data-act="${act}" data-v="${v}" class="${on ? 'on' : ''}" aria-pressed="${on}">${label}</button>`;
 
 // ---------- header, demo bar, tabs ----------
 function renderTop() {
@@ -548,43 +569,46 @@ function renderTabs() {
 
 // ---------- screens (the same for everyone; leaders see a few extra buttons) ----------
 function vWeek() {
-  const g = GROUPS[myGroup()], L = thisLesson(), N = nextLesson();
+  const gk = myGroup(), g = GROUPS[gk], L = thisLesson(), N = nextLesson();
   const ann = S.announcements.filter(a => visibleToMe(a.aud));
-  const latest = ann.find(a => a.pinned) || ann[0];
+  const latest = ann.find(isPinned) || ann[0];
   const files = L ? S.files.filter(f => f.lesson === L.n && visibleToMe(f.aud)) : [];
   const spot = chainSpot(S.me);
   return `<div class="card lesson">
       <div class="eyebrow">This week · Matthew</div>
       ${L ? `<div class="title">Lesson ${L.n}: ${esc(L.title)}</div>
-      <div class="passage">${esc(L.passage)}</div>` : `<div class="title">No class this week</div>
-      <div class="passage">${N ? `Next: Lesson ${N.n}, ${esc(N.title)} · ${satLabel(N.d)}` : 'That was the last lesson on the schedule.'}</div>`}
-      <div class="meet"><span style="color:#93B4F5">${ic('cal', 22)}</span><div style="flex:1;min-width:0"><div class="when">${esc(g.when)}</div><div class="where">${esc(g.where)}</div></div>
-      ${g.zoom ? `<button class="pillbtn" data-act="zoom">${ic('video', 16)} Join on Zoom</button>` : `<button class="pillbtn light" data-act="directions">Directions</button>`}</div>
+      <div class="passage">${esc(L.passage)}</div>
+      <div class="meet"><span style="color:#93B4F5">${ic('cal', 22)}</span><div style="flex:1;min-width:0"><div class="when">${classLabel(gk, L)} · ${esc(g.time)}</div><div class="where">${esc(g.where)}</div></div>
+      ${g.zoom ? `<button class="pillbtn" data-act="zoom">${ic('video', 16)} Join on Zoom</button>` : `<button class="pillbtn light" data-act="directions">Directions</button>`}</div>` : `<div class="title">No class this week</div>
+      <div class="passage">${N ? `Next class: ${classLabel(gk, N)} · Lesson ${N.n}, ${esc(N.title)}` : 'That was the last lesson on the schedule.'}</div>`}
     </div>
     ${latest ? `<div class="sec-label">Latest announcement</div>${annCard(latest)}` : ''}
     ${spot ? `<div class="sec-label">Prayer chain this week</div><div class="card row">${av(spot.calls)}<button data-act="tab" data-tab="prayer" style="flex:1;min-width:0;text-align:left"><div class="small muted">You call</div><div style="font-weight:700">${nm(spot.calls)}</div><div class="small muted">${esc(men[spot.calls].phone)}</div></button><a class="minicall" href="tel:${telOf(spot.calls)}">${ic('phone', 16)} Call</a></div>` : ''}
     ${L ? `<div class="sec-label">This week's files</div>
     <div class="card">${files.length ? files.map(fileRow).join('') : '<div class="empty">No files yet this week.</div>'}</div>` : ''}`;
 }
-const annCard = (a, tools) => `<article class="card ann"><div class="meta">${a.pinned ? `<span class="tag pin">Pinned</span>` : ''}<span class="tag">${esc(audLabel(a.aud))}</span><span>${nm(a.from)} · ${esc(a.time)}</span></div><h3>${esc(a.title)}</h3><p>${esc(a.body)}</p>${tools && isLeader() ? `<div class="anntools"><button data-act="togglepin" data-id="${a.id}">${a.pinned ? 'Unpin' : 'Pin to top'}</button></div>` : ''}</article>`;
+const annCard = (a, tools) => `<article class="card ann"><div class="meta">${isPinned(a) ? `<span class="tag pin">Pinned</span>` : ''}<span class="tag">${esc(audLabel(a.aud))}</span><span>${nm(a.from)} · ${esc(a.time)}</span></div><h3>${esc(a.title)}</h3><p>${esc(a.body)}</p>${tools && isLeader() ? `<div class="anntools">${S.confirmAnn === a.id ? `<div class="delask">Delete this announcement? <button class="danger" data-act="annyes" data-id="${a.id}">Delete</button><button data-act="annno">Cancel</button></div>` : `<button data-act="togglepin" data-id="${a.id}">${isPinned(a) ? 'Unpin' : 'Pin to top'}</button><button class="muted" data-act="annask" data-id="${a.id}">Delete</button>`}</div>` : ''}</article>`;
 function vAnn() {
-  const list = S.announcements.filter(a => visibleToMe(a.aud)).sort((x, y) => (y.pinned - x.pinned));
+  const list = S.announcements.filter(a => visibleToMe(a.aud)).sort((x, y) => isPinned(y) - isPinned(x));
   return `${isLeader() ? leaderBtn('postupdate', 'Post an announcement') : ''}
-    <div class="sec-label">Announcements from your leaders</div><div class="stack">${list.map(a => annCard(a, true)).join('')}</div>
-    <p class="note">Announcements also go out by email, so nobody misses one.${isLeader() ? ' One announcement can be pinned at a time; it stays at the top here and on This Week.' : ''}</p>`;
+    <div class="sec-label">${isLeader() ? 'Announcements' : 'Announcements from your leaders'}</div>${list.length ? `<div class="stack">${list.map(a => annCard(a, true)).join('')}</div>` : '<div class="card empty">No announcements yet.</div>'}
+    <p class="note">Announcements also go out by email, so nobody misses one.${isLeader() ? ' One announcement can be pinned per group; it stays at the top here and on This Week.' : ''}</p>`;
 }
 function vGroup() {
   const g = myGroup(), list = S.posts.filter(p => p.group === g);
-  const composer = `<form class="card composer" data-form="post">${av(S.me)}<textarea id="postin" rows="1" placeholder="Write to the group…" aria-label="New post"></textarea><button class="postbtn">Post</button></form>`;
+  const composer = `<form class="card composer" data-form="post">${av(S.me)}<textarea id="postin" rows="1" placeholder="Write to the group…" aria-label="New post">${esc(S.postDraft)}</textarea><button class="postbtn">Post</button></form>`;
+  let canTapReply = false;
   const card = p => {
-    const reps = p.replies.length ? `<div class="replies">${p.replies.map((r, ri) => { const key = `r${p.id}:${ri}`, can = isLeader() || r.author === S.me; return `<div class="rep">${av(r.author)}<div style="min-width:0">${can ? `<button class="rb" data-act="repmenu" data-k="${key}"><strong>${first(r.author)}</strong> ${esc(r.body)}</button>` : `<div class="rb"><strong>${first(r.author)}</strong> ${esc(r.body)}</div>`}${can && S.confirmDel === key ? `<div class="delask">Delete this reply? <button class="danger" data-act="delyes" data-k="${key}">Delete</button><button data-act="delno">Cancel</button></div>` : ''}</div></div>`; }).join('')}</div>` : '';
-    const form = S.replyOpen === p.id ? `<form class="replyform" data-form="reply" data-id="${p.id}"><input id="replyin" placeholder="Reply to ${first(p.author)}…" autocomplete="off"><button>Send</button></form>` : '';
+    const reps = p.replies.length ? `<div class="replies">${p.replies.map((r, ri) => { const key = `r${p.id}:${ri}`, can = isLeader() || r.author === S.me; if (can) canTapReply = true; return `<div class="rep">${av(r.author)}<div style="min-width:0">${can ? `<button class="rb" data-act="repmenu" data-k="${key}"><strong>${first(r.author)}</strong> ${esc(r.body)}</button>` : `<div class="rb"><strong>${first(r.author)}</strong> ${esc(r.body)}</div>`}${can && S.confirmDel === key ? `<div class="delask">Delete this reply? <button class="danger" data-act="delyes" data-k="${key}">Delete</button><button data-act="delno">Cancel</button></div>` : ''}</div></div>`; }).join('')}</div>` : '';
+    const form = S.replyOpen === p.id ? `<form class="replyform" data-form="reply" data-id="${p.id}"><input id="replyin" placeholder="Reply to ${first(p.author)}…" aria-label="Reply to ${first(p.author)}" autocomplete="off"><button>Send</button><button type="button" class="muted" data-act="replycancel">Cancel</button></form>` : '';
     return `<article class="card post"><div class="head">${av(p.author)}<div style="flex:1;min-width:0"><div class="who">${nm(p.author)}${men[p.author].leader ? ' <span class="tag green">Leader</span>' : ''}</div><div class="when">${esc(p.time)}</div></div></div>
       <p class="body">${esc(p.body)}</p>${reps}
       ${form || (S.confirmDel === `p${p.id}` ? `<div class="postacts delask">Delete this post${p.replies.length ? ' and its replies' : ''}? <button class="danger" data-act="delyes" data-k="p${p.id}">Delete</button><button data-act="delno">Cancel</button></div>` : `<div class="postacts"><button data-act="reply" data-id="${p.id}">Reply</button>${isLeader() || p.author === S.me ? `<button class="muted" data-act="delask" data-k="p${p.id}">Delete</button>` : ''}</div>`)}</article>`;
   };
-  return `${isLeader() ? leaderBtn('manage', 'Manage group', 'users') : ''}${composer}<div class="sec-label">${esc(GROUPS[g].name)}</div><div class="stack">${list.map(card).join('')}</div>
-    <p class="note">${isLeader() ? 'Tap any reply to delete it.' : 'Tap one of your replies to delete it.'}</p>`;
+  const cards = list.map(card).join('');
+  return `${isLeader() ? leaderBtn('manage', 'Manage group', 'users') : ''}${composer}<div class="sec-label">${esc(GROUPS[g].name)}</div>
+    ${list.length ? `<div class="stack">${cards}</div>` : '<div class="card empty">No posts yet. Be the first to write to the group.</div>'}
+    ${canTapReply ? `<p class="note">${isLeader() ? 'Tap any reply to delete it.' : 'Tap one of your replies to delete it.'}</p>` : ''}`;
 }
 // Who I call, and who calls me, this week (only while viewing my own chain's group)
 function chainSpot(id) {
@@ -598,39 +622,40 @@ function vPrayer() {
   const g = myGroup(), C = S.chain[g], spot = chainSpot(S.me);
   const me = men[S.me], mine = chainOf(S.me) === g;
   const notIn = mine && !me.inChain ? (me.pending === 'join'
-    ? `<div class="card partner"><div class="name" style="font-size:1.1rem">You're in, starting ${nextSat()}</div>
-      <p class="small muted" style="margin:8px 0 0">The chain moves every Saturday morning. That's when you'll be added, and you'll get a notification with the name of the man you call.</p></div>`
+    ? `<div class="card partner"><div class="name" style="font-size:1.1rem">You're in, starting ${nextSun()}</div>
+      <p class="small muted" style="margin:8px 0 0">The chain moves every Sunday morning. That's when you'll be added and get the name of the man you call.</p></div>`
     : `<div class="card partner"><div class="name" style="font-size:1.1rem">You're not in the prayer chain</div>
-      <p class="small muted" style="margin:8px 0 14px">Each week every man in the chain calls one other man and prays with him. Join anytime; you start the next Saturday morning.</p>
+      <p class="small muted" style="margin:8px 0 14px">Each week every man in the chain calls one other man and prays with him. Join anytime; you start the next Sunday.</p>
       <button class="bigbtn" data-act="joinchain">Join the prayer chain</button></div>`) : '';
-  const leaving = mine && me.inChain && me.pending === 'leave' ? `<p class="note" style="margin:0 0 10px">You leave the prayer chain ${nextSat()}. Until then, this week's call is still yours.</p>` : '';
+  const leaving = mine && me.inChain && me.pending === 'leave' ? `<p class="note" style="margin:0 0 10px">You leave the prayer chain ${nextSun()}. Until then, this week's call is still yours.</p>` : '';
   const ids = Object.values(men).filter(m => m.pending && !m.removed && chainOf(m.id) === g);
   const joining = ids.filter(m => m.pending === 'join').map(m => esc(m.name)), leavingIds = ids.filter(m => m.pending === 'leave').map(m => esc(m.name));
-  const changes = joining.length || leavingIds.length ? `<p class="note">${nextSat()}: ${[joining.length ? `${joining.join(', ')} ${joining.length > 1 ? 'join' : 'joins'}` : '', leavingIds.length ? `${leavingIds.join(', ')} ${leavingIds.length > 1 ? 'leave' : 'leaves'}` : ''].filter(Boolean).join('; ')}.</p>` : '';
+  const changes = joining.length || leavingIds.length ? `<p class="note">${nextSun()}: ${[joining.length ? `${joining.join(', ')} ${joining.length > 1 ? 'join' : 'joins'}` : '', leavingIds.length ? `${leavingIds.join(', ')} ${leavingIds.length > 1 ? 'leave' : 'leaves'}` : ''].filter(Boolean).join('; ')}.</p>` : '';
   const you = spot ? `<div class="card partner"><div class="small muted" style="font-weight:600;margin-bottom:12px">This week, you call</div>
       ${av(spot.calls, 'lg')}<div class="name">${nm(spot.calls)}</div><div class="phone">${esc(men[spot.calls].phone)}</div>
       <div class="callrow"><a class="callbtn" href="tel:${telOf(spot.calls)}">${ic('phone', 18)} Call</a><a class="callbtn alt" href="sms:${telOf(spot.calls)}">${ic('msg', 18)} Text</a></div>
       <div class="calledby">${av(spot.calledBy)}<span><strong>${nm(spot.calledBy)}</strong> will call you</span></div></div>` : '';
   const live = C.filter(x => !gone(x));
   const list = C.map((id, i) => { if (gone(id)) return ''; const to = callee(g, i); return `<li class="link${id === S.me ? ' me' : ''}${to === S.me ? ' tome' : ''}"><span class="who">${nm(id)}</span><span class="calls">calls</span><span class="who">${nm(to)}</span></li>`; }).join('');
-  return `${isLeader() ? leaderBtn('manage', 'Manage prayer chain', 'users') : ''}<div class="sec-label">Week of ${esc(S.week)}</div>${notIn}${you}${leaving}
+  return `${isLeader() ? leaderBtn('managechain', 'Manage prayer chain', 'users') : ''}<div class="sec-label">Week of ${esc(S.week)}</div>${notIn}${you}${leaving}
     <div class="sec-label">${esc(GROUPS[g].name)} prayer chain · ${live.length} men</div>
     ${live.length >= 2 ? `<ol class="card chainlist">${list}</ol>` : `<div class="card empty">${live.length ? `${nm(live[0])} is the only man in the chain so far. It starts once a second man joins.` : 'Nobody has joined the prayer chain yet.'}</div>`}
-    ${changes}<p class="note">The chain moves on its own every Saturday morning: the right side moves up one, so every man calls someone new, and every man gets a notification with who he calls. Men who join or leave are added or dropped at that moment. Your number is shared only with the men next to you in the chain and your leaders.</p>
-    <button class="demobtn" data-act="nextsat">Demo only: skip ahead to Saturday morning</button>`;
+    ${changes}<p class="note">The chain moves on its own every Sunday morning, and every man gets his new name by notification, or by email if he hasn't turned notifications on. ${PRIVACY}</p>
+    <button class="demobtn" data-act="nextweek">Demo only: skip ahead to next Sunday morning</button>`;
 }
 function vFiles() {
   const vis = S.files.filter(f => visibleToMe(f.aud));
-  const lessons = [...new Set(vis.map(f => f.lesson))].sort((a, b) => b - a);
+  const lessons = [...new Set(vis.map(f => f.lesson))].filter(n => lessonOf(n)).sort((a, b) => b - a);
   const cur = thisLesson();
-  return `${isLeader() ? leaderBtn('addfiles', 'Add files') : ''}${isCoordinator() ? leaderBtn('schedule', 'Lesson schedule', 'cal') : ''}` + lessons.map(n => { const L = lessonOf(n); return `<div class="sec-label">${cur && n === cur.n ? 'This week · ' : ''}Lesson ${n}</div><div class="card"><div class="lessonhead"><strong>${esc(L.title)}</strong><span class="small muted">${esc(L.passage)}</span></div>${vis.filter(f => f.lesson === n).map(fileRow).join('')}</div>`; }).join('');
+  const tools = isCoordinator() ? `<div class="leaderrow">${leaderBtn('addfiles', 'Add files')}${leaderBtn('schedule', 'Lessons', 'cal')}</div>` : isLeader() ? leaderBtn('addfiles', 'Add files') : '';
+  return tools + (lessons.length ? lessons.map(n => { const L = lessonOf(n); return `<div class="sec-label">${cur && n === cur.n ? 'This week · ' : ''}Lesson ${n}</div><div class="card"><div class="lessonhead"><strong>${esc(L.title)}</strong><span class="small muted">${esc(L.passage)}</span></div>${vis.filter(f => f.lesson === n).map(fileRow).join('')}</div>`; }).join('') : '<div class="card empty" style="margin-top:10px">No files yet.</div>');
 }
 
 // ---------- sheets ----------
-function openSheet(kind, arg) { S.sheet = { kind, arg }; renderSheet(); requestAnimationFrame(() => $('sheet').classList.add('open')); $('sheet').setAttribute('aria-hidden', 'false'); }
-function closeSheet() { if (document.activeElement) document.activeElement.blur(); $('app').scrollLeft = 0; $('sheet').classList.remove('open'); $('sheet').setAttribute('aria-hidden', 'true'); S.sheet = null; render(); }
+function openSheet(kind, arg) { S.sheet = { kind, arg }; renderSheet(); requestAnimationFrame(() => { if (!S.sheet) return; $('sheet').classList.add('open'); const b = $('sheet').querySelector('[data-act=close]'); if (b) b.focus({ preventScroll: true }); }); $('sheet').setAttribute('aria-hidden', 'false'); }
+function closeSheet() { if (document.activeElement) document.activeElement.blur(); $('app').scrollLeft = 0; $('sheet').classList.remove('open'); $('sheet').setAttribute('aria-hidden', 'true'); S.sheet = null; S.confirmRm = S.confirmFile = S.confirmLesson = null; render(); }
 function sheetTop(title, sub, back = true) { return `<header class="top">${back ? `<button class="iconbtn" data-act="close" aria-label="Back">${ic('back')}</button>` : ''}<div class="t"><h1>${title}</h1>${sub ? `<p class="sub">${sub}</p>` : ''}</div></header>`; }
-const audPicker = (act, cur) => `<div class="field"><label>Who gets it</label><div class="seg">${['group', 'all'].map(a => `<button data-act="${act}" data-v="${a}" class="${cur === a ? 'on' : ''}">${a === 'all' ? 'All groups' : esc(GROUPS[myGroup()].name)}</button>`).join('')}</div></div>`;
+const audPicker = (act, cur) => `<div class="field"><label>Who gets it</label><div class="seg">${['group', 'all'].map(a => seg(act, a, cur === a, a === 'all' ? 'All groups' : esc(GROUPS[myGroup()].name))).join('')}</div></div>`;
 function renderSheet() {
   const sh = $('sheet'); if (!S.sheet) return;
   const { kind, arg } = S.sheet;
@@ -643,12 +668,13 @@ function renderSheet() {
     if (!c) { c = { people: [S.me, arg], unreadFor: null, msgs: [] }; S.convos.unshift(c); }
     if (c.unreadFor === S.me) c.unreadFor = null;
     sh.innerHTML = sheetTop(nm(arg), men[arg].group === 'both' ? 'Group leader' : esc(GROUPS[men[arg].group].name)) + `<div class="screen" id="dmscroll"><div class="bubbles">${c.msgs.map(m => `<div class="bubble${m.from === S.me ? ' mine' : ''}">${esc(m.body)}<div class="bt">${esc(m.time)}</div></div>`).join('') || '<div class="empty">No messages yet.</div>'}</div></div>
-      <form class="inputbar" data-form="dm"><input id="dmin" placeholder="Message ${first(arg)}…" autocomplete="off"><button class="sendbtn" aria-label="Send">${ic('send', 18)}</button></form>`;
+      <form class="inputbar" data-form="dm"><input id="dmin" placeholder="Message ${first(arg)}…" aria-label="Message ${first(arg)}" autocomplete="off"><button class="sendbtn" aria-label="Send">${ic('send', 18)}</button></form>`;
     requestAnimationFrame(() => { const s = $('dmscroll'); if (s) s.scrollTop = s.scrollHeight; });
   } else if (kind === 'file') {
     const f = S.files.find(x => x.id === arg), L = lessonOf(f.lesson);
     sh.innerHTML = sheetTop('File', `Lesson ${f.lesson} · ${esc(L.title)}`) + `<div class="screen"><div class="card" style="text-align:center;padding:28px 16px"><span class="ficon ${f.type}" style="width:64px;height:76px;margin:0 auto;font-size:.9rem">${fiLabel[f.type]}</span><div style="font-weight:700;font-size:1.05rem;margin-top:14px;overflow-wrap:anywhere">${esc(f.name)}</div><div class="small muted" style="margin-top:4px">${esc(f.size)} · Shared by ${nm(f.by)} · ${esc(f.date)}</div>
-      <div class="stack" style="margin-top:18px"><button class="bigbtn" data-act="fakeopen">Open</button><button class="bigbtn secondary" data-act="fakeopen">Save to phone</button></div></div>
+      <div class="stack" style="margin-top:18px"><button class="bigbtn" data-act="fakeopen">Open</button><button class="bigbtn secondary" data-act="fakeopen">Save to phone</button></div>
+      ${isLeader() ? (S.confirmFile ? `<div class="confirm" style="margin:16px 0 0;text-align:left"><span>Delete this file for everyone?</span><div class="row"><button class="pillbtn danger" data-act="fileyes" data-id="${f.id}">Delete</button><button class="pillbtn light2" data-act="fileno">Cancel</button></div></div>` : `<button class="textbtn danger" style="margin-top:10px" data-act="fileask">Delete file</button>`) : ''}</div>
       <p class="note">In the demo, files are names only. In the real app they open on your phone.</p></div>`;
   } else if (kind === 'postupdate') {
     const d = S.draft;
@@ -656,7 +682,7 @@ function renderSheet() {
       ${audPicker('daud', d.aud)}
       <div class="field"><label for="atitle">Title</label><input id="atitle" value="${esc(d.title)}" placeholder="e.g. Bring your workbook Saturday"></div>
       <div class="field"><label for="abody">Message</label><textarea id="abody" placeholder="What do the men need to know?">${esc(d.body)}</textarea></div>
-      <label class="check"><input type="checkbox" id="apin" ${d.pin ? 'checked' : ''}> Pin to the top</label>
+      <label class="check"><input type="checkbox" id="apin" ${d.pin ? 'checked' : ''}> Pin to the top${d.aud === 'all' ? ' for every group' : ''}</label>
       <button class="bigbtn" data-act="postann">Post announcement</button>
       <p class="note" style="margin:0">It shows up in the app right away and goes out by email too.</p></div></div>`;
   } else if (kind === 'addfiles') {
@@ -666,15 +692,19 @@ function renderSheet() {
       ${audPicker('uaud', u.aud)}
       <label class="drop" for="ufile">${ic('upload', 26)}<div style="font-weight:700;margin-top:6px">Choose files</div><div class="small muted">PDFs, notes, slides, audio</div><input type="file" id="ufile" multiple hidden></label>
       <button class="bigbtn secondary" data-act="samplefile">Add a sample file (demo)</button>
-      ${u.picked.length ? `<div>${u.picked.map((p, i) => `<div class="file"><span class="ficon ${p.type}">${fiLabel[p.type]}</span><span style="flex:1;min-width:0"><span class="fn" style="display:block">${esc(p.name)}</span><span class="fm">${esc(p.size)}</span></span><button data-act="unpick" data-i="${i}" aria-label="Remove">${ic('x', 18)}</button></div>`).join('')}</div>` : ''}
+      ${u.picked.length ? `<div>${u.picked.map((p, i) => `<div class="file"><span class="ficon ${p.type}">${fiLabel[p.type]}</span><span style="flex:1;min-width:0"><span class="fn" style="display:block">${esc(p.name)}</span><span class="fm">${esc(p.size)}</span></span><button class="xbtn" data-act="unpick" data-i="${i}" aria-label="Remove ${esc(p.name)}">${ic('x', 18)}</button></div>`).join('')}</div>` : ''}
       <button class="bigbtn" data-act="doupload" ${u.picked.length ? '' : 'disabled style="opacity:.5"'}>Add ${u.picked.length || ''} ${u.picked.length === 1 ? 'file' : 'files'}</button></div></div>`;
     const fi = $('ufile'); if (fi) fi.onchange = e => { [...e.target.files].forEach(f => S.up.picked.push({ name: f.name, type: ftype(f.name), size: f.size > 1e6 ? (f.size / 1e6).toFixed(1) + ' MB' : Math.max(1, Math.round(f.size / 1e3)) + ' KB' })); renderSheet(); };
   } else if (kind === 'manage') {
     const g = myGroup(), list = groupIds(g);
-    sh.innerHTML = sheetTop(`Manage ${esc(GROUPS[g].name)}`, `${list.length} men · ${esc(GROUPS[g].when)}`) + `<div class="screen">
+    const row = id => { const m = men[id], inThis = chainOf(id) === g;
+      const chip = inThis ? `<button class="chainchip${wantsChain(id) ? ' on' : ''}" data-act="togglechain" data-id="${id}" aria-pressed="${wantsChain(id)}">${m.pending === 'join' ? 'Joins Sunday' : m.pending === 'leave' ? 'Leaves Sunday' : m.inChain ? 'In prayer chain' : 'Not in chain'}</button>` : '';
+      const rm = id === NOAH || m.leader ? '' : `<button class="rmlink" data-act="rmask" data-id="${id}">Remove</button>`;
+      return `<div class="pair">${av(id)}<span class="n"><span style="font-weight:600">${nm(id)}</span>${m.leader ? ' <span class="tag green">Leader</span>' : id === 'samokafor' || id === 'ethanmoore' ? ' <span class="tag green">New</span>' : ''}<a class="ph" style="display:block;padding:4px 0" href="tel:${telOf(id)}">${esc(m.phone)}</a></span><span class="pr">${chip}${rm}</span></div>${S.confirmRm === id ? `<div class="confirm"><span>Remove ${first(id)} from ${esc(GROUPS[g].name)}? He loses access right away${m.inChain ? ' and comes off the prayer chain' : ''}.</span><div class="row"><button class="pillbtn danger" data-act="rmyes" data-id="${id}">Remove</button><button class="pillbtn light2" data-act="rmno">Cancel</button></div></div>` : ''}`; };
+    sh.innerHTML = sheetTop(arg === 'chain' ? 'Manage prayer chain' : `Manage ${esc(GROUPS[g].name)}`, `${esc(GROUPS[g].name)} · ${list.length} men`) + `<div class="screen">
       <div class="card"><div class="field"><label for="invite">Add a man to the group</label><div class="row"><input id="invite" type="email" placeholder="Email address"><button class="pillbtn" data-act="invite">${ic('plus', 16)} Invite</button></div></div></div>
-      <div class="card" style="margin-top:10px">${list.map(id => `<div class="pair">${av(id)}<span class="n" style="min-width:0"><span style="font-weight:600">${nm(id)}</span>${id === 'samokafor' || id === 'ethanmoore' ? ' <span class="tag green">New</span>' : ''}<a class="ph" style="display:block" href="tel:${telOf(id)}">${esc(men[id].phone)}</a>${id === NOAH ? '' : `<button class="rmlink" data-act="rmask" data-id="${id}">Remove from group</button>`}</span><button class="chainchip${wantsChain(id) ? ' on' : ''}" data-act="togglechain" data-id="${id}" aria-pressed="${wantsChain(id)}">${men[id].pending === 'join' ? 'Joins Saturday' : men[id].pending === 'leave' ? 'Leaves Saturday' : men[id].inChain ? 'In prayer chain' : 'Not in chain'}</button></div>${S.confirmRm === id ? `<div class="confirm"><span>Remove ${first(id)} from ${esc(GROUPS[g].name)}? He loses access right away${men[id].inChain ? ' and comes off the prayer chain' : ''}.</span><div class="row"><button class="pillbtn danger" data-act="rmyes" data-id="${id}">Remove</button><button class="pillbtn light2" data-act="rmno">Cancel</button></div></div>` : ''}`).join('')}</div>
-      <p class="note">Tap a man's prayer chain button to add or remove him. The change takes effect Saturday morning, when the chain moves. He can also change it himself in his profile. Removing a man from the group is immediate: whoever was calling him calls the next man instead until Saturday.</p></div>`;
+      <div class="card" style="margin-top:10px">${list.map(row).join('')}</div>
+      <p class="note">Prayer chain changes take effect Sunday morning, when the chain moves; a man can also change it in his profile. Removing a man is immediate: whoever was calling him calls the next man instead until Sunday.</p></div>`;
   } else if (kind === 'profile') {
     const m = men[S.me], groups = myGroups().map(k => GROUPS[k].name).join(' and ');
     sh.innerHTML = sheetTop('My profile', '') + `<div class="screen"><div class="card stack">
@@ -683,29 +713,31 @@ function renderSheet() {
       <div class="field"><label for="ephone">Cell number</label><input id="ephone" type="tel" value="${esc(m.phone)}"></div>
       <div class="field"><label for="eemail">Email</label><input id="eemail" type="email" value="${esc(m.email)}"></div>
       <div class="field"><label>${myGroups().length > 1 ? 'Your groups' : 'Your group'}</label><div class="readonly">${esc(groups)}</div><span class="small muted">To change groups, ask your leader.</span></div>
-      <div class="field"><label>Prayer chain</label><div class="seg"><button data-act="pchain" data-v="1" class="${wantsChain(S.me) ? 'on' : ''}">I'm in</button><button data-act="pchain" data-v="0" class="${wantsChain(S.me) ? '' : 'on'}">Not now</button></div><span class="small muted">Changes take effect Saturday morning, when the chain moves.</span></div>
-      <p class="small muted" style="margin:0">Your number and email are shared only with the men next to you in the prayer chain and your leaders.</p>
+      <div class="field"><label>Prayer chain</label><div class="seg">${seg('pchain', 1, S.profChain, "I'm in")}${seg('pchain', 0, !S.profChain, 'Not now')}</div><span class="small muted">Saved with the button below. Changes start Sunday morning, when the chain moves.</span></div>
+      <p class="small muted" style="margin:0">${PRIVACY} Your email is used only for sign-in links and announcements.</p>
       <button class="bigbtn" data-act="saveprofile">Save</button>
       <button class="bigbtn secondary" data-act="signout">Sign out</button></div></div>`;
     $('pphoto').onchange = e => { const f = e.target.files[0]; if (!f) return; men[S.me].photo = URL.createObjectURL(f); const a = document.querySelector('#sheet .av'); if (a) a.outerHTML = av(S.me, 'lg'); const l = document.querySelector('#sheet .linkish'); if (l) l.textContent = 'Change photo'; renderTop(); toast('Photo updated'); };
   } else if (kind === 'schedule') {
     sortLessons(); const cur = thisLesson();
     const rows = LESSONS.map((L, i) => { const prev = LESSONS[i - 1], gaps = [];
-      if (prev) for (let d = new Date(prev.d.getTime() + 7 * DAY); d < L.d; d = new Date(d.getTime() + 7 * DAY)) gaps.push(`<div class="schedgap">No class · ${satLabel(d)}</div>`);
-      return gaps.join('') + `<button class="schedrow" data-act="editlesson" data-n="${L.n}"><span class="sd">${satLabel(L.d)}</span><span style="flex:1;min-width:0"><span style="font-weight:700;display:block">Lesson ${L.n}: ${esc(L.title)}${cur && cur.n === L.n ? ' <span class="tag green">This week</span>' : ''}</span><span class="small muted">${esc(L.passage)}</span></span>${ic('chev', 16)}</button>`; }).join('');
-    sh.innerHTML = sheetTop('Lesson schedule', 'Matthew · both groups') + `<div class="screen">
+      if (prev) for (let d = addDays(prev.d, 7); dn(d) < dn(L.d); d = addDays(d, 7)) gaps.push(`<div class="schedgap">No class · ${pairLabel(d)}</div>`);
+      return gaps.join('') + `<button class="schedrow" data-act="editlesson" data-n="${L.n}"><span class="sd">${pairLabel(L.d)}</span><span style="flex:1;min-width:0"><span style="font-weight:700;display:block">Lesson ${L.n}: ${esc(L.title)}${cur && cur.n === L.n ? ' <span class="tag green">This week</span>' : ''}</span><span class="small muted">${esc(L.passage)}</span></span>${ic('chev', 16)}</button>`; }).join('');
+    sh.innerHTML = sheetTop('Lesson schedule', 'Matthew · Thursday and Saturday') + `<div class="screen">
       <div class="card">${rows}</div>
       <button class="bigbtn secondary" style="margin-top:12px" data-act="editlesson" data-n="new">${ic('plus', 18)} Add a lesson</button>
-      <p class="note">This Week shows the lesson for the current week and switches on its own every Saturday morning. To skip a week, move that lesson's date; the lessons after it move too.</p></div>`;
+      <p class="note">Dates are Thursday & Saturday of each lesson week. This Week switches on its own every Sunday morning. To skip a week, move that lesson's date; the lessons after it move too.</p></div>`;
   } else if (kind === 'lesson') {
     const isNew = arg === 'new', last = LESSONS[LESSONS.length - 1];
-    const L = isNew ? { n: Math.max(...LESSONS.map(x => x.n)) + 1, title: '', passage: '', d: new Date(last.d.getTime() + 7 * DAY) } : lessonOf(+arg);
+    const L = isNew ? { n: Math.max(...LESSONS.map(x => x.n)) + 1, title: '', passage: '', d: addDays(last.d, 7) } : lessonOf(+arg);
     S.editN = isNew ? 'new' : L.n;
+    const hasFiles = !isNew && S.files.some(f => f.lesson === L.n);
     sh.innerHTML = sheetTop(isNew ? 'Add a lesson' : `Lesson ${L.n}`, 'Lesson schedule') + `<div class="screen"><div class="card stack">
       <div class="field"><label for="ltitle">Title</label><input id="ltitle" value="${esc(L.title)}" placeholder="Lesson ${L.n} title"></div>
       <div class="field"><label for="lpassage">Passage</label><input id="lpassage" value="${esc(L.passage)}" placeholder="Matthew 9:1–13"></div>
-      <div class="field"><label for="ldate">Week of (Saturday)</label><input id="ldate" type="date" value="${isoOf(L.d)}">${isNew ? '' : '<span class="small muted">Moving this date moves the lessons after it by the same amount.</span>'}</div>
-      <button class="bigbtn" data-act="savelesson">${isNew ? 'Add lesson' : 'Save'}</button></div></div>`;
+      <div class="field"><label for="ldate">Saturday class</label><input id="ldate" type="date" value="${isoOf(L.d)}"><span class="small muted">The Thursday group meets two days before. Pick any day and it moves to that week's Saturday.${isNew ? '' : ' Moving this date moves the lessons after it by the same amount.'}</span></div>
+      <button class="bigbtn" data-act="savelesson">${isNew ? 'Add lesson' : 'Save'}</button>
+      ${isNew ? '' : S.confirmLesson ? `<div class="confirm" style="margin:0"><span>${hasFiles ? `Lesson ${L.n} has files. Delete them from Files first, or keep the lesson.` : `Delete Lesson ${L.n}? The lessons after it keep their dates.`}</span><div class="row">${hasFiles ? '' : `<button class="pillbtn danger" data-act="lessonyes">Delete</button>`}<button class="pillbtn light2" data-act="lessonno">${hasFiles ? 'OK' : 'Cancel'}</button></div></div>` : `<button class="textbtn danger" data-act="lessonask">Delete lesson</button>`}</div></div>`;
   } else if (kind === 'pickgroup') {
     sh.innerHTML = sheetTop('Switch group', 'You lead more than one group') + `<div class="screen"><div class="card">${myGroups().map(k => `<button class="convo" data-act="setgroup" data-v="${k}"><span class="av" style="background:var(--navy)">${ic(GROUPS[k].zoom ? 'video' : 'group', 18)}</span><div style="flex:1;min-width:0"><div class="cn">${esc(GROUPS[k].name)}</div><div class="cp">${esc(GROUPS[k].when)} · ${groupIds(k).length} men</div></div>${k === myGroup() ? `<span style="color:var(--blue)">${ic('check', 20, 2.4)}</span>` : ''}</button>`).join('')}</div>
       <p class="note">Everything in the app switches to the group you pick.</p></div>`;
@@ -733,13 +765,13 @@ function renderSignin() {
     <div class="powered">Demo: the email is simulated.</div>`;
   if (S.signinStep === 2) el.innerHTML = `
     <h2 class="big">Welcome</h2>
-    <p>One time only. Confirm your info so the prayer chain can reach you.</p>
+    <p>One time only. Confirm your info so your leaders can reach you.</p>
     <div class="mailcard stack">
-      <div class="field"><label for="pname">Your name</label><input id="pname" value="Noah Austin"></div>
+      <div class="field"><label for="pname">Your name</label><input id="pname" value="${esc(men[NOAH].name)}"></div>
       <div class="field"><label for="pphone">Cell number</label><input id="pphone" type="tel" value="${esc(men[NOAH].phone)}"></div>
-      <div class="field"><label for="pgroup">Your group</label><select id="pgroup"><option>Saturday Group (Bryan Bailey)</option><option>Thursday Group on Zoom (Bryan Bailey)</option></select></div>
-      <div class="field"><label>Join the weekly prayer chain?</label><div class="seg"><button data-act="wchain" data-v="1" class="${S.welcomeChain ? 'on' : ''}">Yes</button><button data-act="wchain" data-v="0" class="${S.welcomeChain ? '' : 'on'}">No</button></div><span class="small muted">Each week you'd call the next man in the chain and pray with him. You can change this anytime.</span></div>
-      <p class="small muted" style="margin:0">Your number is shared only with the men next to you in the prayer chain and your leaders.</p>
+      <div class="field"><label>Your group</label><div class="readonly">Saturday Group · Bryan Bailey</div><span class="small muted">Your leader added you. To change groups, ask him.</span></div>
+      <div class="field"><label>Join the weekly prayer chain?</label><div class="seg">${seg('wchain', 1, S.welcomeChain, 'Yes')}${seg('wchain', 0, !S.welcomeChain, 'No')}</div><span class="small muted">Each week you'd call one man in the chain and pray with him. You can change this anytime.</span></div>
+      <p class="small muted" style="margin:0">${PRIVACY}</p>
       <button class="bigbtn" data-act="signedin">Join Men's Precepts</button>
     </div>`;
 }
@@ -747,24 +779,30 @@ function renderSignin() {
 // ---------- render ----------
 function render() {
   renderTop(); renderTabs(); renderSignin();
+  ['top', 'leaderbar', 'screen', 'tabs'].forEach(id => { $(id).inert = !S.signedIn; }); // keyboard focus stays on sign-in
   $('screen').innerHTML = { week: vWeek, ann: vAnn, group: vGroup, prayer: vPrayer, files: vFiles }[S.tab]();
+  const pi = $('postin'); if (pi && S.postDraft) { pi.style.height = 'auto'; pi.style.height = Math.min(pi.scrollHeight + 2, 140) + 'px'; }
 }
 const keepDraft = () => { const t = $('atitle'), b = $('abody'), p = $('apin'); if (t) S.draft.title = t.value; if (b) S.draft.body = b.value; if (p) S.draft.pin = p.checked; };
 const keepLesson = () => { const l = $('ulesson'); if (l) S.up.lesson = +l.value; };
+const firstName = id => men[id].name.split(' ')[0];
+const clearAsks = () => { S.confirmDel = S.confirmAnn = null; S.replyOpen = null; };
+function sheetBack() { if (!S.sheet) return; if (S.sheet.kind === 'dm') { openSheet('messages'); renderTop(); } else if (S.sheet.kind === 'lesson') { S.confirmLesson = null; openSheet('schedule'); } else closeSheet(); }
 
 document.addEventListener('click', e => {
   const t = e.target.closest('[data-act],[data-tab]'); if (!t) return;
   const act = t.dataset.act, tab = t.dataset.tab;
-  if (tab && (!act || act === 'tab')) { S.tab = tab; S.replyOpen = null; $('screen').scrollTop = 0; render(); return; }
+  if (tab && (!act || act === 'tab')) { S.tab = tab; clearAsks(); $('screen').scrollTop = 0; render(); return; }
   switch (act) {
-    case 'viewas': S.me = S.me === NOAH ? BRYAN : NOAH; S.group = myGroups()[0]; S.tab = 'week'; S.replyOpen = null; if (S.sheet) closeSheet(); $('screen').scrollTop = 0; render(); toast(S.me === BRYAN ? 'Now viewing as Bryan, a leader' : 'Now viewing as Noah, a member'); break;
+    case 'viewas': S.me = S.me === NOAH ? BRYAN : NOAH; S.group = myGroups()[0]; S.tab = 'week'; clearAsks(); if (S.sheet) closeSheet(); $('screen').scrollTop = 0; render(); toast(S.me === BRYAN ? 'Now viewing as Bryan, a leader' : 'Now viewing as Noah, a member'); break;
     case 'pickgroup': openSheet('pickgroup'); break;
-    case 'setgroup': S.group = t.dataset.v; S.replyOpen = null; closeSheet(); $('screen').scrollTop = 0; toast(`Now showing the ${GROUPS[S.group].name}`); break;
+    case 'setgroup': S.group = t.dataset.v; clearAsks(); closeSheet(); $('screen').scrollTop = 0; toast(`Now showing the ${GROUPS[S.group].name}`); break;
     case 'messages': openSheet('messages'); break;
     case 'dm': openSheet('dm', t.dataset.id); break;
-    case 'openfile': openSheet('file', +t.dataset.id); break;
-    case 'close': if (S.sheet && S.sheet.kind === 'dm') { openSheet('messages'); renderTop(); } else if (S.sheet && S.sheet.kind === 'lesson') openSheet('schedule'); else closeSheet(); break;
+    case 'openfile': S.confirmFile = null; openSheet('file', +t.dataset.id); break;
+    case 'close': sheetBack(); break;
     case 'schedule': openSheet('schedule'); break;
+    // feed
     case 'delask': S.confirmDel = t.dataset.k; render(); break;
     case 'repmenu': S.confirmDel = S.confirmDel === t.dataset.k ? null : t.dataset.k; render(); break;
     case 'delno': S.confirmDel = null; render(); break;
@@ -772,53 +810,83 @@ document.addEventListener('click', e => {
       if (k[0] === 'p') { S.posts = S.posts.filter(x => x.id !== +k.slice(1)); toast('Post deleted'); }
       else { const [pid, ri] = k.slice(1).split(':').map(Number); S.posts.find(x => x.id === pid).replies.splice(ri, 1); toast('Reply deleted'); }
       render(); break; }
+    case 'reply': S.replyOpen = +t.dataset.id; S.confirmDel = null; render(); setTimeout(() => $('replyin') && $('replyin').focus(), 0); break;
+    case 'replycancel': S.replyOpen = null; render(); break;
+    // manage group
     case 'rmask': S.confirmRm = t.dataset.id; renderSheet(); break;
     case 'rmno': S.confirmRm = null; renderSheet(); break;
-    case 'rmyes': { const id = t.dataset.id, f = men[id].name.split(' ')[0]; S.confirmRm = null; const r = removeFromGroup(id); renderSheet(); render();
-      toast(r.A ? `${f} is out of the group. ${men[r.A].name.split(' ')[0]} now calls ${men[r.B].name.split(' ')[0]} until Saturday; both got a notification.` : r.rebuilt ? `${f} is out of the group. The prayer chain was rebuilt and everyone got their new name.` : `${f} is out of the group.`); break; }
-    case 'togglepin': { const a = S.announcements.find(x => x.id === +t.dataset.id), on = !a.pinned; S.announcements.forEach(x => x.pinned = false); a.pinned = on; render(); toast(on ? 'Pinned. It now shows first here and on This Week.' : 'Unpinned'); break; }
-    case 'editlesson': openSheet('lesson', t.dataset.n); break;
+    case 'rmyes': { const id = t.dataset.id, f = firstName(id); S.confirmRm = null; const r = removeFromGroup(id); renderSheet(); render();
+      toast(r.A && r.A !== r.B ? `${f} is out of the group. ${firstName(r.A)} now calls ${firstName(r.B)} until Sunday; both got a notification (demo).` : r.rebuilt ? `${f} is out of the group. The prayer chain was rebuilt and everyone got their new name (demo).` : `${f} is out of the group.`); break; }
+    // announcements
+    case 'togglepin': { const a = S.announcements.find(x => x.id === +t.dataset.id), g = myGroup(), on = !isPinned(a);
+      if (on) pinFor(a, [g]); else a.pinnedFor = a.pinnedFor.filter(x => x !== g);
+      render(); toast(on ? `Pinned for the ${GROUPS[g].name}. It shows first here and on This Week.` : 'Unpinned'); break; }
+    case 'annask': S.confirmAnn = +t.dataset.id; render(); break;
+    case 'annno': S.confirmAnn = null; render(); break;
+    case 'annyes': S.announcements = S.announcements.filter(x => x.id !== +t.dataset.id); S.confirmAnn = null; render(); toast('Announcement deleted'); break;
+    // files
+    case 'fileask': S.confirmFile = true; renderSheet(); break;
+    case 'fileno': S.confirmFile = null; renderSheet(); break;
+    case 'fileyes': S.files = S.files.filter(x => x.id !== +t.dataset.id); closeSheet(); toast('File deleted'); break;
+    // lesson schedule
+    case 'editlesson': S.confirmLesson = null; openSheet('lesson', t.dataset.n); break;
+    case 'lessonask': S.confirmLesson = true; renderSheet(); break;
+    case 'lessonno': S.confirmLesson = null; renderSheet(); break;
+    case 'lessonyes': { const n = S.editN; LESSONS.splice(LESSONS.indexOf(lessonOf(n)), 1); S.confirmLesson = null; openSheet('schedule'); toast(`Lesson ${n} deleted`); break; }
     case 'savelesson': { const ti = $('ltitle').value.trim(), pa = $('lpassage').value.trim(), dv = $('ldate').value; if (!ti) { toast('Add a title'); return; } if (!dv) { toast('Pick a date'); return; }
-      const d = dateOf(dv); if (S.editN === 'new') { LESSONS.push({ n: Math.max(...LESSONS.map(x => x.n)) + 1, title: ti, passage: pa, d }); toast('Lesson added'); }
-      else { sortLessons(); const L = lessonOf(S.editN), delta = d - L.d; LESSONS.filter(x => x.d > L.d).forEach(x => { x.d = new Date(x.d.getTime() + delta); }); L.d = d; L.title = ti; L.passage = pa; toast(delta ? 'Saved. The lessons after it moved too.' : 'Saved'); }
+      const d = toSaturday(dateOf(dv)); sortLessons();
+      if (S.editN === 'new') {
+        const clash = LESSONS.find(x => dn(x.d) === dn(d)); if (clash) { toast(`Lesson ${clash.n} is already that week. Pick another week.`); return; }
+        LESSONS.push({ n: Math.max(...LESSONS.map(x => x.n)) + 1, title: ti, passage: pa, d }); toast(`Lesson added for ${pairLabel(d)}`);
+      } else {
+        const L = lessonOf(S.editN), i = LESSONS.indexOf(L), prev = LESSONS[i - 1], days = dn(d) - dn(L.d);
+        if (prev && dn(d) <= dn(prev.d)) { toast(dn(d) === dn(prev.d) ? `Lesson ${prev.n} is already that week. Pick another week.` : `That's before Lesson ${prev.n}. Pick a later week.`); return; }
+        LESSONS.slice(i).forEach(x => { x.d = addDays(x.d, days); }); L.title = ti; L.passage = pa;
+        toast(days ? `Saved. Lesson ${L.n} is now ${pairLabel(L.d)}${i < LESSONS.length - 1 ? ', and the lessons after it moved too' : ''}.` : 'Saved');
+      }
       sortLessons(); openSheet('schedule'); break; }
     case 'zoom': toast('Opens Zoom (demo)'); break;
     case 'directions': toast('Opens Maps to Austin Ridge (demo)'); break;
     case 'fakeopen': toast('Opens the file on your phone (demo)'); break;
-    case 'reply': S.replyOpen = +t.dataset.id; render(); setTimeout(() => $('replyin') && $('replyin').focus(), 0); break;
     // leader buttons
     case 'postupdate': openSheet('postupdate'); break;
     case 'addfiles': S.up.lesson = lessonForUploads(); openSheet('addfiles'); break;
     case 'manage': openSheet('manage'); break;
+    case 'managechain': openSheet('manage', 'chain'); break;
     case 'daud': keepDraft(); S.draft.aud = t.dataset.v; renderSheet(); break;
     case 'postann': { keepDraft(); const d = S.draft; if (!d.title.trim() || !d.body.trim()) { toast('Add a title and a message'); return; }
-      const aud = audOf(d.aud);
-      if (d.pin) S.announcements.forEach(a => a.pinned = false);
-      S.announcements.unshift({ id: ++annId, from: S.me, aud, title: d.title.trim(), body: d.body.trim(), time: 'Just now', pinned: d.pin });
-      S.draft = { aud: 'group', pin: false, title: '', body: '' }; S.tab = 'ann'; closeSheet(); toast(aud === 'all' ? 'Posted to all groups and emailed' : `Posted to the ${audLabel(aud)} and emailed`); break; }
+      const aud = audOf(d.aud), a = { id: ++annId, from: S.me, aud, title: d.title.trim(), body: d.body.trim(), time: 'Just now', pinnedFor: [] };
+      S.announcements.unshift(a); if (d.pin) pinFor(a, aud === 'all' ? ['sat', 'thu'] : [aud]);
+      S.draft = { aud: 'group', pin: false, title: '', body: '' }; S.tab = 'ann'; closeSheet(); toast(aud === 'all' ? 'Posted to all groups and emailed (demo)' : `Posted to the ${audLabel(aud)} and emailed (demo)`); break; }
     case 'uaud': keepLesson(); S.up.aud = t.dataset.v; renderSheet(); break;
     case 'samplefile': { keepLesson(); const L = lessonOf(S.up.lesson); const opts = [`Lesson ${L.n} Discussion Guide.pdf`, `Lesson ${L.n} Lecture Slides.pptx`, `${L.passage.split(':')[0]} Cross References.docx`]; const name = opts[S.up.picked.length % opts.length]; S.up.picked.push({ name, type: ftype(name), size: ['220 KB', '4.8 MB', '64 KB'][S.up.picked.length % 3] }); renderSheet(); break; }
     case 'unpick': keepLesson(); S.up.picked.splice(+t.dataset.i, 1); renderSheet(); break;
     case 'doupload': { if (!S.up.picked.length) return; keepLesson(); const aud = audOf(S.up.aud), n = S.up.picked.length; S.up.picked.forEach(p => S.files.unshift({ id: ++fileId, lesson: S.up.lesson, name: p.name, type: p.type, size: p.size, by: S.me, date: 'Today', aud })); S.up.picked = []; closeSheet(); toast(`${n} ${n === 1 ? 'file' : 'files'} added to Lesson ${S.up.lesson}`); break; }
-    case 'nextsat': { saturdayMorning(); render(); const L = thisLesson(); toast(`Saturday morning: ${L ? `This Week is now Lesson ${L.n}` : 'no class this week'}, and the prayer chain moved. Every man got a notification.`); break; }
+    case 'nextweek': { sundayMorning(); clearAsks(); render(); const L = thisLesson(); toast(`Sunday morning: ${L ? `This Week is now Lesson ${L.n}` : 'no class this week'}, and the prayer chain moved. Every man got his new name (demo).`); break; }
     case 'invite': { const v = ($('invite').value || '').trim(); if (!/^\S+@\S+\.\S+$/.test(v)) { toast('Enter an email address'); return; } $('invite').value = ''; toast('Invite sent (demo). He gets an email with a sign-in link.'); break; }
-    case 'tostep2': S.signinStep = 2; renderSignin(); break;
+    // sign in
+    case 'tostep2': if (S.welcomed) { S.signedIn = true; render(); toast(`Welcome back, ${firstName(NOAH)}`); } else { S.signinStep = 2; renderSignin(); } break;
     case 'wchain': S.welcomeChain = t.dataset.v === '1'; renderSignin(); break;
     case 'signedin': { const pn = $('pname'), pp = $('pphone'); if (pn && pn.value.trim()) setName(NOAH, pn.value.trim()); if (pp && pp.value.trim()) men[NOAH].phone = pp.value.trim();
-      if (S.welcomeChain && !men[NOAH].inChain) setChainWish(NOAH, true); S.signedIn = true; render(); toast(`Welcome, ${men[NOAH].name.split(' ')[0]}`); break; }
-    case 'profile': openSheet('profile'); break;
-    case 'pchain': { const want = t.dataset.v === '1'; if (want !== wantsChain(S.me)) { setChainWish(S.me, want); toast(want ? `You're in, starting ${nextSat()}` : (men[S.me].inChain ? `You leave the prayer chain ${nextSat()}` : 'Okay, not now')); } document.querySelectorAll('[data-act=pchain]').forEach(x => x.classList.toggle('on', (x.dataset.v === '1') === wantsChain(S.me))); render(); break; }
-    case 'saveprofile': { const n = $('ename').value.trim(), ph = $('ephone').value.trim(), em = $('eemail').value.trim(); if (!n) { toast('Add your name'); return; } setName(S.me, n); if (ph) men[S.me].phone = ph; if (em) men[S.me].email = em; closeSheet(); toast('Profile saved'); break; }
-    case 'signout': S.signedIn = false; S.signinStep = 0; S.me = NOAH; S.group = 'sat'; S.tab = 'week'; closeSheet(); break;
-    case 'joinchain': setChainWish(S.me, true); render(); toast(`You're in, starting ${nextSat()}. You'll get a notification with who to call.`); break;
-    case 'togglechain': { const id = t.dataset.id, f = men[id].name.split(' ')[0]; setChainWish(id, !wantsChain(id)); toast(men[id].pending === 'join' ? `${f} joins the prayer chain Saturday` : men[id].pending === 'leave' ? `${f} leaves the prayer chain Saturday` : `${f} stays ${men[id].inChain ? 'in' : 'out of'} the prayer chain`); renderSheet(); render(); break; }
+      if (S.welcomeChain && !men[NOAH].inChain) setChainWish(NOAH, true); S.signedIn = true; S.welcomed = true; render(); toast(`Welcome, ${firstName(NOAH)}`); break; }
+    // profile
+    case 'profile': S.profChain = wantsChain(S.me); openSheet('profile'); break;
+    case 'pchain': S.profChain = t.dataset.v === '1'; document.querySelectorAll('[data-act=pchain]').forEach(x => { const on = (x.dataset.v === '1') === S.profChain; x.classList.toggle('on', on); x.setAttribute('aria-pressed', on); }); break;
+    case 'saveprofile': { const n = $('ename').value.trim(), ph = $('ephone').value.trim(), em = $('eemail').value.trim(); if (!n) { toast('Add your name'); return; } setName(S.me, n); if (ph) men[S.me].phone = ph; if (em) men[S.me].email = em;
+      let extra = ''; if (S.profChain !== wantsChain(S.me)) { setChainWish(S.me, S.profChain); extra = S.profChain ? ` You're in the prayer chain starting ${nextSun()}.` : men[S.me].inChain ? ` You leave the prayer chain ${nextSun()}.` : ''; }
+      closeSheet(); toast('Profile saved.' + extra); break; }
+    case 'signout': S.signedIn = false; S.signinStep = 0; S.me = NOAH; S.group = 'sat'; S.tab = 'week'; clearAsks(); closeSheet(); break;
+    // prayer chain
+    case 'joinchain': setChainWish(S.me, true); render(); toast(`You're in, starting ${nextSun()}. You'll get the name of the man you call.`); break;
+    case 'togglechain': { const id = t.dataset.id, f = firstName(id); setChainWish(id, !wantsChain(id)); toast(men[id].pending === 'join' ? `${f} joins the prayer chain Sunday` : men[id].pending === 'leave' ? `${f} leaves the prayer chain Sunday` : `${f} stays ${men[id].inChain ? 'in' : 'out of'} the prayer chain`); renderSheet(); render(); break; }
   }
 });
-document.addEventListener('input', e => { if (e.target.id === 'postin') { e.target.style.height = 'auto'; e.target.style.height = Math.min(e.target.scrollHeight + 2, 140) + 'px'; } });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && S.sheet) sheetBack(); });
+document.addEventListener('input', e => { if (e.target.id === 'postin') { S.postDraft = e.target.value; e.target.style.height = 'auto'; e.target.style.height = Math.min(e.target.scrollHeight + 2, 140) + 'px'; } });
 document.addEventListener('submit', e => {
   const f = e.target.dataset.form; if (!f) return; e.preventDefault();
   if (f === 'signin') { S.signinStep = 1; renderSignin(); }
-  if (f === 'post') { const v = $('postin').value.trim(); if (!v) { toast('Write something first'); return; } S.posts.unshift({ id: ++postId, group: myGroup(), author: S.me, body: v, time: 'Just now', replies: [] }); render(); toast(`Posted to the ${GROUPS[myGroup()].name}`); }
+  if (f === 'post') { const v = $('postin').value.trim(); if (!v) { toast('Write something first'); return; } S.posts.unshift({ id: ++postId, group: myGroup(), author: S.me, body: v, time: 'Just now', replies: [] }); S.postDraft = ''; render(); toast(`Posted to the ${GROUPS[myGroup()].name}`); }
   if (f === 'reply') { const v = $('replyin').value.trim(); if (!v) return; S.posts.find(p => p.id === +e.target.dataset.id).replies.push({ author: S.me, body: v }); S.replyOpen = null; render(); }
   if (f === 'dm') { const v = $('dmin').value.trim(); if (!v) return; myConvos().find(c => other(c) === S.sheet.arg).msgs.push({ from: S.me, body: v, time: 'Now' }); renderSheet(); setTimeout(() => $('dmin') && $('dmin').focus(), 0); }
 });

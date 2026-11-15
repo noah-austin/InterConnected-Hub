@@ -39,10 +39,10 @@ const { chromium } = require('playwright');
     let seed = 12345; const rnd = () => (seed = (seed * 1103515245 + 12345) % 2147483648) / 2147483648;
     for (let step = 0; step < 5000; step++) {
       const r = rnd(), C = S.chain.sat;
-      // Men ask to join or leave any day; the change lands at the automated Saturday move.
+      // Men ask to join or leave any day; the change lands at the automated Sunday move.
       if (r < 0.3) { const out_ = pool.filter(id => !wantsChain(id)); if (out_.length) setChainWish(out_[Math.floor(rnd() * out_.length)], true); }
       else if (r < 0.55) { const in_ = pool.filter(id => wantsChain(id)); if (in_.length > 2) setChainWish(in_[Math.floor(rnd() * in_.length)], false); }
-      else saturdayMorning();
+      else sundayMorning();
       const n = S.chain.sat.length; minN = Math.min(minN, n); maxN = Math.max(maxN, n);
       const counts = {};
       for (let i = 0; i < n; i++) { const c = callee('sat', i); if (c === S.chain.sat[i]) churnSelf++; counts[c] = (counts[c] || 0) + 1; }
@@ -57,7 +57,7 @@ const { chromium } = require('playwright');
       if (r < 0.2) { if (live.length > 1) { rmCount++; if (removeFromGroup(live[Math.floor(rnd() * live.length)]).rebuilt) rebuilt++; } }
       else if (r < 0.45) { const out_ = pool.filter(id => !men[id].removed && !wantsChain(id)); if (out_.length) setChainWish(out_[Math.floor(rnd() * out_.length)], true); }
       else if (r < 0.55) { pool.filter(id => men[id].removed && !men[id].inChain).forEach(id => { men[id].removed = false; }); } // men re-added to the group
-      else saturdayMorning();
+      else sundayMorning();
       // Check: every man still in the chain (not removed) calls exactly one other such man, and is called by exactly one.
       const C = S.chain.sat, counts = {}; let callers = 0;
       const liveN = C.filter(id => !men[id].removed).length; // a chain of one man has nobody to call; that's not a self-call
