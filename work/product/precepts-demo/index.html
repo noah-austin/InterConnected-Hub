@@ -73,6 +73,8 @@ input, textarea, select { font: inherit; font-size: 16px; color: var(--ink); }
 .ann p { margin: 0; }
 .tag { font-size: .7rem; font-weight: 700; border-radius: 999px; padding: 2px 8px; background: var(--blue-soft); color: var(--blue); }
 .tag.pin { background: var(--amber-soft); color: var(--amber); }
+.anntools { margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--line); }
+.anntools button { font-size: .85rem; font-weight: 700; color: var(--amber); padding: 4px 0; }
 .tag.green { background: var(--green-soft); color: #047857; }
 
 /* files */
@@ -163,11 +165,12 @@ input, textarea, select { font: inherit; font-size: 16px; color: var(--ink); }
 .ph { font-size: .8rem; color: var(--muted); font-variant-numeric: tabular-nums; flex: none; }
 
 /* tabs */
-.tabs { flex: none; display: grid; grid-template-columns: repeat(5, 1fr); background: #fff; border-top: 1px solid var(--line); padding: 6px 4px calc(env(safe-area-inset-bottom, 0px) + 6px); }
+.tabs { flex: none; display: grid; grid-template-columns: repeat(5, auto); justify-content: space-between; column-gap: 2px; background: #fff; border-top: 1px solid var(--line); padding: 6px 4px calc(env(safe-area-inset-bottom, 0px) + 6px); }
 .tabs.four { grid-template-columns: repeat(4, 1fr); }
-.tab { display: grid; justify-items: center; gap: 2px; padding: 6px 0; font-size: .7rem; min-width: 0; font-weight: 600; color: var(--muted); }
+.tab { display: grid; justify-items: center; gap: 2px; padding: 6px 4px; white-space: nowrap; font-size: .7rem; min-width: 0; font-weight: 600; color: var(--muted); }
 .tab.on { color: var(--blue); }
 .tab svg { width: 22px; height: 22px; }
+@media (max-width: 350px) { .tab { font-size: .6rem; padding: 6px 1px; } }
 
 /* overlays */
 #sheet { position: absolute; inset: 0; background: var(--bg); display: flex; flex-direction: column; z-index: 20; transform: translateX(100%); visibility: hidden; transition: transform .22s ease, visibility 0s linear .22s; }
@@ -512,7 +515,7 @@ function renderTop() {
   bar.hidden = !S.signedIn;
   bar.innerHTML = `<span>Demo: you're <strong>${first(S.me)}</strong>, ${isLeader() ? 'a leader' : 'a member'}</span><button data-act="viewas">Switch to ${S.me === NOAH ? 'Bryan' : 'Noah'}</button>`;
 }
-const TABS = [['week', 'home', 'This Week'], ['ann', 'mega', 'Updates'], ['group', 'group', 'My Group'], ['prayer', 'pray', 'Prayer Chain'], ['files', 'folder', 'Files']];
+const TABS = [['week', 'home', 'This Week'], ['ann', 'mega', 'Announcements'], ['group', 'group', 'My Group'], ['prayer', 'pray', 'Prayer Chain'], ['files', 'folder', 'Files']];
 function renderTabs() {
   $('tabs').className = 'tabs';
   $('tabs').innerHTML = TABS.map(([k, i, l]) => `<button class="tab${k === S.tab ? ' on' : ''}" data-tab="${k}" aria-current="${k === S.tab}">${ic(i)}<span>${l}</span></button>`).join('');
@@ -533,17 +536,17 @@ function vWeek() {
       <div class="meet"><span style="color:#93B4F5">${ic('cal', 22)}</span><div style="flex:1;min-width:0"><div class="when">${esc(g.when)}</div><div class="where">${esc(g.where)}</div></div>
       ${g.zoom ? `<button class="pillbtn" data-act="zoom">${ic('video', 16)} Join on Zoom</button>` : `<button class="pillbtn light" data-act="directions">Directions</button>`}</div>
     </div>
-    ${latest ? `<div class="sec-label">Latest update</div>${annCard(latest)}` : ''}
+    ${latest ? `<div class="sec-label">Latest announcement</div>${annCard(latest)}` : ''}
     ${spot ? `<div class="sec-label">Prayer chain this week</div><div class="card row">${av(spot.calls)}<button data-act="tab" data-tab="prayer" style="flex:1;min-width:0;text-align:left"><div class="small muted">You call</div><div style="font-weight:700">${nm(spot.calls)}</div><div class="small muted">${esc(men[spot.calls].phone)}</div></button><a class="minicall" href="tel:${telOf(spot.calls)}">${ic('phone', 16)} Call</a></div>` : ''}
     ${L ? `<div class="sec-label">This week's files</div>
     <div class="card">${files.length ? files.map(fileRow).join('') : '<div class="empty">No files yet this week.</div>'}</div>` : ''}`;
 }
-const annCard = a => `<article class="card ann"><div class="meta">${a.pinned ? `<span class="tag pin">Pinned</span>` : ''}<span class="tag">${esc(audLabel(a.aud))}</span><span>${nm(a.from)} · ${esc(a.time)}</span></div><h3>${esc(a.title)}</h3><p>${esc(a.body)}</p></article>`;
+const annCard = (a, tools) => `<article class="card ann"><div class="meta">${a.pinned ? `<span class="tag pin">Pinned</span>` : ''}<span class="tag">${esc(audLabel(a.aud))}</span><span>${nm(a.from)} · ${esc(a.time)}</span></div><h3>${esc(a.title)}</h3><p>${esc(a.body)}</p>${tools && isLeader() ? `<div class="anntools"><button data-act="togglepin" data-id="${a.id}">${a.pinned ? 'Unpin' : 'Pin to top'}</button></div>` : ''}</article>`;
 function vAnn() {
   const list = S.announcements.filter(a => visibleToMe(a.aud)).sort((x, y) => (y.pinned - x.pinned));
-  return `${isLeader() ? leaderBtn('postupdate', 'Post an update') : ''}
-    <div class="sec-label">Updates from your leaders</div><div class="stack">${list.map(annCard).join('')}</div>
-    <p class="note">Updates also go out by email, so nobody misses one.</p>`;
+  return `${isLeader() ? leaderBtn('postupdate', 'Post an announcement') : ''}
+    <div class="sec-label">Announcements from your leaders</div><div class="stack">${list.map(a => annCard(a, true)).join('')}</div>
+    <p class="note">Announcements also go out by email, so nobody misses one.${isLeader() ? ' One announcement can be pinned at a time; it stays at the top here and on This Week.' : ''}</p>`;
 }
 function vGroup() {
   const g = myGroup(), list = S.posts.filter(p => p.group === g);
@@ -622,12 +625,12 @@ function renderSheet() {
       <p class="note">In the demo, files are names only. In the real app they open on your phone.</p></div>`;
   } else if (kind === 'postupdate') {
     const d = S.draft;
-    sh.innerHTML = sheetTop('Post an update', esc(GROUPS[myGroup()].name)) + `<div class="screen"><div class="card stack">
+    sh.innerHTML = sheetTop('Post an announcement', esc(GROUPS[myGroup()].name)) + `<div class="screen"><div class="card stack">
       ${audPicker('daud', d.aud)}
       <div class="field"><label for="atitle">Title</label><input id="atitle" value="${esc(d.title)}" placeholder="e.g. Bring your workbook Saturday"></div>
       <div class="field"><label for="abody">Message</label><textarea id="abody" placeholder="What do the men need to know?">${esc(d.body)}</textarea></div>
       <label class="check"><input type="checkbox" id="apin" ${d.pin ? 'checked' : ''}> Pin to the top</label>
-      <button class="bigbtn" data-act="postann">Post update</button>
+      <button class="bigbtn" data-act="postann">Post announcement</button>
       <p class="note" style="margin:0">It shows up in the app right away and goes out by email too.</p></div></div>`;
   } else if (kind === 'addfiles') {
     const u = S.up;
@@ -735,6 +738,7 @@ document.addEventListener('click', e => {
     case 'openfile': openSheet('file', +t.dataset.id); break;
     case 'close': if (S.sheet && S.sheet.kind === 'dm') { openSheet('messages'); renderTop(); } else if (S.sheet && S.sheet.kind === 'lesson') openSheet('schedule'); else closeSheet(); break;
     case 'schedule': openSheet('schedule'); break;
+    case 'togglepin': { const a = S.announcements.find(x => x.id === +t.dataset.id), on = !a.pinned; S.announcements.forEach(x => x.pinned = false); a.pinned = on; render(); toast(on ? 'Pinned. It now shows first here and on This Week.' : 'Unpinned'); break; }
     case 'editlesson': openSheet('lesson', t.dataset.n); break;
     case 'savelesson': { const ti = $('ltitle').value.trim(), pa = $('lpassage').value.trim(), dv = $('ldate').value; if (!ti) { toast('Add a title'); return; } if (!dv) { toast('Pick a date'); return; }
       const d = dateOf(dv); if (S.editN === 'new') { LESSONS.push({ n: Math.max(...LESSONS.map(x => x.n)) + 1, title: ti, passage: pa, d }); toast('Lesson added'); }

@@ -120,3 +120,8 @@ Removed "Ask for help" from My Group (the toggle, the tags, "taken care of"). My
 - For the pilot we type the schedule in from the Precepts materials before launch; leaders only touch it when a week changes.
 - Sample schedule runs through Lesson 11 with no class Thanksgiving weekend (Nov 28). Titles and dates are made up until Bryan gives us the real list.
 - The demo-only "skip ahead to Saturday morning" now moves This Week too. "Add files" defaults to the current (or next) lesson.
+
+## Revision 13 (Nov 15): Announcements tab, pin and unpin
+- The "Updates" tab is now "Announcements" ("Post an announcement", "Latest announcement" on This Week). The tab bar sizes each tab to its label so the longer name fits, down to 320px-wide phones.
+- Leaders see "Unpin" or "Pin to top" under each announcement on the Announcements tab. One announcement is pinned at a time (pinning one unpins the other). The pinned one shows first on the tab and as the announcement on This Week; with none pinned, This Week shows the newest. Members see no buttons.
+- "Manage group" (My Group) and "Manage prayer chain" (Prayer Chain) open the same screen: the men, their numbers, and each man's prayer chain button. They're two doors to the same room.
