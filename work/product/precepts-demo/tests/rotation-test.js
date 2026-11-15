@@ -50,12 +50,28 @@ const { chromium } = require('playwright');
       if (S.shift.sat < 1 || S.shift.sat > n - 1) churnBad++;
     }
     out.churn = { steps: 5000, chainSizeRange: [minN, maxN], selfCalls: churnSelf, brokenWeeks: churnBad };
+    // 3) Men removed from the group mid-week (gap closed until Saturday), mixed with joins, leaves and Saturdays
+    let rmBad = 0, rmSelf = 0, rmCount = 0, rebuilt = 0;
+    for (let step = 0; step < 5000; step++) {
+      const r = rnd(), live = pool.filter(id => !men[id].removed && men[id].inChain);
+      if (r < 0.2) { if (live.length > 1) { rmCount++; if (removeFromGroup(live[Math.floor(rnd() * live.length)]).rebuilt) rebuilt++; } }
+      else if (r < 0.45) { const out_ = pool.filter(id => !men[id].removed && !wantsChain(id)); if (out_.length) setChainWish(out_[Math.floor(rnd() * out_.length)], true); }
+      else if (r < 0.55) { pool.filter(id => men[id].removed && !men[id].inChain).forEach(id => { men[id].removed = false; }); } // men re-added to the group
+      else saturdayMorning();
+      // Check: every man still in the chain (not removed) calls exactly one other such man, and is called by exactly one.
+      const C = S.chain.sat, counts = {}; let callers = 0;
+      const liveN = C.filter(id => !men[id].removed).length; // a chain of one man has nobody to call; that's not a self-call
+      C.forEach((id, i) => { if (men[id].removed || liveN < 2) return; const c = callee('sat', i); callers++; if (c === id) rmSelf++; if (men[c].removed) rmBad++; counts[c] = (counts[c] || 0) + 1; });
+      if (callers >= 2 && (Object.keys(counts).length !== callers || Object.values(counts).some(v => v !== 1))) rmBad++;
+    }
+    out.removals = { steps: 5000, removals: rmCount, rebuiltInstead: rebuilt, selfCalls: rmSelf, brokenWeeks: rmBad };
     return out;
   });
   console.log('size  odd/even  weeks  self-calls  bad-weeks  covers-everyone');
   result.sizes.forEach(r => console.log(String(r.n).padStart(4), r.odd ? '  odd    ' : '  even   ', String(r.weeks).padStart(5), String(r.selfCalls).padStart(11), String(r.weeksSomeoneCalledTwiceOrNot).padStart(10), '  ', r.everyManCallsEveryOtherOncePerCycle));
   console.log('PROBLEMS:', JSON.stringify(result.problems));
   console.log('CHURN:', JSON.stringify(result.churn));
+  console.log('REMOVALS:', JSON.stringify(result.removals));
   console.log('ERRORS:', JSON.stringify(errs));
   await b.close();
 })();

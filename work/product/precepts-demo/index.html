@@ -151,6 +151,15 @@ input, textarea, select { font: inherit; font-size: 16px; color: var(--ink); }
 .rep .rb strong { font-size: .8rem; }
 .postacts { display: flex; gap: 14px; align-items: center; margin-top: 8px; }
 .postacts button { font-size: .85rem; font-weight: 700; color: var(--blue); padding: 8px 0; min-height: 36px; }
+.postacts button.muted { color: var(--muted); font-weight: 600; }
+.dellink { font-size: .75rem; color: var(--muted); font-weight: 600; padding: 4px 10px; }
+.delask { font-size: .82rem; color: var(--ink, #111); display: flex; gap: 12px; align-items: center; flex-wrap: wrap; padding: 4px 0; }
+.delask button { font-weight: 700; color: var(--muted); padding: 6px 0; }
+.delask button.danger, .rmlink { color: #B42318; }
+.rmlink { display: block; font-size: .78rem; font-weight: 600; padding: 6px 0 0; }
+.confirm { background: #FEF3F2; border-radius: 10px; padding: 10px 12px; margin: 0 0 10px; font-size: .85rem; display: grid; gap: 8px; }
+.pillbtn.danger { background: #B42318; color: #fff; border-color: #B42318; }
+.pillbtn.light2 { background: #fff; color: var(--navy-2); border: 1px solid var(--line); }
 .replyform { display: flex; gap: 6px; margin-top: 8px; }
 .replyform input { flex: 1; min-width: 0; border: 1px solid var(--line); border-radius: 999px; padding: 7px 12px; background: var(--bg); outline: none; font-size: 16px; }
 .replyform input:focus { border-color: var(--blue); background: #fff; }
@@ -417,7 +426,7 @@ function shuffled(ids) {
   for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
   return a;
 }
-const groupIds = g => Object.values(men).filter(m => m.group === g).map(m => m.id);
+const groupIds = g => Object.values(men).filter(m => m.group === g && !m.removed).map(m => m.id);
 // Leaders are in a prayer chain too: Bryan prays with the Saturday group.
 men[BRYAN].chain = 'sat';
 const chainOf = id => men[id].chain || men[id].group;
@@ -433,8 +442,24 @@ const chainIds = g => Object.values(men).filter(m => m.inChain && chainOf(m.id) 
 S.chain.sat = shuffled(chainIds('sat'));
 S.chain.thu = shuffled(chainIds('thu'));
 S.shift = { sat: 1, thu: 1 }; // week 1: each man calls the man below him (A calls B, B calls C…)
-const callee = (g, i) => { const C = S.chain[g], n = C.length; return C[(i + S.shift[g]) % n]; };
-const caller = (g, i) => { const C = S.chain[g], n = C.length; return C[((i - S.shift[g]) % n + n) % n]; };
+// A man removed mid-week stays in the order until Saturday but is skipped: whoever was calling him
+// calls the man he would have called. Only that one man's name changes; the circle stays whole.
+const gone = id => men[id] && men[id].removed;
+const callee = (g, i) => { const C = S.chain[g], n = C.length, s = S.shift[g]; let j = (i + s) % n, k = 0; while (gone(C[j]) && k++ < n) j = (j + s) % n; return C[j]; };
+const caller = (g, i) => { const C = S.chain[g], n = C.length, s = S.shift[g]; let j = ((i - s) % n + n) % n, k = 0; while (gone(C[j]) && k++ < n) j = ((j - s) % n + n) % n; return C[j]; };
+// Remove a man from his group right away. Returns who now calls whom, or that the chain was rebuilt.
+function removeFromGroup(id) {
+  const g = chainOf(id), C = S.chain[g], i = C.indexOf(id);
+  const A = i >= 0 ? caller(g, i) : null, B = i >= 0 ? callee(g, i) : null;
+  men[id].removed = true; men[id].pending = i >= 0 ? 'leave' : undefined;
+  if (i < 0) return {};
+  // If closing the gap would leave a man calling himself (tiny chains), rebuild the chain now instead.
+  if (C.some((x, k) => !gone(x) && callee(g, k) === x)) {
+    C.filter(gone).forEach(x => { leaveChain(x); men[x].pending = undefined; });
+    return { rebuilt: true };
+  }
+  return { A, B };
+}
 function fixShift(g) { const n = S.chain[g].length; if (n < 2) { S.shift[g] = 1; return; } S.shift[g] = ((S.shift[g] - 1) % (n - 1) + (n - 1)) % (n - 1) + 1; }
 // Next week: move the right side up one (top name to the bottom), skipping "call yourself".
 function nextWeek(g) { const n = S.chain[g].length; if (n < 2) return; S.shift[g] = S.shift[g] + 1 > n - 1 ? 1 : S.shift[g] + 1; }
@@ -552,19 +577,19 @@ function vGroup() {
   const g = myGroup(), list = S.posts.filter(p => p.group === g);
   const composer = `<form class="card composer" data-form="post">${av(S.me)}<textarea id="postin" rows="1" placeholder="Write to the group…" aria-label="New post"></textarea><button class="postbtn">Post</button></form>`;
   const card = p => {
-    const reps = p.replies.length ? `<div class="replies">${p.replies.map(r => `<div class="rep">${av(r.author)}<div class="rb"><strong>${first(r.author)}</strong> ${esc(r.body)}</div></div>`).join('')}</div>` : '';
+    const reps = p.replies.length ? `<div class="replies">${p.replies.map((r, ri) => { const key = `r${p.id}:${ri}`, can = isLeader() || r.author === S.me; return `<div class="rep">${av(r.author)}<div style="min-width:0"><div class="rb"><strong>${first(r.author)}</strong> ${esc(r.body)}</div>${can ? (S.confirmDel === key ? `<div class="delask">Delete this reply? <button class="danger" data-act="delyes" data-k="${key}">Delete</button><button data-act="delno">Cancel</button></div>` : `<button class="dellink" data-act="delask" data-k="${key}">Delete</button>`) : ''}</div></div>`; }).join('')}</div>` : '';
     const form = S.replyOpen === p.id ? `<form class="replyform" data-form="reply" data-id="${p.id}"><input id="replyin" placeholder="Reply to ${first(p.author)}…" autocomplete="off"><button>Send</button></form>` : '';
     return `<article class="card post"><div class="head">${av(p.author)}<div style="flex:1;min-width:0"><div class="who">${nm(p.author)}${men[p.author].leader ? ' <span class="tag green">Leader</span>' : ''}</div><div class="when">${esc(p.time)}</div></div></div>
       <p class="body">${esc(p.body)}</p>${reps}
-      ${form || `<div class="postacts"><button data-act="reply" data-id="${p.id}">Reply</button></div>`}</article>`;
+      ${form || (S.confirmDel === `p${p.id}` ? `<div class="postacts delask">Delete this post${p.replies.length ? ' and its replies' : ''}? <button class="danger" data-act="delyes" data-k="p${p.id}">Delete</button><button data-act="delno">Cancel</button></div>` : `<div class="postacts"><button data-act="reply" data-id="${p.id}">Reply</button>${isLeader() || p.author === S.me ? `<button class="muted" data-act="delask" data-k="p${p.id}">Delete</button>` : ''}</div>`)}</article>`;
   };
   return `${isLeader() ? leaderBtn('manage', 'Manage group', 'users') : ''}${composer}<div class="sec-label">${esc(GROUPS[g].name)}</div><div class="stack">${list.map(card).join('')}</div>`;
 }
 // Who I call, and who calls me, this week (only while viewing my own chain's group)
 function chainSpot(id) {
   if (chainOf(id) !== myGroup()) return null;
-  const C = S.chain[chainOf(id)], i = C.indexOf(id), n = C.length;
-  if (i < 0 || n < 2) return null;
+  const C = S.chain[chainOf(id)], i = C.indexOf(id), n = C.filter(x => !gone(x)).length;
+  if (i < 0 || n < 2 || gone(id)) return null;
   const g = chainOf(id);
   return { calls: callee(g, i), calledBy: caller(g, i), pos: i + 1, n };
 }
@@ -578,17 +603,18 @@ function vPrayer() {
       <p class="small muted" style="margin:8px 0 14px">Each week every man in the chain calls one other man and prays with him. Join anytime; you start the next Saturday morning.</p>
       <button class="bigbtn" data-act="joinchain">Join the prayer chain</button></div>`) : '';
   const leaving = mine && me.inChain && me.pending === 'leave' ? `<p class="note" style="margin:0 0 10px">You leave the prayer chain ${nextSat()}. Until then, this week's call is still yours.</p>` : '';
-  const ids = Object.values(men).filter(m => m.pending && chainOf(m.id) === g);
+  const ids = Object.values(men).filter(m => m.pending && !m.removed && chainOf(m.id) === g);
   const joining = ids.filter(m => m.pending === 'join').map(m => esc(m.name)), leavingIds = ids.filter(m => m.pending === 'leave').map(m => esc(m.name));
   const changes = joining.length || leavingIds.length ? `<p class="note">${nextSat()}: ${[joining.length ? `${joining.join(', ')} ${joining.length > 1 ? 'join' : 'joins'}` : '', leavingIds.length ? `${leavingIds.join(', ')} ${leavingIds.length > 1 ? 'leave' : 'leaves'}` : ''].filter(Boolean).join('; ')}.</p>` : '';
   const you = spot ? `<div class="card partner"><div class="small muted" style="font-weight:600;margin-bottom:12px">This week, you call</div>
       ${av(spot.calls, 'lg')}<div class="name">${nm(spot.calls)}</div><div class="phone">${esc(men[spot.calls].phone)}</div>
       <div class="callrow"><a class="callbtn" href="tel:${telOf(spot.calls)}">${ic('phone', 18)} Call</a><a class="callbtn alt" href="sms:${telOf(spot.calls)}">${ic('msg', 18)} Text</a></div>
       <div class="calledby">${av(spot.calledBy)}<span><strong>${nm(spot.calledBy)}</strong> will call you</span></div></div>` : '';
-  const list = C.map((id, i) => { const to = callee(g, i); return `<li class="link${id === S.me ? ' me' : ''}${to === S.me ? ' tome' : ''}"><span class="who">${nm(id)}</span><span class="calls">calls</span><span class="who">${nm(to)}</span></li>`; }).join('');
+  const live = C.filter(x => !gone(x));
+  const list = C.map((id, i) => { if (gone(id)) return ''; const to = callee(g, i); return `<li class="link${id === S.me ? ' me' : ''}${to === S.me ? ' tome' : ''}"><span class="who">${nm(id)}</span><span class="calls">calls</span><span class="who">${nm(to)}</span></li>`; }).join('');
   return `${isLeader() ? leaderBtn('manage', 'Manage prayer chain', 'users') : ''}<div class="sec-label">Week of ${esc(S.week)}</div>${notIn}${you}${leaving}
-    <div class="sec-label">${esc(GROUPS[g].name)} prayer chain · ${C.length} men</div>
-    ${C.length >= 2 ? `<ol class="card chainlist">${list}</ol>` : `<div class="card empty">${C.length ? `${nm(C[0])} is the only man in the chain so far. It starts once a second man joins.` : 'Nobody has joined the prayer chain yet.'}</div>`}
+    <div class="sec-label">${esc(GROUPS[g].name)} prayer chain · ${live.length} men</div>
+    ${live.length >= 2 ? `<ol class="card chainlist">${list}</ol>` : `<div class="card empty">${live.length ? `${nm(live[0])} is the only man in the chain so far. It starts once a second man joins.` : 'Nobody has joined the prayer chain yet.'}</div>`}
     ${changes}<p class="note">The chain moves on its own every Saturday morning: the right side moves up one, so every man calls someone new, and every man gets a notification with who he calls. Men who join or leave are added or dropped at that moment. Your number is shared only with the men next to you in the chain and your leaders.</p>
     <button class="demobtn" data-act="nextsat">Demo only: skip ahead to Saturday morning</button>`;
 }
@@ -646,8 +672,8 @@ function renderSheet() {
     const g = myGroup(), list = groupIds(g);
     sh.innerHTML = sheetTop(`Manage ${esc(GROUPS[g].name)}`, `${list.length} men · ${esc(GROUPS[g].when)}`) + `<div class="screen">
       <div class="card"><div class="field"><label for="invite">Add a man to the group</label><div class="row"><input id="invite" type="email" placeholder="Email address"><button class="pillbtn" data-act="invite">${ic('plus', 16)} Invite</button></div></div></div>
-      <div class="card" style="margin-top:10px">${list.map(id => `<div class="pair">${av(id)}<span class="n" style="min-width:0"><span style="font-weight:600">${nm(id)}</span>${id === 'samokafor' || id === 'ethanmoore' ? ' <span class="tag green">New</span>' : ''}<a class="ph" style="display:block" href="tel:${telOf(id)}">${esc(men[id].phone)}</a></span><button class="chainchip${wantsChain(id) ? ' on' : ''}" data-act="togglechain" data-id="${id}" aria-pressed="${wantsChain(id)}">${men[id].pending === 'join' ? 'Joins Saturday' : men[id].pending === 'leave' ? 'Leaves Saturday' : men[id].inChain ? 'In prayer chain' : 'Not in chain'}</button></div>`).join('')}</div>
-      <p class="note">Tap a man's prayer chain button to add or remove him. The change takes effect Saturday morning, when the chain moves. He can also change it himself in his profile.</p></div>`;
+      <div class="card" style="margin-top:10px">${list.map(id => `<div class="pair">${av(id)}<span class="n" style="min-width:0"><span style="font-weight:600">${nm(id)}</span>${id === 'samokafor' || id === 'ethanmoore' ? ' <span class="tag green">New</span>' : ''}<a class="ph" style="display:block" href="tel:${telOf(id)}">${esc(men[id].phone)}</a>${id === NOAH ? '' : `<button class="rmlink" data-act="rmask" data-id="${id}">Remove from group</button>`}</span><button class="chainchip${wantsChain(id) ? ' on' : ''}" data-act="togglechain" data-id="${id}" aria-pressed="${wantsChain(id)}">${men[id].pending === 'join' ? 'Joins Saturday' : men[id].pending === 'leave' ? 'Leaves Saturday' : men[id].inChain ? 'In prayer chain' : 'Not in chain'}</button></div>${S.confirmRm === id ? `<div class="confirm"><span>Remove ${first(id)} from ${esc(GROUPS[g].name)}? He loses access right away${men[id].inChain ? ' and comes off the prayer chain' : ''}.</span><div class="row"><button class="pillbtn danger" data-act="rmyes" data-id="${id}">Remove</button><button class="pillbtn light2" data-act="rmno">Cancel</button></div></div>` : ''}`).join('')}</div>
+      <p class="note">Tap a man's prayer chain button to add or remove him. The change takes effect Saturday morning, when the chain moves. He can also change it himself in his profile. Removing a man from the group is immediate: whoever was calling him calls the next man instead until Saturday.</p></div>`;
   } else if (kind === 'profile') {
     const m = men[S.me], groups = myGroups().map(k => GROUPS[k].name).join(' and ');
     sh.innerHTML = sheetTop('My profile', '') + `<div class="screen"><div class="card stack">
@@ -738,6 +764,16 @@ document.addEventListener('click', e => {
     case 'openfile': openSheet('file', +t.dataset.id); break;
     case 'close': if (S.sheet && S.sheet.kind === 'dm') { openSheet('messages'); renderTop(); } else if (S.sheet && S.sheet.kind === 'lesson') openSheet('schedule'); else closeSheet(); break;
     case 'schedule': openSheet('schedule'); break;
+    case 'delask': S.confirmDel = t.dataset.k; render(); break;
+    case 'delno': S.confirmDel = null; render(); break;
+    case 'delyes': { const k = t.dataset.k; S.confirmDel = null;
+      if (k[0] === 'p') { S.posts = S.posts.filter(x => x.id !== +k.slice(1)); toast('Post deleted'); }
+      else { const [pid, ri] = k.slice(1).split(':').map(Number); S.posts.find(x => x.id === pid).replies.splice(ri, 1); toast('Reply deleted'); }
+      render(); break; }
+    case 'rmask': S.confirmRm = t.dataset.id; renderSheet(); break;
+    case 'rmno': S.confirmRm = null; renderSheet(); break;
+    case 'rmyes': { const id = t.dataset.id, f = men[id].name.split(' ')[0]; S.confirmRm = null; const r = removeFromGroup(id); renderSheet(); render();
+      toast(r.A ? `${f} is out of the group. ${men[r.A].name.split(' ')[0]} now calls ${men[r.B].name.split(' ')[0]} until Saturday; both got a notification.` : r.rebuilt ? `${f} is out of the group. The prayer chain was rebuilt and everyone got their new name.` : `${f} is out of the group.`); break; }
     case 'togglepin': { const a = S.announcements.find(x => x.id === +t.dataset.id), on = !a.pinned; S.announcements.forEach(x => x.pinned = false); a.pinned = on; render(); toast(on ? 'Pinned. It now shows first here and on This Week.' : 'Unpinned'); break; }
     case 'editlesson': openSheet('lesson', t.dataset.n); break;
     case 'savelesson': { const ti = $('ltitle').value.trim(), pa = $('lpassage').value.trim(), dv = $('ldate').value; if (!ti) { toast('Add a title'); return; } if (!dv) { toast('Pick a date'); return; }

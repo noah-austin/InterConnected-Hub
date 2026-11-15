@@ -125,3 +125,9 @@ Removed "Ask for help" from My Group (the toggle, the tags, "taken care of"). My
 - The "Updates" tab is now "Announcements" ("Post an announcement", "Latest announcement" on This Week). The tab bar sizes each tab to its label so the longer name fits, down to 320px-wide phones.
 - Leaders see "Unpin" or "Pin to top" under each announcement on the Announcements tab. One announcement is pinned at a time (pinning one unpins the other). The pinned one shows first on the tab and as the announcement on This Week; with none pinned, This Week shows the newest. Members see no buttons.
 - "Manage group" (My Group) and "Manage prayer chain" (Prayer Chain) open the same screen: the men, their numbers, and each man's prayer chain button. They're two doors to the same room.
+
+## Revision 14 (Nov 15): Feed tab, delete posts, remove from group
+- "My Group" tab is now "Feed".
+- Delete: every man can delete his own posts and replies; leaders can delete any post or reply in their group's Feed. One confirm step ("Delete this post? Delete / Cancel"). No approval queue, no filters. Leaders never see or delete private messages.
+- Remove from group (Manage group, under each man's number, with a confirm step): he loses access right away. If he's in the prayer chain, the gap closes for the rest of the week: whoever was calling him calls the man he would have called, and only those two get a notification. He drops out of the order at the Saturday move. If closing the gap would leave a man calling himself (only in tiny chains), the chain is rebuilt on the spot and everyone gets a new name.
+- Stress test, part 3: 5,000 steps with 1,036 mid-week removals mixed with joins, leaves and Saturdays: 0 self-calls, 0 weeks where anyone was missed or called twice (29 rebuilds).
