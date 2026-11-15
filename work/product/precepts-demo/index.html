@@ -85,6 +85,11 @@ input, textarea, select { font: inherit; font-size: 16px; color: var(--ink); }
 .file .fm { font-size: .76rem; color: var(--muted); }
 .lessonhead { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin-bottom: 8px; }
 .lessonhead strong { font-size: .95rem; }
+.schedrow { display: flex; align-items: center; gap: 12px; width: 100%; text-align: left; padding: 12px 0; border-top: 1px solid var(--line); }
+.schedrow:first-child { border-top: 0; }
+.schedrow .sd { flex: none; width: 78px; font-size: .8rem; font-weight: 700; color: var(--blue); }
+.schedrow svg { flex: none; color: var(--muted); }
+.schedgap { padding: 10px 0 10px 90px; border-top: 1px solid var(--line); font-size: .82rem; color: var(--muted); font-style: italic; }
 
 /* prayer chain */
 .partner { text-align: center; padding: 22px 16px; }
@@ -283,17 +288,32 @@ const GROUPS = {
 };
 
 // Lesson titles and dates are sample content for the demo.
+// The lesson schedule: entered once at the start of the study (Files > Lesson schedule).
+// Each date is the Saturday that lesson's week starts. This Week shows whichever lesson falls in
+// the current week, and switches on its own every Saturday morning. No date in a week = no class.
+const sat = (m, d) => new Date(2026, m - 1, d);
 const LESSONS = [
-  { n: 1, title: 'Behold, Your King', passage: 'Matthew 1–2', date: 'Sep 26' },
-  { n: 2, title: 'Prepare the Way', passage: 'Matthew 3', date: 'Oct 3' },
-  { n: 3, title: 'Tested in the Wilderness', passage: 'Matthew 4:1–11', date: 'Oct 10' },
-  { n: 4, title: 'Follow Me', passage: 'Matthew 4:12–25', date: 'Oct 17' },
-  { n: 5, title: 'The Blessed Life', passage: 'Matthew 5:1–16', date: 'Oct 24' },
-  { n: 6, title: 'Fulfilling the Law', passage: 'Matthew 5:17–48', date: 'Oct 31' },
-  { n: 7, title: 'Righteousness in Secret', passage: 'Matthew 6:1–18', date: 'Nov 7' },
-  { n: 8, title: 'Treasure and Worry', passage: 'Matthew 6:19–34', date: 'Nov 14' },
+  { n: 1, title: 'Behold, Your King', passage: 'Matthew 1–2', d: sat(9, 26) },
+  { n: 2, title: 'Prepare the Way', passage: 'Matthew 3', d: sat(10, 3) },
+  { n: 3, title: 'Tested in the Wilderness', passage: 'Matthew 4:1–11', d: sat(10, 10) },
+  { n: 4, title: 'Follow Me', passage: 'Matthew 4:12–25', d: sat(10, 17) },
+  { n: 5, title: 'The Blessed Life', passage: 'Matthew 5:1–16', d: sat(10, 24) },
+  { n: 6, title: 'Fulfilling the Law', passage: 'Matthew 5:17–48', d: sat(10, 31) },
+  { n: 7, title: 'Righteousness in Secret', passage: 'Matthew 6:1–18', d: sat(11, 7) },
+  { n: 8, title: 'Treasure and Worry', passage: 'Matthew 6:19–34', d: sat(11, 14) },
+  { n: 9, title: 'Ask, Seek, Knock', passage: 'Matthew 7:1–12', d: sat(11, 21) },
+  { n: 10, title: 'Two Foundations', passage: 'Matthew 7:13–29', d: sat(12, 5) }, // no class Thanksgiving weekend
+  { n: 11, title: 'Authority to Heal', passage: 'Matthew 8:1–17', d: sat(12, 12) },
 ];
-const CURRENT = 7;
+const DAY = 864e5;
+const today = () => new Date(2026, 10, 7 + 7 * S.weekIdx); // demo clock: the Saturday this week started
+const sortLessons = () => LESSONS.sort((a, b) => a.d - b.d || a.n - b.n);
+const thisLesson = () => LESSONS.find(L => L.d >= today() && L.d - today() < 7 * DAY) || null;
+const nextLesson = () => LESSONS.find(L => L.d > today() && !(L.d - today() < 7 * DAY)) || null;
+const lessonForUploads = () => (thisLesson() || nextLesson() || LESSONS[LESSONS.length - 1]).n;
+const isoOf = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+const dateOf = iso => { const [y, m, d] = iso.split('-').map(Number); return new Date(y, m - 1, d); };
+const satLabel = d => 'Sat, ' + d.toLocaleString('en-US', { month: 'short' }) + ' ' + d.getDate();
 
 let annId = 20, postId = 40, fileId = 40;
 const S = {
@@ -385,7 +405,7 @@ const S = {
       { from: 'hectorruiz', body: 'Got it.', time: 'Nov 5' },
     ] },
   ],
-  sheet: null, group: 'sat', draft: { aud: 'group', pin: false, title: '', body: '' }, up: { lesson: CURRENT, aud: 'group', picked: [] },
+  sheet: null, group: 'sat', draft: { aud: 'group', pin: false, title: '', body: '' }, up: { lesson: 7, aud: 'group', picked: [] }, editN: null,
 };
 
 // pairings: one-to-one, mutual; an odd man out makes one group of three
@@ -460,6 +480,8 @@ const nm = id => esc(men[id].name);
 const first = id => esc(men[id].name.split(' ')[0]);
 // Who am I, and which groups am I in? Leaders can be in more than one; everyone else has one.
 const isLeader = () => men[S.me].leader;
+// The ministry coordinator (here, Bryan, who leads both groups) owns the one lesson schedule.
+const isCoordinator = () => men[S.me].leader && men[S.me].group === 'both';
 const myGroups = () => men[S.me].group === 'both' ? ['sat', 'thu'] : [men[S.me].group];
 const myGroup = () => S.group;
 const audLabel = a => a === 'all' ? 'All groups' : GROUPS[a].name;
@@ -498,22 +520,23 @@ function renderTabs() {
 
 // ---------- screens (the same for everyone; leaders see a few extra buttons) ----------
 function vWeek() {
-  const g = GROUPS[myGroup()], L = lessonOf(CURRENT);
+  const g = GROUPS[myGroup()], L = thisLesson(), N = nextLesson();
   const ann = S.announcements.filter(a => visibleToMe(a.aud));
   const latest = ann.find(a => a.pinned) || ann[0];
-  const files = S.files.filter(f => f.lesson === CURRENT && visibleToMe(f.aud));
+  const files = L ? S.files.filter(f => f.lesson === L.n && visibleToMe(f.aud)) : [];
   const spot = chainSpot(S.me);
   return `<div class="card lesson">
       <div class="eyebrow">This week · Matthew</div>
-      <div class="title">Lesson ${L.n}: ${esc(L.title)}</div>
-      <div class="passage">${esc(L.passage)}</div>
+      ${L ? `<div class="title">Lesson ${L.n}: ${esc(L.title)}</div>
+      <div class="passage">${esc(L.passage)}</div>` : `<div class="title">No class this week</div>
+      <div class="passage">${N ? `Next: Lesson ${N.n}, ${esc(N.title)} · ${satLabel(N.d)}` : 'That was the last lesson on the schedule.'}</div>`}
       <div class="meet"><span style="color:#93B4F5">${ic('cal', 22)}</span><div style="flex:1;min-width:0"><div class="when">${esc(g.when)}</div><div class="where">${esc(g.where)}</div></div>
       ${g.zoom ? `<button class="pillbtn" data-act="zoom">${ic('video', 16)} Join on Zoom</button>` : `<button class="pillbtn light" data-act="directions">Directions</button>`}</div>
     </div>
     ${latest ? `<div class="sec-label">Latest update</div>${annCard(latest)}` : ''}
     ${spot ? `<div class="sec-label">Prayer chain this week</div><div class="card row">${av(spot.calls)}<button data-act="tab" data-tab="prayer" style="flex:1;min-width:0;text-align:left"><div class="small muted">You call</div><div style="font-weight:700">${nm(spot.calls)}</div><div class="small muted">${esc(men[spot.calls].phone)}</div></button><a class="minicall" href="tel:${telOf(spot.calls)}">${ic('phone', 16)} Call</a></div>` : ''}
-    <div class="sec-label">This week's files</div>
-    <div class="card">${files.length ? files.map(fileRow).join('') : '<div class="empty">No files yet this week.</div>'}</div>`;
+    ${L ? `<div class="sec-label">This week's files</div>
+    <div class="card">${files.length ? files.map(fileRow).join('') : '<div class="empty">No files yet this week.</div>'}</div>` : ''}`;
 }
 const annCard = a => `<article class="card ann"><div class="meta">${a.pinned ? `<span class="tag pin">Pinned</span>` : ''}<span class="tag">${esc(audLabel(a.aud))}</span><span>${nm(a.from)} · ${esc(a.time)}</span></div><h3>${esc(a.title)}</h3><p>${esc(a.body)}</p></article>`;
 function vAnn() {
@@ -569,7 +592,8 @@ function vPrayer() {
 function vFiles() {
   const vis = S.files.filter(f => visibleToMe(f.aud));
   const lessons = [...new Set(vis.map(f => f.lesson))].sort((a, b) => b - a);
-  return `${isLeader() ? leaderBtn('addfiles', 'Add files') : ''}` + lessons.map(n => { const L = lessonOf(n); return `<div class="sec-label">${n === CURRENT ? 'This week · ' : ''}Lesson ${n}</div><div class="card"><div class="lessonhead"><strong>${esc(L.title)}</strong><span class="small muted">${esc(L.passage)}</span></div>${vis.filter(f => f.lesson === n).map(fileRow).join('')}</div>`; }).join('');
+  const cur = thisLesson();
+  return `${isLeader() ? leaderBtn('addfiles', 'Add files') : ''}${isCoordinator() ? leaderBtn('schedule', 'Lesson schedule', 'cal') : ''}` + lessons.map(n => { const L = lessonOf(n); return `<div class="sec-label">${cur && n === cur.n ? 'This week · ' : ''}Lesson ${n}</div><div class="card"><div class="lessonhead"><strong>${esc(L.title)}</strong><span class="small muted">${esc(L.passage)}</span></div>${vis.filter(f => f.lesson === n).map(fileRow).join('')}</div>`; }).join('');
 }
 
 // ---------- sheets ----------
@@ -634,6 +658,24 @@ function renderSheet() {
       <button class="bigbtn" data-act="saveprofile">Save</button>
       <button class="bigbtn secondary" data-act="signout">Sign out</button></div></div>`;
     $('pphoto').onchange = e => { const f = e.target.files[0]; if (!f) return; men[S.me].photo = URL.createObjectURL(f); const a = document.querySelector('#sheet .av'); if (a) a.outerHTML = av(S.me, 'lg'); const l = document.querySelector('#sheet .linkish'); if (l) l.textContent = 'Change photo'; renderTop(); toast('Photo updated'); };
+  } else if (kind === 'schedule') {
+    sortLessons(); const cur = thisLesson();
+    const rows = LESSONS.map((L, i) => { const prev = LESSONS[i - 1], gaps = [];
+      if (prev) for (let d = new Date(prev.d.getTime() + 7 * DAY); d < L.d; d = new Date(d.getTime() + 7 * DAY)) gaps.push(`<div class="schedgap">No class · ${satLabel(d)}</div>`);
+      return gaps.join('') + `<button class="schedrow" data-act="editlesson" data-n="${L.n}"><span class="sd">${satLabel(L.d)}</span><span style="flex:1;min-width:0"><span style="font-weight:700;display:block">Lesson ${L.n}: ${esc(L.title)}${cur && cur.n === L.n ? ' <span class="tag green">This week</span>' : ''}</span><span class="small muted">${esc(L.passage)}</span></span>${ic('chev', 16)}</button>`; }).join('');
+    sh.innerHTML = sheetTop('Lesson schedule', 'Matthew · both groups') + `<div class="screen">
+      <div class="card">${rows}</div>
+      <button class="bigbtn secondary" style="margin-top:12px" data-act="editlesson" data-n="new">${ic('plus', 18)} Add a lesson</button>
+      <p class="note">This Week shows the lesson for the current week and switches on its own every Saturday morning. To skip a week, move that lesson's date; the lessons after it move too.</p></div>`;
+  } else if (kind === 'lesson') {
+    const isNew = arg === 'new', last = LESSONS[LESSONS.length - 1];
+    const L = isNew ? { n: Math.max(...LESSONS.map(x => x.n)) + 1, title: '', passage: '', d: new Date(last.d.getTime() + 7 * DAY) } : lessonOf(+arg);
+    S.editN = isNew ? 'new' : L.n;
+    sh.innerHTML = sheetTop(isNew ? 'Add a lesson' : `Lesson ${L.n}`, 'Lesson schedule') + `<div class="screen"><div class="card stack">
+      <div class="field"><label for="ltitle">Title</label><input id="ltitle" value="${esc(L.title)}" placeholder="Lesson ${L.n} title"></div>
+      <div class="field"><label for="lpassage">Passage</label><input id="lpassage" value="${esc(L.passage)}" placeholder="Matthew 9:1–13"></div>
+      <div class="field"><label for="ldate">Week of (Saturday)</label><input id="ldate" type="date" value="${isoOf(L.d)}">${isNew ? '' : '<span class="small muted">Moving this date moves the lessons after it by the same amount.</span>'}</div>
+      <button class="bigbtn" data-act="savelesson">${isNew ? 'Add lesson' : 'Save'}</button></div></div>`;
   } else if (kind === 'pickgroup') {
     sh.innerHTML = sheetTop('Switch group', 'You lead more than one group') + `<div class="screen"><div class="card">${myGroups().map(k => `<button class="convo" data-act="setgroup" data-v="${k}"><span class="av" style="background:var(--navy)">${ic(GROUPS[k].zoom ? 'video' : 'group', 18)}</span><div style="flex:1;min-width:0"><div class="cn">${esc(GROUPS[k].name)}</div><div class="cp">${esc(GROUPS[k].when)} · ${groupIds(k).length} men</div></div>${k === myGroup() ? `<span style="color:var(--blue)">${ic('check', 20, 2.4)}</span>` : ''}</button>`).join('')}</div>
       <p class="note">Everything in the app switches to the group you pick.</p></div>`;
@@ -691,14 +733,20 @@ document.addEventListener('click', e => {
     case 'messages': openSheet('messages'); break;
     case 'dm': openSheet('dm', t.dataset.id); break;
     case 'openfile': openSheet('file', +t.dataset.id); break;
-    case 'close': if (S.sheet && S.sheet.kind === 'dm') { openSheet('messages'); renderTop(); } else closeSheet(); break;
+    case 'close': if (S.sheet && S.sheet.kind === 'dm') { openSheet('messages'); renderTop(); } else if (S.sheet && S.sheet.kind === 'lesson') openSheet('schedule'); else closeSheet(); break;
+    case 'schedule': openSheet('schedule'); break;
+    case 'editlesson': openSheet('lesson', t.dataset.n); break;
+    case 'savelesson': { const ti = $('ltitle').value.trim(), pa = $('lpassage').value.trim(), dv = $('ldate').value; if (!ti) { toast('Add a title'); return; } if (!dv) { toast('Pick a date'); return; }
+      const d = dateOf(dv); if (S.editN === 'new') { LESSONS.push({ n: Math.max(...LESSONS.map(x => x.n)) + 1, title: ti, passage: pa, d }); toast('Lesson added'); }
+      else { sortLessons(); const L = lessonOf(S.editN), delta = d - L.d; LESSONS.filter(x => x.d > L.d).forEach(x => { x.d = new Date(x.d.getTime() + delta); }); L.d = d; L.title = ti; L.passage = pa; toast(delta ? 'Saved. The lessons after it moved too.' : 'Saved'); }
+      sortLessons(); openSheet('schedule'); break; }
     case 'zoom': toast('Opens Zoom (demo)'); break;
     case 'directions': toast('Opens Maps to Austin Ridge (demo)'); break;
     case 'fakeopen': toast('Opens the file on your phone (demo)'); break;
     case 'reply': S.replyOpen = +t.dataset.id; render(); setTimeout(() => $('replyin') && $('replyin').focus(), 0); break;
     // leader buttons
     case 'postupdate': openSheet('postupdate'); break;
-    case 'addfiles': openSheet('addfiles'); break;
+    case 'addfiles': S.up.lesson = lessonForUploads(); openSheet('addfiles'); break;
     case 'manage': openSheet('manage'); break;
     case 'daud': keepDraft(); S.draft.aud = t.dataset.v; renderSheet(); break;
     case 'postann': { keepDraft(); const d = S.draft; if (!d.title.trim() || !d.body.trim()) { toast('Add a title and a message'); return; }
@@ -710,7 +758,7 @@ document.addEventListener('click', e => {
     case 'samplefile': { keepLesson(); const L = lessonOf(S.up.lesson); const opts = [`Lesson ${L.n} Discussion Guide.pdf`, `Lesson ${L.n} Lecture Slides.pptx`, `${L.passage.split(':')[0]} Cross References.docx`]; const name = opts[S.up.picked.length % opts.length]; S.up.picked.push({ name, type: ftype(name), size: ['220 KB', '4.8 MB', '64 KB'][S.up.picked.length % 3] }); renderSheet(); break; }
     case 'unpick': keepLesson(); S.up.picked.splice(+t.dataset.i, 1); renderSheet(); break;
     case 'doupload': { if (!S.up.picked.length) return; keepLesson(); const aud = audOf(S.up.aud), n = S.up.picked.length; S.up.picked.forEach(p => S.files.unshift({ id: ++fileId, lesson: S.up.lesson, name: p.name, type: p.type, size: p.size, by: S.me, date: 'Today', aud })); S.up.picked = []; closeSheet(); toast(`${n} ${n === 1 ? 'file' : 'files'} added to Lesson ${S.up.lesson}`); break; }
-    case 'nextsat': saturdayMorning(); render(); toast(`Saturday morning: the chain moved, and every man got a notification with who he calls`); break;
+    case 'nextsat': { saturdayMorning(); render(); const L = thisLesson(); toast(`Saturday morning: ${L ? `This Week is now Lesson ${L.n}` : 'no class this week'}, and the prayer chain moved. Every man got a notification.`); break; }
     case 'invite': { const v = ($('invite').value || '').trim(); if (!/^\S+@\S+\.\S+$/.test(v)) { toast('Enter an email address'); return; } $('invite').value = ''; toast('Invite sent (demo). He gets an email with a sign-in link.'); break; }
     case 'tostep2': S.signinStep = 2; renderSignin(); break;
     case 'wchain': S.welcomeChain = t.dataset.v === '1'; renderSignin(); break;

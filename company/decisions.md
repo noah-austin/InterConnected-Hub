@@ -25,6 +25,7 @@
 | 2026-11-14 | **Precepts app: the prayer chain is opt-in, default No.** Men choose at sign-up and can change anytime in their profile; leaders can also add or remove a man. Every member has a simple profile (photo, name, cell, email, prayer chain); groups are changed only by leaders. | Noah |
 | 2026-11-14 | **Precepts prayer chain is a calling chain, not pairs.** Each week the order is set; each man calls the next man; the last calls the first (working assumption). Corrects the Oct 25 "one to one" pairs build. | Noah |
 | 2026-11-14 | **Precepts prayer chain runs itself.** The chain moves automatically every Saturday morning and every man is notified who he calls; leaders get no "new order" or "notify" button. Joins and leaves wait for that Saturday move. | Noah |
+| 2026-11-15 | **Precepts lesson schedule.** One schedule for the ministry, owned by the coordinator, under Files. This Week follows it and switches every Saturday morning; a skipped week is handled by moving that lesson's date. We enter it for them at launch. | Noah |
 | standing | Feedback governance: collect for a week, act on patterns of 3+, treat single opinions as taste unless strategically compelling. Noah's wife is the visual taste check ("premium, not busy"). | Noah |
 | standing | Detailed financial projections are deferred until field pricing and dev quotes exist. Nothing produced is legal or investment advice. | Noah |
 

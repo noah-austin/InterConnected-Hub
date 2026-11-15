@@ -113,3 +113,10 @@ Removed "Ask for help" from My Group (the toggle, the tags, "taken care of"). My
 - "Manage group" moved from the bottom of My Group to the top (same spot as "Post an update" and "Add files" on their tabs).
 - The Prayer Chain tab gets its own "Manage prayer chain" button at the top for leaders. It opens the same sheet. Members see neither.
 - No "take him off now" option: removals wait for Saturday (Noah: too much).
+
+## Revision 12 (Nov 15): lesson schedule
+- This Week is worked out from the lesson schedule: it shows the lesson dated in the current week (Saturday to Friday) and switches on its own every Saturday morning, together with the prayer chain. A week with no lesson shows "No class this week · Next: Lesson 10, Sat, Dec 5".
+- The coordinator (Bryan in the demo) gets a "Lesson schedule" button at the top of Files: every lesson with its date, title and passage, gaps shown as "No class · Sat, Nov 28", and "Add a lesson". Tapping a lesson edits it; moving its date moves the later lessons by the same amount (how a skipped week is handled). Group leaders and members don't see it.
+- For the pilot we type the schedule in from the Precepts materials before launch; leaders only touch it when a week changes.
+- Sample schedule runs through Lesson 11 with no class Thanksgiving weekend (Nov 28). Titles and dates are made up until Bryan gives us the real list.
+- The demo-only "skip ahead to Saturday morning" now moves This Week too. "Add files" defaults to the current (or next) lesson.
