@@ -147,7 +147,7 @@ input, textarea, select { font: inherit; font-size: 16px; color: var(--ink); }
 .replies { margin-top: 10px; display: grid; gap: 6px; }
 .rep { display: flex; gap: 8px; align-items: flex-start; }
 .rep .av { width: 24px; height: 24px; font-size: .58rem; margin-top: 2px; }
-.rep .rb { background: var(--bg); border-radius: 12px; padding: 6px 10px; font-size: .88rem; min-width: 0; overflow-wrap: anywhere; }
+.rep .rb { text-align: left; display: block; background: var(--bg); border-radius: 12px; padding: 6px 10px; font-size: .88rem; min-width: 0; overflow-wrap: anywhere; }
 .rep .rb strong { font-size: .8rem; }
 .postacts { display: flex; gap: 14px; align-items: center; margin-top: 8px; }
 .postacts button { font-size: .85rem; font-weight: 700; color: var(--blue); padding: 8px 0; min-height: 36px; }
@@ -577,13 +577,14 @@ function vGroup() {
   const g = myGroup(), list = S.posts.filter(p => p.group === g);
   const composer = `<form class="card composer" data-form="post">${av(S.me)}<textarea id="postin" rows="1" placeholder="Write to the group…" aria-label="New post"></textarea><button class="postbtn">Post</button></form>`;
   const card = p => {
-    const reps = p.replies.length ? `<div class="replies">${p.replies.map((r, ri) => { const key = `r${p.id}:${ri}`, can = isLeader() || r.author === S.me; return `<div class="rep">${av(r.author)}<div style="min-width:0"><div class="rb"><strong>${first(r.author)}</strong> ${esc(r.body)}</div>${can ? (S.confirmDel === key ? `<div class="delask">Delete this reply? <button class="danger" data-act="delyes" data-k="${key}">Delete</button><button data-act="delno">Cancel</button></div>` : `<button class="dellink" data-act="delask" data-k="${key}">Delete</button>`) : ''}</div></div>`; }).join('')}</div>` : '';
+    const reps = p.replies.length ? `<div class="replies">${p.replies.map((r, ri) => { const key = `r${p.id}:${ri}`, can = isLeader() || r.author === S.me; return `<div class="rep">${av(r.author)}<div style="min-width:0">${can ? `<button class="rb" data-act="repmenu" data-k="${key}"><strong>${first(r.author)}</strong> ${esc(r.body)}</button>` : `<div class="rb"><strong>${first(r.author)}</strong> ${esc(r.body)}</div>`}${can && S.confirmDel === key ? `<div class="delask">Delete this reply? <button class="danger" data-act="delyes" data-k="${key}">Delete</button><button data-act="delno">Cancel</button></div>` : ''}</div></div>`; }).join('')}</div>` : '';
     const form = S.replyOpen === p.id ? `<form class="replyform" data-form="reply" data-id="${p.id}"><input id="replyin" placeholder="Reply to ${first(p.author)}…" autocomplete="off"><button>Send</button></form>` : '';
     return `<article class="card post"><div class="head">${av(p.author)}<div style="flex:1;min-width:0"><div class="who">${nm(p.author)}${men[p.author].leader ? ' <span class="tag green">Leader</span>' : ''}</div><div class="when">${esc(p.time)}</div></div></div>
       <p class="body">${esc(p.body)}</p>${reps}
       ${form || (S.confirmDel === `p${p.id}` ? `<div class="postacts delask">Delete this post${p.replies.length ? ' and its replies' : ''}? <button class="danger" data-act="delyes" data-k="p${p.id}">Delete</button><button data-act="delno">Cancel</button></div>` : `<div class="postacts"><button data-act="reply" data-id="${p.id}">Reply</button>${isLeader() || p.author === S.me ? `<button class="muted" data-act="delask" data-k="p${p.id}">Delete</button>` : ''}</div>`)}</article>`;
   };
-  return `${isLeader() ? leaderBtn('manage', 'Manage group', 'users') : ''}${composer}<div class="sec-label">${esc(GROUPS[g].name)}</div><div class="stack">${list.map(card).join('')}</div>`;
+  return `${isLeader() ? leaderBtn('manage', 'Manage group', 'users') : ''}${composer}<div class="sec-label">${esc(GROUPS[g].name)}</div><div class="stack">${list.map(card).join('')}</div>
+    <p class="note">${isLeader() ? 'Tap any reply to delete it.' : 'Tap one of your replies to delete it.'}</p>`;
 }
 // Who I call, and who calls me, this week (only while viewing my own chain's group)
 function chainSpot(id) {
@@ -765,6 +766,7 @@ document.addEventListener('click', e => {
     case 'close': if (S.sheet && S.sheet.kind === 'dm') { openSheet('messages'); renderTop(); } else if (S.sheet && S.sheet.kind === 'lesson') openSheet('schedule'); else closeSheet(); break;
     case 'schedule': openSheet('schedule'); break;
     case 'delask': S.confirmDel = t.dataset.k; render(); break;
+    case 'repmenu': S.confirmDel = S.confirmDel === t.dataset.k ? null : t.dataset.k; render(); break;
     case 'delno': S.confirmDel = null; render(); break;
     case 'delyes': { const k = t.dataset.k; S.confirmDel = null;
       if (k[0] === 'p') { S.posts = S.posts.filter(x => x.id !== +k.slice(1)); toast('Post deleted'); }
