@@ -532,8 +532,7 @@ function vGroup() {
       <p class="body">${esc(p.body)}</p>${reps}
       ${form || `<div class="postacts"><button data-act="reply" data-id="${p.id}">Reply</button></div>`}</article>`;
   };
-  return `${composer}<div class="sec-label">${esc(GROUPS[g].name)}</div><div class="stack">${list.map(card).join('')}</div>
-    ${isLeader() ? leaderBtn('manage', `Manage ${esc(GROUPS[g].name)}: men and numbers`, 'users') : ''}`;
+  return `${isLeader() ? leaderBtn('manage', 'Manage group', 'users') : ''}${composer}<div class="sec-label">${esc(GROUPS[g].name)}</div><div class="stack">${list.map(card).join('')}</div>`;
 }
 // Who I call, and who calls me, this week (only while viewing my own chain's group)
 function chainSpot(id) {
@@ -561,7 +560,7 @@ function vPrayer() {
       <div class="callrow"><a class="callbtn" href="tel:${telOf(spot.calls)}">${ic('phone', 18)} Call</a><a class="callbtn alt" href="sms:${telOf(spot.calls)}">${ic('msg', 18)} Text</a></div>
       <div class="calledby">${av(spot.calledBy)}<span><strong>${nm(spot.calledBy)}</strong> will call you</span></div></div>` : '';
   const list = C.map((id, i) => { const to = callee(g, i); return `<li class="link${id === S.me ? ' me' : ''}${to === S.me ? ' tome' : ''}"><span class="who">${nm(id)}</span><span class="calls">calls</span><span class="who">${nm(to)}</span></li>`; }).join('');
-  return `<div class="sec-label">Week of ${esc(S.week)}</div>${notIn}${you}${leaving}
+  return `${isLeader() ? leaderBtn('manage', 'Manage prayer chain', 'users') : ''}<div class="sec-label">Week of ${esc(S.week)}</div>${notIn}${you}${leaving}
     <div class="sec-label">${esc(GROUPS[g].name)} prayer chain · ${C.length} men</div>
     ${C.length >= 2 ? `<ol class="card chainlist">${list}</ol>` : `<div class="card empty">${C.length ? `${nm(C[0])} is the only man in the chain so far. It starts once a second man joins.` : 'Nobody has joined the prayer chain yet.'}</div>`}
     ${changes}<p class="note">The chain moves on its own every Saturday morning: the right side moves up one, so every man calls someone new, and every man gets a notification with who he calls. Men who join or leave are added or dropped at that moment. Your number is shared only with the men next to you in the chain and your leaders.</p>

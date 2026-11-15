@@ -108,3 +108,8 @@ Removed "Ask for help" from My Group (the toggle, the tags, "taken care of"). My
 - Manage group chips show In prayer chain / Joins Saturday / Leaves Saturday / Not in chain. The Prayer Chain tab lists upcoming changes ("Saturday, Nov 14: Pete Langley joins").
 - Demo only: a dashed "skip ahead to Saturday morning" button at the bottom of the Prayer Chain tab, so the move can be shown in the meeting.
 - Stress test now joins and leaves through the waiting path: 5,000 steps, chain size 2–30, 0 self-calls, 0 broken weeks.
+
+## Revision 11 (Nov 15): Manage group is easy to find
+- "Manage group" moved from the bottom of My Group to the top (same spot as "Post an update" and "Add files" on their tabs).
+- The Prayer Chain tab gets its own "Manage prayer chain" button at the top for leaders. It opens the same sheet. Members see neither.
+- No "take him off now" option: removals wait for Saturday (Noah: too much).
