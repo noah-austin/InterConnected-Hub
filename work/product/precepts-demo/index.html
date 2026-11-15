@@ -242,78 +242,6 @@ input, textarea, select { font: inherit; font-size: 16px; color: var(--ink); }
 :focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
 @media (prefers-reduced-motion: reduce) { #sheet, .toast { transition: none; } }
 
-/* ---------- design options (pick one; open the demo with ?look=2 … ?look=5). Option 1 is the default above. ---------- */
-/* 2 · Clean white: white header, open layout, thin dividers instead of boxes */
-[data-look="2"] body, [data-look="2"] .app { background: #fff; }
-[data-look="2"] .top { background: #fff; color: var(--ink); border-bottom: 1px solid var(--line); }
-[data-look="2"] .top .sub { color: var(--muted); }
-[data-look="2"] .top .iconbtn { color: var(--ink); }
-[data-look="2"] .top .mark { background: var(--blue-soft); }
-[data-look="2"] .top .mark g { fill: var(--blue); }
-[data-look="2"] .groupswitch { background: var(--bg); color: var(--ink); }
-[data-look="2"] .mebtn .av { box-shadow: none; }
-[data-look="2"] .leaderbar { background: #F8FAFC; border-bottom: 1px solid var(--line); }
-[data-look="2"] .screen > .card, [data-look="2"] .stack > .card { border: 0; border-bottom: 1px solid var(--line); border-radius: 0; padding-left: 2px; padding-right: 2px; }
-[data-look="2"] .stack { gap: 0; }
-[data-look="2"] .lesson { background: #fff; color: var(--ink); border: 1px solid var(--line) !important; border-top: 4px solid var(--blue) !important; border-radius: 14px !important; padding: 18px !important; }
-[data-look="2"] .lesson .eyebrow { color: var(--blue); }
-[data-look="2"] .lesson .passage, [data-look="2"] .meet .where { color: var(--muted); }
-[data-look="2"] .meet { border-top-color: var(--line); }
-[data-look="2"] .pillbtn.light { background: var(--blue-soft); color: var(--blue); }
-[data-look="2"] .sec-label { color: var(--ink); }
-[data-look="2"] .chainlist { padding: 4px 2px; }
-
-/* 3 · Bold blue: brand-blue header and hero, rounder cards with soft shadows */
-[data-look="3"] body { background: #1D4ED8; }
-[data-look="3"] .app { background: #F1F5FD; }
-[data-look="3"] .top { background: var(--blue); }
-[data-look="3"] .top .sub { color: #DCE7FD; }
-[data-look="3"] .top .mark { background: rgba(255,255,255,.16); }
-[data-look="3"] .top .mark g { fill: #fff; }
-[data-look="3"] .groupswitch { background: rgba(255,255,255,.18); }
-[data-look="3"] .leaderbar { background: #DCE7FD; }
-[data-look="3"] .card { border: 0; border-radius: 20px; box-shadow: 0 1px 2px rgba(15,27,51,.05), 0 6px 18px rgba(15,27,51,.07); }
-[data-look="3"] .lesson { background: linear-gradient(150deg, #3B82F6, #1D4ED8); border-radius: 24px; padding: 22px; }
-[data-look="3"] .lesson .title { font-size: 1.55rem; }
-[data-look="3"] .lesson .eyebrow { color: #DCE7FD; }
-[data-look="3"] .lesson .passage, [data-look="3"] .meet .where { color: #E8EFFD; }
-[data-look="3"] .meet { border-top-color: rgba(255,255,255,.22); }
-[data-look="3"] .meet svg { color: #fff; }
-[data-look="3"] .pillbtn.light { background: #fff; color: var(--blue); }
-[data-look="3"] .tabs { border-top: 0; box-shadow: 0 -6px 18px rgba(15,27,51,.06); }
-[data-look="3"] .callbtn, [data-look="3"] .bigbtn { border-radius: 16px; }
-
-/* 4 · Warm paper: navy header, cream background, quieter labels, like a study journal */
-[data-look="4"] { --bg: #F6F1E9; --line: #E7DED0; --card: #FFFDF8; --blue-soft: #E9EEF8; }
-[data-look="4"] .app, [data-look="4"] .tabs { background: var(--bg); }
-[data-look="4"] .tabs { border-top-color: var(--line); }
-[data-look="4"] .leaderbar { background: #EDE6DA; }
-[data-look="4"] .card { border-radius: 10px; }
-[data-look="4"] .lesson { background: var(--card); color: var(--navy); border: 1px solid var(--line); border-radius: 10px; }
-[data-look="4"] .lesson .eyebrow { color: #8A6A3D; }
-[data-look="4"] .lesson .passage, [data-look="4"] .meet .where { color: #6B5E4B; }
-[data-look="4"] .meet { border-top-color: var(--line); }
-[data-look="4"] .meet svg { color: var(--navy); }
-[data-look="4"] .pillbtn.light { background: var(--navy); color: #fff; }
-[data-look="4"] .sec-label { text-transform: none; letter-spacing: 0; font-size: .95rem; color: var(--navy); font-weight: 800; }
-[data-look="4"] .composer textarea, [data-look="4"] .rep .rb { background: #F3ECE1; }
-
-/* 5 · Compact: tighter header and hero, more on screen at once, pill highlight on the active tab */
-[data-look="5"] .top { padding-top: calc(env(safe-area-inset-top, 0px) + 8px); padding-bottom: 8px; }
-[data-look="5"] .top h1 { font-size: .95rem; }
-[data-look="5"] .leaderbar { padding-top: 2px; padding-bottom: 2px; }
-[data-look="5"] .screen { padding: 12px 12px 20px; }
-[data-look="5"] .card { border: 0; border-radius: 12px; padding: 12px; }
-[data-look="5"] .lesson { padding: 14px; border-radius: 12px; }
-[data-look="5"] .lesson .title { font-size: 1.1rem; }
-[data-look="5"] .meet { margin-top: 10px; padding-top: 10px; }
-[data-look="5"] .sec-label { margin: 14px 4px 6px; font-size: .68rem; }
-[data-look="5"] .partner { padding: 16px 12px; }
-[data-look="5"] .partner .name { font-size: 1.1rem; }
-[data-look="5"] .post { padding: 10px 12px; }
-[data-look="5"] .stack { gap: 8px; }
-[data-look="5"] .tab.on svg { background: var(--blue-soft); border-radius: 12px; padding: 3px 12px; width: 48px; height: 30px; }
-[data-look="5"] .tab svg { padding: 3px 12px; width: 48px; height: 30px; }
 </style>
 </head>
 <body>
@@ -328,8 +256,6 @@ input, textarea, select { font: inherit; font-size: 16px; color: var(--ink); }
 </div>
 
 <script>
-// Design options: ?look=2 … ?look=5 (1 is the default).
-{ const L = new URLSearchParams(location.search).get('look'); if (/^[2-5]$/.test(L || '')) document.documentElement.dataset.look = L; }
 // ---------- icons (Feather-style, inline) ----------
 const I = {
   home: '<path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>',

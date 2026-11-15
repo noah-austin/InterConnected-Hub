@@ -30,6 +30,7 @@
 | 2026-11-15 | **Precepts week runs Sunday to Saturday; the switch-over is Sunday morning.** The Thursday group does each lesson before the Saturday group, so This Week and the prayer chain both move Sunday morning (replaces "every Saturday morning"). | Noah |
 | 2026-11-15 | **Precepts notifications fall back to email.** Every man gets his weekly name by push notification, or by email if he hasn't turned notifications on. | Noah |
 | 2026-11-15 | **Precepts leaders can delete** announcements, files and lessons (with a confirm). One pinned announcement per group. A man's number is shown only to the man who calls him that week, and to his leaders. | Noah |
+| 2026-11-15 | **Precepts design stays Navy classic** (navy header and lesson card, white cards on grey). Four alternatives were reviewed (Clean white, Bold blue, Warm paper, Compact); sheets kept in `work/product/precepts-demo/design-options/`. | Noah |
 | standing | Feedback governance: collect for a week, act on patterns of 3+, treat single opinions as taste unless strategically compelling. Noah's wife is the visual taste check ("premium, not busy"). | Noah |
 | standing | Detailed financial projections are deferred until field pricing and dev quotes exist. Nothing produced is legal or investment advice. | Noah |
 
