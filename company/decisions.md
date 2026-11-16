@@ -31,6 +31,7 @@
 | 2026-11-15 | **Precepts notifications fall back to email.** Every man gets his weekly name by push notification, or by email if he hasn't turned notifications on. | Noah |
 | 2026-11-15 | **Precepts leaders can delete** announcements, files and lessons (with a confirm). One pinned announcement per group. A man's number is shown only to the man who calls him that week, and to his leaders. | Noah |
 | 2026-11-15 | **Precepts design stays Navy classic** (navy header and lesson card, white cards on grey). Four alternatives were reviewed (Clean white, Bold blue, Warm paper, Compact); sheets kept in `work/product/precepts-demo/design-options/`. | Noah |
+| 2026-11-16 | **Precepts Feed is a group chat with threads** (Option 5 of five reviewed). One chat per group for banter; any message can grow a thread so a request's replies stay together; "also send to the group chat" for replies everyone should see. Replaces the posts-with-replies Feed. | Noah |
 | standing | Feedback governance: collect for a week, act on patterns of 3+, treat single opinions as taste unless strategically compelling. Noah's wife is the visual taste check ("premium, not busy"). | Noah |
 | standing | Detailed financial projections are deferred until field pricing and dev quotes exist. Nothing produced is legal or investment advice. | Noah |
 

@@ -147,3 +147,10 @@ Noah's answers: the meeting with Bryan is this week; the Thursday group does eac
 - **Wording:** "(demo)" on every notification/email claim; notifications fall back to email; privacy line is now "Your number goes only to the man who calls you each week, and to your leaders."; Prayer Chain footer cut to two sentences; long toasts stay up longer.
 - **Small phones / accessibility:** welcome screen scrolls; reply and message Send buttons never clip; composer fits at 320px; most tap targets 40px+ (the group switcher pill is 36px); darker grey text for contrast; sheets take focus, Escape closes them; sign-in screen keeps keyboard focus; labels on reply/message inputs; aria-pressed on choice buttons. Fixed a bug where a fast double "back" could leave an invisible sheet over the app.
 - Not changed: refreshing the page resets the demo (nothing is saved, by design).
+
+## Revision 16 (Nov 16): the Feed is a group chat with threads (Option 5)
+Noah felt the post-and-replies Feed was too formal for banter. Five options were mocked up and put in a feedback deck (`design-options/`); Noah picked Option 5.
+- **The Feed is one group chat** per group: bubbles, newest at the bottom, a message box pinned above the tabs, day separators ("Tue", "Yesterday", "Today"). A strip at the top shows the group and its size; leaders get a "Manage" button there.
+- **Threads:** tap any message for "Reply in thread" (and "Delete" if it's yours, or for leaders). A message with replies shows "3 replies · last 9:40 AM" with the repliers' faces; tapping it opens the thread (original message, replies, a reply box). A thread reply can also go to the chat with "Also send to the group chat"; it shows there with a small quote of the original.
+- **Deleting:** own messages and replies; leaders can delete any. Deleting a message removes its thread too (with a confirm).
+- The old posts became messages and their replies became threads; added a few banter messages (donuts) to show the feel. A half-typed message survives taps.
